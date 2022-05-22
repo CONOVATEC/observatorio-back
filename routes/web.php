@@ -14,6 +14,7 @@ use App\Http\Controllers\LanguageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'auth:sanctum', 'verified'],function(){
 
 Route::get('/', [StaterkitController::class, 'home'])->name('home');
 Route::get('home', [StaterkitController::class, 'home'])->name('home');
@@ -23,7 +24,17 @@ Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('l
 Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])->name('without-menu');
 Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
 Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
-
+});
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

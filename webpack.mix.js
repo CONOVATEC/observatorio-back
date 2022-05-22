@@ -101,6 +101,7 @@ mix.then(() => {
 //   mix.setResourceRoot('/demo/vuexy-bootstrap-laravel-admin-template-new/demo-2/')
 // }
 
+
 /*
  |--------------------------------------------------------------------------
  | Browsersync Reloading
@@ -113,3 +114,4 @@ mix.then(() => {
  */
 
 mix.browserSync('http://127.0.0.1:8000/')
+
