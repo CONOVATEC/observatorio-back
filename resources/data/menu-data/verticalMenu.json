@@ -1,49 +1,139 @@
 {
-  "menu": [
-    {
-      "url": "home",
-      "name": "Home",
-      "icon": "home",
-      "slug": "home"
-    },
-    {
-      "name": "Page Layouts",
-      "icon": "mail",
-      "slug": "",
-      "badge": "5",
-      "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
-      "submenu": [
+    "menu": [
         {
-          "url": "layouts/collapsed-menu",
-          "name": "Collapsed Menu",
-          "icon": "circle",
-          "slug": "collapsed-menu"
+            "url": "home",
+            "name": "Home",
+            "icon": "home",
+            "slug": "dashboard"
         },
         {
-          "url": "layouts/full",
-          "name": "Layout Full",
-          "icon": "circle",
-          "slug": "layout-full"
+            "name": "news",
+            "icon": "airplay",
+            "slug": "",
+            "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
+            "submenu": [
+                {
+                    "url": "noticias",
+                    "name": "Ver noticias",
+                    "icon": "file-text",
+                    "slug": "noticias.index"
+                },
+                {
+                    "url": "noticias/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "noticias.create"
+                }
+            ]
         },
         {
-          "url": "layouts/without-menu",
-          "name": "Without Menu",
-          "icon": "circle",
-          "slug": "without-menu"
+            "name": "tags",
+            "icon": "tag",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "etiquetas",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "etiquetas.index"
+                },
+                {
+                    "url": "etiquetas/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "etiquetas.create"
+                }
+            ]
         },
         {
-          "url": "layouts/empty",
-          "name": "Layout Empty",
-          "icon": "circle",
-          "slug": "layout-empty"
+            "name": "categories",
+            "icon": "grid",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "categorias",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "categorias.index"
+                },
+                {
+                    "url": "categorias/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "categorias.create"
+                }
+            ]
         },
         {
-          "url": "layouts/blank",
-          "name": "Layout Blank",
-          "icon": "circle",
-          "slug": "layout-blank"
+            "name": "users",
+            "icon": "users",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "usuarios",
+                    "name": "users",
+                    "icon": "eye",
+                    "slug": "usuarios.index"
+                },
+                {
+                    "url": "usuarios/perfil",
+                    "name": "profile",
+                    "icon": "user",
+                    "slug": "usuarios.perfil"
+                }
+            ]
+        },
+        {
+            "name": "company",
+            "icon": "shield",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "configuracion/empresa",
+                    "name": "setting company",
+                    "icon": "settings",
+                    "slug": "configuracion.empresa"
+                }
+            ]
+        },
+        {
+            "name": "Page Layouts",
+            "icon": "mail",
+            "slug": "",
+            "badge": "5",
+            "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
+            "submenu": [
+                {
+                    "url": "layouts/collapsed-menu",
+                    "name": "Collapsed Menu",
+                    "icon": "circle",
+                    "slug": "collapsed-menu"
+                },
+                {
+                    "url": "layouts/full",
+                    "name": "Layout Full",
+                    "icon": "circle",
+                    "slug": "layout-full"
+                },
+                {
+                    "url": "layouts/without-menu",
+                    "name": "Without Menu",
+                    "icon": "circle",
+                    "slug": "without-menu"
+                },
+                {
+                    "url": "layouts/empty",
+                    "name": "Layout Empty",
+                    "icon": "circle",
+                    "slug": "layout-empty"
+                },
+                {
+                    "url": "layouts/blank",
+                    "name": "Layout Blank",
+                    "icon": "circle",
+                    "slug": "layout-blank"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
