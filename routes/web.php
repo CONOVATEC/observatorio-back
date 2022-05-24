@@ -1,8 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\admin\NewController;
+use App\Http\Controllers\admin\TagController;
+use App\Http\Controllers\StaterkitController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ConfigCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +23,15 @@ use App\Http\Controllers\LanguageController;
 Route::group(['middleware' => 'auth:sanctum', 'verified'],function(){
 
 Route::get('/', [StaterkitController::class, 'home'])->name('home');
-Route::get('home', [StaterkitController::class, 'home'])->name('home');
+// Route::get('home', [StaterkitController::class, 'home'])->name('home');
+Route::get('home', [DashboardController::class, 'dashboard'])->name('dashboard');
+// Route::get('/noticias/test', [NewController::class,'test'])->name('noticias-test');
+Route::get('/configuracion/empresa', [ConfigCompanyController::class,'settingCompany'])->name('configuracion.empresa');
+Route::get('/usuarios', [UserController::class,'index'])->name('usuarios.index');
+Route::get('/usuarios/perfil', [UserController::class,'profile'])->name('usuarios.perfil');
+Route::resource('noticias', NewController::class)->names('noticias');
+Route::resource('etiquetas', TagController::class)->names('etiquetas');
+Route::resource('categorias', CategoryController::class)->names('categorias');
 // Route Components
 Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
 Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');
