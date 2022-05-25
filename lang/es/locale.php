@@ -1,6 +1,23 @@
 <?php
 
 return [
+    // Inicio agregado por mí
+    "user-profile" => "Perfil de Usuario",
+    "news" => "Noticias",
+    "tags" => "Etiquetas",
+    "categories" => "Categorías",
+    "company" => "Organización",
+    "setting company" => "Configuración",
+    "users" => "Usuarios",
+    "profile" => "Perfil",
+    /*****************
+     * Para noticias *
+     *****************/
+    "Ver noticias" => "Ver noticias",
+    "view records" => "Ver registros",
+    "create register" => "Crear registro",
+
+    // Fin agregado por mí
     "Home" => "Principal",
     "Starter Kit" => "Starter Kit",
     "Apps & Pages" => "Apps & Pages",

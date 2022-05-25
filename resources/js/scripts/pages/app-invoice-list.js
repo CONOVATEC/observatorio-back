@@ -250,7 +250,7 @@ $(function () {
       // Buttons with Dropdown
       buttons: [
         {
-          text: 'Add Record',
+          text: 'Nuevo registro',
           className: 'btn btn-primary btn-add-record ms-2',
           action: function (e, dt, button, config) {
             window.location = invoiceAdd;

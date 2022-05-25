@@ -51,6 +51,7 @@ mixAssetsDir('scss/base/core/**/!(_)*.scss', (src, dest) =>
 
 // script js
 mixAssetsDir('js/scripts/**/*.js', (src, dest) => mix.scripts(src, dest))
+mixAssetsDir('admin/scripts/**/*.js', (src, dest) => mix.scripts(src, dest)) //Agregado
 
 /*
  |--------------------------------------------------------------------------
@@ -114,4 +115,3 @@ mix.then(() => {
  */
 
 mix.browserSync('http://127.0.0.1:8000/')
-
