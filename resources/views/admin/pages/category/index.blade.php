@@ -10,8 +10,6 @@
         </div>
     </div>
     <!--/ Info table about actions -->
-
 </section>
 <!--/ Card Actions Section -->
-
 @endsection

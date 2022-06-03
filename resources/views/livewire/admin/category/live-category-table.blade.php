@@ -65,7 +65,7 @@
                                 @forelse($categories as $category)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $category->name }}</td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $category->name }}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $category->description }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $category->created_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">

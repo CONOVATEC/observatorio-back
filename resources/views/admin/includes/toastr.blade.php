@@ -4,7 +4,7 @@
     setTimeout(function() {
         toastr["success"](
             "{{ session('success') }}"
-            , "✌ Excelente!", {
+            , "💪 Excelente!", {
                 closeButton: true
                 , tapToDismiss: false
             , }
@@ -49,12 +49,19 @@
     setTimeout(function() {
         toastr["error"](
             "{{ session('error') }}"
-            , "😞 Error !", {
-
+            , "💪 Alerta !", {
                 closeButton: true
                 , tapToDismiss: false
             , }
         );
+        /*  Swal.fire({
+              icon: 'success'
+              , title: 'Eliminado!'
+              , text: 'Registro eliminado correctamente'
+              , customClass: {
+                  confirmButton: 'btn btn-success'
+              }
+          });*/
     }, 2000);
 
 </script>

@@ -20,7 +20,9 @@
         </div>
     </div>
     <div class=" col-12 col-lg-6 mx-auto mb-0">
-        <a href="{{ route('categorias.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i class="fa-solid fa-delete-left"></i> Cancelar</a>
-        <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i> Registrar</button>
+        <a href="{{ route('categorias.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i class="fa-solid fa-delete-left"></i> </i> @isset($category)Volver @else Cancelar @endisset</button></a>
+
+        <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i> @isset($category)Actualizar @else Guardar @endisset</button>
+
     </div>
 </div>

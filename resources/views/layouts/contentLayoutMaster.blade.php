@@ -26,9 +26,12 @@ $configData = Helper::applClasses();
     {{-- Inicio para Toastr  --}}
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
-
     {{-- fin para Toastr  --}}
-
+    {{-- Inicio para sweet-alert  --}}
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+    <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
+    {{-- fin para sweet-alert--}}
     {{-- Include core + vendor Styles --}}
     @include('panels/styles')
     {{-- Incluimos las tostadas de confirmación  --}}

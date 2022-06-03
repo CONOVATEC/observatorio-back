@@ -47,7 +47,7 @@
                 <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
             </div>
             <div class="card-body ">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between overflow-auto">
                     <ul class="list-group list-group-flush">
                         @forelse($categories as $key => $category)
                         <li class="list-group-item">{{ $category->name }}</li>

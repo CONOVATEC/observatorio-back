@@ -91,9 +91,9 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request,$id)
     {
         // dd($id);
-        Category::find($id)->update($request->all());
+       Category::find($id)->update($request->all());
         // $category->update($request->all());
-        return redirect()->route('categorias.index')->with('info', 'Categoría Actualizado correctamente');
+        return redirect()->route('categorias.edit',$id)->with('info', 'Categoría Actualizado correctamente');
     }
 
     /**
