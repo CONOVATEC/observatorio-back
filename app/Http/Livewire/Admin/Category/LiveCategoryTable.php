@@ -37,6 +37,8 @@ class LiveCategoryTable extends Component
     }
     public function mount()
     {
+        $this->camp = 'created_at'; //Para que carga filtrado porla fecha de creación
+        $this->order = 'desc';      //Para que carga en forma descendente
         $this->icon = $this->iconDirection($this->order);
     }
     public function render()

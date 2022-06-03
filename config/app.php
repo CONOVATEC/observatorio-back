@@ -166,6 +166,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        // Para laravel collective
+        Collective\Html\HtmlServiceProvider::class,
+
+
 
         /*
          * Package Service Providers...
@@ -198,6 +202,11 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Helper' => App\Helpers\Helpers::class,
+        // Para laravel collective
+      'Form' => Collective\Html\FormFacade::class,
+      'Html' => Collective\Html\HtmlFacade::class,
+
+
     ])->toArray(),
 
 ];

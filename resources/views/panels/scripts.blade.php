@@ -25,3 +25,8 @@
 <script defer src="{{ asset(mix('vendors/js/alpinejs/alpine.js')) }}"></script>
 <!-- Para  ícono -->
 <script defer src="{{ URL::to('/admin/plugins/fontawesome/js/all.min.js') }}"></script>
+{{-- Inicio para Toastr  --}}
+<script defer src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+
+
+{{-- fin para Toastr  --}}

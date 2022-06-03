@@ -5,13 +5,12 @@
             <ul class="list-inline">
                 <li>
                     <div class="input-group ">
-
                         <input type="text" class="form-control " placeholder="Buscar..." aria-label="Buscar..." aria-describedby="buscar" wire:model="search" />
                         {{-- <span class="input-group-text" id="buscar"><i data-feather="search"></i></span>  --}}
                     </div>
                 </li>
-                <li>
-                    <select class="form-select me-1 " wire:model="perPage">
+                <li class="mx-1">
+                    <select class="form-select me-1 form-select-sm " wire:model="perPage" style="padding-top: 5px;padding-bottom: 6px;">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -20,11 +19,10 @@
                     </select>
                 </li>
                 <li>
-                    <button type="button" class="form-control btn btn-danger " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
+                    <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
-
                 <li>
-                    <button type="button" class="form-control btn btn-primary "><i class="fa-solid fa-circle-plus"></i> Nuevo</button>
+                    <a href="{{ route('categorias.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
 
                 </li>
             </ul>
@@ -71,19 +69,8 @@
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $category->description }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $category->created_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
-                                        <div class="d-flex align-items-center col-actions">
-                                            <a class="dropdown-item" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
-                                                <i class="fa-solid fa-pen-to-square font-medium-2 text-body "></i>
-
-                                                {{-- <span>Editar</span>  --}}
-                                            </a>
-                                            <a class=" dropdown-item" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
-                                                <i class="fa-solid fa-trash-can font-medium-2 text-body "></i>
-
-                                                {{-- <span class="font-medium-2 text-body"></span>  --}}
-                                                {{-- <span>Editar</span>  --}}
-                                            </a>
-                                        </div>
+                                        {{-- Incluimos los botones  --}}
+                                        @include('admin.pages.category.partials.buttons')
                                     </td>
                                 </tr>
                                 @empty
@@ -100,24 +87,8 @@
         </div>
     </div>
     <div class="card-footer">
-        <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-            <div>
-                <p class="small text-muted">
-                    {!! __('Showing') !!}
-                    <span class="font-medium">{{ $categories->firstItem() }}</span>
-                    {!! __('to') !!}
-                    <span class="font-medium">{{ $categories->lastItem() }}</span>
-                    {!! __('of') !!}
-                    <span class="font-medium">{{ $categories->total() }}</span>
-                    {!! __('results') !!}
-                </p>
-
-                {{-- Monstrando {{ $categories->currentPage() * $categories->perPage() - 9 }} to {{ $categories->currentPage() * $categories->perPage() }} de {{ $categories->total() }} registros --}}
-            </div>
-            <div>
-                {{$categories->withQueryString()->links()}}
-            </div>
-        </div>
+        {{-- Incluimos la paginación personalizada  --}}
+        @include('admin.pages.category.partials.pagination')
     </div>
 
 </div>

@@ -7,7 +7,6 @@
     <div class="row">
         <div class="col-12">
             @livewire('admin.category.live-category-table')
-
         </div>
     </div>
     <!--/ Info table about actions -->
