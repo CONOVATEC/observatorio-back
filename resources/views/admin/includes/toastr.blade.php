@@ -1,59 +1,44 @@
 @if(Session::has('success'))
 <script>
     // On load Toast
-    setTimeout(function() {
-        toastr["success"](
-            "{{ session('success') }}"
-            , "💪 Excelente!", {
-                closeButton: true
-                , tapToDismiss: false
-            , }
-        );
-    }, 2000);
-
+    setTimeout(
+        function () {
+            toastr["success"]("{{ session('success') }}", "💪 Excelente!", {
+                closeButton: true,
+                tapToDismiss: false,
+            });
+        }
+        // , 2000 PARA DEMORA EN CARGAR
+    );
 </script>
-@endif
-@if(Session::has('info'))
+@endif @if(Session::has('info'))
 <script>
     // On load Toast
-    setTimeout(function() {
-        toastr["info"](
-            "{{ session('info') }}"
-            , "🔔 Información !", {
-                closeButton: true
-                , tapToDismiss: false
-            , }
-        );
-    }, 2000);
-
+    setTimeout(function () {
+        toastr["info"]("{{ session('info') }}", "🔔 Información !", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+    });
 </script>
-@endif
-@if(Session::has('warning'))
+@endif @if(Session::has('warning'))
 <script>
     // On load Toast
-    setTimeout(function() {
-        toastr["warning"](
-            "{{ session('warning') }}"
-            , "💡 Advertencia !", {
-                closeButton: true
-                , tapToDismiss: false
-            , }
-        );
-    }, 2000);
-
+    setTimeout(function () {
+        toastr["warning"]("{{ session('warning') }}", "💡 Aviso !", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+    });
 </script>
-@endif
-@if(Session::has('error'))
+@endif @if(Session::has('error'))
 <script>
     // On load Toast
-    setTimeout(function() {
-        toastr["error"](
-            "{{ session('error') }}"
-            , "💪 Alerta !", {
-                closeButton: true
-                , tapToDismiss: false
-            , }
-        );
+    setTimeout(function () {
+        toastr["error"]("{{ session('error') }}", "💪 Error !", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
         /*  Swal.fire({
               icon: 'success'
               , title: 'Eliminado!'
@@ -62,7 +47,6 @@
                   confirmButton: 'btn btn-success'
               }
           });*/
-    }, 2000);
-
+    });
 </script>
 @endif

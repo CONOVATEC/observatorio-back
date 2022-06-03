@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
-use App\Models\admin\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CategoryRequest;
-use App\Http\Requests\admin\CategoryResquest;
+use App\Models\admin\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -33,10 +32,10 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::latest()->paginate(5);
-            $breadcrumbs = [
+        $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "categorias", 'name' => "Categorías"], ['name' => "Registrando categoría"],
         ];
-        return view('admin.pages.category.create', compact('breadcrumbs','categories'));
+        return view('admin.pages.category.create', compact('breadcrumbs', 'categories'));
     }
 
     /**
@@ -74,11 +73,10 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         // dd($category);
 
-
-            $breadcrumbs = [
+        $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "categorias", 'name' => "Categorías"], ['name' => "Editando categoría"],
         ];
-        return view('admin.pages.category.edit', compact('breadcrumbs','categories','category'));
+        return view('admin.pages.category.edit', compact('breadcrumbs', 'categories', 'category'));
     }
 
     /**
@@ -88,12 +86,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request,$id)
+    public function update(CategoryRequest $request, $id)
     {
         // dd($id);
-       Category::find($id)->update($request->all());
+        Category::find($id)->update($request->all());
         // $category->update($request->all());
-        return redirect()->route('categorias.edit',$id)->with('info', 'Categoría Actualizado correctamente');
+        return redirect()->route('categorias.edit', $id)->with('info', 'Categoría actualizado correctamente');
     }
 
     /**
@@ -105,7 +103,19 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         // dd($id);
-        Category::find($id)->delete();
-        return redirect()->route('categorias.index')->with('error', 'Categoría eliminado correctamente');
+        Category::findOrFail($id)->delete();
+        return redirect()->route('categorias.index')->with('warning', 'Categoría eliminado correctamente');
+    }
+    // Método para restaurar el registro eliminado
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success', 'Categoría restaurado correctamente');
+    }
+    // Método para restaurareliminar el registro definitivamente
+    public function deleteDefinitive($id)
+    {
+        $categy = Category::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('warning', 'Categoría eliminado definitivamente');
     }
 }

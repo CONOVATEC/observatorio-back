@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header mt-1 mb-0 py-0">
-        <h4 class="card-title">Listado de categorías</h4>
+        <h4 class="card-title">Listado de categorías eliminados</h4>
         <div class="heading-elements py-0">
             <ul class="list-inline">
                 <li>
@@ -11,7 +11,7 @@
                 </li>
                 <li class="mx-1">
                     <select class="form-select me-1 form-select-sm " wire:model="perPage" style="padding-top: 5px;padding-bottom: 6px;">
-                        <option value="5">5</option>
+                        <option value="3">3</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
@@ -20,10 +20,6 @@
                 </li>
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
-                </li>
-                <li>
-                    <a href="{{ route('categorias.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
-
                 </li>
             </ul>
         </div>
@@ -53,30 +49,31 @@
                                             <span class="fa-solid fa{{ $camp === 'description' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Creado
-                                        <a wire:click="sortable('created_at')">
-                                            <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Eliminado
+                                        <a wire:click="sortable('deleted_at')">
+                                            <span class="fa-solid fa{{ $camp === 'deleted_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
                                     <th scope="col" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($categories as $category)
+                                {{-- @json($categoriesEliminated)  --}}
+                                @forelse($categoriesEliminated as $categoryEliminated)
                                 <tr>
-                                    <!-- <td>{{ $loop->iteration }}</td> -->
-                                    <td>{{ $category->id }}</td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $category->name }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $category->description }}</span></td>
-                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $category->created_at->format('d-m-Y') }}</span></td>
+                                    {{-- <td>{{ $loop->iteration }}</td> --}}
+                                    <td>{{ $categoryEliminated->id }}</td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $categoryEliminated->name }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $categoryEliminated->description }}</span></td>
+                                    <td><span class="badge rounded-pill badge-light-danger me-1">{{ $categoryEliminated->deleted_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
-                                        @include('admin.pages.category.partials.buttons')
+                                        @include('admin.pages.category.partials.buttons-restore')
                                     </td>
                                 </tr>
                                 @empty
                                 <tr class="text-center ">
-                                    <td colspan="5" class="text-danger">No existe registro</td>
+                                    <td colspan="5" class="text-danger">No existe registro eliminado</td>
                                 </tr>
                                 @endforelse
                             </tbody>
@@ -89,7 +86,7 @@
     </div>
     <div class="card-footer">
         {{-- Incluimos la paginación personalizada  --}}
-        @include('admin.pages.category.partials.pagination')
+        @include('admin.pages.category.partials.pagination-restore')
     </div>
 
 </div>
