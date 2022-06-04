@@ -14,7 +14,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $breadcrumbs = [
+            // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
+            ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de etiquetas"],
+        ];
+        return view('admin.pages.tag.index', compact('breadcrumbs'));
     }
 
     /**

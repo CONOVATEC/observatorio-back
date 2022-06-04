@@ -23,10 +23,19 @@ $configData = Helper::applClasses();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
     {{-- Para ícono  --}}
     <link href="{{ URL::to('/admin/plugins/fontawesome/css/all.min.css') }}" rel="stylesheet">
-
+    {{-- Inicio para Toastr  --}}
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
+    {{-- fin para Toastr  --}}
+    {{-- Inicio para sweet-alert  --}}
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+    <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
+    {{-- fin para sweet-alert--}}
     {{-- Include core + vendor Styles --}}
     @include('panels/styles')
-
+    {{-- Incluimos las tostadas de confirmación  --}}
+    @include('admin.includes.toastr')
 </head>
 <!-- END: Head-->
 

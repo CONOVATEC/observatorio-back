@@ -25,3 +25,16 @@
 <script defer src="{{ asset(mix('vendors/js/alpinejs/alpine.js')) }}"></script>
 <!-- Para  ícono -->
 <script defer src="{{ URL::to('/admin/plugins/fontawesome/js/all.min.js') }}"></script>
+{{-- Inicio para Toastr  --}}
+<script defer src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+{{-- fin para Toastr  --}}
+{{-- Inicio para SweetAlert  --}}
+{{-- Alerta personalizado  --}}
+<script defer src="{{ URL::to('/admin/alert/sweetAlert.js') }}"></script>
+{{-- fin alerta personalizado  --}}
+<script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
+<script src="{{ asset(mix('vendors/js/extensions/polyfill.min.js')) }}"></script>
+
+<script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
+
+{{-- fin para SweetAlert  --}}

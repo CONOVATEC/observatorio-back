@@ -16,7 +16,7 @@ class NewController extends Controller
     {
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
-             ['link' => "home", 'name' => "inicio"], ['link' => "javascript:void(0)", 'name' => "noticias"], ['name' => "lista de noticias"]
+            ['link' => "home", 'name' => "inicio"], ['name' => "lista de boletines"]
         ];
         return view('/admin/pages/new/index', [
             'breadcrumbs' => $breadcrumbs,

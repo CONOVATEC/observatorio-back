@@ -136,4 +136,10 @@ return [
             'min' => 'La :attribute debe contener más de :min caracteres',
         ],
     ],
+    'attributes' => [
+        'name'    => 'nombre',
+        'description'    => 'descripción',
+        'email'    => 'correo electrónico',
+        'password'    => 'contraseña',
+    ],
 ];
