@@ -61,8 +61,8 @@
                                 {{-- @json($categoriesEliminated)  --}}
                                 @forelse($categoriesEliminated as $categoryEliminated)
                                 <tr>
-                                    {{-- <td>{{ $loop->iteration }}</td> --}}
-                                    <td>{{ $categoryEliminated->id }}</td>
+                                    {{-- <td>{{ $categoryEliminated->id }}</td> --}}
+                                    <td>{{ $loop->iteration }}</td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $categoryEliminated->name }}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $categoryEliminated->description }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-danger me-1">{{ $categoryEliminated->deleted_at->format('d-m-Y') }}</span></td>

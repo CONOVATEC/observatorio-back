@@ -9,7 +9,7 @@
         {
             "name": "news",
             "icon": "airplay",
-            "slug": "",
+            "slug": "noticias*",
             "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
             "submenu": [
                 {
@@ -48,7 +48,7 @@
         {
             "name": "categories",
             "icon": "grid",
-            "slug": "",
+            "slug": "#",
             "submenu": [
                 {
                     "url": "categorias",

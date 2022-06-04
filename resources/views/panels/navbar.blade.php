@@ -75,15 +75,6 @@
                         <a class="dropdown-item" href="{{ url('lang/en') }}" data-language="en">
                             <i class="flag-icon flag-icon-us"></i> English
                         </a>
-                        <a class="dropdown-item" href="{{ url('lang/fr') }}" data-language="fr">
-                            <i class="flag-icon flag-icon-fr"></i> French
-                        </a>
-                        <a class="dropdown-item" href="{{ url('lang/de') }}" data-language="de">
-                            <i class="flag-icon flag-icon-de"></i> German
-                        </a>
-                        <a class="dropdown-item" href="{{ url('lang/pt') }}" data-language="pt">
-                            <i class="flag-icon flag-icon-pt"></i> Portuguese
-                        </a>
                     </div>
                 </li>
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="{{ $configData['theme'] === 'dark' ? 'sun' : 'moon' }}"></i></a></li>
@@ -217,10 +208,10 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                        <h6 class="dropdown-header">Manage Profile</h6>
+                        <h6 class="dropdown-header">{{ __('Manage Profile') }}</h6>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0)' }}">
-                            <i class="me-50" data-feather="user"></i> Profile
+                            <i class="me-50" data-feather="user"></i> {{ __('Profile') }}
                         </a>
                         @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
                         <a class="dropdown-item" href="{{ route('api-tokens.index') }}">
@@ -228,7 +219,7 @@
                         </a>
                         @endif
                         <a class="dropdown-item" href="#">
-                            <i class="me-50" data-feather="settings"></i> Settings
+                            <i class="me-50" data-feather="settings"></i> {{ __('Settings') }}
                         </a>
 
                         @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -259,14 +250,16 @@
                         @endif
                         @if (Auth::check())
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="me-50" data-feather="power"></i> Salir
+                            <i class="me-50" data-feather="power"></i> {{ __('logout') }}
+
                         </a>
                         <form method="POST" id="logout-form" action="{{ route('logout') }}">
                             @csrf
                         </form>
                         @else
                         <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
-                            <i class="me-50" data-feather="log-in"></i> Login
+                            <i class="me-50" data-feather="log-in"></i> {{ __('logout') }}
+
                         </a>
                         @endif
                     </div>
