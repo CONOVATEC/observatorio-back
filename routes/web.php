@@ -30,11 +30,18 @@ Route::get('/configuracion/empresa', [ConfigCompanyController::class,'settingCom
 Route::get('/usuarios', [UserController::class,'index'])->name('usuarios.index');
 Route::get('/usuarios/perfil', [UserController::class,'profile'])->name('usuarios.perfil');
 Route::resource('noticias', NewController::class)->names('noticias');
-Route::resource('etiquetas', TagController::class)->names('etiquetas');
+//oute::resource('etiquetas', TagController::class)->names('etiquetas');
 // para restaurar categoría
 Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
 Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->name('categorias.restaurar');
 Route::resource('categorias', CategoryController::class)->names('categorias');
+
+
+// para restaurar etiquetas
+Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
+Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
+Route::resource('etiquetas', TagController::class)->names('etiquetas');
+
 // Route Components
 Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
 Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');

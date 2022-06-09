@@ -5,9 +5,9 @@ namespace Database\Factories\admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\Tag>
  */
-class CategoryFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name'        => $this->faker->unique->word,
-            'description' => $this->faker->sentence(),
+            'name'=> $this->faker->unique->word,
         ];
     }
 }
