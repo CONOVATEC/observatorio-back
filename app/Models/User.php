@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\admin\YouthStrategy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,4 +59,21 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+     /****************************************************
+     * Relación de Uno a Muchos hasmany => tiene muchos *
+     ****************************************************/
+    public function settings()
+    {
+        return $this->hasmany(Setting::class);
+    }
+
+      /****************************************************
+     * Relación de Uno a Muchos hasmany => tiene muchos *
+     ****************************************************/
+    public function youth_strategies()
+    {
+        return $this->hasmany(YouthStrategy::class);
+    }
 }
