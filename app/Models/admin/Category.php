@@ -21,9 +21,8 @@ class Category extends Model
       /****************************************************
      * Relación de Uno a Muchos hasmany => tiene muchos *
      ****************************************************/
-    public function news()
-    {
-        return $this->hasmany(News::class);
+    public function posts(){
+        return $this->hasmany(Post::class);
     }
 }
 

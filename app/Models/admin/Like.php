@@ -17,9 +17,9 @@ class Like extends Model
       /****************************************************
      * Relación de Uno a Muchos hasmany => tiene muchos *
      ****************************************************/
-    public function news()
+    public function posts()
     {
-        return $this->hasmany(News::class);
+        return $this->hasmany(Post::class);
     }
 }
 

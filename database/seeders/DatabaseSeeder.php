@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\ReaderLog::factory(20)->create();
         \App\Models\admin\Setting::factory(1)->create();
         \App\Models\admin\Tag::factory(10)->create();
-        $this->call(NewsSeeder::class);
+        $this->call(PostSeeder::class);
         \App\Models\admin\TypeTraining::factory(10)->create();
         \App\Models\admin\Training::factory(10)->create();
         \App\Models\admin\YouthObservatory::factory(10)->create();

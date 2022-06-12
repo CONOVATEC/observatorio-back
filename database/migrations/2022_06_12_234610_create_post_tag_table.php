@@ -13,20 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news_tag', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            /*
-                ** -- Laves foreanas -- **
-            */
-            $table->unsignedBigInteger('news_id');
+            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('tag_id');
-
-            /*
-                ** -- Resticiones de las llaves foráneas -- **
-            */
-            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
+            /************************************
+             * Restricciones de llaves foráneas *
+             ************************************/
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
@@ -38,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_tag');
+        Schema::dropIfExists('post_tag');
     }
 };

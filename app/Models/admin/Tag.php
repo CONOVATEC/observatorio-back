@@ -19,8 +19,8 @@ class Tag extends Model
      * Relación de muchos a muchos => pertenece a muchos *
      * relación muchos a muchos para news
      *********************************************************/
-    public function news()
+    public function posts()
     {
-        return $this->belongsToMany(News::class);
+        return $this->belongsToMany(Post::class);
     }
 }

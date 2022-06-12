@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\admin\Post;
 use App\Models\admin\YouthStrategy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -76,4 +77,10 @@ class User extends Authenticatable
     {
         return $this->hasmany(YouthStrategy::class);
     }
+
+
+     public function posts()
+     {
+         return $this->hasMany(profile::class);
+     }
 }
