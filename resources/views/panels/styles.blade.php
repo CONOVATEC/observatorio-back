@@ -40,6 +40,10 @@
 <link rel="stylesheet" href="{{ asset(mix('css/style.css')) }}" />
 @endif
 <style>
+    [x-cloak] {
+        display: none !important;
+    }
+
     /* Estilo para scrol*/
     * {
         scrollbar-width: thin;
