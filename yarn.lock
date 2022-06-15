@@ -1472,6 +1472,7 @@
     "require-from-string" "^2.0.2"
     "uri-js" "^4.2.2"
 
+
 "alpinejs@^3.10.2":
   "integrity" "sha512-P6DTX78J94FgsskS3eS23s26hfb0NWQZUidBnkUK7fId1x64/kLm5E79lL3HNItUmHDCKOHvfP8EAcuCVab89w=="
   "resolved" "https://registry.npmjs.org/alpinejs/-/alpinejs-3.10.2.tgz"
