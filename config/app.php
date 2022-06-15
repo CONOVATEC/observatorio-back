@@ -168,6 +168,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Para laravel collective
         Collective\Html\HtmlServiceProvider::class,
+        // Para exportar excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
 
@@ -203,8 +206,11 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Helper' => App\Helpers\Helpers::class,
         // Para laravel collective
-      'Form' => Collective\Html\FormFacade::class,
-      'Html' => Collective\Html\HtmlFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        //   Para exportar excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
 
 
     ])->toArray(),
