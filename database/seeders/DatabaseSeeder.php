@@ -15,10 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+
       Storage::deleteDirectory('public/news');
         Storage::makeDirectory('public/news');
 
-        \App\Models\User::factory(3)->create();
+        \App\Models\User::factory(100)->create();
+
         \App\Models\admin\Category::factory(100)->create();
         \App\Models\admin\AboutCmpj::factory(10)->create();
         \App\Models\admin\Like::factory(2)->create();
