@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title',45);
             $table->string('slug');
-            $table->string('extract',45);
+            $table->string('extract',200);
+            $table->text('content',1000);
             $table->enum('status',[1,2])->default(1);
             $table->tinyInteger('tendencia_active');
             /*
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -44,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('posts');
     }
 };

@@ -2,30 +2,26 @@
 
 namespace App\Models\admin;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Like extends Model
 {
     use HasFactory;
-    use SoftDeletes;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name','description'];
+
+
+
+    protected $fillable = ['reaction'];
 
 
       /****************************************************
      * Relación de Uno a Muchos hasmany => tiene muchos *
      ****************************************************/
-    public function posts(){
+    public function posts()
+    {
         return $this->hasmany(Post::class);
     }
 }
-
 
 
 
