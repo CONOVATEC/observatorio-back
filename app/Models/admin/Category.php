@@ -16,4 +16,16 @@ class Category extends Model
      * @var array
      */
     protected $fillable = ['name','description'];
+
+
+      /****************************************************
+     * Relación de Uno a Muchos hasmany => tiene muchos *
+     ****************************************************/
+    public function posts(){
+        return $this->hasmany(Post::class);
+    }
 }
+
+
+
+

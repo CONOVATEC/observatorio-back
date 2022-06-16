@@ -72,6 +72,7 @@ mix
   .js('resources/js/core/app-menu.js', 'public/js/core')
   .js('resources/js/core/app.js', 'public/js/core')
   .js('resources/assets/js/scripts.js', 'public/js/core')
+  .js('resources/js/alpine.js', 'public/js')
   .sass('resources/scss/base/themes/dark-layout.scss', 'public/css/base/themes', { sassOptions })
   .sass('resources/scss/base/themes/bordered-layout.scss', 'public/css/base/themes', { sassOptions })
   .sass('resources/scss/base/themes/semi-dark-layout.scss', 'public/css/base/themes', { sassOptions })

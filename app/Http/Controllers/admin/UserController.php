@@ -9,14 +9,17 @@ class UserController extends Controller
 {
        public function index()
        {
-
+              $breadcrumbs = [
+                     // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
+                     ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de usuarios"],
+              ];
+              return view('admin.pages.user.index', compact('breadcrumbs'));
        }
        public function profile(Request $request)
        {
-       return view('profile.show', [
-            'request' => $request,
-            'user' => $request->user(),
-        ]);
-
+              return view('profile.show', [
+                     'request' => $request,
+                     'user' => $request->user(),
+              ]);
        }
 }
