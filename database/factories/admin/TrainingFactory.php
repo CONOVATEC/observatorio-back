@@ -18,7 +18,7 @@ class TrainingFactory extends Factory
     public function definition()
     {
         return [
-            'name'        => $this->faker->unique->word,
+            'name'        => $this->faker->unique->sentence(2),
             'description' => $this->faker->sentence(),
             'type_training_id' => TypeTraining::all()->random()->id,
 

@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('youth_strategies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('theme');
-            $table->string('description');
-            $table->string('axes');//ejes
-            $table->string('imagen_theme');
-            $table->string('imagen_infographic');
-            $table->string('video_strategy');
+            $table->string('name')->unique()->nullable(false);
+            $table->string('slug');
+            $table->string('theme')->nullable();
+            $table->string('description')->nullable();
+            $table->string('axes')->nullable();//ejes
+            $table->string('imagen_theme')->nullable();
+            $table->string('imagen_infographic')->nullable();
+            $table->string('video_strategy')->nullable();
 
             /*
                 ** -- Laves foreanas -- **
