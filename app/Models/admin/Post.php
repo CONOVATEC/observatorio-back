@@ -10,17 +10,18 @@ class Post extends Model
     use HasFactory;
 
 
-    protected $fillable = ['title','slug','extract','content','tendencia_active','category_id','like_id','user_id'];
+    protected $fillable = ['title','slug','extract','content','tendencia_active','category_id','user_id'];
 
 
-    /************************************************************************
-     * Relación de uno a muchos inversa belongsTo pertenece a like *
-     ************************************************************************/
-
-    public function like()
+    /**********************************************************
+     * Relación de uno a muchos hasMany => tiene muchos likes *
+     **********************************************************/
+    //*Método para likes
+    public function likes()
     {
-        return $this->belongsTo(Like::class);
+        return $this->hasMany(Like::class);
     }
+
 
      /************************************************************************
      * Relación de uno a muchos inversa belongsTo pertenece a category *

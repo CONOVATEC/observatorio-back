@@ -9,17 +9,18 @@ class Like extends Model
 {
     use HasFactory;
 
-
-
-    protected $fillable = ['reaction'];
-
-
-      /****************************************************
-     * Relación de Uno a Muchos hasmany => tiene muchos *
-     ****************************************************/
-    public function posts()
+    /************************************************************************
+     * Relación de uno a muchos inversa belongsTo pertenece a post
+     ************************************************************************/
+    //*Método para post
+    public function post()
     {
-        return $this->hasmany(Post::class);
+        return $this->belongsTo(Post::class);
+    }
+    //*Método para user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
 

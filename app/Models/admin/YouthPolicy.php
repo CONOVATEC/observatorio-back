@@ -12,5 +12,5 @@ class YouthPolicy extends Model
 
     protected $table="youth_policies";
 
-    protected $fillable = ['name','descripcion'];
+    protected $fillable = ['name','slug','descripcion'];
 }

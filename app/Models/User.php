@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\admin\Like;
 use App\Models\admin\Post;
 use App\Models\admin\YouthStrategy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -81,6 +82,11 @@ class User extends Authenticatable
 
      public function posts()
      {
-         return $this->hasMany(profile::class);
+         return $this->hasMany(Post::class);
+     }
+
+     public function likes()
+     {
+         return $this->hasMany(Like::class);
      }
 }
