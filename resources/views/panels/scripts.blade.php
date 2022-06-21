@@ -37,6 +37,4 @@
 
 <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
 <script src="{{ asset('js/alpine.js') }}"></script>
-
-
 {{-- fin para SweetAlert  --}}

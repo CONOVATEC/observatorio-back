@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-sm-12 ">
                                 <div class="table-responsive ">
-                                    @livewire('admin.user.live-user-table')
+								<livewire:admin.user.live-user-table theme="bootstrap-5" />
                                 </div>
                             </div>
                         </div>
