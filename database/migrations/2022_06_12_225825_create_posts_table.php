@@ -17,15 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('title',45);
             $table->string('slug');
-            $table->string('extract',200);
-            $table->text('content',1000);
+            $table->string('extract',200)->nulable();
+            $table->text('content',1000)->nulable();
             $table->enum('status',[1,2])->default(1);
             $table->tinyInteger('tendencia_active');
             /*
                 ** -- Laves foreanas -- **
             */
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('like_id');
+            $table->unsignedBigInteger('like_id')->nulable();
             $table->unsignedBigInteger('user_id');
             $table->softDeletes()->nullable();
             /*

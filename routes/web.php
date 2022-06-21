@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ConfigCompanyController;
+use App\Http\Controllers\admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
     Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
     Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
-    Route::resource('noticias', NewController::class)->names('noticias');
+    Route::resource('noticias', PostController::class)->names('noticias');
 
     // para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
