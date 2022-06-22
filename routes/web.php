@@ -36,10 +36,12 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Route::get('home', [DashboardController::class, 'dashboard'])->name('dashboard');
     // Route::get('/noticias/test', [NewController::class,'test'])->name('noticias-test');
     Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
-    Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
-    Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
-    Route::resource('noticias', NewController::class)->names('noticias');
+    // Rutas para usuarios
+    Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+    Route::resource('usuarios', UserController::class)->names('usuarios');
 
+
+    Route::resource('noticias', NewController::class)->names('noticias');
     // para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->name('categorias.restaurar');
