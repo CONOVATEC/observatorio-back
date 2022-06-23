@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('public/news');
         Storage::makeDirectory('public/news');
-        \App\Models\User::factory()->create(['name' => 'admin', 'email' => 'admin@admin.com', 'password' => bcrypt('admin123')]);
+        \App\Models\User::factory()->create(['name' => 'Administrador', 'phone' => '935445249', 'status' => 2, 'username' => 'admin', 'email' => 'admin@admin.com', 'password' => bcrypt('admin123')]);
         \App\Models\User::factory(100)->create();
         \App\Models\admin\Category::factory(100)->create();
         \App\Models\admin\Tag::factory(10)->create();

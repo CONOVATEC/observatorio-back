@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\admin\UserRequest;
 
 class UserController extends Controller
 {
@@ -29,11 +32,13 @@ class UserController extends Controller
      */
     public function create()
     {
+        $roles = Role::orderby('name')->pluck('name', 'id');
+        // $roles = Role::all();
         $users = User::latest()->paginate(5);
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "users", 'name' => "Usuarios"], ['name' => "Registrando Usuario"],
         ];
-        return view('admin.pages.user.create', compact('users', 'breadcrumbs'));
+        return view('admin.pages.user.create', compact('users', 'breadcrumbs', 'roles'));
     }
 
     /**
@@ -42,9 +47,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        User::create($request->all());
+        return redirect()->route('usuarios.index')->with('success', 'Usuario registrado correctamente');
     }
 
     /**

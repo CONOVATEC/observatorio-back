@@ -99,8 +99,21 @@
         ['clean']
       ]
     },
-    theme: 'snow'
+    theme: 'snow',
+    placeholder: 'Descríbete..!'
   });
+  // Agregado
+var form = document.getElementById('identifier');
+form.onsubmit = function() {
+  // Populate hidden form on submit
+  var about = document.getElementById('biography');
+  about.value = JSON.stringify(blogEditor.getContents());
+  // console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+
+  // No back end to actually submit to!
+  // alert('Open the console to see the submit data!')
+  // return false;
+};
 
   // Change featured image
   if (blogImageInput.length) {

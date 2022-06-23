@@ -141,5 +141,12 @@ return [
         'description'    => 'descripción',
         'email'    => 'correo electrónico',
         'password'    => 'contraseña',
+        'auth'    => 'autenticación',
+        'username'    => 'usuario',
+        'phone'    => 'teléfono',
+        'status'    => 'estado',
+        'created_at'    => 'fecha de registro',
+        'profile_photo_path'    => 'foto de perfil',
+        'biography'    => 'biografía',
     ],
 ];
