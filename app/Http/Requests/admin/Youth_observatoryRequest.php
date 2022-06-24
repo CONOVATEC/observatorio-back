@@ -24,23 +24,16 @@ class Youth_observatoryRequest extends FormRequest
     public function rules()
     {
         // Verificamos que en la ruta trae un parámetro
-        $youthObservatorio = $this->route()->parameters();
+       
         $rules = [
             'mission' => 'required|min:3|max:255|string',
             'vision' => 'required|min:3|max:255|string',
             'about_us'=>'required|min:3|max:255|string',
             'organization_chart'=>'required|min:3|max:255|string',
         ];
-        if ($youthObservatorio) {
-          
-            $rules = [
-                'mission' => 'required|min:3|max:255|string',
-                'vision' => 'required|min:3|max:255|string',
-                'about_us'=>'required|min:3|max:255|string',
-                'organization_chart'=>'required|min:3|max:255|string',
-            ];
+        
             
-        }
+        
         return  $rules;
     }
 }

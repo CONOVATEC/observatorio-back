@@ -24,7 +24,7 @@ class About_cmpjRequest extends FormRequest
     public function rules()
     {
        // Verificamos que en la ruta trae un parámetro
-       $aboutCmpj = $this->route()->parameters();
+      
        $rules = [
            'ordinance' => 'required|min:3|max:255|string',
            'about_us' => 'required|min:3|max:255|string',
@@ -33,18 +33,7 @@ class About_cmpjRequest extends FormRequest
            'board_of_directors'=>'required|min:3|max:255|string',
            'social'=>'required|int',
        ];
-       if ($aboutCmpj) {
-         
-           $rules = [
-            'ordinance' => 'required|min:3|max:255|string',
-            'about_us' => 'required|min:3|max:255|string',
-            'vision'=>'required|min:3|max:255|string',
-            'functions'=>'required|min:3|max:255|string',
-            'board_of_directors'=>'required|min:3|max:255|string',
-            'social'=>'required|int',
-           ];
-           
-       }
+       
        return  $rules;
     }
 }
