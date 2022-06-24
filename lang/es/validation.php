@@ -148,5 +148,6 @@ return [
         'created_at'    => 'fecha de registro',
         'profile_photo_path'    => 'foto de perfil',
         'biography'    => 'biografía',
+        'roles[]'    => 'rol',
     ],
 ];

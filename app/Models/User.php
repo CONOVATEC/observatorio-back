@@ -69,6 +69,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    //*Método para en la url aparesca el slug
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
     /****************************************************
      ****************************************************/
     public function settings()

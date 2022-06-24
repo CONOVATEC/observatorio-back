@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\admin\UserRequest;
@@ -91,10 +92,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
@@ -102,73 +103,44 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, User $user)
     {
-        $roles = Role::orderby('name')->pluck('name', 'id');
-        $user = User::findOrFail($id);
+        // dd($request->all());
+        dd($user);
+        $users = User::latest()->paginate(5);
+        // $user = User::findOrFail($user);
         // dd($category);
+
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "usuarios", 'name' => "Usuarios"], ['name' => "Editando Usuario"],
         ];
-        return view('admin.pages.user.edit', compact('breadcrumbs', 'roles', 'user'));
+        return view('admin.pages.user.edit', compact('breadcrumbs', 'users', 'user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
-        User::find($user->id)->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'biography' => $request->biography,
-            'status' => $request->status,
-            'phone' => $request->phone,
-            'created_at' => $request->created_at,
-        ]);
-        if ($request->password) {
-            $user->update(['password' => bcrypt($request->password)]);
-        }
-        $user->roles()->sync($request->roles);
-        if ($request->hasFile('profile_photo_path')) {
-            if ($user->profile_photo_path) {
-                Storage::disk('public')->delete($user->profile_photo_path);
-                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->store('profile-photos')]);
-            } else {
-                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->store('profile-photos')]);
-            }
-        }
-        if ($request->file('profile_photo_path')) {
-            $this->optimizeImage($user); //ejecutar directamente el método para optimizar
-        }
-        return redirect()->route('usuarios.edit', $user->id)->with('success', 'Actualizado correctamente');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
-        //Verificamos que rol  no tenga asignado un permiso antes de ser eliminado
-        if ($user->roles()->count()) {
-            return redirect()->route('usuarios.index')->with('error', 'Usuario con rol activo');
-        } else {
-            $user->delete();
-            return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente');
-        }
+        //
     }
     public function profile(Request $request)
     {
