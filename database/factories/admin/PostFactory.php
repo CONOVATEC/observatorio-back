@@ -31,7 +31,6 @@ class PostFactory extends Factory
                 'status' => $this->faker->numberBetween(1,2),
                 'tendencia_active'=> $this->faker->numberBetween(1,2),
                 'category_id'=> Category::all()->random()->id,
-                'like_id'=>  Like::all()->random()->id,
                 'user_id' => User::all()->random()->id,
 
             ];
