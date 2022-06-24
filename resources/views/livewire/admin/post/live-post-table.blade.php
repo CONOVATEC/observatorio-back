@@ -34,7 +34,7 @@
                 <div class="col-sm-12 ">
                     <div class="table-responsive ">
                         <table class="table table-striped " style="width:100%">
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th scope="col" style="width: 10%" class="ps-1">Item
 
@@ -63,18 +63,32 @@
                                             <span class="fa-solid fa{{ $camp === 'user_id' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    <th scope="col">Creado
+                                        <a wire:click="sortable('created_at')">
+                                            <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
+                                        </a>
+                                    </th>
                                     <th scope="col" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($posts as $values)
-                                <tr>
+                                <tr class="text-center">
                                     {{-- <td>{{ $category->id }}</td> --}}
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->id }}</span></td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->title }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->status }}</span></td>
+                                    <td class="text-center">
+                                       
+                                        @if ($values->status==2)
+                                        <span class="d-inline-block text-truncate badge badge-glow bg-success" style="max-width: 250px;">Publicado</span>
+                                        @else
+                                            <span class="d-inline-block text-truncate badge badge-glow bg-danger" style="max-width: 250px;">Por Publicar</span>
+                                        @endif
+                                        
+                                    </td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->category->name }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->user_id }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->user->name }}</span></td>
+                                    <td class=""><span class="badge rounded-pill badge-light-danger me-1" style="max-width: 250px;">{{ $values->created_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.post.partials.buttons')

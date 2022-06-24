@@ -10,5 +10,5 @@ class ReaderLog extends Model
     use HasFactory;
     protected $table="register_readers";
 
-    protected $fillable = ['name','last_name','dates_of_birth','comment'];
+    protected $fillable = ['name','slug','last_name','dates_of_birth','comment'];
 }

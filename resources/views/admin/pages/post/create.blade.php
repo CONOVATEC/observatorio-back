@@ -1,5 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 @section('title', 'Boletines')
+
 @section('content')
 <!-- Card Actions Section -->
 
@@ -33,7 +34,7 @@
                 <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
             </div>
             <div class="card-body">
-                {!! Form::open([ 'route' => 'noticias.store', 'method' => 'post','class' => 'form needs-validation','novalidate'=>'','autocomplete'=>'off' ]) !!}
+                {!! Form::open([ 'route' => 'noticias.store', 'method' => 'post','class' => 'form needs-validation','novalidate'=>'','autocomplete'=>'off','files'=>'true' ]) !!}
                 @include('admin.pages.post.partials.form')
                 {!! Form::close() !!}
             </div>
@@ -45,27 +46,6 @@
 <!--/ Info table about actions -->
 <!--/ Card Actions Section -->
 
-<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
-
-<script>
-    ClassicEditor
-	.create( document.querySelector( '#extract' ) )
-	.then( editor => {
-		console.log( 'Editor was initialized', editor );
-	} )
-	.catch( err => {
-		console.error( err.stack );
-	} );
-
-    ClassicEditor
-	.create( document.querySelector( '#content' ) )
-	.then( editor => {
-		console.log( 'Editor was initialized', editor );
-	} )
-	.catch( err => {
-		console.error( err.stack );
-	} );
-</script>
 
 
 @endsection

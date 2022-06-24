@@ -1,7 +1,8 @@
 <div class="d-flex align-items-center col-actions">
-    <a class="dropdown-item" href="{{ route('noticias.edit',$values) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+    <a class="dropdown-item" href="{{ route('noticias.edit',$values->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
         <i class="fa-solid fa-pen-to-square font-medium-2 text-body"></i>
     </a>
+    
     <form method="post" action="{{route('noticias.destroy',$values)}}">
         @method('DELETE')
         @csrf

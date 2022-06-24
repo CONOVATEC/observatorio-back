@@ -11,7 +11,7 @@ class YouthStrategy extends Model
 
     protected $table="youth_strategies";
 
-    protected $fillable = ['name','theme','description','axes','imagen_theme','imagen_strategy','user_id'];
+    protected $fillable = ['name','slug','theme','description','axes','imagen_theme','imagen_strategy','user_id'];
 
 
     /************************************************************************

@@ -15,24 +15,22 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title',45);
+            $table->string('title',45)->nullable(false);
             $table->string('slug');
-            $table->string('extract',200)->nulable();
-            $table->text('content',1000)->nulable();
+            $table->string('extract',200)->nullable();
+            $table->text('content',1000)->nullable();
             $table->enum('status',[1,2])->default(1);
-            $table->tinyInteger('tendencia_active');
+            $table->tinyInteger('tendencia_active')->nullable();
             /*
                 ** -- Laves foreanas -- **
             */
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('like_id')->nulable();
             $table->unsignedBigInteger('user_id');
-            $table->softDeletes()->nullable();
+            $table->softDeletes();
             /*
                 ** -- Resticiones de las llaves foráneas -- **
             */
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('like_id')->references('id')->on('likes')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -13,7 +13,12 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if($this->user_id == auth()->user()->id){
+            return true;
+        }else{
+            return false;
+        }
+       
     }
 
     /**
@@ -25,19 +30,26 @@ class PostRequest extends FormRequest
     {
        
         $post = $this->route()->parameters();
+        
         $rules= [
             'title'=>'required|min:3|max:255',
-            'slug'=>'required',
+            'slug'=>'required|unique:posts',
             'status'=>'required|in:1,2',
+            'file'=>'image'
             
         ];
+        if($post){
+            $rules['slug']='required|unique:posts,slug,'.(implode($post));
+        }
         if($this->status==2){
             $rules=array_merge($rules,[
                 'extract'=>'required|min:3|max:255',
                 'content'=>'required|min:3|max:255',
                 'tendencia_active'=>'required',
                 'category_id'=>'required',
-                'tags'=>'required'
+                'tags'=>'required',
+                'file'=>'required'
+               
                 
             ]
         );

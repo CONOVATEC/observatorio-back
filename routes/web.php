@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
     Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
     Route::resource('noticias', PostController::class)->names('noticias');
+    Route::get('noticias/eliminar-definitivo/{id}', [PostController::class, 'deleteDefinitive'])->name('noticias.eliminar.definitivo');
+    Route::get('noticias/restaurar/{id}', [PostController::class, 'restore'])->name('noticias.restaurar');
 
     // para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
