@@ -24,10 +24,17 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // static $number = 1;
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'active' => $this->faker->randomElement(['0', '1']),
+            // 'active' => $this->faker->randomElement(['0', '1']),
+            'status' => $this->faker->randomElement(['1', '2']),
+            'username' => $this->faker->unique()->username(),
+            'phone' => $this->faker->unique()->numerify('#########'),
+            'biography' => $this->faker->sentence(),
+            // 'phone' => $this->faker->unique()->phoneNumber,
+            // 'sort' => $number++,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

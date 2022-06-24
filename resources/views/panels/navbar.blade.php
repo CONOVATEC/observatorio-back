@@ -203,6 +203,7 @@
                             </span>
                         </div>
                         <span class="avatar">
+                            {{-- Para mostrar la imagen de perfil --}}
                             <img class="round" src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('images/portrait/small/avatar-s-11.jpg') }}" alt="avatar" height="40" width="40">
                             <span class="avatar-status-online"></span>
                         </span>

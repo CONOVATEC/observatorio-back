@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Lima',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'es_PE',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,6 +171,10 @@ return [
         // Para exportar excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Para Spatie
+        Spatie\Permission\PermissionServiceProvider::class,
+        //Para Intervention optimizar imagen
+        Intervention\Image\ImageServiceProvider::class,
 
 
 
@@ -210,6 +214,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         //   Para exportar excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        //Para Intervention optimizar imagen
+        'Image' => Intervention\Image\Facades\Image::class
+
 
 
 
