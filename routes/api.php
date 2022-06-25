@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V1\PostApiController;
+use App\Http\Resources\Api\V1\PostResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::apiResource('post',PostApiController::class)->only(['index']);
