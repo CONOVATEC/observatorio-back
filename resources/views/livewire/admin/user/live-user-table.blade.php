@@ -36,19 +36,23 @@
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col" style="width: 10%" class="ps-1">Item
-
                                         {{-- <a role="button" class="float-end" href="#" wire:click="sortable('id')"><span class="fa-solid fa{{ $camp === 'id' ? $icon : '-sort' }}"></span></a> --}}
                                         <a wire:click="sortable('id')">
                                             <span class="fa-solid fa{{ $camp === 'id' ? $icon : '-sort' }}"></span>
                                         </a>
+                                    </th>
+                                    <th scope="col" class="">Foto
                                     </th>
                                     <th scope="col" class="">Nombre
                                         <a wire:click="sortable('name')">
                                             <span class="fa-solid fa{{ $camp === 'name' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    <th scope="col">
+                                        Rol
+                                    </th>
                                     <th scope="col" class="">
-                                        Permisos
+                                        {{ __('Email') }}
                                         <a wire:click="sortable('email')">
                                             <span class="fa-solid fa{{ $camp === 'email' ? $icon : '-sort' }}"></span>
                                         </a>
@@ -66,9 +70,22 @@
                                 <tr>
                                     {{-- <td>{{ $user->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->name }}</span></td>
                                     <td>
-                                        <span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->email }}</span>
+                                        <div class="avatar-group">
+                                            <div data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar pull-up my-0" title="{{ $user->username }}">
+                                                <img src="{{ Auth::user() ? $user->profile_photo_url : asset('images/portrait/small/avatar-s-11.jpg') }}" alt="Avatar" height="40" width="40" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->name }}</span></td>
+                                    <td> <span class="d-inline-block " style="max-width: 150px;">
+                                            @forelse($user->roles as $key => $role)
+                                            <span class="badge badge-light-info"> <i data-feather='shield'></i> {{ $role->name }}</span>
+                                            @empty
+                                            <span class="badge badge-light-danger"><i data-feather='shield-off'></i> Sin rol</span>
+                                            @endforelse
+                                        </span>
+                                    <td> <span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->email }}</span>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $user->created_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}

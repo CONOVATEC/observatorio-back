@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 use App\Models\admin\Post;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\admin\YouthStrategy;

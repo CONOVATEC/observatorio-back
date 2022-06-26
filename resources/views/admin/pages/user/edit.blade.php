@@ -18,7 +18,7 @@
     <div class="row invoice-edit">
         {{-- Incluimos el formulario --}}
 
-        {!! Form::model($user,[ 'route' => ['usuarios.update',$user->id], 'method' => 'put','class' => 'form needs-validation','novalidate'=>'','enctype' => 'multipart/form-data','id' =>'identifier','autocomplete' =>'off']) !!}
+        {!! Form::model($user,[ 'route' => ['usuarios.update',$user->id], 'method' => 'put','class' => 'form needs-validation','novalidate'=>'','enctype' => 'multipart/form-data','autocomplete' =>'off']) !!}
         @include('admin.pages.user.partials.form')
         {!! Form::close() !!}
 
