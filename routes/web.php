@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ConfigCompanyController;
+use App\Http\Controllers\admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,17 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Route::get('home', [DashboardController::class, 'dashboard'])->name('dashboard');
     // Route::get('/noticias/test', [NewController::class,'test'])->name('noticias-test');
     Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
+
+   
+    Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+    Route::resource('noticias', PostController::class)->names('noticias');
+    Route::get('noticias/eliminar-definitivo/{id}', [PostController::class, 'deleteDefinitive'])->name('noticias.eliminar.definitivo');
+    Route::get('noticias/restaurar/{id}', [PostController::class, 'restore'])->name('noticias.restaurar');
+
     // Rutas para usuarios
-    Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+   
     Route::resource('usuarios', UserController::class)->names('usuarios');
+
 
 
     Route::resource('noticias', NewController::class)->names('noticias');

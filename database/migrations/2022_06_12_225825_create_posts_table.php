@@ -26,7 +26,7 @@ return new class extends Migration
             */
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
-            $table->softDeletes()->nullable();
+            $table->softDeletes();
             /*
                 ** -- Resticiones de las llaves foráneas -- **
             */
