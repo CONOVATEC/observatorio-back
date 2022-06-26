@@ -45,7 +45,7 @@
                 <form class="auth-register-form mt-2" method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="mb-1">
-                        <label for="register-username" class="form-label">{{ __('Username') }}</label>
+                        <label for="register-username" class="form-label">{{ __('Names and Surnames') }}*</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-username" name="name" placeholder="Mkevyn" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -53,8 +53,18 @@
                         </span>
                         @enderror
                     </div>
+                    <!-- Agregado -->
+                    <!-- <div class="mb-1">
+                        <label for="username" class="form-label">{{ __('Username') }}*</label>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="Mkevyn" aria-describedby="username" tabindex="1" autofocus value="{{ old('username') }}" />
+                        @error('username')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div> -->
                     <div class="mb-1">
-                        <label for="register-email" class="form-label">{{ __('Email') }}</label>
+                        <label for="register-email" class="form-label">{{ __('Email') }}*</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email" name="email" placeholder="correo@example.com" aria-describedby="register-email" tabindex="2" value="{{ old('email') }}" />
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -62,10 +72,8 @@
                         </span>
                         @enderror
                     </div>
-
                     <div class="mb-1">
-                        <label for="register-password" class="form-label">{{ __('Password') }}</label>
-
+                        <label for="register-password" class="form-label">{{ __('Password') }}*</label>
                         <div class="input-group input-group-merge form-password-toggle @error('password') is-invalid @enderror">
                             <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror" id="register-password" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" tabindex="3" />
                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
@@ -78,7 +86,7 @@
                     </div>
 
                     <div class="mb-1">
-                        <label for="register-password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+                        <label for="register-password-confirm" class="form-label">{{ __('Confirm Password') }}*</label>
 
                         <div class="input-group input-group-merge form-password-toggle">
                             <input type="password" class="form-control form-control-merge" id="register-password-confirm" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" tabindex="3" />

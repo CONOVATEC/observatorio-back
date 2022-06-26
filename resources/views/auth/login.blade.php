@@ -54,9 +54,9 @@
                 <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-1">
-                        <label for="login-email" class="form-label">{{ __('Email') }}</label>
-                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="Correo@example.com" aria-describedby="login-email" tabindex="1" autofocus value="{{ old('email') }}" />
-                        @error('email')
+                        <label for="auth" class="form-label">{{ __('Email') }} / {{ __('Username') }} / {{ __('Cell No.') }}</label>
+                        <input type="text" class="form-control @error('auth') is-invalid @enderror" id="auth" name="auth" placeholder="Ingrese uno de ellos" aria-describedby="auth" tabindex="1" autofocus value="{{ old('auth') }}" />
+                        @error('auth')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

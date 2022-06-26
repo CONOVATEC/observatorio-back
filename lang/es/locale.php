@@ -16,6 +16,12 @@ return [
     "Ver noticias" => "Ver noticias",
     "view records" => "Ver registros",
     "create register" => "Crear registro",
+    /*****************
+     * Para roles y permisos *
+     *****************/
+    "roles and permissions" => "Roles y Permisos",
+    "manage role" => "Administrar roles",
+    "assign role" => "Asignar rol",
 
     // Fin agregado por mí
     "Home" => "Principal",
