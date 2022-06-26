@@ -93,20 +93,11 @@
                         </div>
                         <div class="col-12">
                             <div class="mb-2">
-                                <label class="form-label">{{ __('Biography') }}</label>
-                                {{-- {!! Form::hidden('biography', null, ['id'=>'biography']) !!} --}}
-                                <textarea style="display: none" id="biography" name="biography"></textarea>
-                                {{-- <input name="biography" type="hidden" id="biography" value=""> --}}
-                                <div id="blog-editor-wrapper">
-                                    <div id="blog-editor-container">
-                                        <div class="editor">
-                                            {{-- Aquí va el contenido del editor --}}
-                                        </div>
-                                        @error('biography')
-                                        <span class="text-danger form-label fw-bold" role="alert"><strong>{{ $message }}</strong></span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                {!! Form::label('biography', __('Biography'), ['class' => 'form-label']) !!}
+                                {{ Form::textarea('biography', null, array('class' =>'form-control input','id'=>'biography','name' =>'biography', 'cols' => 20, 'rows' =>4,'placeholder'=>'Breve descripción'))}}
+                                @error('biography',)
+                                <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-12 mb-2">
@@ -123,12 +114,12 @@
                                         <small class="text-muted">{{ __('Required image resolution 800x400, image size max 2mb.') }}</small>
                                         <p class="my-50">
                                             @isset($user->profile_photo_path)
-                                            <a href="/storage/{{($user->profile_photo_path)}}" target="_blank" id="blog-image-text">www.conovatec.pe/perfil</a>
+                                            <a href="/storage/{{($user->profile_photo_path)}}" target="_blank" id="blog-image-text">www. conovatec.pe/perfil</a>
                                             @else
                                             <a href="{{asset('images/admin/perfil/anonimo.jpg')}}" target="_blank" id="blog-image-text">www.conovatec.pe/usuario</a>
                                             @endisset
                                         </p>
-                                        <div class="d-inline-block">
+                                        <div class=" d-inline-block">
                                             {!! Form::file('profile_photo_path', ['class' =>'form-control','id' =>'blogCustomFile','accept'=>'image/*']) !!}
                                             @error('profile_photo_path')
                                             <span class="text-danger form-label fw-bold" role="alert"><strong>{{ $message }}</strong></span>
@@ -152,9 +143,12 @@
         <div class="card">
             <div class="card-body">
                 <button type="submit" class="btn btn-primary w-100 mb-75" data-bs-toggle="modal" data-bs-target="#send-invoice-sidebar">
-                    <i class="fas fa-save"></i> Guardar
+                    <i class="fas fa-save"></i>@isset($user->id) Actualizar @else Guardar @endisset
                 </button>
-                <a href="{{route('roles.index')}}" class="btn btn-outline-primary w-100 mb-75"><i class="fas fa-user-shield"></i> Ver roles</a>
+                @isset($user->id)
+                <a href="{{route('usuarios.create')}}" class="btn btn-outline-primary w-100 mb-75"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                @else
+                @endisset
                 {{-- <button class="btn btn-success w-100 mb-75" data-bs-toggle="modal" data-bs-target="#add-payment-sidebar">
                         Ver perfil
                     </button> --}}
@@ -163,6 +157,7 @@
                 </a>
             </div>
         </div>
+
     </div>
     <!-- Invoice Edit Right ends -->
 

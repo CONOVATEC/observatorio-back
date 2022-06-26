@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
         // Verificamos que en la ruta trae un parámetro
         $usuario = implode($this->route()->parameters('usuario'));
         $rules = [
-            'name' => ['required', 'max:255', 'regex:/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/'],
+            'name' => ['required', 'min:6', 'max:255', 'regex:/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/'],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users,email', 'regex:/(.+)@(.+)\.(.+)/i'],
             'username'  => ['nullable', 'string', 'max:255', 'unique:users,username', 'alpha_dash'],
             'status'  => ['required', 'in:1,2', 'max:1', 'min:1'],
@@ -38,7 +38,7 @@ class UserRequest extends FormRequest
             'phone'     => ['nullable', 'numeric', 'digits:9', 'unique:users,phone', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9'],
             'password' => ['required', Password::min(6)->mixedCase()->letters()->numbers()->symbols()->uncompromised()],
             'created_at'  => ['nullable', 'date'],
-            'biography'  => ['nullable', 'min:1'],
+            'biography'  => ['nullable', 'min:1', 'max:1000'],
             'profile_photo_path'  => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=3000,max_height=1300'],
         ];
         if ($usuario) {
@@ -52,11 +52,11 @@ class UserRequest extends FormRequest
         }
         return  $rules;
     }
-    public function message()
+    public function messages()
     {
         return  [
             //en proceso no funciona aún
-            'name.required' => 'Es necesario tus datos sean correctamente | No se permite números',
+            'name.regex' => 'No se permite apodos|número|caracteres especiales',
         ];
     }
 }

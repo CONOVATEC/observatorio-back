@@ -58,11 +58,14 @@ class UserController extends Controller
         $user->status = $request->status;
         $user->biography = $request->biography;
         $user->phone = $request->phone;
+
+        // $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalExtension();
+        // $image = $request->file('profile_photo_path')->storeAs('profile-photos', $name);
         if ($request->file('profile_photo_path')) {
-            $user->profile_photo_path = $request->file('profile_photo_path')->store('profile-photos');
+            $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalName();
+            $user->profile_photo_path = $request->file('profile_photo_path')->storeAs('profile-photos', $name);
         }
         $user->save();
-
         if ($request->file('profile_photo_path')) {
             // resize image to new width
             /************************
@@ -142,9 +145,11 @@ class UserController extends Controller
         if ($request->hasFile('profile_photo_path')) {
             if ($user->profile_photo_path) {
                 Storage::disk('public')->delete($user->profile_photo_path);
-                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->store('profile-photos')]);
+                $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalName();
+                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->storeAs('profile-photos', $name)]);
             } else {
-                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->store('profile-photos')]);
+                $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalName();
+                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->storeAs('profile-photos', $name)]);
             }
         }
         if ($request->file('profile_photo_path')) {
@@ -189,5 +194,25 @@ class UserController extends Controller
             ->encode();
         /* Actualizamos con la imagen optimizada */
         Storage::disk('public')->put($user->profile_photo_path, (string) $img);
+    }
+    // Método para restaurar el registro eliminado
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id)->restore();
+        return redirect()->back()->with('success', 'Usuario restaurado correctamente');
+    }
+    // Método para restaurareliminar el registro definitivamente
+    public function deleteDefinitive($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+            $user->forceDelete();
+            return redirect()->back()->with('warning', 'Usuario eliminado definitivamente');
+        } else {
+            // $user = User::onlyTrashed()->findOrFail($id)->forceDelete();
+            $user->forceDelete();
+            return redirect()->back()->with('warning', 'Usuario eliminado definitivamente');
+        }
     }
 }
