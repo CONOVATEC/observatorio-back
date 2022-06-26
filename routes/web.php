@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\About_cmpjController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LanguageController;
@@ -10,7 +11,11 @@ use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ConfigCompanyController;
+
+use App\Http\Controllers\admin\Youth_observatoryController;
+
 use App\Http\Controllers\admin\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +34,11 @@ Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('l
 Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])->name('without-menu');
 Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
 Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
+
+
+//Route aboutsObservatory
+Route::resource('juvenilesObservatorio',Youth_observatoryController::class)->names('juvenilesObservatorio');
+Route::resource('sobreCmpj',About_cmpjController::class)->names('sobreCmpj');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
@@ -74,6 +84,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('roles', RoleController::class)->names('roles');
 
     // Fin rutas para roles y permisos
+
 
 });
 
