@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header mt-1 mb-0 py-0">
-        <h4 class="card-title">Usuarios registrados</h4>
+        <h4 class="card-title">Listado de Roles</h4>
         <div class="heading-elements py-0">
             <ul class="list-inline">
                 <li>
@@ -22,7 +22,7 @@
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
                 <li>
-                    <a href="{{ route('usuarios.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                    <a href="{{ route('roles.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
                 </li>
             </ul>
         </div>
@@ -49,9 +49,6 @@
                                     </th>
                                     <th scope="col" class="">
                                         Permisos
-                                        <a wire:click="sortable('email')">
-                                            <span class="fa-solid fa{{ $camp === 'email' ? $icon : '-sort' }}"></span>
-                                        </a>
                                     </th>
                                     <th scope="col">Creado
                                         <a wire:click="sortable('created_at')">
@@ -62,17 +59,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($users as $user)
+                                @forelse($roles as $role)
                                 <tr>
-                                    {{-- <td>{{ $user->id }}</td> --}}
+                                    {{-- <td>{{ $role->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->name }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $role->name }}</span></td>
                                     <td>
-                                        <span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->email }}</span>
-                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $user->created_at->format('d-m-Y') }}</span></td>
+                                        <a class="btn btn-primary btn-sm" href="{{route('roles.permisos.administrar', $role->id)}}">
+                                            <span class="btn-label">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            Administrar
+                                        </a> </td>
+
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $role->created_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
-                                        @include('admin.pages.user.partials.buttons')
+                                        @include('admin.pages.role.partials.buttons')
                                     </td>
                                 </tr>
                                 @empty
@@ -90,7 +93,7 @@
     </div>
     <div class="card-footer">
         {{-- Incluimos la paginación personalizada  --}}
-        @include('admin.pages.user.partials.pagination')
+        @include('admin.pages.role.partials.pagination')
     </div>
 
 </div>

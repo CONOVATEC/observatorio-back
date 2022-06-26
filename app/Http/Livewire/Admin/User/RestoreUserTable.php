@@ -6,12 +6,12 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class LiveUserTable extends Component
+class RestoreUserTable extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search = "";
-    public $perPage = 5; //Para filtrar cuando se ve
+    public $perPage = 3; //Para filtrar cuando se ve
     public $camp = null; //Para fel campo a ordenar
     public $order = null; //Para fel campo a ordenar ascendente o descendente
     public $icon = '-sort'; //Para el ícono
@@ -37,13 +37,15 @@ class LiveUserTable extends Component
     }
     public function mount()
     {
-        $this->camp = 'created_at'; //Para que carga filtrado porla fecha de creación
+        $this->camp = 'deleted_at'; //Para que carga filtrado porla fecha de creación
         $this->order = 'desc';      //Para que carga en forma descendente
         $this->icon = $this->iconDirection($this->order);
     }
     public function render()
     {
-        $users = User::where('name', 'like', "%{$this->search}%")
+        // $eliminarCategoria = User::onlyTrashed()->get();
+        // dd($eliminarCategoria);
+        $users = User::onlyTrashed()->where('name', 'like', "%{$this->search}%")
             ->orWhere('email', 'like', "%{$this->search}%");
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {
@@ -53,9 +55,9 @@ class LiveUserTable extends Component
             $this->camp = null;
             $this->order = null;
         }
-        $users = $users->paginate($this->perPage);
+        $users = $users->onlyTrashed()->paginate($this->perPage);
         // $users = User::paginate(5);
-        return view('livewire.admin.user.live-user-table', compact('users'));
+        return view('livewire.admin.user.restore-user-table', compact('users'));
     }
     public function sortable($camp)
     {
@@ -100,6 +102,6 @@ class LiveUserTable extends Component
         $this->camp = null;
         $this->icon = '-sort';
         $this->search = '';
-        $this->perPage = 5;
+        $this->perPage = 3;
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Admin\User;
+namespace App\Http\Livewire\Admin\Role;
 
-use App\Models\User;
+// use Livewire\Component;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-class LiveUserTable extends Component
+use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
+
+class LiveRoleTable extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -43,19 +45,19 @@ class LiveUserTable extends Component
     }
     public function render()
     {
-        $users = User::where('name', 'like', "%{$this->search}%")
-            ->orWhere('email', 'like', "%{$this->search}%");
+        $roles = Role::where('name', 'like', "%{$this->search}%")
+            ->orWhere('guard_name', 'like', "%{$this->search}%");
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {
             //Ejecuta la sentencia y lo agrega al usuario + el orderby
-            $users = $users->orderBy($this->camp, $this->order);
+            $roles = $roles->orderBy($this->camp, $this->order);
         } else {
             $this->camp = null;
             $this->order = null;
         }
-        $users = $users->paginate($this->perPage);
-        // $users = User::paginate(5);
-        return view('livewire.admin.user.live-user-table', compact('users'));
+        $roles = $roles->paginate($this->perPage);
+        // $roles = Role::paginate(5);
+        return view('livewire.admin.role.live-role-table', compact('roles'));
     }
     public function sortable($camp)
     {
