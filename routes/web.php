@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ConfigCompanyController;
+use App\Http\Controllers\admin\SettingController;
+use App\Models\admin\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Route::get('home', [StaterkitController::class, 'home'])->name('home');
     // Route::get('home', [DashboardController::class, 'dashboard'])->name('dashboard');
     // Route::get('/noticias/test', [NewController::class,'test'])->name('noticias-test');
-    Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
+   // Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
     // Rutas para usuarios
     Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
     Route::resource('usuarios', UserController::class)->names('usuarios');
@@ -51,6 +53,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
+    //configuraciones
+    Route::resource('configuraciones',SettingController::class)->names('configuraciones');
     // Route Components
     Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
     Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');
