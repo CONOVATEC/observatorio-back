@@ -20,3 +20,6 @@
 </section>
 <!--/ Card Actions Section -->
 @endsection
+@section('vendor-script')
+
+@endsection

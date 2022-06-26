@@ -99,8 +99,23 @@
         ['clean']
       ]
     },
-    theme: 'snow'
+    theme: 'snow',
+    placeholder: 'Descríbete..!'
   });
+  // Agregado
+// var form = document.getElementById('identifier');
+// form.onsubmit = function() {
+//   // Populate hidden form on submit
+//   var about = document.getElementById('biography');
+//   about.value = JSON.stringify(blogEditor.getContents());
+
+//   return true;
+// };
+
+        blogEditor.on('text-change', function(delta, oldDelta, source) {
+            // document.getElementById("biography").value = blogEditor.root.innerHTML;
+            $('#biography').text($(".ql-editor").html());//como jQuery
+        });
 
   // Change featured image
   if (blogImageInput.length) {

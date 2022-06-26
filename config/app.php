@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Lima',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'es_PE',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,6 +168,13 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Para laravel collective
         Collective\Html\HtmlServiceProvider::class,
+        // Para exportar excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Para Spatie
+        Spatie\Permission\PermissionServiceProvider::class,
+        //Para Intervention optimizar imagen
+        Intervention\Image\ImageServiceProvider::class,
 
 
 
@@ -203,8 +210,14 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Helper' => App\Helpers\Helpers::class,
         // Para laravel collective
-      'Form' => Collective\Html\FormFacade::class,
-      'Html' => Collective\Html\HtmlFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        //   Para exportar excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        //Para Intervention optimizar imagen
+        'Image' => Intervention\Image\Facades\Image::class
+
+
 
 
     ])->toArray(),
