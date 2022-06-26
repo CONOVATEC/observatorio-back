@@ -65,6 +65,25 @@
             ]
         },
         {
+            "name": "roles and permissions",
+            "icon": "users",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "roles",
+                    "name": "manage role",
+                    "icon": "eye",
+                    "slug": "roles.index"
+                },
+                {
+                    "url": "roles/permisos",
+                    "name": "assign role",
+                    "icon": "user",
+                    "slug": "usuarios.permisos"
+                }
+            ]
+        },
+        {
             "name": "users",
             "icon": "users",
             "slug": "",

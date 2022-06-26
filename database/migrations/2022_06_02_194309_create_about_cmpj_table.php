@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('about_cmpjs', function (Blueprint $table) {
             $table->id();
-            $table->string('ordinance');
-            $table->string('about_us');
-            $table->string('vision');
-            $table->string('functions');//funciones
-            $table->text('board_of_directors');
-            $table->integer('social');
+            $table->string('ordinance')->nullable(false);
+            $table->string('about_us')->nullable();
+            $table->string('vision')->nullable();
+            $table->string('functions')->nullable();//funciones
+            $table->text('board_of_directors')->nullable();
+            $table->integer('social')->nullable();
             $table->timestamps();
         });
     }

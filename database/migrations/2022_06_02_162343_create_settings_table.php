@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name_entity',45);
-            $table->string('logo',45);
-            $table->string('link_facebook',45);
-            $table->string('link_instagram',45);
-            $table->string('link_linkedin',45);
-            $table->string('link_youtube',45);
+            $table->string('name_entity',45)->unique();
+            $table->string('logo',255)->nullable();
+            $table->string('link_facebook',255)->nullable();
+            $table->string('link_instagram',255)->nullable();
+            $table->string('link_linkedin',255)->nullable();
+            $table->string('link_youtube',255)->nullable();
             /*
                 ** -- Laves foreanas -- **
             */
             $table->unsignedBigInteger('user_id');
-            
+
             /*
                 ** -- Resticiones de las llaves foráneas -- **
             */
