@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\User;
+use App\Models\admin\Post;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\admin\UserRequest;
+
 
 class UserController extends Controller
 {
@@ -19,11 +22,16 @@ class UserController extends Controller
      */
     public function index()
     {
+        $usersAll = User::all();
+        $usersActive = User::where(['status' => '2']);
+        $usersInactive = User::where(['status' => '1']);
+        $usersEliminated = User::onlyTrashed()->get();
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
             ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de usuarios"],
         ];
-        return view('admin.pages.user.index', compact('breadcrumbs'));
+        // activity()->log('');
+        return view('admin.pages.user.index', compact('breadcrumbs', 'usersAll', 'usersActive', 'usersInactive', 'usersEliminated'));
     }
 
     /**
@@ -37,7 +45,7 @@ class UserController extends Controller
         // $roles = Role::all();
         $users = User::latest()->paginate(5);
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "users", 'name' => "Usuarios"], ['name' => "Registrando Usuario"],
+            ['link' => "home", 'name' => "Inicio"], ['link' => "usuarios", 'name' => "Usuarios"], ['name' => "Registrando Usuario"],
         ];
         return view('admin.pages.user.create', compact('users', 'breadcrumbs', 'roles'));
     }
@@ -59,10 +67,10 @@ class UserController extends Controller
         $user->biography = $request->biography;
         $user->phone = $request->phone;
         if ($request->file('profile_photo_path')) {
-            $user->profile_photo_path = $request->file('profile_photo_path')->store('profile-photos');
+            $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalName();
+            $user->profile_photo_path = $request->file('profile_photo_path')->storeAs('profile-photos', $name);
         }
         $user->save();
-
         if ($request->file('profile_photo_path')) {
             // resize image to new width
             /************************
@@ -72,13 +80,6 @@ class UserController extends Controller
             $this->optimizeImage($user); //Método anterior - ejecutar directamente el método para optimizar
         }
 
-        // if ($request->file('profile_photo_path')) {
-        //     //Movemos la imagen a la carpeta profiles y guardar la ruta en la variable url
-        //     $url = Storage::disk('public')->put('profile-photos', $request->file('profile_photo_path'));
-        //     //
-        //     //Guardar ruta en la base de datos
-        //     $user->profile_photo_path = $url;
-        // }
         if ($request->roles) {
             // el metodo attach agrega registros a la tabla
             // $user->roles()->attach($request->roles);
@@ -96,7 +97,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        $posts = Post::where('user_id', $user->id)->paginate(3);
+        $activities = Activity::causedBy($user)->orderBy('created_at', 'desc')->get();
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Inicio"], ['link' => "usuarios", 'name' => "Usuarios"], ['name' => "Perfil de Usuario"],
+        ];
+        return view('admin.pages.profile.show', compact('user', 'breadcrumbs', 'activities', 'posts'));
     }
 
     /**
@@ -142,9 +149,11 @@ class UserController extends Controller
         if ($request->hasFile('profile_photo_path')) {
             if ($user->profile_photo_path) {
                 Storage::disk('public')->delete($user->profile_photo_path);
-                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->store('profile-photos')]);
+                $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalName();
+                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->storeAs('profile-photos', $name)]);
             } else {
-                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->store('profile-photos')]);
+                $name = 'usuario-' . date('dmYHi') . '-' . $request->file('profile_photo_path')->getClientOriginalName();
+                $user->update(['profile_photo_path' => $request->file('profile_photo_path')->storeAs('profile-photos', $name)]);
             }
         }
         if ($request->file('profile_photo_path')) {
@@ -189,5 +198,25 @@ class UserController extends Controller
             ->encode();
         /* Actualizamos con la imagen optimizada */
         Storage::disk('public')->put($user->profile_photo_path, (string) $img);
+    }
+    // Método para restaurar el registro eliminado
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id)->restore();
+        return redirect()->back()->with('success', 'Usuario restaurado correctamente');
+    }
+    // Método para restaurareliminar el registro definitivamente
+    public function deleteDefinitive($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+            $user->forceDelete();
+            return redirect()->back()->with('warning', 'Usuario eliminado definitivamente');
+        } else {
+            // $user = User::onlyTrashed()->findOrFail($id)->forceDelete();
+            $user->forceDelete();
+            return redirect()->back()->with('warning', 'Usuario eliminado definitivamente');
+        }
     }
 }

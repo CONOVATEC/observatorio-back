@@ -2,13 +2,22 @@
 
 namespace App\Models;
 
+
+
+
 use App\Models\admin\Like;
+
 use App\Models\admin\Post;
 use Laravel\Sanctum\HasApiTokens;
+
+use Spatie\Activitylog\LogOptions;
+use Spatie\Permission\Models\Role;
 use App\Models\admin\YouthStrategy;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Models\Permission;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -24,12 +33,13 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    use LogsActivity;
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+
     protected $fillable = [
         'name',
         'email',
@@ -40,6 +50,51 @@ class User extends Authenticatable
         'profile_photo_path',
         'password',
     ];
+    //Para registrar la actividad del Usuario
+    protected $table = "users";
+    // Podemos seleccionar que campo sea seguido la actividad
+    // protected static $logAttributes = [
+    //     'name',
+    //     'email',
+    //     'username',
+    //     'phone',
+    //     'status',
+    //     'biography',
+    // ];
+    protected static $logAttributes = ['*'];
+
+    protected static $ignoreChangeAttributes = ['updated_at'];
+    protected static $recordEvents = ['created', 'updated', 'deleted'];
+    protected static $logOnlyDirty = true;
+    protected static $logName = 'User';
+
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        switch ($eventName) {
+            case 'created':
+                $description = 'Creado Usuario';
+                break;
+            case 'updated':
+                $description = 'Actualizado Usuario';
+                break;
+            case 'deleted':
+                $description = 'Eliminado Usuario';
+                break;
+            default:
+                $description = $eventName;
+                break;
+        }
+        return $description;
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        // return LogOptions::defaults();
+        return LogOptions::defaults()->logOnly(['*']);
+        // To avoid hardcoding you could use logAll() method
+        // return LogOptions::defaults()->logAll();
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

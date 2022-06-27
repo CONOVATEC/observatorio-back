@@ -112,10 +112,10 @@
 //   return true;
 // };
 
-        blogEditor.on('text-change', function(delta, oldDelta, source) {
-            // document.getElementById("biography").value = blogEditor.root.innerHTML;
-            $('#biography').text($(".ql-editor").html());//como jQuery
-        });
+        // blogEditor.on('text-change', function(delta, oldDelta, source) {
+        //     // document.getElementById("biography").value = blogEditor.root.innerHTML;
+        //     $('#biography').text($(".ql-editor").html());//como jQuery
+        // });
 
   // Change featured image
   if (blogImageInput.length) {

@@ -61,7 +61,11 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
 
     // Rutas para usuarios
-   
+    Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+    Route::get('usuarios/eliminar-definitivo/{id}', [UserController::class, 'deleteDefinitive'])->name('usuarios.eliminar.definitivo');
+    Route::get('usuarios/restaurar/{id}', [UserController::class, 'restore'])->name('usuarios.restaurar');
+ 
+
     Route::resource('usuarios', UserController::class)->names('usuarios');
 
 
