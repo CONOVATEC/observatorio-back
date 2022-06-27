@@ -2,6 +2,8 @@
 
 namespace Database\Factories\admin;
 
+use App\Models\admin\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +20,9 @@ class LikeFactory extends Factory
     {
         return [
             'reaction'=> $this->faker->numberBetween(1,2),
+            'post_id'=> Post::all()->random()->id,
+            'user_id'=> User::all()->random()->id,
+
         ];
     }
 }

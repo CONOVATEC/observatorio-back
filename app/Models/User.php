@@ -3,6 +3,10 @@
 namespace App\Models;
 
 
+
+
+use App\Models\admin\Like;
+
 use App\Models\admin\Post;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -141,8 +145,14 @@ class User extends Authenticatable
         return $this->hasmany(YouthStrategy::class);
     }
 
-    public function posts()
-    {
-        return $this->hasMany(profile::class);
-    }
+
+     public function posts()
+     {
+         return $this->hasMany(Post::class);
+     }
+
+     public function likes()
+     {
+         return $this->hasMany(Like::class);
+     }
 }

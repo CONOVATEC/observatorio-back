@@ -1,3 +1,4 @@
+
 <div class="btn-group" role="group">
     <div class="d-flex align-items-center justify-content-center col-actions">
         <a class="dropdown-item" href="{{ route('usuarios.show',$user->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver perfil">

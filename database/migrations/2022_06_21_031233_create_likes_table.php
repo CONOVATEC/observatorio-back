@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->enum('reaction',[1,2])->default(1);
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
