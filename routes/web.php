@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\About_cmpjController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LanguageController;
@@ -12,6 +13,11 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ConfigCompanyController;
 use App\Http\Controllers\admin\SettingController;
 use App\Models\admin\Setting;
+
+use App\Http\Controllers\admin\Youth_observatoryController;
+
+use App\Http\Controllers\admin\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +37,33 @@ Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])
 Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
 Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
 
+
+//Route aboutsObservatory
+Route::resource('juvenilesObservatorio',Youth_observatoryController::class)->names('juvenilesObservatorio');
+Route::resource('sobreCmpj',About_cmpjController::class)->names('sobreCmpj');
+
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     Route::get('/', [StaterkitController::class, 'home'])->name('home');
     // Route::get('home', [StaterkitController::class, 'home'])->name('home');
     // Route::get('home', [DashboardController::class, 'dashboard'])->name('dashboard');
     // Route::get('/noticias/test', [NewController::class,'test'])->name('noticias-test');
+
    // Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
+
+    Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
+
+   
+    Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+    Route::resource('noticias', PostController::class)->names('noticias');
+    Route::get('noticias/eliminar-definitivo/{id}', [PostController::class, 'deleteDefinitive'])->name('noticias.eliminar.definitivo');
+    Route::get('noticias/restaurar/{id}', [PostController::class, 'restore'])->name('noticias.restaurar');
+
+
     // Rutas para usuarios
-    Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+   
     Route::resource('usuarios', UserController::class)->names('usuarios');
+
 
 
     Route::resource('noticias', NewController::class)->names('noticias');
@@ -69,6 +92,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('roles', RoleController::class)->names('roles');
 
     // Fin rutas para roles y permisos
+
 
 });
 
