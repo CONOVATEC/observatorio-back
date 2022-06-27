@@ -71,7 +71,7 @@
                                     {{-- <td>{{ $category->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $setting->name_entity }}</span></td>
-                                    <td class="border px-14 py-1"><img src="/storage/{{($setting->logo)}}" width="60%"></td>
+                                    <td><img src="/storage/{{($setting->logo)}}" class="img-thumbnail" style="width:100px"></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $setting->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $setting->updated_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
