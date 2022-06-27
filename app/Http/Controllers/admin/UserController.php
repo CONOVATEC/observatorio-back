@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\User;
+use App\Models\admin\Post;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\admin\UserRequest;
+
 
 class UserController extends Controller
 {
@@ -27,6 +30,7 @@ class UserController extends Controller
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
             ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de usuarios"],
         ];
+        // activity()->log('');
         return view('admin.pages.user.index', compact('breadcrumbs', 'usersAll', 'usersActive', 'usersInactive', 'usersEliminated'));
     }
 
@@ -93,12 +97,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        // $users = User::latest()->paginate(5);
+        $user = User::find($id);
+        $posts = Post::where('user_id', $user->id)->paginate(3);
+        $activities = Activity::causedBy($user)->orderBy('created_at', 'desc')->get();
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "usuarios", 'name' => "Usuarios"], ['name' => "Perfil de Usuario"],
         ];
-        return view('admin.pages.profile.show', compact('user', 'breadcrumbs'));
+        return view('admin.pages.profile.show', compact('user', 'breadcrumbs', 'activities', 'posts'));
     }
 
     /**
