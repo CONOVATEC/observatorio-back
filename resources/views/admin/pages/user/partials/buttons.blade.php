@@ -6,6 +6,7 @@
         <!-- @json($user) -->
         @method('DELETE')
         @csrf
+
         <button href="#" class="dropdown-item deleteConfirm" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar ">
             <i class="fa-solid fa-trash-can font-medium-2"></i>
         </button>

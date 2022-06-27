@@ -11,6 +11,8 @@ use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ConfigCompanyController;
+use App\Http\Controllers\admin\SettingController;
+use App\Models\admin\Setting;
 
 use App\Http\Controllers\admin\Youth_observatoryController;
 
@@ -46,6 +48,9 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Route::get('home', [StaterkitController::class, 'home'])->name('home');
     // Route::get('home', [DashboardController::class, 'dashboard'])->name('dashboard');
     // Route::get('/noticias/test', [NewController::class,'test'])->name('noticias-test');
+
+   // Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
+
     Route::get('/configuracion/empresa', [ConfigCompanyController::class, 'settingCompany'])->name('configuracion.empresa');
 
    
@@ -53,6 +58,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('noticias', PostController::class)->names('noticias');
     Route::get('noticias/eliminar-definitivo/{id}', [PostController::class, 'deleteDefinitive'])->name('noticias.eliminar.definitivo');
     Route::get('noticias/restaurar/{id}', [PostController::class, 'restore'])->name('noticias.restaurar');
+
 
     // Rutas para usuarios
    
@@ -70,6 +76,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
+    //configuraciones
+    Route::resource('configuraciones',SettingController::class)->names('configuraciones');
     // Route Components
     Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
     Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');
