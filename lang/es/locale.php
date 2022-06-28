@@ -9,6 +9,8 @@ return [
     "company" => "Organización",
     "setting company" => "Configuración",
     "users" => "Usuarios",
+    "users create" => "Crear Usuario",
+    "users list" => "Lista de Usuarios",
     "profile" => "Perfil",
     /*****************
      * Para noticias *

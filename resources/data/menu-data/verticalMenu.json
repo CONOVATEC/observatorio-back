@@ -86,13 +86,25 @@
         {
             "name": "users",
             "icon": "users",
-            "slug": "",
+            "slug":"/usuarios/*/*",
             "submenu": [
                 {
                     "url": "usuarios",
-                    "name": "users",
+                    "name": "users list",
                     "icon": "eye",
-                    "slug": "usuarios.index"
+                    "slug": "usuarios.index",
+                    "i18n": "users list"
+                },
+                {
+                    "url": "usuarios/create",
+                    "name": "users create",
+                    "icon": "user-plus",
+                    "slug": "usuarios.create",
+                    "meta":{
+                        "authRequired": true,
+                        "rule": "usuarios.create"
+                    }
+
                 },
                 {
                     "url": "usuarios/perfil",
@@ -101,6 +113,7 @@
                     "slug": "usuarios.perfil"
                 }
             ]
+
         },
         {
             "name": "company",
@@ -155,4 +168,5 @@
             ]
         }
     ]
+
 }
