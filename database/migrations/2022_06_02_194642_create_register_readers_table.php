@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('register_readers', function (Blueprint $table) {
             $table->id();
-            $table->string('name',45);
-            $table->string('last_name',45);
-            $table->date('dates_of_birth');
-            $table->text('comment');
+            $table->string('name',45)->unique();
+            $table->string('slug');
+            $table->string('last_name',45)->nullable(false);
+            $table->date('dates_of_birth')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

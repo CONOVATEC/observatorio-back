@@ -17,14 +17,14 @@ class Tag extends Model
 
 
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','slug'];
 
 
 
 
     protected $table="tags";
 
-   
+
 
      /*********************************************************
      * Relación de muchos a muchos => pertenece a muchos *

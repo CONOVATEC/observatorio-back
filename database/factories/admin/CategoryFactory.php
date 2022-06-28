@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories\admin;
-
+use Illuminate\Support\Str as Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +16,13 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $name=$this->faker->unique->word;
+        $slug=Str::slug($name);
         return [
-            'name'        => $this->faker->unique->word,
+            'name'        => $name,
+            'slug'        => $slug,
             'description' => $this->faker->sentence(),
+
         ];
     }
 }
