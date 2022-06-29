@@ -9,7 +9,15 @@ return [
     "company" => "Organización",
     "setting company" => "Configuración",
     "users" => "Usuarios",
+    "users create" => "Crear Usuario",
+    "users list" => "Lista de Usuarios",
     "profile" => "Perfil",
+    "User Role" => "Rol de Usuario",
+    "User Role" => "Rol de Usuario",
+    "Young Observatory" => "Observatorio Joven",
+    "CMPJ" => "Sobre CMPJ",
+    "Policies" => "Políticas",
+
     /*****************
      * Para noticias *
      *****************/

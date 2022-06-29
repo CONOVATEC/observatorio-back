@@ -144,15 +144,13 @@ class User extends Authenticatable
     {
         return $this->hasmany(YouthStrategy::class);
     }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
-
-     public function posts()
-     {
-         return $this->hasMany(Post::class);
-     }
-
-     public function likes()
-     {
-         return $this->hasMany(Like::class);
-     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

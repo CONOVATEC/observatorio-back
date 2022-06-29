@@ -80,9 +80,9 @@
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->name }}</span></td>
                                     <td> <span class="d-inline-block " style="max-width: 150px;">
                                             @forelse($user->roles as $key => $role)
-                                            <span class="badge badge-light-info"> <i data-feather='shield'></i> {{ $role->name }}</span>
+                                            <span class="badge badge-light-primary"><i class="fa-solid fa-user-shield"></i> {{ $role->name }}</span>
                                             @empty
-                                            <span class="badge badge-light-danger"><i data-feather='shield-off'></i> Sin rol</span>
+                                            <span class="badge badge-light-danger"><i class="fas fa-ban"></i> Sin rol</span>
                                             @endforelse
                                         </span>
                                     <td> <span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->email }}</span>

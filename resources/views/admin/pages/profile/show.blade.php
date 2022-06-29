@@ -79,10 +79,12 @@
                             </li>
                         </ul>
                         <div class="d-flex justify-content-center pt-2">
-                            <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-primary me-1">
+                            @if($user->id == auth()->user()->id)
+                            <a href="{{ route('usuarios.perfil') }}" class="btn btn-primary me-1">
                                 {{ __('Edit') }}
                             </a>
                             <a href="{{ route('logout') }}" class="btn btn-outline-danger suspend-user">{{ __('Logout') }}</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -158,6 +160,7 @@
                         </tbody>
                     </table>
                 </div>
+                @include('admin.pages.profile.partials.pagination-posts')
             </div>
             <!-- /Project table -->
 
@@ -188,12 +191,11 @@
                                 </div>
                                 <p>{{ \carbon\Carbon::now()->isoFormat('DD MMMM  YYYY, h:mm a') }}</p>
 
-
                             </div>
                         </li>
-
                         @endforelse
                     </ul>
+                    @include('admin.pages.profile.partials.pagination')
                 </div>
             </div>
             <!-- /Activity Timeline -->

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(100)->create();
         \App\Models\admin\Category::factory(100)->create();
         \App\Models\admin\Tag::factory(10)->create();
-        \App\Models\admin\AboutCmpj::factory(10)->create();
+        // \App\Models\admin\AboutCmpj::factory(10)->create();
         \App\Models\admin\TypeLogo::factory(10)->create();
         \App\Models\admin\Logo::factory(10)->create();
         \App\Models\admin\ReaderLog::factory(20)->create();

@@ -67,7 +67,7 @@
                         <div class="col-md-6 col-12">
                             <div class="mb-2">
                                 {!! Form::label('roles', __('Roles'), ['class' => 'form-label']) !!}
-                                {!! Form::select('roles[]', $roles, null ,['class' => 'form-select select2','id' => 'roles','multiple' => true]) !!}
+                                {!! Form::select('roles[]', $roles, null ,['class' => 'form-select select2','id' => 'roles','multiple' => false]) !!}
                                 @error('roles')
                                 <span class="text-danger form-label fw-bold" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror

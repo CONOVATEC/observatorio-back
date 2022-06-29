@@ -65,8 +65,68 @@
             ]
         },
         {
+            "url": "juvenilesObservatorio",
+            "name": "Young Observatory",
+            "icon": "zap",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "juvenilesObservatorio",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "juvenilesObservatorio.index"
+                },
+                {
+                    "url": "juvenilesObservatorio/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "juvenilesObservatorio.create"
+                }
+            ]
+        },
+        {
+            "url": "sobreCmpj",
+            "name": "CMPJ",
+            "icon": "pocket",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "sobreCmpj",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "sobreCmpj.index"
+                },
+                {
+                    "url": "sobreCmpj/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "sobreCmpj.create"
+                }
+            ]
+        },
+        {
+            "url": "politicas",
+            "name": "Policies",
+            "icon": "book-open",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "politicas",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "politicas.index"
+                },
+                {
+                    "url": "politicas/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "politicas.create"
+                }
+            ]
+        },
+        {
             "name": "roles and permissions",
-            "icon": "users",
+            "icon": "shield",
             "slug": "",
             "submenu": [
                 {
@@ -76,23 +136,27 @@
                     "slug": "roles.index"
                 },
                 {
-                    "url": "roles/permisos",
-                    "name": "assign role",
+                    "url": "usuarios",
+                    "name": "User Role",
                     "icon": "user",
-                    "slug": "usuarios.permisos"
+                    "slug": "usuarios.index"
                 }
             ]
         },
         {
             "name": "users",
             "icon": "users",
-            "slug": "",
+            "slug": "/usuarios/*/*",
             "submenu": [
                 {
-                    "url": "usuarios",
-                    "name": "users",
-                    "icon": "eye",
-                    "slug": "usuarios.index"
+                    "url": "usuarios/create",
+                    "name": "users create",
+                    "icon": "user-plus",
+                    "slug": "usuarios.create",
+                    "meta": {
+                        "authRequired": true,
+                        "rule": "usuarios.create"
+                    }
                 },
                 {
                     "url": "usuarios/perfil",
@@ -104,95 +168,14 @@
         },
         {
             "name": "company",
-            "icon": "shield",
+            "icon": "server",
             "slug": "",
             "submenu": [
                 {
-                    "url": "configuracion/empresa",
+                    "url": "configuraciones",
                     "name": "setting company",
                     "icon": "settings",
-                    "slug": "configuracion.empresa"
-                }
-            ]
-        },
-        {
-            "name": "Abouts",
-            "badge": "2",
-            "badgeClass": "badge badge-light-warning rounded-pill ms-auto me-1",
-            "icon": "home",
-            "slug": "",
-            "submenu": [
-              {
-                "url":  "juvenilesObservatorio",
-                "name": " view Nosotros Observatorio",
-                "icon": "circle",
-                "slug": "page-test"
-              },
-              {
-                "url": "juvenilesObservatorio/create",
-                "name": "create Nosotros Observatorio",
-                "icon": "circle",
-                "slug": "second-page"
-              }
-            ]
-        },
-        {
-            "name": "CMPJ",
-            "badge": "2",
-            "badgeClass": "badge badge-light-warning rounded-pill ms-auto me-1",
-            "icon": "home",
-            "slug": "",
-            "submenu": [
-              {
-                "url":  "sobreCmpj",
-                "name": " view Sobre CMPJ",
-                "icon": "circle",
-                "slug": "page-test"
-              },
-              {
-                "url": "sobreCmpj/create",
-                "name": "create Sobre CMPJ",
-                "icon": "circle",
-                "slug": "second-page"
-              }
-            ]
-        },
-        {
-            "name": "Page Layouts",
-            "icon": "mail",
-            "slug": "",
-            "badge": "5",
-            "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
-            "submenu": [
-                {
-                    "url": "layouts/collapsed-menu",
-                    "name": "Collapsed Menu",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "layouts/full",
-                    "name": "Layout Full",
-                    "icon": "circle",
-                    "slug": "layout-full"
-                },
-                {
-                    "url": "layouts/without-menu",
-                    "name": "Without Menu",
-                    "icon": "circle",
-                    "slug": "without-menu"
-                },
-                {
-                    "url": "layouts/empty",
-                    "name": "Layout Empty",
-                    "icon": "circle",
-                    "slug": "layout-empty"
-                },
-                {
-                    "url": "layouts/blank",
-                    "name": "Layout Blank",
-                    "icon": "circle",
-                    "slug": "layout-blank"
+                    "slug": "configuraciones.index"
                 }
             ]
         }
