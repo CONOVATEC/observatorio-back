@@ -13,7 +13,7 @@
     <div class="col-12">
         <div class="mb-2">
             <label class="form-label" for="payment-input-name">Describe categoría</label>
-            {{ Form::textarea('description', null, array('class' =>'form-control input','id'=>'description','name' =>'description', 'cols' => 20, 'rows' =>4, 'maxlength' => "50",'placeholder'=>'Breve descripción'))}}
+            {{ Form::textarea('description', null, array('class' =>'form-control input','id'=>'description','name' =>'description', 'cols' => 20, 'rows' =>4,'placeholder'=>'Breve descripción'))}}
             @error('description',)
             <span class="text-danger form-label fw-bold">{{ $message }}</span>
             @enderror

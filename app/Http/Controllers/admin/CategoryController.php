@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\admin\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CategoryRequest;
-use App\Models\admin\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -46,7 +47,11 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->description
+        ]);
         return redirect()->route('categorias.index')->with('success', 'Categoría registrado correctamente');
     }
 
@@ -89,8 +94,12 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         // dd($id);
-        Category::find($id)->update($request->all());
-        // $category->update($request->all());
+        $category = Category::find($id)->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->description
+        ]);
+
         return redirect()->route('categorias.edit', $id)->with('info', 'Categoría actualizado correctamente');
     }
 

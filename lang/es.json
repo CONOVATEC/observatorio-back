@@ -779,12 +779,9 @@
     "Featured Image": "Imagen de perfil",
     "Required image resolution 800x400, image size max 2mb.": "Resolución de imagen requerida 800x400, peso máximo de imagen 2mb.",
     "Information": "Información",
-    "Notifications":"Notificaciones",
-    "Users":"Usuarios",
-    "User Posts":"Publicaciones de Usuario",
-    "User Activity Timeline":"Cronología de la actividad del usuario",
-    "return":"Volver"
-
-
-
+    "Notifications": "Notificaciones",
+    "Users": "Usuarios",
+    "User Posts": "Publicaciones de Usuario",
+    "User Activity Timeline": "Cronología de la actividad del usuario",
+    "return": "Volver"
 }

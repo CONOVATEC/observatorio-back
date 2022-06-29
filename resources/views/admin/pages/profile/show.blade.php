@@ -160,6 +160,7 @@
                         </tbody>
                     </table>
                 </div>
+                @include('admin.pages.profile.partials.pagination-posts')
             </div>
             <!-- /Project table -->
 
@@ -192,9 +193,9 @@
 
                             </div>
                         </li>
-
                         @endforelse
                     </ul>
+                    @include('admin.pages.profile.partials.pagination')
                 </div>
             </div>
             <!-- /Activity Timeline -->

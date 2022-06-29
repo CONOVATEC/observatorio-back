@@ -9,25 +9,23 @@
         en el rol asignado, un administrador puede tener acceso a lo que necesita
     </p>
     <div class="row">
+
         @forelse($roles as $role)
         <div class="col-xl-4 col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <span>Total 4 usuarios</span>
+                        @php
+                        $roleAll = App\Models\User::role($role)->get();
+                        @endphp
+                        <span>Total {{ count($roleAll) }} Usuarios</span>
                         <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Vinnie Mostowy" class="avatar avatar-sm pull-up">
-                                <img class="rounded-circle" src="{{asset('images/avatars/2.png')}}" alt="Avatar" />
+                            @forelse($roleAll as $image)
+                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="{{ $image->username }}" class="avatar avatar-sm pull-up"><a href="{{  route('usuarios.show',$image->id) }}">
+                                    <img class="rounded-circle" src="{{ $image->profile_photo_path ? asset('storage/'.$image->profile_photo_path) : asset('images/portrait/small/avatar-s-11.jpg') }}" alt="{{ $image->name }}" title="{{ $image->name }}" /></a>
                             </li>
-                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Allen Rieske" class="avatar avatar-sm pull-up">
-                                <img class="rounded-circle" src="{{asset('images/avatars/12.png')}}" alt="Avatar" />
-                            </li>
-                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Julee Rossignol" class="avatar avatar-sm pull-up">
-                                <img class="rounded-circle" src="{{asset('images/avatars/6.png')}}" alt="Avatar" />
-                            </li>
-                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kaith D'souza" class="avatar avatar-sm pull-up">
-                                <img class="rounded-circle" src="{{asset('images/avatars/11.png')}}" alt="Avatar" />
-                            </li>
+                            @empty
+                            @endforelse
                         </ul>
                     </div>
                     <div class="d-flex justify-content-between align-items-end mt-1 pt-25">

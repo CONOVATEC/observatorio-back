@@ -107,7 +107,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $posts = Post::where('user_id', $user->id)->paginate(3);
-        $activities = Activity::causedBy($user)->orderBy('created_at', 'desc')->get();
+        $activities = Activity::causedBy($user)->orderBy('created_at', 'desc')->paginate(5);
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "usuarios", 'name' => "Usuarios"], ['name' => "Perfil de Usuario"],
         ];
@@ -187,8 +187,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         //Verificamos que rol  no tenga asignado un permiso antes de ser eliminado
-        if ($user->roles()->count()) {
-            return redirect()->route('usuarios.index')->with('error', 'Usuario con rol activo');
+        // dd($user->posts()->count());
+        if ($user->posts()->count()) {
+            return redirect()->route('usuarios.index')->with('error', 'Usuario tiene publicaciones activas');
         } else {
             $user->delete();
             return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente');
