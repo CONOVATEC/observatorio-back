@@ -199,7 +199,25 @@
                                 @endif
                             </span>
                             <span class="user-status">
-                                Admin
+                                {{-- /**********************************************************
+                                 * Inicio para verificar el rol del usuario autentificado *
+                                 **********************************************************/ --}}
+                                @php
+                                $roles = auth()->user()->getRoleNames();
+                                // $roles = App\Models\User::with('roles')->get();
+                                @endphp
+                                @if(is_null($roles))
+                                Sin rol
+                                @else
+                                @forelse($roles as $role)
+                                {{ $role }}
+                                @empty
+                                Sin rol
+                                @endforelse
+                                @endif
+                                {{-- /*******************************************************
+                                 * Fin para verificar el rol del usuario autentificado *
+                                 *******************************************************/ --}}
                             </span>
                         </div>
                         <span class="avatar">

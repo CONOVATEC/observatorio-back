@@ -84,6 +84,14 @@ class UserController extends Controller
             // el metodo attach agrega registros a la tabla
             // $user->roles()->attach($request->roles);
             $user->roles()->sync($request->roles);
+        } else {
+            // Asignamos el rol de Colaborador como predeterminado al registrar
+            $roles = $user->getRoleNames();
+            if (is_null($roles)) {
+                $user->roles()->attach(Role::where('name', 'Colaborador')->first());
+            } else {
+                $user->roles()->sync($request->roles);
+            }
         }
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario registrado correctamente');
@@ -145,7 +153,14 @@ class UserController extends Controller
         if ($request->password) {
             $user->update(['password' => bcrypt($request->password)]);
         }
-        $user->roles()->sync($request->roles);
+        // dd(is_null($request->roles));
+        if ($request->roles != null) {
+            // el metodo attach agrega registros a la tabla
+            $user->roles()->sync($request->roles);
+        } else {
+            $user->syncRoles([]); //Limpiamos otros roles antes de proceder
+            $user->roles()->attach(Role::where('name', 'Colaborador')->first());
+        }
         if ($request->hasFile('profile_photo_path')) {
             if ($user->profile_photo_path) {
                 Storage::disk('public')->delete($user->profile_photo_path);
