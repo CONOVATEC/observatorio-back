@@ -8,11 +8,12 @@ use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
-use App\Http\Responses\RegisterResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Http\Requests\LoginRequest;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
@@ -41,6 +42,10 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         // Para redireccionar según rol
         // $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
+        // Para inciar sesión y redireccionar
+        $this->app->singleton(LoginResponse::class, \App\Http\Responses\LoginResponse::class);
+        // Para crear cuenta y redireccionar
+        $this->app->singleton(RegisterResponse::class, \App\Http\Responses\RegisterResponse::class);
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

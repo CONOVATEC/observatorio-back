@@ -3,11 +3,11 @@
 namespace App\Http\Responses;
 
 use Laravel\Fortify\Fortify;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
-class LoginResponse implements LoginResponseContract
+class RegisterResponse implements RegisterResponseContract
 {
     /**
      * Create an HTTP response that represents the object.

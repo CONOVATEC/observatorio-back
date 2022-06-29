@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
         //? Creamos los roles
         $name1 = 'Super Administrador';
         $name2 = 'Administrador';
-        $name3 = 'Redactor';
+        $name3 = 'Editor';
         $name4 = 'Colaborador';
         // $name5 = 'Soporte';
         $rol1 = Role::create(['name' => $name1, 'slug' => Str::slug($name1)]);
