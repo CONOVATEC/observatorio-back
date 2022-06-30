@@ -51,8 +51,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('usuarios', UserController::class)->names('usuarios');
 
     //* para restaurar categoría
-    Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
-    Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->name('categorias.restaurar');
+    Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->middleware('can:categorias.eliminar.definitivo')->name('categorias.eliminar.definitivo');
+    Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->middleware('can:categorias.restaurar')->name('categorias.restaurar');
     Route::resource('categorias', CategoryController::class)->names('categorias');
 
     //* para restaurar etiquetas
@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     // Fin rutas para roles y permisos
 });
 
-// locale Route
+//* locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
 // Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified',])->group(function () {

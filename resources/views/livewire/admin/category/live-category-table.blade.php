@@ -21,10 +21,11 @@
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
+                @can('categorias.create')
                 <li>
                     <a href="{{ route('categorias.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
-
                 </li>
+                @endcan
             </ul>
         </div>
     </div>
@@ -58,7 +59,9 @@
                                             <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('categorias.edit') or auth()->user()->can('categorias.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,10 +72,12 @@
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $category->name }}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $category->description }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $category->created_at->format('d-m-Y') }}</span></td>
+                                    @if(auth()->user()->can('categorias.edit') or auth()->user()->can('categorias.destroy') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.category.partials.buttons')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">
