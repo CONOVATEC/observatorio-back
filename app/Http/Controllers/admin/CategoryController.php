@@ -10,6 +10,17 @@ use App\Http\Requests\admin\CategoryRequest;
 
 class CategoryController extends Controller
 {
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:categorias.index')->only('index');
+        $this->middleware('can:categorias.create')->only('create');
+        $this->middleware('can:categorias.edit')->only('edit');
+        $this->middleware('can:categorias.destroy')->only('destroy');
+        $this->middleware('can:categorias.eliminar.definitivo')->only('deleteDefinitive');
+        $this->middleware('can:categorias.restaurar')->only('restore');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +74,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(403);
     }
 
     /**

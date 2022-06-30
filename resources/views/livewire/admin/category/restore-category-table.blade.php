@@ -54,7 +54,9 @@
                                             <span class="fa-solid fa{{ $camp === 'deleted_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('categorias.eliminar.definitivo') or auth()->user()->can('categorias.restaurar') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,10 +68,12 @@
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $categoryEliminated->name }}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $categoryEliminated->description }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-danger me-1">{{ $categoryEliminated->deleted_at->format('d-m-Y') }}</span></td>
+                                    @if(auth()->user()->can('categorias.eliminar.definitivo') or auth()->user()->can('categorias.restaurar') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.category.partials.buttons-restore')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">
