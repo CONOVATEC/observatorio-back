@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\YouthPolicy;
 use Illuminate\Http\Request;
 
 class PolicyController extends Controller
@@ -14,7 +15,12 @@ class PolicyController extends Controller
      */
     public function index()
     {
-        //
+        $breadcrumbs = [
+            // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
+            ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de Políticas"],
+        ];
+
+        return view('admin.pages.policy.index', compact('breadcrumbs'));
     }
 
     /**
@@ -24,7 +30,11 @@ class PolicyController extends Controller
      */
     public function create()
     {
-        //
+        $policies = YouthPolicy::latest()->paginate(5);
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Inicio"], ['link' => "politicas", 'name' => "Políticas"], ['name' => "Registrando políticas"],
+        ];
+        return view('admin.pages.policy.create', compact('breadcrumbs', 'policies'));
     }
 
     /**
@@ -35,7 +45,8 @@ class PolicyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        YouthPolicy::create($request->all());
+        return redirect()->route('policy.index')->with('success', 'Política registrada correctamente');
     }
 
     /**
@@ -57,7 +68,14 @@ class PolicyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $policies = YouthPolicy::latest()->paginate(5);
+        $policy = YouthPolicy::findOrFail($id);
+        // dd($category);
+
+        $breadcrumbs = [
+            ['link' => "home", 'name' => "Inicio"], ['link' => "politicas", 'name' => "Políticas"], ['name' => "Editando categoría"],
+        ];
+        return view('admin.pages.policy.edit', compact('breadcrumbs', 'policies', 'policy'));
     }
 
     /**

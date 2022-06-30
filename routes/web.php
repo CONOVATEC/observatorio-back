@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ConfigCompanyController;
+use App\Http\Controllers\admin\PolicyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
     Route::resource('noticias', NewController::class)->names('noticias');
     //Politicas
-    Route::resource('politicas', PolicyController::class)->names('politicas');
+    Route::resource('politicas', PolicyController::class);
     // para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->name('categorias.restaurar');
