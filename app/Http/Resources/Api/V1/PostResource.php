@@ -19,8 +19,8 @@ class PostResource extends JsonResource
             'title'=>Str::title($this->title),
             'imagen'=>$this->image->url,
             'slug'=>$this->slug,
-            'extract'=>strip_tags($this->extract), //elimina las etiquetas de HTML
-            'content'=>strip_tags($this->content), //elimina las etiquetas de HTML
+            'extract'=>$this->extract, //elimina las etiquetas de HTML
+            'content'=>$this->content, //elimina las etiquetas de HTML
             'status'=>$this->estado($this->status),
             'tendencia'=>$this->tendencia($this->tendencia_active),
             'category'=>$this->category->name,
