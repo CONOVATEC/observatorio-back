@@ -2,127 +2,104 @@
 
 namespace App\Http\Livewire\Admin\User;
 
-// use Livewire\Component;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-
-class LiveUserTable extends DataTableComponent
+class LiveUserTable extends Component
 {
-
-    protected $model = User::class;
-    // public $myParam = 'Default';
-    // public string $tableName = 'users1';
-    // public array $users1 = [];
-
-    public $columnSearch = [
-        'name' => null,
-        'email' => null,
-        // 'active' => null,
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $search = "";
+    public $perPage = 5; //Para filtrar cuando se ve
+    public $camp = null; //Para fel campo a ordenar
+    public $order = null; //Para fel campo a ordenar ascendente o descendente
+    public $icon = '-sort'; //Para el ícono
+    /*******************************************************
+     * Para mantener persistente los filtros y la búsqueda *
+     *******************************************************/
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'camp' => ['except' => null],
+        'order' => ['except' => null],
     ];
-    public function configure(): void
+    /*********************************************
+     * Método para resetear el url de paginación *
+     *********************************************/
+    public function updatingSearch()
     {
-        $this->setPrimaryKey('id');
-        $this->setFiltersEnabled();
-        $this->setFiltersVisibilityStatus(true);
-        $this->setFiltersVisibilityEnabled();
-        $this->setFilterPillsStatus(true);
-        $this->setFilterPillsEnabled();
-        $this->setFilterLayoutPopover();
-        $this->setFilterLayoutSlideDown();
-        $this->setFilterLayout('slide-down');
-        $this->setHideBulkActionsWhenEmptyDisabled();
+        $this->resetPage();
     }
-    public function columns(): array
+    public function updatingPerPage()
     {
-        return [
-            Column::make('ID', 'id')
-                ->sortable()
-                ->searchable()
-                ->collapseOnTablet(),
-            Column::make('Nombre', 'name')
-                ->sortable()
-                ->searchable(),
-            Column::make('Correo electróncio', 'email')
-                ->sortable()
-                ->searchable()
-                ->collapseOnMobile(),
-            BooleanColumn::make('Estado', 'active')
-                ->sortable()
-                ->searchable()
-                ->collapseOnMobile(),
-            Column::make('Registrado', 'created_at')
-                ->sortable()
-                ->searchable()
-                ->collapseOnTablet(),
-            Column::make('Actions')
-                ->label(fn ($row, Column $column) => view('admin.pages.user.partials.buttons'))
-                ->unclickable(),
-        ];
+        $this->resetPage();
+        $this->gotoPage(1); //puse por el error de paginaciòn
     }
-    // public function filters(): array
-    // {
-    //     return [
-    //         SelectFilter::make('Active')
-    //             ->options([
-    //                 '' => 'All',
-    //                 '1' => 'Yes',
-    //                 '0' => 'No',
-    //             ])
-    //             ->filter(function (Builder $builder, string $value) {
-    //                 if ($value === '1') {
-    //                     $builder->where('active', true);
-    //                 } elseif ($value === '0') {
-    //                     $builder->where('active', false);
-    //                 }
-    //             }),
-    //     ];
-    // }
-    public function builder(): Builder
+    public function mount()
     {
-        return User::query()
-            ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('users.name', 'like', '%' . $name . '%'))
-            ->when($this->columnSearch['email'] ?? null, fn ($query, $email) => $query->where('users.email', 'like', '%' . $email . '%'));
-        // return User::query()
-        //     ->when($this->getAppliedFilterWithValue('active'), fn ($query, $active) => $query->where('active', $active === 'yes'));
+        $this->camp = 'created_at'; //Para que carga filtrado porla fecha de creación
+        $this->order = 'desc';      //Para que carga en forma descendente
+        $this->icon = $this->iconDirection($this->order);
     }
-    public function bulkActions(): array
+    public function render()
     {
-        return [
-            'activate' => 'Activar',
-            'deactivate' => 'Desactivar',
-            'export' => 'Exportar',
-        ];
-    }
-    public function export()
-    {
-
-        foreach ($this->getSelected() as $item) {
-            dd($item);
+        $users = User::where('name', 'like', "%{$this->search}%")
+            ->orWhere('email', 'like', "%{$this->search}%");
+        //Verificamos si el campo no son nuloss
+        if ($this->camp and $this->order) {
+            //Ejecuta la sentencia y lo agrega al usuario + el orderby
+            $users = $users->orderBy($this->camp, $this->order);
+        } else {
+            $this->camp = null;
+            $this->order = null;
         }
-
-        // $users = $this->getSelected();
-        // $this->clearSelected();
-
-        // return Excel::download(new UsersExport($users), 'users.xlsx');
+        $users = $users->paginate($this->perPage);
+        // $users = User::paginate(5);
+        return view('livewire.admin.user.live-user-table', compact('users'));
     }
-    public function activate()
+    public function sortable($camp)
     {
-        User::whereIn('id', $this->getSelected())->update(['active' => true]);
-
-        $this->clearSelected();
+        if ($camp !== $this->camp) {
+            $this->order = null;
+        }
+        // dd($camp);
+        switch ($this->order) {
+            case null:
+                $this->order = 'asc';
+                // $this->icon = '-sort-up';
+                break;
+            case 'asc':
+                $this->order = 'desc';
+                // $this->icon = '-sort-down';
+                break;
+            case 'desc':
+                $this->order = null;
+                // $this->icon = '-sort';
+                break;
+            default:
+                $this->order = 'asc';
+                // $this->icon = '-sort-up';
+                break;
+        }
+        // Actualizamos el campo a nivel global
+        $this->icon = $this->iconDirection($this->order);
+        $this->camp = $camp;
     }
-    public function deactivate()
+    public function iconDirection($sort): string
     {
-        User::whereIn('id', $this->getSelected())->update(['active' => false]);
-
-        $this->clearSelected();
+        if (!$sort) {
+            return '-sort';
+        }
+        return $sort === 'asc' ? '-sort-up' : '-sort-down';
+    }
+    //Método para limpiar todo
+    public function clear()
+    {
+        $this->page = 1;
+        $this->order = null;
+        $this->camp = null;
+        $this->icon = '-sort';
+        $this->search = '';
+        $this->perPage = 5;
     }
 }

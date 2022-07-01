@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\UserSeeder;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,12 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         Storage::deleteDirectory('public/news');
+        Storage::deleteDirectory('public/news');
         Storage::makeDirectory('public/news');
-        \App\Models\User::factory(100)->create();
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
         \App\Models\admin\Category::factory(100)->create();
         \App\Models\admin\Tag::factory(10)->create();
-        \App\Models\admin\AboutCmpj::factory(10)->create();
+        // \App\Models\admin\AboutCmpj::factory(10)->create();
         \App\Models\admin\TypeLogo::factory(10)->create();
         \App\Models\admin\Logo::factory(10)->create();
         \App\Models\admin\ReaderLog::factory(20)->create();
@@ -31,13 +36,5 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\YouthObservatory::factory(10)->create();
         \App\Models\admin\YouthPolicy::factory(10)->create();
         \App\Models\admin\YouthStrategy::factory(10)->create();
-
     }
 }
-
-
-
-
-
-
-

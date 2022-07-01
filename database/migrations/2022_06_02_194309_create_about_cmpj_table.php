@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('about_cmpj', function (Blueprint $table) {
+        Schema::create('about_cmpjs', function (Blueprint $table) {
             $table->id();
             $table->string('ordinance')->nullable(false);
             $table->string('about_us')->nullable();

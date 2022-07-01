@@ -3,10 +3,11 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Laravel\Jetstream\Jetstream;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -23,14 +24,21 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'username'  => ['required', 'string', 'max:255', 'unique:users'],
+            // 'phone'     => ['required', 'string', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
+            // 'username'  => $input['username'],
+            // 'phone'     => $input['phone'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+        // Asignamos el rol de Colaborador como predeterminado al registrar
+        $user->roles()->attach(Role::where('name', 'Colaborador')->first());
+        return $user;
     }
 }
