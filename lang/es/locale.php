@@ -9,13 +9,27 @@ return [
     "company" => "Organización",
     "setting company" => "Configuración",
     "users" => "Usuarios",
+    "users create" => "Crear Usuario",
+    "users list" => "Lista de Usuarios",
     "profile" => "Perfil",
+    "User Role" => "Rol de Usuario",
+    "User Role" => "Rol de Usuario",
+    "Young Observatory" => "Observatorio Joven",
+    "CMPJ" => "Sobre CMPJ",
+    "Policies" => "Políticas",
+
     /*****************
      * Para noticias *
      *****************/
     "Ver noticias" => "Ver noticias",
     "view records" => "Ver registros",
     "create register" => "Crear registro",
+    /*****************
+     * Para roles y permisos *
+     *****************/
+    "roles and permissions" => "Roles y Permisos",
+    "manage role" => "Administrar roles",
+    "assign role" => "Asignar rol",
 
     // Fin agregado por mí
     "Home" => "Principal",
