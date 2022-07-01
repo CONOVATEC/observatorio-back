@@ -6,7 +6,7 @@
     <!-- Info table about actions -->
     <div class="row">
         <div class="col-12">
-            {{-- @livewire('admin.policy.live-policy-table') --}}
+            @livewire('admin.policy.live-policy-table')
         </div>
     </div>
     {{--  Para listar la lista de politicas eliminados por el Usuario que pueden ser restaurados  --}}

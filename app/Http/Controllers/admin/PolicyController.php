@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\YouthPolicy;
 use Illuminate\Http\Request;
+use SebastianBergmann\Complexity\CyclomaticComplexityCalculatingVisitor;
 
 class PolicyController extends Controller
 {
@@ -87,7 +88,10 @@ class PolicyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+        YouthPolicy::find($id)->update($request->all());
+        // $category->update($request->all());
+        return redirect()->route('politicas.edit', $id)->with('info', 'Políitica actualizada correctamente');
     }
 
     /**
@@ -98,6 +102,7 @@ class PolicyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        YouthPolicy::findOrFail($id)->delete();
+        return redirect()->route('politicas.index')->with('warning', 'Política eliminada correctamente');
     }
 }
