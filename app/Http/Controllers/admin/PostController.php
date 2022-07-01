@@ -52,7 +52,13 @@ class PostController extends Controller
             $post->image()->create([
                 'url'=>$url
             ]);
-        }
+        }/*else{
+           // $url=Storage::disk('news');
+            $r=$post->image()->create([
+                'url'=>'https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg'
+            ]);
+            
+        }*/
       
       
         
@@ -162,12 +168,22 @@ class PostController extends Controller
         // }
         //is_null($post->image) && Storage::delete('public/news',$post->file);;
         $post=Post::onlyTrashed()->find($id);
-        //dd($post);
         
+       
+      
+        if(!is_null($post->image)){
+            if(Storage::delete($post->image->url)){
+                    Post::onlyTrashed()->find($id)->forceDelete();
+              }
+        }else{
+            Post::onlyTrashed()->find($id)->forceDelete();
+        }
         //!is_null($post->image) && Storage::delete('public/news',$post->file);
-        if(Storage::delete($post->image->url)){
-                Post::onlyTrashed()->find($id)->forceDelete();
-         }
+        // if(Storage::delete($post->image->url)){
+        //         Post::onlyTrashed()->find($id)->forceDelete();
+        //  }else{
+
+        //  }
      
                
          

@@ -4,14 +4,15 @@
   <style>
     
     .imagen{
-
+        max-width: 100%;
+        max-height: 100%;
        
     }
   </style>
 @endsection
 {{-- <form action="javascript:void(0);" class="form"> --}}
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="mb-2">
                 <div class="avatar avatar-xl">
                     <img src="{{asset('images/portrait/small/avatar-s-5.jpg')}}" alt="Avatar" height="10" width="10" />
@@ -23,7 +24,7 @@
                 {{Form::hidden('user_id',auth()->user()->id)}}
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-6">
             <div class="mb-2">
                 {{ Form::label('title', 'Título de la Noticia*', ['class' => 'form-label fw-bold']) }}
                 {{ Form::text('title',null,['class'=>'form-control', 'placeholder' => 'Ingresar Título' ]) }}
@@ -32,7 +33,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-6">
             <div class="mb-2">
                 {{ Form::label('slug', 'Slug', ['class' => 'form-label fw-bold']) }}
                 {{ Form::text('slug',null,['class'=>'form-control', 'readonly']) }}
@@ -41,20 +42,42 @@
                 @enderror
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="mb-2">
+                {{ Form::label('category_id', 'Categoría de la Noticia*', ['class' => 'form-label fw-bold']) }}
+                {{Form::select('category_id', $categories ,NULL,['class'=>'select2 form-select'])}}   
+                
+                @error('category_id')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-2">
+                {{ Form::label('tags', 'Etiquetas de la Noticia*', ['class' => 'form-label fw-bold']) }}
+                {{Form::select('tags[]', $tags ,NULL,['class'=>'select2 form-select','multiple'])}}
+               
+                <br>
+                @error('tags')
+                <span class="text-danger form-label fw-bold">{{ $message }}</span>
+            @enderror
+            </div>
+        </div>
 
         <div class="row mb-3">
             <div class="col-md-6">
                 @isset ($post->image)
                 
-                    <img src="{{Storage::url($post->image->url)}}"  class="w-100 h-100 pb-2" id="picture"  alt="sdf">
+                    <img src="{{Storage::url($post->image->url)}}"  class="imagen pb-2 rounded" id="picture"  alt="img no encontrada">
                 @else
-                     <img src="https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg" class=" w-100 h-100 pb-2"  id="picture"  alt="">
+                     <img src="https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg" class="imagen pb-2 rounded"  id="picture"  alt="">
                 @endif
             </div>
+           
             <div class="col-md-6">
                 <div class="form-group">
                     {{form::label('file','Cargar una Img')}}
-                    {{Form::file('file',['class'=>'form-control-file','accept'=>'image/*'])}}
+                    {{Form::file('file',['class'=>'form-control','accept'=>'image/*'])}}
                 </div>
                 @error('file')
                 <span class="text-danger form-label fw-bold">{{ $message }}</span>
@@ -81,51 +104,14 @@
             <div class="mb-2">
                 {{-- 'required' => '' --}}
                 <label class="form-label fw-bold" for="payment-input-name">Contenido*</label>
-                {{ Form::textarea('content', null, ['class' => 'form-control input', 'id' => 'content', 'name' => 'content', 'cols' => 20, 'rows' => 7,  'placeholder' => 'M...']) }}
+              
+                {{ Form::textarea('content', null, ['class' => 'form-control input', 'id' => 'content', 'name' => 'content', 'placeholder' => 'M...']) }}
                 @error('content')
                     <span class="text-danger form-label fw-bold">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-
-        <div class="col-md-12">
-            <div class="mb-2">
-                <p class="fw-bold">Etiquetas de la Noticia*</p>
-                {{Form::select('tags[]', $tags ,NULL,['class'=>'select2 form-select','multiple'])}}
-               
-                <br>
-                @error('tags')
-                <span class="text-danger form-label fw-bold">{{ $message }}</span>
-            @enderror
-            </div>
-        </div>
-
-    
         <div class="col-md-6">
-            <div class="mb-2">
-                {{ Form::label('category_id', 'Categoría de la Noticia*', ['class' => 'form-label fw-bold']) }}
-                {{Form::select('category_id', $categories ,NULL,['class'=>'select2 form-select'])}}   
-                
-                @error('category_id')
-                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-    
-        <div class="col-md-6">
-            <div class="mb-2">
-                <p>Estado de la Noticia*</p>
-               
-                <label>{!!Form::radio('status',1,true)!!}No publicar</label>
-                <label>{!!Form::radio('status',2)!!}Publicado</label>
-               
-                @error('status')
-                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="col-md-12">
             <div class="mb-2">
                 {{ Form::label('tendencia_active', 'Tendencia*', ['class' => 'form-label fw-bold']) }} <br>
                 <label >
@@ -143,7 +129,18 @@
                 @enderror
             </div>
         </div>
-
+        <div class="col-md-6">
+            <div class="mb-2">
+                {{ Form::label('status', 'Estado de la Noticia*', ['class' => 'form-label fw-bold']) }} <br>
+               
+                <label>{!!Form::radio('status',1,true)!!}No publicar</label>
+                <label>{!!Form::radio('status',2)!!}Publicado</label>
+               
+                @error('status')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
        
 
       
@@ -185,7 +182,10 @@
 
     @section('page-script')
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+ 
+   
+    <script src="https://cdn.ckeditor.com/4.19.0/full-all/ckeditor.js"></script>
+
     <script>
         document.getElementById("file").addEventListener('change',cambiarImagen);
         
@@ -202,32 +202,15 @@
     </script>
     
     <script>
-        ClassicEditor
-        .create( document.querySelector( '#extract' ),{
-            toolbar: {
-                items: [   'heading', '|','bold', 'italic', '|', 'undo', 'redo', '-', 'numberedList', 'bulletedList' ],
-            
-            }
-        } )
-        .then( editor => {
-            console.log( 'Editor was initialized', editor );
-        } )
-        .catch( err => {
-            console.error( err.stack );
-        } );
-        ClassicEditor
-        .create( document.querySelector( '#content' ),{
-            toolbar: {
-                items: [   'heading', '|','bold', 'italic', '|', 'undo', 'redo', '-', 'numberedList', 'bulletedList' ],
-            
-            }
-        } )
-        .then( editor => {
-            console.log( 'Editor was initialized', editor );
-        } )
-        .catch( err => {
-            console.error( err.stack );
-        } );
+     
+
+    
+     CKEDITOR.replace('content', {
+        
+        uiColor: '#a9a2f6',
+        language: 'es',
+        removeButtons: 'Form,Checkbox,Radio,TextField,Select,Textarea,Button,ImageButton,HiddenField,NewPage,CreateDiv,Flash,Iframe,About,ShowBlocks',
+    });
     </script>
     
   <!-- Page js files -->

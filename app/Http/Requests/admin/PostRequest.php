@@ -43,12 +43,12 @@ class PostRequest extends FormRequest
         }
         if($this->status==2){
             $rules=array_merge($rules,[
-                'extract'=>'required|min:3|max:255',
-                'content'=>'required|min:3|max:255',
+                'extract'=>'required|min:3',
+                'content'=>'required|min:3',
                 'tendencia_active'=>'required',
                 'category_id'=>'required',
                 'tags'=>'required',
-                'file'=>'required'
+                'file'=>'image'
                
                 
             ]
