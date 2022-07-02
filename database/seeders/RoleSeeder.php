@@ -58,7 +58,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'usuarios.eliminar.definitivo', 'description' => 'Eliminar definitivo Usuarios'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'usuarios.restaurar', 'description' => 'Restaurar Usuarios eliminados'])->syncRoles([$rol1, $rol2]);
         //* Roles para Usuarios-perfil
-        Permission::create(['name' => 'usuarios.perfil', 'description' => 'Actualizar perfil'])->syncRoles([$rol1, $rol2, $rol3, $rol4]);
+        Permission::create(['name' => 'usuarios.actualizar.perfil', 'description' => 'Actualizar perfil'])->syncRoles([$rol1, $rol2, $rol3, $rol4]);
         Permission::create(['name' => 'usuarios.show', 'description' => 'Ver perfil'])->syncRoles([$rol1, $rol2, $rol3, $rol4]);
         //* Roles para Categorías
         Permission::create(['name' => 'categorias.index', 'description' => 'Ver categorías'])->syncRoles([$rol1, $rol2, $rol3]);
