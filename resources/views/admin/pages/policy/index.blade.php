@@ -12,6 +12,7 @@
     {{--  Para listar la lista de politicas eliminados por el Usuario que pueden ser restaurados  --}}
     <div class="row">
         <div class="col-12">
+            {{-- nuevo --}}
             @livewire('admin.policy.restore-policy-table')
         </div>
     </div>
