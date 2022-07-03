@@ -3,11 +3,11 @@
     <div>
         <p class="small text-muted">
             {!! __('Showing') !!}
-            <span class="font-medium">{{ $categories->firstItem() }}</span>
+            <span class="font-medium">{{ $policies->firstItem() }}</span>
             {!! __('to') !!}
-            <span class="font-medium">{{ $categories->lastItem() }}</span>
+            <span class="font-medium">{{ $policies->lastItem() }}</span>
             {!! __('of') !!}
-            <span class="font-medium">{{ $categories->total() }}</span>
+            <span class="font-medium">{{ $policies->total() }}</span>
             {!! __('results') !!}
         </p>
 
@@ -17,6 +17,6 @@
     </div>
     <div class="">
 
-        {{$categories->withQueryString()->links()}}
+        {{$policies->withQueryString()->links()}}
     </div>
 </div>

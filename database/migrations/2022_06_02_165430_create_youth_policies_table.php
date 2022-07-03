@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('youth_policies', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',45);
-            $table->string('descripcion',200);
-            $table->timestamps();
+             $table->id();
+             $table->string('name',45);
+             $table->string('descripcion',200);
+             $table->softDeletes();
+             $table->timestamps();
         });
     }
 

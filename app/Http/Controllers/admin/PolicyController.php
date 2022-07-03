@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\PolicyRequest;
 use App\Models\admin\YouthPolicy;
 use Illuminate\Http\Request;
 use SebastianBergmann\Complexity\CyclomaticComplexityCalculatingVisitor;
@@ -44,8 +45,9 @@ class PolicyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PolicyRequest $request)
     {
+        //dd($request->all());
         YouthPolicy::create($request->all());
         return redirect()->route('politicas.index')->with('success', 'Política registrada correctamente');
     }
