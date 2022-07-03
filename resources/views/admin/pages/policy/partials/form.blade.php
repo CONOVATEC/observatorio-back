@@ -13,16 +13,16 @@
     <div class="col-12">
         <div class="mb-2">
             <label class="form-label" for="payment-input-name">Describe política</label>
-            {{ Form::textarea('description', null, array('class' =>'form-control input','id'=>'description','name' =>'description', 'cols' => 20, 'rows' =>4, 'maxlength' => "50",'placeholder'=>'Breve descripción'))}}
-            @error('description',)
+            {{ Form::textarea('descripcion', NULL, array('class' =>'form-control input','id'=>'descripcion','name' =>'descripcion', 'cols' => 20, 'rows' =>4, 'maxlength' => "50",'placeholder'=>'Breve descripción'))}}
+            @error('descripcion',)
             <span class="text-danger form-label fw-bold">{{ $message }}</span>
             @enderror
         </div>
     </div>
     <div class=" col-12 col-lg-6 mx-auto mb-0">
-        <a href="{{ route('politicas.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i class="fa-solid fa-delete-left"></i> </i> @isset($policy)Volver @else Cancelar @endisset</button></a>
+        <a href="{{ route('politicas.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i class="fa-solid fa-delete-left"></i> </i> @isset($politicas)Volver @else Cancelar @endisset</button></a>
 
-        <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i> @isset($policy)Actualizar @else Guardar @endisset</button>
+        <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i> @isset($politicas)Actualizar @else Guardar @endisset</button>
 
     </div>
 </div>

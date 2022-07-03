@@ -47,7 +47,7 @@ class PolicyController extends Controller
     public function store(Request $request)
     {
         YouthPolicy::create($request->all());
-        return redirect()->route('policy.index')->with('success', 'Política registrada correctamente');
+        return redirect()->route('politicas.index')->with('success', 'Política registrada correctamente');
     }
 
     /**

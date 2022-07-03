@@ -44,7 +44,7 @@ class LivePolicyTable extends Component
     public function render()
     {
         $policies = YouthPolicy::where('name', 'like', "%{$this->search}%")
-            ->orWhere('description', 'like', "%{$this->search}%");
+            ->orWhere('descripcion', 'like', "%{$this->search}%");
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {
             //Ejecuta la sentencia y lo agrega al usuario + el orderby
