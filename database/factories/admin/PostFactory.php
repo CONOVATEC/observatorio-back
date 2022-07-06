@@ -29,6 +29,8 @@ class PostFactory extends Factory
                 'extract' => $this->faker->unique->word,
                 'content' => $this->faker->paragraph(),
                 'status' => $this->faker->numberBetween(1,2),
+                'type_new' => $this->faker->numberBetween(1,2),
+                'publicado' =>$this->faker->numberBetween(1,2),
                 'tendencia_active'=> $this->faker->numberBetween(1,2),
                 'category_id'=> Category::all()->random()->id,
                 'user_id' => User::all()->random()->id,

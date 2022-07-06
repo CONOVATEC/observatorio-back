@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('extract',200)->nullable();
             $table->text('content',1000)->nullable();
             $table->enum('status',[1,2])->default(1);
+            $table->enum('type_new',[1,2])->default(1);
+            $table->enum('publicado',[1,2])->default(1);
             $table->tinyInteger('tendencia_active')->nullable();
             /*
                 ** -- Laves foreanas -- **
