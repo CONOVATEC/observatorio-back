@@ -18,7 +18,7 @@ class PostRequest extends FormRequest
         }else{
             return false;
         }
-       
+
     }
 
     /**
@@ -28,15 +28,15 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-       
+
         $post = $this->route()->parameters();
-        
+
         $rules= [
             'title'=>'required|min:3|max:255',
             'slug'=>'required|unique:posts',
             'status'=>'required|in:1,2',
             'file'=>'image'
-            
+
         ];
         if($post){
             $rules['slug']='required|unique:posts,slug,'.(implode($post));
@@ -49,8 +49,8 @@ class PostRequest extends FormRequest
                 'category_id'=>'required',
                 'tags'=>'required',
                 'file'=>'required'
-               
-                
+
+
             ]
         );
         }
