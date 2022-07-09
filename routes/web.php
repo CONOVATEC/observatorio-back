@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\About_cmpjController;
 use App\Http\Controllers\admin\ConfigCompanyController;
 use App\Http\Controllers\admin\Youth_observatoryController;
+use App\Http\Controllers\admin\TypeLogoController;
 
 
 /*
@@ -61,6 +62,9 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Rutas para Configuraciones
     Route::resource('configuraciones', SettingController::class)->names('configuraciones');
+
+     //*Route TIPO DE LOGO;
+     Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
 
     // Inicio rutas para roles y permisos
     Route::get('roles/permisos/{id}', [RoleController::class, 'managePermissions'])->name('roles.permisos.administrar');

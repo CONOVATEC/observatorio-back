@@ -22,7 +22,7 @@ return new class extends Migration
                 ** -- Laves foreanas -- **
             */
             $table->unsignedBigInteger('type_logo_id');
-            $table->foreign('type_logo_id')->references('id')->on('type_logo');
+            $table->foreign('type_logo_id')->references('id')->on('type_logo')->onDelete('cascade')->onUpdate('cascade');;
 
 
             $table->timestamps();
