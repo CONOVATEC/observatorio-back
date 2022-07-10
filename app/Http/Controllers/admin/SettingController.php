@@ -69,9 +69,11 @@ class SettingController extends Controller
         if ($request->hasFile('logo')) {
             if ($setting->logo) {
                 Storage::disk('public')->delete($setting->logo);
-                $setting->update(['logo' => $request->file('logo')->store('profile-logos')]);
+                $name='logo-' . date('dmYHi') . '-' . $request->file('logo')->getClientOriginalName();
+                $setting->update(['logo' => $request->file('logo')->storeAs('setting',$name)]);
             } else {
-                $setting->update(['logo' => $request->file('logo')->store('profile-logos')]);
+                $name='logo-' . date('dmYHi') . '-' . $request->file('logo')->getClientOriginalName();
+                $setting->update(['logo' => $request->file('logo')->storeAs('setting',$name)]);
             }
         }
         if ($request->file('logo')) {
@@ -81,7 +83,7 @@ class SettingController extends Controller
 
 
 
-  return redirect()->route('configuraciones.edit', $id)->with('info', 'La configuracion se actualizo correctamente');
+  return redirect()->route('configuraciones.edit',$id)->with('success', 'actualizado correctamente');
     }
 
       /****************************************************
