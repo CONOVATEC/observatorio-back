@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\Tag::factory(10)->create();
         // \App\Models\admin\AboutCmpj::factory(10)->create();
         \App\Models\admin\TypeLogo::factory(10)->create();
-        \App\Models\admin\Logo::factory(10)->create();
         \App\Models\admin\ReaderLog::factory(20)->create();
         \App\Models\admin\Setting::factory(1)->create();
         $this->call(PostSeeder::class);
@@ -38,5 +37,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\YouthStrategy::factory(10)->create();
         \App\Models\admin\Position::factory(5)->create();
         \App\Models\admin\Directive::factory(5)->create();
+        $this->call(LogoSeeder::class);
     }
 }

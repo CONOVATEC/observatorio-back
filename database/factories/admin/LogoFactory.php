@@ -19,7 +19,6 @@ class LogoFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            'image_logo' => $this->faker->imageUrl(),
             'social_media' => $this->faker->url(),
             'type_logo_id' =>  TypeLogo::all()->random()->id,
 
