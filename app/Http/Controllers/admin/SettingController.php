@@ -70,10 +70,10 @@ class SettingController extends Controller
             if ($setting->logo) {
                 Storage::disk('public')->delete($setting->logo);
                 $name='logo-' . date('dmYHi') . '-' . $request->file('logo')->getClientOriginalName();
-                $setting->update(['logo' => $request->file('logo')->storeAs('lista-logos',$name)]);
+                $setting->update(['logo' => $request->file('logo')->storeAs('setting',$name)]);
             } else {
                 $name='logo-' . date('dmYHi') . '-' . $request->file('logo')->getClientOriginalName();
-                $setting->update(['logo' => $request->file('logo')->storeAs('lista-logos',$name)]);
+                $setting->update(['logo' => $request->file('logo')->storeAs('setting',$name)]);
             }
         }
         if ($request->file('logo')) {
