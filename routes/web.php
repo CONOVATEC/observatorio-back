@@ -44,23 +44,24 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('/usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
     Route::resource('noticias', NewController::class)->names('noticias');
     //Politicas
-    Route::resource('politicas', PolicyController::class);
+    Route::get('politicas/eliminar-definitivo/{id}', [PolicyController::class, 'deleteDefinitive'])->name('politicas.eliminar.definitivo');
+    Route::get('politicas/restaurar/{id}', [PolicyController::class, 'restore'])->name('politicas.restaurar');
+    Route::resource('politicas', PolicyController::class)->names('politicas');;
     // para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->name('categorias.restaurar');
     Route::resource('categorias', CategoryController::class)->names('categorias');
 
-  // para restaurar etiquetas
-Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
-Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
-Route::resource('etiquetas', TagController::class)->names('etiquetas');
+    // para restaurar etiquetas
+    Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
+    Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
+    Route::resource('etiquetas', TagController::class)->names('etiquetas');
     // Route Components
     Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
     Route::get('layouts/full', [StaterkitController::class, 'layout_full'])->name('layout-full');
     Route::get('layouts/without-menu', [StaterkitController::class, 'without_menu'])->name('without-menu');
     Route::get('layouts/empty', [StaterkitController::class, 'layout_empty'])->name('layout-empty');
     Route::get('layouts/blank', [StaterkitController::class, 'layout_blank'])->name('layout-blank');
-
 });
 
 // locale Route
@@ -107,5 +108,3 @@ Route::get('/optimize-clear', function () {
     Artisan::call('optimize:clear');
     return 'Caché borrado';
 });
-
-
