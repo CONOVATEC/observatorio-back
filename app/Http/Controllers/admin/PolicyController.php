@@ -107,4 +107,16 @@ class PolicyController extends Controller
         YouthPolicy::findOrFail($id)->delete();
         return redirect()->route('politicas.index')->with('warning', 'Política eliminada correctamente');
     }
+    // Método para restaurar el registro eliminado
+    public function restore($id)
+    {
+        $policy = YouthPolicy::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success', 'Política restaurada correctamente');
+    }
+    // Método para eliminar el registro definitivamente
+    public function deleteDefinitive($id)
+    {
+        $policy = YouthPolicy::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back()->with('warning', 'Política eliminada definitivamente');
+    }
 }
