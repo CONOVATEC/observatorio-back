@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('noticias/restaurar/{id}', [PostController::class, 'restore'])->name('noticias.restaurar');
 
     //* Rutas para usuarios
-    Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+    Route::get('usuarios/actualizar-perfil', [UserController::class, 'updateProfile'])->name('usuarios.actualizar.perfil');
     Route::get('usuarios/eliminar-definitivo/{id}', [UserController::class, 'deleteDefinitive'])->name('usuarios.eliminar.definitivo');
     Route::get('usuarios/restaurar/{id}', [UserController::class, 'restore'])->name('usuarios.restaurar');
     Route::resource('usuarios', UserController::class)->names('usuarios');
@@ -55,9 +55,10 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //* para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->middleware('can:categorias.eliminar.definitivo')->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->middleware('can:categorias.restaurar')->name('categorias.restaurar');
-    Route::resource('categorias', CategoryController::class)->names('categorias');
+    // Route::resource('categorias', CategoryController::class)->names('categorias');
 
     //* para restaurar etiquetas
+    Route::resource('etiquetas', TagController::class)->names('etiquetas');
     Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
 
@@ -75,6 +76,11 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::put('roles/permisos/{role}', [RoleController::class, 'updatePermissions'])->name('roles.permisos.actualizar');
     Route::resource('roles', RoleController::class)->names('roles');
     // Fin rutas para roles y permisos
+
+
+});
+Route::group(['middleware' => ['permission:categorias.index|categorias.create|categorias.edit|categorias.destroy']], function () {
+    Route::resource('categorias', CategoryController::class)->names('categorias');
 });
 
 //* locale Route
