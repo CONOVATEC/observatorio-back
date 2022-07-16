@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Logo extends Model
 {
     use HasFactory;
-    protected $table="logos";
 
-    protected $fillable = ['name','image_logo','social_media','type_logo_id'];
+    protected $guarded=['id','create_at','update_at'];
 
      /************************************************************************
      * Relación de uno a muchos inversa belongsTo pertenece a type_logo *
@@ -19,5 +18,9 @@ class Logo extends Model
     public function type_logo()
     {
         return $this->belongsTo(TypeLogo::class);
+    }
+
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
     }
 }

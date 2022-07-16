@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_logo', function (Blueprint $table) {
+        Schema::create('directives', function (Blueprint $table) {
             $table->id();
             $table->string('name',45)->unique();
-            $table->text('description')->nullable();
+            $table->string('photo')->nullable();
+            $table->enum('status',[1,2])->default(1);
+            $table->unsignedBigInteger('position_id');
             $table->timestamps();
+            $table->foreign('position_id')->references('id')->on('positions');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_logo');
+        Schema::dropIfExists('directives');
     }
 };

@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_logo', function (Blueprint $table) {
+        Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('name',45)->unique();
-            $table->text('description')->nullable();
+            $table->string('name',100)->unique();
+            $table->string('slug');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_logo');
+        Schema::dropIfExists('positions');
     }
 };

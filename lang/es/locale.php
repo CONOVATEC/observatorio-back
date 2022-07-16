@@ -12,6 +12,7 @@ return [
     "users create" => "Crear Usuario",
     "users list" => "Lista de Usuarios",
     "profile" => "Perfil",
+    "Update profile" => "Actualizar perfil",
     "User Role" => "Rol de Usuario",
     "User Role" => "Rol de Usuario",
     "Young Observatory" => "Observatorio Joven",

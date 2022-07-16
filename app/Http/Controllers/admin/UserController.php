@@ -195,7 +195,7 @@ class UserController extends Controller
             return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente');
         }
     }
-    public function profile(Request $request)
+    public function updateProfile(Request $request)
     {
         return view('profile.show', [
             'request' => $request,
