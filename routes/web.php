@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
 
     //*Rutas para Configuraciones
-    Route::resource('configuraciones', SettingController::class)->names('configuraciones');
+Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
 
      //*Route TIPO DE LOGO;
      Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
