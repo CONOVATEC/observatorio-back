@@ -47,6 +47,13 @@ $configData = Helper::applClasses();
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             {{-- Foreach menu item starts --}}
             @if (isset($menuData[0]))
+            {{-- @json($menuData[0]) --}}
+            {{-- //Agregado --}}
+            @php
+            $user = auth()->user();
+            $permissions = $user->getAllPermissions();
+            @endphp
+            {{-- //fin --}}
             @foreach ($menuData[0]->menu as $menu)
             @if (isset($menu->navheader))
             <li class="navigation-header">
@@ -61,8 +68,24 @@ $configData = Helper::applClasses();
             $custom_classes = $menu->classlist;
             }
             @endphp
+            {{-- Agregado --}}
+            {{-- @json($menu->slug) --}}
+            {{-- @forelse($permissions as $permission) --}}
+            {{-- auth()->user()->can('categorias.index') --}}
+            {{-- @if ($menu->slug==$permission->name) --}}
+            {{-- @if ($menu->slug == auth()->user()->can($permission->name)) --}}
+            {{-- ok --}}
+            {{-- @endif
+            @empty
+            @endforelse --}}
+
+            {{-- fin --}}
 
             <li class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
+                {{-- @json($menu) --}}
+                {{-- @json($menu->slug) --}}
+
+                {{-- @json($menu) --}}
                 <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}" class="d-flex align-items-center" target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
                     <i data-feather="{{ $menu->icon }}"></i>
                     <span class="menu-title text-truncate">{{ __('locale.' . $menu->name) }}</span>
@@ -71,12 +94,12 @@ $configData = Helper::applClasses();
                     <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }}">{{ $menu->badge }}</span>
                     @endif
                 </a>
+                {{-- ---------------------- --}}
                 @if (isset($menu->submenu))
-                @if(auth()->user()->can('usuarios.show') )
                 @include('panels/submenu', ['menu' => $menu->submenu])
                 @endif
-                @endif
             </li>
+
             @endif
             @endforeach
             @endif

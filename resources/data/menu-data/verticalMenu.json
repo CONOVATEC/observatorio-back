@@ -9,7 +9,7 @@
         {
             "name": "news",
             "icon": "airplay",
-            "slug": "noticias*",
+            "slug": "noticias",
             "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
             "submenu": [
                 {
@@ -29,7 +29,7 @@
         {
             "name": "tags",
             "icon": "tag",
-            "slug": "",
+            "slug": "etiquetas",
             "submenu": [
                 {
                     "url": "etiquetas",
@@ -48,7 +48,7 @@
         {
             "name": "categories",
             "icon": "grid",
-            "slug": "#",
+            "slug": "categorias",
             "submenu": [
                 {
                     "url": "categorias",
@@ -71,7 +71,7 @@
         {
             "name": "Young Observatory",
             "icon": "zap",
-            "slug": "",
+            "slug": "juvenilesObservatorio",
             "submenu": [
                 {
                     "url": "juvenilesObservatorio",
@@ -90,7 +90,7 @@
         {
             "name": "CMPJ",
             "icon": "pocket",
-            "slug": "",
+            "slug": "sobreCmpj",
             "submenu": [
                 {
                     "url": "sobreCmpj",
@@ -109,7 +109,7 @@
         {
             "name": "Policies",
             "icon": "book-open",
-            "slug": "",
+            "slug": "politicas",
             "submenu": [
                 {
                     "url": "politicas",
@@ -128,7 +128,7 @@
         {
             "name": "roles and permissions",
             "icon": "shield",
-            "slug": "",
+            "slug": "roles",
             "submenu": [
                 {
                     "url": "roles",
@@ -147,7 +147,7 @@
         {
             "name": "users",
             "icon": "users",
-            "slug": "",
+            "slug": "usuarios",
             "submenu": [
                 {
                     "url": "usuarios/create",
@@ -175,7 +175,7 @@
         {
             "name": "company",
             "icon": "server",
-            "slug": "",
+            "slug": "configuraciones",
             "submenu": [
                 {
                     "url": "configuraciones",
