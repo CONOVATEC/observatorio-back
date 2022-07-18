@@ -17,7 +17,6 @@
         @endif
         @empty
         @endforelse
-
         @if (isset($submenu->submenu))
         {{-- @if(auth()->user()->can('categorias.index') ) --}}
         @include('panels/submenu', ['menu' => $submenu->submenu])

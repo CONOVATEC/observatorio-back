@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //* para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->middleware('can:categorias.eliminar.definitivo')->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->middleware('can:categorias.restaurar')->name('categorias.restaurar');
-    // Route::resource('categorias', CategoryController::class)->names('categorias');
+    Route::resource('categorias', CategoryController::class)->names('categorias');
 
     //* para restaurar etiquetas
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
@@ -71,9 +71,9 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
 
 });
-Route::group(['middleware' => ['permission:categorias.index|categorias.create|categorias.edit|categorias.destroy']], function () {
-    Route::resource('categorias', CategoryController::class)->names('categorias');
-});
+// Route::group(['middleware' => ['permission:categorias.index|categorias.create|categorias.edit|categorias.destroy']], function () {
+//     Route::resource('categorias', CategoryController::class)->names('categorias');
+// });
 
 //* locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
