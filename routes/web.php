@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
 
     //*Rutas para Configuraciones
-Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
+    //Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
 
      //*Route TIPO DE LOGO;
      Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
@@ -81,6 +81,10 @@ Route::resource('configuraciones', SettingController::class)->names('configuraci
 });
 Route::group(['middleware' => ['permission:categorias.index|categorias.create|categorias.edit|categorias.destroy']], function () {
     Route::resource('categorias', CategoryController::class)->names('categorias');
+});
+
+Route::group(['middleware' => ['permission:configuraciones.index|configuraciones.edit']], function () {
+    Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
 });
 
 //* locale Route

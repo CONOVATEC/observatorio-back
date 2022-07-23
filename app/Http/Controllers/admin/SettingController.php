@@ -11,11 +11,16 @@ use Intervention\Image\Facades\Image;
 
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show','create','destroy');
+        $this->middleware('can:configuraciones.index')->only('index');
+        $this->middleware('can:configuraciones.edit')->only('edit');
+
+    }
+
     public function index()
     {
         $breadcrumbs = [

@@ -8,7 +8,9 @@
     <!-- Info table about actions -->
     <div class="row">
         <div class="col-12">
+            @if(auth()->user()->can('configuraciones.index') or auth()->user()->can('configuraciones.edit'))
            @livewire('admin.setting.live-setting-table')
+           @endif
         </div>
     </div>
     {{--  Para listar la lista de categorías eliminados por el Usuario que pueden ser restaurados  --}}
