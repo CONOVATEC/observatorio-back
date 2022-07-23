@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:etiquetas.index')->only('index');
+        $this->middleware('can:etiquetas.create')->only('create');
+        $this->middleware('can:etiquetas.edit')->only('edit');
+        $this->middleware('can:etiquetas.destroy')->only('destroy');
+        $this->middleware('can:etiquetas.eliminar.definitivo')->only('deleteDefinitive');
+        $this->middleware('can:etiquetas.restaurar')->only('restore');
+    }
     public function index()
     {
         $breadcrumbs = [
@@ -57,7 +64,7 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(403);
     }
 
     /**
