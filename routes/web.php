@@ -86,6 +86,9 @@ Route::group(['middleware' => ['permission:categorias.index|categorias.create|ca
 Route::group(['middleware' => ['permission:configuraciones.index|configuraciones.edit']], function () {
     Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
 });
+Route::group(['middleware' => ['permission:etiquetas.index|etiquetas.create|etiquetas.edit|etiquetas.destroy']], function () {
+    Route::resource('etiquetas', TagController::class)->names('etiquetas');
+});
 
 //* locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
