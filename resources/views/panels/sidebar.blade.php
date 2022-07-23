@@ -61,6 +61,7 @@ $configData = Helper::applClasses();
             $custom_classes = $menu->classlist;
             }
             @endphp
+
             <li class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
                 <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}" class="d-flex align-items-center" target="{{ isset($menu->newTab) ? '_blank' : '_self' }}">
                     <i data-feather="{{ $menu->icon }}"></i>
@@ -71,7 +72,9 @@ $configData = Helper::applClasses();
                     @endif
                 </a>
                 @if (isset($menu->submenu))
+                @if(auth()->user()->can('usuarios.show') )
                 @include('panels/submenu', ['menu' => $menu->submenu])
+                @endif
                 @endif
             </li>
             @endif

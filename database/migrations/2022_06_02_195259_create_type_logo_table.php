@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('type_logo', function (Blueprint $table) {
             $table->id();
-            $table->string('name',45);
-            $table->string('description',100);
+            $table->string('name',45)->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

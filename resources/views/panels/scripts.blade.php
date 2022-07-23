@@ -38,5 +38,15 @@
 <script src="{{ asset(mix('js/scripts/extensions/ext-component-sweet-alerts.js')) }}"></script>
 <script src="{{ asset('js/alpine.js') }}"></script>
 
+<script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
+ <script>
+             $(document).ready( function() {
+            $("#title").stringToSlug({
+                setEvents: 'keyup keydown blur',
+                getPut: '#slug',
+                space: '-'
+            });
+            });
+        </script>
 
 {{-- fin para SweetAlert  --}}

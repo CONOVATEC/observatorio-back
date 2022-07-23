@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('logos', function (Blueprint $table) {
             $table->id();
-            $table->string('name',45);
-            $table->string('image_logo');
-            $table->string('social_media');
+            $table->string('name',45)->unique();
+            $table->string('social_media')->nullable();
              /*
                 ** -- Laves foreanas -- **
             */
             $table->unsignedBigInteger('type_logo_id');
-            $table->foreign('type_logo_id')->references('id')->on('type_logo');
+            $table->foreign('type_logo_id')->references('id')->on('type_logo')->onDelete('cascade')->onUpdate('cascade');;
 
 
             $table->timestamps();

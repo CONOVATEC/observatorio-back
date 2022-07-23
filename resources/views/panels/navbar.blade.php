@@ -199,10 +199,29 @@
                                 @endif
                             </span>
                             <span class="user-status">
-                                Admin
+                                {{-- /**********************************************************
+                                 * Inicio para verificar el rol del usuario autentificado *
+                                 **********************************************************/ --}}
+                                @php
+                                $roles = auth()->user()->getRoleNames();
+                                // $roles = App\Models\User::with('roles')->get();
+                                @endphp
+                                @if(is_null($roles))
+                                Sin rol
+                                @else
+                                @forelse($roles as $role)
+                                {{ $role }}
+                                @empty
+                                Sin rol
+                                @endforelse
+                                @endif
+                                {{-- /*******************************************************
+                                 * Fin para verificar el rol del usuario autentificado *
+                                 *******************************************************/ --}}
                             </span>
                         </div>
                         <span class="avatar">
+                            {{-- Para mostrar la imagen de perfil --}}
                             <img class="round" src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('images/portrait/small/avatar-s-11.jpg') }}" alt="avatar" height="40" width="40">
                             <span class="avatar-status-online"></span>
                         </span>
@@ -210,7 +229,8 @@
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
                         <h6 class="dropdown-header">{{ __('Manage Profile') }}</h6>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0)' }}">
+                        <!-- <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0)' }}"> -->
+                        <a class="dropdown-item" href="{{ route('usuarios.show',Auth::user()->id) }}">
                             <i class="me-50" data-feather="user"></i> {{ __('Profile') }}
                         </a>
                         @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())

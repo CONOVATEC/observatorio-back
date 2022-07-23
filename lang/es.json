@@ -769,5 +769,20 @@
     "Back to login": "Atrás para iniciar sesión",
     "logout": "Cerrar sesión",
     "Settings": "Ajustes",
-    "Manage Profile": "Administrar perfil"
+    "Manage Profile": "Administrar perfil",
+    "Names and Surnames": "Nombres y Apellidos",
+    "Cell No.": "N° Celular",
+    "Status": "Estado",
+    "Enter data": "Ingrese datos",
+    "Registration date": "Fecha de registro",
+    "Biography": "Biografía",
+    "Featured Image": "Imagen de perfil",
+    "Required image resolution 800x400, image size max 2mb.": "Resolución de imagen requerida 800x400, peso máximo de imagen 2mb.",
+    "Information": "Información",
+    "Notifications": "Notificaciones",
+    "Users": "Usuarios",
+    "User Posts": "Publicaciones de Usuario",
+    "User Activity Timeline": "Cronología de la actividad del usuario",
+    "return": "Volver"
+
 }

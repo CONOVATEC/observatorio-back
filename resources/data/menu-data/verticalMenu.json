@@ -54,7 +54,11 @@
                     "url": "categorias",
                     "name": "view records",
                     "icon": "file-text",
-                    "slug": "categorias.index"
+                    "slug": "categorias.index",
+                    "meta": {
+                        "rule": "categorias.index"
+                    },
+                    "rule": "categorias.index"
                 },
                 {
                     "url": "categorias/create",
@@ -65,73 +69,119 @@
             ]
         },
         {
+            "name": "Young Observatory",
+            "icon": "zap",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "juvenilesObservatorio",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "juvenilesObservatorio.index"
+                },
+                {
+                    "url": "juvenilesObservatorio/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "juvenilesObservatorio.create"
+                }
+            ]
+        },
+        {
+            "name": "CMPJ",
+            "icon": "pocket",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "sobreCmpj",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "sobreCmpj.index"
+                },
+                {
+                    "url": "sobreCmpj/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "sobreCmpj.create"
+                }
+            ]
+        },
+        {
+            "name": "Policies",
+            "icon": "book-open",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "politicas",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "politicas.index"
+                },
+                {
+                    "url": "politicas/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "politicas.create"
+                }
+            ]
+        },
+        {
+            "name": "roles and permissions",
+            "icon": "shield",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "roles",
+                    "name": "manage role",
+                    "icon": "eye",
+                    "slug": "roles.index"
+                },
+                {
+                    "url": "usuarios",
+                    "name": "User Role",
+                    "icon": "user",
+                    "slug": "usuarios.index"
+                }
+            ]
+        },
+        {
             "name": "users",
             "icon": "users",
             "slug": "",
             "submenu": [
                 {
-                    "url": "usuarios",
-                    "name": "users",
-                    "icon": "eye",
-                    "slug": "usuarios.index"
+                    "url": "usuarios/create",
+                    "name": "users create",
+                    "icon": "user-plus",
+                    "slug": "usuarios.create",
+                    "meta": {
+                        "authRequired": true,
+                        "rule": "usuarios.create"
+                    }
                 },
                 {
-                    "url": "usuarios/perfil",
+                    "url": "usuarios/actualizar-perfil",
+                    "name": "Update profile",
+                    "icon": "user",
+                    "slug": "usuarios.actualizar.perfil"
+                },
+                {
                     "name": "profile",
                     "icon": "user",
-                    "slug": "usuarios.perfil"
+                    "slug": "usuarios.show"
                 }
             ]
         },
         {
             "name": "company",
-            "icon": "shield",
+            "icon": "server",
             "slug": "",
             "submenu": [
                 {
-                    "url": "configuracion/empresa",
+                    "url": "configuraciones",
                     "name": "setting company",
                     "icon": "settings",
-                    "slug": "configuracion.empresa"
-                }
-            ]
-        },
-        {
-            "name": "Page Layouts",
-            "icon": "mail",
-            "slug": "",
-            "badge": "5",
-            "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
-            "submenu": [
-                {
-                    "url": "layouts/collapsed-menu",
-                    "name": "Collapsed Menu",
-                    "icon": "circle",
-                    "slug": "collapsed-menu"
-                },
-                {
-                    "url": "layouts/full",
-                    "name": "Layout Full",
-                    "icon": "circle",
-                    "slug": "layout-full"
-                },
-                {
-                    "url": "layouts/without-menu",
-                    "name": "Without Menu",
-                    "icon": "circle",
-                    "slug": "without-menu"
-                },
-                {
-                    "url": "layouts/empty",
-                    "name": "Layout Empty",
-                    "icon": "circle",
-                    "slug": "layout-empty"
-                },
-                {
-                    "url": "layouts/blank",
-                    "name": "Layout Blank",
-                    "icon": "circle",
-                    "slug": "layout-blank"
+                    "slug": "configuraciones.index"
                 }
             ]
         }

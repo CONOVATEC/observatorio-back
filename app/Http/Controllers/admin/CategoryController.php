@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\admin\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CategoryRequest;
-use App\Models\admin\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:categorias.index')->only('index');
+        $this->middleware('can:categorias.create')->only('create');
+        $this->middleware('can:categorias.edit')->only('edit');
+        $this->middleware('can:categorias.destroy')->only('destroy');
+        $this->middleware('can:categorias.eliminar.definitivo')->only('deleteDefinitive');
+        $this->middleware('can:categorias.restaurar')->only('restore');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +58,11 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->description
+        ]);
         return redirect()->route('categorias.index')->with('success', 'Categoría registrado correctamente');
     }
 
@@ -58,7 +74,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(403);
     }
 
     /**
@@ -89,8 +105,12 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         // dd($id);
-        Category::find($id)->update($request->all());
-        // $category->update($request->all());
+        $category = Category::find($id)->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'description' => $request->description
+        ]);
+
         return redirect()->route('categorias.edit', $id)->with('info', 'Categoría actualizado correctamente');
     }
 
