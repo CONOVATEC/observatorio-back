@@ -49,7 +49,7 @@ class PostRequest extends FormRequest
                 'category_id'=>'required',
                 'tags'=>'required',
 
-                'file'=>'image'
+                'file'=>'image|required'
                
                 
 

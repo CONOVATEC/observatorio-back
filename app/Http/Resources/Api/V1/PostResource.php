@@ -55,4 +55,7 @@ class PostResource extends JsonResource
         }
         return $estado;
     }
+
+    
+   
 }
