@@ -48,8 +48,7 @@ class PostRequest extends FormRequest
                 'tendencia_active'=>'required',
                 'category_id'=>'required',
                 'tags'=>'required',
-
-                'file'=>'image|required'
+                'file'=>'image'
                
                 
 

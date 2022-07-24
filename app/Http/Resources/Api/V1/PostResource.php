@@ -17,7 +17,7 @@ class PostResource extends JsonResource
         return[
             'id'=>$this->id,
             'title'=>Str::title($this->title),
-            'imagen'=>$this->image->url,
+            'imagen'=>$this->imagen(),
             'slug'=>$this->slug,
             'extract'=>$this->extract, //elimina las etiquetas de HTML
             'content'=>$this->content, //elimina las etiquetas de HTML
@@ -56,6 +56,14 @@ class PostResource extends JsonResource
         return $estado;
     }
 
-    
+    public function imagen(){
+        if(isset($this->image->url)){
+            $respuesta=$this->image->url;
+        }else{
+            $respuesta=null;
+        }
+        return $respuesta;
+        //dd($this->image->url);
+    }    
    
 }

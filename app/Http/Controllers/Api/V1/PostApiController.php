@@ -11,10 +11,10 @@ class PostApiController extends Controller
 {
     public function index()
     {   
-        $post=PostResource::collection(Post::where('status',2)->get());
+        //$post=PostResource::collection(Post::where('status',2)->get());
         
-        return $post;
-       // return PostResource::collection(Post::paginate(5));
+        
+       return PostResource::collection(Post::paginate(5));
         
     }
 }
