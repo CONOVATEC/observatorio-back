@@ -128,7 +128,17 @@ class PostController extends Controller
             ]);
            
         }*/
-        Post::find($id)->update($request->all());
+        $data=[
+            'title'=>$request['title'],
+            'slug'=>$request['slug'],
+            'extract'=>$request['extract'],
+            'content'=>html_entity_decode($request['content']),
+            'status'=>$request['status'],
+            'tendencia_active'=>$request['tendencia_active'],
+            'category_id'=>$request['category_id'],
+          
+        ];
+        Post::find($id)->update($data);
         if($request->file('file')){
             $url=Storage::put('public/news',$request->file('file'));
             $post=Post::findOrFail($id);
