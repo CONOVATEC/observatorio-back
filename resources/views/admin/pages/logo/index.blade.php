@@ -8,7 +8,9 @@
     <!-- Info table about actions -->
     <div class="row">
         <div class="col-12">
+            @if(auth()->user()->can('logos.index') or auth()->user()->can('logos.create') or auth()->user()->can('logos.destroy'))
            @livewire('admin.logo.logo-table')
+           @endif
         </div>
     </div>
     {{--  Para listar la lista de categorías eliminados por el Usuario que pueden ser restaurados  --}}
