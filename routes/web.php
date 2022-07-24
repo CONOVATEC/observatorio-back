@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\NewController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\admin\PostController;
+use App\Http\Controllers\admin\DirectiveController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SettingController;
@@ -65,11 +66,14 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //*Rutas para Configuraciones
     Route::resource('configuraciones', SettingController::class)->names('configuraciones');
 
-     //*Route TIPO DE LOGO;
-     Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
+    //*Route TIPO DE LOGO;
+    Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
 
-      //*Route LOGO;
-      Route::resource('logo',LogoController::class)->names('logos');
+    //*Route LOGO;
+    Route::resource('logo', LogoController::class)->names('logos');
+
+    //*Route DIRECTIVES;
+    Route::resource('directive', DirectiveController::class)->names('directives');
 
     // Inicio rutas para roles y permisos
     Route::get('roles/permisos/{id}', [RoleController::class, 'managePermissions'])->name('roles.permisos.administrar');
