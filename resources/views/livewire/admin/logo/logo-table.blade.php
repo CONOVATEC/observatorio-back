@@ -23,11 +23,12 @@
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
-
+                @can('logos.create')
                 <li>
                     <a href="{{ route('logos.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
 
                 </li>
+                @endcan
 
             </ul>
         </div>
@@ -79,7 +80,9 @@
                                             <span class="fa-solid fa{{ $camp === 'updated_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('logos.edit') or auth()->user()->can('logos.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,10 +101,12 @@
                                     @endif
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $logo->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $logo->updated_at->format('d-m-Y') }}</span></td>
+                                    @if(auth()->user()->can('logos.edit') or auth()->user()->can('logos.destroy') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.logo.partials.buttons')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">
