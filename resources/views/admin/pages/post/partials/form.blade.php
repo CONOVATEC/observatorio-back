@@ -201,14 +201,16 @@
         }
     </script>
     
-    <script>
+    <script caracteres = "utf-8">
      
 
-    
+     
      CKEDITOR.replace('content', {
+       
         
         uiColor: '#a9a2f6',
         language: 'es',
+        
         removeButtons: 'Form,Checkbox,Radio,TextField,Select,Textarea,Button,ImageButton,HiddenField,NewPage,CreateDiv,Flash,Iframe,About,ShowBlocks',
     });
     </script>

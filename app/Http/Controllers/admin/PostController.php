@@ -44,8 +44,19 @@ class PostController extends Controller
 
        //return Storage::put('news',$request->file('file'));
      // return $request->status;
-     
-       $post=Post::create($request->all());
+    //return dd( ($request->all()));
+      // $post=Post::create($request->all());
+       $post=Post::create([
+            'title'=>$request['title'],
+            'slug'=>$request['slug'],
+            'extract'=>$request['extract'],
+            'content'=>html_entity_decode($request['content']),
+            'status'=>$request['status'],
+            'tendencia_active'=>$request['tendencia_active'],
+            'category_id'=>$request['category_id'],
+            'user_id'=>$request['user_id']
+       ]);
+       //html_entity_decode
         if($request->file('file')){
             //$url=Storage::put('news',$request->file('file')->store('public/news'));
            $url=$request->file('file')->store('public/news');
