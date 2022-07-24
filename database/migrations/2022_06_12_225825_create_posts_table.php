@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('title',45)->nullable(false);
             $table->string('slug');
-            $table->string('extract',200)->nullable();
-            $table->text('content',1000)->nullable();
+            $table->mediumText('extract')->nullable();
+            $table->longText('content')->nullable();
             $table->enum('status',[1,2])->default(1);
+            $table->enum('type_new',[1,2])->default(1);
+            $table->enum('publicado',[1,2])->default(1);
             $table->tinyInteger('tendencia_active')->nullable();
             /*
                 ** -- Laves foreanas -- **

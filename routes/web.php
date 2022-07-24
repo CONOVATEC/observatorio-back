@@ -16,6 +16,8 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\About_cmpjController;
 use App\Http\Controllers\admin\ConfigCompanyController;
 use App\Http\Controllers\admin\Youth_observatoryController;
+use App\Http\Controllers\admin\TypeLogoController;
+use App\Http\Controllers\admin\LogoController;
 
 
 /*
@@ -45,7 +47,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('noticias/restaurar/{id}', [PostController::class, 'restore'])->name('noticias.restaurar');
 
     //* Rutas para usuarios
-    Route::get('usuarios/perfil', [UserController::class, 'profile'])->name('usuarios.perfil');
+    Route::get('usuarios/actualizar-perfil', [UserController::class, 'updateProfile'])->name('usuarios.actualizar.perfil');
     Route::get('usuarios/eliminar-definitivo/{id}', [UserController::class, 'deleteDefinitive'])->name('usuarios.eliminar.definitivo');
     Route::get('usuarios/restaurar/{id}', [UserController::class, 'restore'])->name('usuarios.restaurar');
     Route::resource('usuarios', UserController::class)->names('usuarios');
@@ -53,20 +55,39 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //* para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->middleware('can:categorias.eliminar.definitivo')->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->middleware('can:categorias.restaurar')->name('categorias.restaurar');
-    Route::resource('categorias', CategoryController::class)->names('categorias');
+    // Route::resource('categorias', CategoryController::class)->names('categorias');
 
     //* para restaurar etiquetas
+    Route::resource('etiquetas', TagController::class)->names('etiquetas');
     Route::get('etiquetas/eliminar-definitivo/{id}', [TagController::class, 'deleteDefinitive'])->name('etiquetas.eliminar.definitivo');
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
 
     //*Rutas para Configuraciones
-    Route::resource('configuraciones', SettingController::class)->names('configuraciones');
+    //Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
+
+     //*Route TIPO DE LOGO;
+     Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
+
+      //*Route LOGO;
+      Route::resource('logo',LogoController::class)->names('logos');
 
     // Inicio rutas para roles y permisos
     Route::get('roles/permisos/{id}', [RoleController::class, 'managePermissions'])->name('roles.permisos.administrar');
     Route::put('roles/permisos/{role}', [RoleController::class, 'updatePermissions'])->name('roles.permisos.actualizar');
     Route::resource('roles', RoleController::class)->names('roles');
     // Fin rutas para roles y permisos
+
+
+});
+Route::group(['middleware' => ['permission:categorias.index|categorias.create|categorias.edit|categorias.destroy']], function () {
+    Route::resource('categorias', CategoryController::class)->names('categorias');
+});
+
+Route::group(['middleware' => ['permission:configuraciones.index|configuraciones.edit']], function () {
+    Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
+});
+Route::group(['middleware' => ['permission:etiquetas.index|etiquetas.create|etiquetas.edit|etiquetas.destroy']], function () {
+    Route::resource('etiquetas', TagController::class)->names('etiquetas');
 });
 
 //* locale Route

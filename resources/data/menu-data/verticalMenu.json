@@ -54,7 +54,11 @@
                     "url": "categorias",
                     "name": "view records",
                     "icon": "file-text",
-                    "slug": "categorias.index"
+                    "slug": "categorias.index",
+                    "meta": {
+                        "rule": "categorias.index"
+                    },
+                    "rule": "categorias.index"
                 },
                 {
                     "url": "categorias/create",
@@ -65,7 +69,6 @@
             ]
         },
         {
-            "url": "juvenilesObservatorio",
             "name": "Young Observatory",
             "icon": "zap",
             "slug": "",
@@ -85,7 +88,6 @@
             ]
         },
         {
-            "url": "sobreCmpj",
             "name": "CMPJ",
             "icon": "pocket",
             "slug": "",
@@ -105,7 +107,6 @@
             ]
         },
         {
-            "url": "politicas",
             "name": "Policies",
             "icon": "book-open",
             "slug": "",
@@ -146,7 +147,7 @@
         {
             "name": "users",
             "icon": "users",
-            "slug": "/usuarios/*/*",
+            "slug": "",
             "submenu": [
                 {
                     "url": "usuarios/create",
@@ -159,10 +160,15 @@
                     }
                 },
                 {
-                    "url": "usuarios/perfil",
+                    "url": "usuarios/actualizar-perfil",
+                    "name": "Update profile",
+                    "icon": "user",
+                    "slug": "usuarios.actualizar.perfil"
+                },
+                {
                     "name": "profile",
                     "icon": "user",
-                    "slug": "usuarios.perfil"
+                    "slug": "usuarios.show"
                 }
             ]
         },

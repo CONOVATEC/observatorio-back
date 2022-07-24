@@ -80,7 +80,7 @@
                         </ul>
                         <div class="d-flex justify-content-center pt-2">
                             @if($user->id == auth()->user()->id)
-                            <a href="{{ route('usuarios.perfil') }}" class="btn btn-primary me-1">
+                            <a href="{{ route('usuarios.actualizar.perfil') }}" class="btn btn-primary me-1">
                                 {{ __('Edit') }}
                             </a>
                             <a href="{{ route('logout') }}" class="btn btn-outline-danger suspend-user">{{ __('Logout') }}</a>
