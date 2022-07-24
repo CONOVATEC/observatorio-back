@@ -44,15 +44,32 @@ class PostController extends Controller
 
        //return Storage::put('news',$request->file('file'));
      // return $request->status;
-     
-       $post=Post::create($request->all());
+    //return dd( ($request->all()));
+      // $post=Post::create($request->all());
+       $post=Post::create([
+            'title'=>$request['title'],
+            'slug'=>$request['slug'],
+            'extract'=>$request['extract'],
+            'content'=>html_entity_decode($request['content']),
+            'status'=>$request['status'],
+            'tendencia_active'=>$request['tendencia_active'],
+            'category_id'=>$request['category_id'],
+            'user_id'=>$request['user_id']
+       ]);
+       //html_entity_decode
         if($request->file('file')){
             //$url=Storage::put('news',$request->file('file')->store('public/news'));
            $url=$request->file('file')->store('public/news');
             $post->image()->create([
                 'url'=>$url
             ]);
-        }
+        }/*else{
+           // $url=Storage::disk('news');
+            $r=$post->image()->create([
+                'url'=>'https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg'
+            ]);
+            
+        }*/
       
       
         
@@ -162,12 +179,22 @@ class PostController extends Controller
         // }
         //is_null($post->image) && Storage::delete('public/news',$post->file);;
         $post=Post::onlyTrashed()->find($id);
-        //dd($post);
         
+       
+      
+        if(!is_null($post->image)){
+            if(Storage::delete($post->image->url)){
+                    Post::onlyTrashed()->find($id)->forceDelete();
+              }
+        }else{
+            Post::onlyTrashed()->find($id)->forceDelete();
+        }
         //!is_null($post->image) && Storage::delete('public/news',$post->file);
-        if(Storage::delete($post->image->url)){
-                Post::onlyTrashed()->find($id)->forceDelete();
-         }
+        // if(Storage::delete($post->image->url)){
+        //         Post::onlyTrashed()->find($id)->forceDelete();
+        //  }else{
+
+        //  }
      
                
          
