@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('youth_observatories', function (Blueprint $table) {
             $table->id();
-            $table->string('mission')->unique()->nullable();
-            $table->string('vision')->unique()->nullable();
-            $table->string('about_us')->nullable();
-            $table->string('organization_chart')->nullable();
+            $table->text('mission')->unique()->nullable();
+            $table->text('vision')->unique()->nullable();
+            $table->text('about_us')->nullable();
+            $table->text('organization_chart')->nullable();
             $table->timestamps();
         });
     }

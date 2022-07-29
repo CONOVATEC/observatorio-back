@@ -4,7 +4,7 @@
         <div class="mb-2">
             {{-- 'required' => '' --}}
             <label class="form-label" for="payment-input-name">Describe la misión</label>
-            {{ Form::textarea('mission', null, ['class' => 'form-control input', 'id' => 'mision', 'name' => 'mission', 'cols' => 20, 'rows' => 2, 'maxlength' => '100', 'placeholder' => 'M...']) }}
+            {{ Form::textarea('mission', null, ['class' => 'form-control input', 'id' => 'mision', 'name' => 'mission', 'cols' => 20, 'rows' => 2, 'maxlength' => '255', 'placeholder' => 'M...']) }}
             @error('mission')
                 <span class="text-danger form-label fw-bold">{{ $message }}</span>
             @enderror
@@ -13,7 +13,7 @@
     <div class="col-6">
         <div class="mb-2">
             <label class="form-label" for="payment-input-name">Describe la vision</label>
-            {{ Form::textarea('vision', null, ['class' => 'form-control input', 'id' => 'vision', 'name' => 'vision', 'cols' => 20, 'rows' => 2, 'maxlength' => '100', 'placeholder' => 'V...']) }}
+            {{ Form::textarea('vision', null, ['class' => 'form-control input', 'id' => 'vision', 'name' => 'vision', 'cols' => 20, 'rows' => 2, 'maxlength' => '255', 'placeholder' => 'V...']) }}
             @error('vision')
                 <span class="text-danger form-label fw-bold">{{ $message }}</span>
             @enderror
@@ -24,7 +24,7 @@
     <div class="col-md-6">
         <div class="mb-2">
             <label class="form-label" for="payment-input-name">Sobre nosotros</label>
-            {{ Form::textarea('about_us', null, ['class' => 'form-control input', 'id' => 'about_us', 'name' => 'about_us', 'cols' => 20, 'rows' => 5, 'maxlength' => '300', 'placeholder' => 'Sobre nosotros...']) }}
+            {{ Form::textarea('about_us', null, ['class' => 'form-control input', 'id' => 'about_us', 'name' => 'about_us', 'cols' => 20, 'rows' => 5,  'placeholder' => 'Sobre nosotros...']) }}
             @error('about_us')
                 <span class="text-danger form-label fw-bold">{{ $message }}</span>
             @enderror
@@ -32,8 +32,8 @@
     </div>
     <div class="col-md-6">
         <div class="mb-2">
-            <label class="form-label" for="payment-input-name">Describe la organización</label>
-            {{ Form::textarea('organization_chart', null, ['class' => 'form-control input', 'id' => 'organization_chart', 'name' => 'organization_chart', 'cols' => 20, 'rows' => 5, 'maxlength' => '300', 'placeholder' => 'La organización...']) }}
+            <label class="form-label" for="payment-input-name">Describe EL Propósito</label>
+            {{ Form::textarea('organization_chart', null, ['class' => 'form-control input', 'id' => 'organization_chart', 'name' => 'organization_chart', 'cols' => 20, 'rows' => 5, 'placeholder' => 'La organización...']) }}
             @error('organization_chart')
                 <span class="text-danger form-label fw-bold">{{ $message }}</span>
             @enderror
