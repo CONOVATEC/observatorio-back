@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         \App\Models\admin\Category::factory(100)->create();
         \App\Models\admin\Tag::factory(10)->create();
-        // \App\Models\admin\AboutCmpj::factory(10)->create();
+         \App\Models\admin\AboutCmpj::factory(1)->create();
         \App\Models\admin\TypeLogo::factory(10)->create();
         \App\Models\admin\ReaderLog::factory(20)->create();
         \App\Models\admin\Setting::factory(1)->create();
