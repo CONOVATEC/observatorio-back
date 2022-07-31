@@ -27,7 +27,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <i data-feather="list" class="user-timeline-title-icon"></i>
-                    <h5 class="mb-0 ms-1">Juveniles</h5>
+                    <h5 class="mb-0 ms-1">CMPJ</h5>
                 </div>
                 <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
             </div>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 
 <!--/ Info table about actions -->
