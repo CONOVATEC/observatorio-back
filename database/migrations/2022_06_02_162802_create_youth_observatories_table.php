@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('youth_observatories', function (Blueprint $table) {
             $table->id();
-            $table->text('mission')->unique()->nullable();
-            $table->text('vision')->unique()->nullable();
+            $table->text('mission')->nullable();
+            $table->text('vision')->nullable();
             $table->text('about_us')->nullable();
             $table->text('organization_chart')->nullable();
             $table->timestamps();
