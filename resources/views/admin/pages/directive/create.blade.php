@@ -8,11 +8,11 @@
     <div class="col-12 ">
         <div class="card mb-1">
             <div class="card-header mb-0 py-0">
-                <h4 class="card-title ">Nuevo directivos</h4>
+                <h4 class="card-title ">Nuevo directivo</h4>
                 <div class="heading-elements mt-1">
                     <ul class="list-inline">
                         <li class="">
-                            <a href="{{ route('directive.index') }}" type="button" class="form-control btn btn-danger btn-sm "><i class="fa-solid fa-hand-point-left"></i> Volver</a>
+                            <a href="{{ route('directives.index') }}" type="button" class="form-control btn btn-danger btn-sm "><i class="fa-solid fa-hand-point-left"></i> Volver</a>
                         </li>
                     </ul>
                 </div>
@@ -27,14 +27,14 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <i data-feather="list" class="user-timeline-title-icon"></i>
-                    <h5 class="mb-0 ms-1">Logo</h5>
+                    <h5 class="mb-0 ms-1">Directivos</h5>
                 </div>
                 <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
             </div>
             <div class="card-body">
-                {!! Form::open([ 'route' => 'logos.store', 'method' => 'post','files'=>true,'class' => 'form needs-validation',
+                {!! Form::open([ 'route' => 'directives.store', 'method' => 'post','files'=>true,'class' => 'form needs-validation',
                 'autocomplete'=>'off' ]) !!}
-                @include('admin.pages.logo.partials.form')
+                @include('admin.pages.directive.partials.form')
                 {!! Form::close() !!}
             </div>
         </div>

@@ -15,26 +15,26 @@
                 @enderror
             </div>
 
-            <div class="mb-2">
+            {{-- <div class="mb-2">
                 {{ Form::label('social_media', 'Link ', ['class' => 'form-label']) }}<i class="fa-solid fa-link"></i>
                 {{ Form::text('social_media', null, ['class' => 'form-control input', 'id' => 'social_media', 'name' => 'social_media', 'placeholder' => 'link']) }}
                 @error('social_media')
                     <span class="text-danger form-label fw-bold">{{ $message }}</span>
                 @enderror
-            </div>
+            </div> --}}
 
 
             {{-- SELECT DE TIPO DE LOGO --}}
-            <div class="col-md-6 pb-6">
+             <div class="col-md-6 pb-6">
                 <div class="mb-2">
-                    {{ Form::label('type_logo_id', 'Tipo de Logo*', ['class' => 'form-label fw-bold']) }}
-                    {{ Form::select('type_logo_id', $typeLogos, null, ['class' => 'select2 form-select']) }}
+                    {{ Form::label('position_id', 'Posicion*', ['class' => 'form-label fw-bold']) }}
+                    {{ Form::select('position_id', $position_id, null, ['class' => 'select2 form-select']) }}
 
-                    @error('type_logo_id')
+                    @error('position_id')
                         <span class="text-danger form-label fw-bold">{{ $message }}</span>
                     @enderror
                 </div>
-            </div>
+            </div> 
 
         </div>
 
@@ -64,8 +64,8 @@
 
 
             <div class="grid grid-cols-1 mt-1 mx-2">
-                @isset($logo->image)
-                    <img src="{{ Storage::url($logo->image->url) }}" id="imagenSeleccionada" >
+                @isset($directive->image)
+                    <img src="Storage/{{ ($directive->image->url) }}" id="imagenSeleccionada" >
                 @else
                     <img src="" id="imagenSeleccionada">
                 </div>
@@ -78,8 +78,8 @@
 
     </div>
     <div class=" col-12 col-lg-6 mx-auto mb-0 mt-4">
-        <a href="{{ route('logos.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i
-                class="fa-solid fa-delete-left"></i> </i> @isset($logos)
+        <a href="{{ route('directives.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i
+                class="fa-solid fa-delete-left"></i> </i> @isset($directives)
                 Volver
             @else
                 Cancelar
@@ -88,7 +88,7 @@
         </a>
 
         <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i>
-            @isset($logos)
+            @isset($directives)
                 Actualizar
             @else
                 Guardar

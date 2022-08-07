@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\admin\LogoRequest;
+use App\Http\Requests\admin\DirectiveRequest;
 use App\Models\admin\Image;
 use App\Models\admin\Directive;
-use App\Http\Controllers\admin\Logo;
-use App\Models\admin\TypeLogo;
+use App\Models\admin\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,12 +33,14 @@ class DirectiveController extends Controller
      */
     public function create()
     {
-        $logo = Logo::all();
-        $typeLogos = TypeLogo::pluck('name', 'id');
+        
+        $directive = Directive::all();
+        //dd($directive);
+        $position_id = Position::pluck('slug', 'id');
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "logo", 'name' => "Logo"], ['name' => "Registrando logo"],
+            ['link' => "home", 'name' => "Inicio"], ['link' => "directives", 'name' => "Directivo"], ['name' => "Registrando Directivo"],
         ];
-        return view('admin.pages.logo.create', compact('breadcrumbs', 'logo', 'typeLogos'));
+        return view('admin.pages.directive.create', compact('breadcrumbs', 'directive','position_id'));
     }
 
     /**
@@ -48,17 +49,19 @@ class DirectiveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LogoRequest $request)
+    public function store(Request $request)
     {
-        $logo = Logo::create($request->all());
+        //dd($request);
+        $directive = Directive::create($request->all());
+        
         if ($request->file('image_logo')) {
             //$url=Storage::put('news',$request->file('file')->store('public/news'));
             $url = $request->file('image_logo')->store('public/logos');
-            $logo->image()->create([
+            $directive->image()->create([
                 'url' => $url
             ]);
         }
-        return redirect()->route('logos.index')->with('success', 'Logo registrado correctamente');
+        return redirect()->route('directives.index')->with('success', 'Directivo registrado correctamente');
     }
 
     /**
@@ -76,16 +79,16 @@ class DirectiveController extends Controller
      */
     public function edit($id)
     {
-        $typeLogos = TypeLogo::pluck('name', 'id');
-        $logos = Logo::latest()->paginate(10);
-        $logo = Logo::findOrFail($id);
+        $position_id = Position::pluck('name', 'id');
+        $directives = Directive::latest()->paginate(10);
+        $directive = Directive::findOrFail($id);
 
         // dd($category);
 
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "logos", 'name' => "Logos"], ['name' => "Editando Logo"],
+            ['link' => "home", 'name' => "Inicio"], ['link' => "Directivos", 'name' => "Directivos"], ['name' => "Editando Directivo"],
         ];
-        return view('admin.pages.logo.edit', compact('breadcrumbs', 'logos', 'logo', 'typeLogos'));
+        return view('admin.pages.directive.edit', compact('breadcrumbs', 'directives', 'directive','position_id'));
     }
 
     /**
@@ -95,38 +98,38 @@ class DirectiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(LogoRequest $request, $id)
+    public function update(DirectiveRequest $request, $id)
     {
-        Logo::find($id)->update($request->all());
+        Directive::find($id)->update($request->all());
         if($request->file('image_logo')){
             $url=Storage::put('public/logos',$request->file('image_logo'));
-            $logo=Logo::findOrFail($id);
-            if($logo->image){
-                Storage::delete($logo->image->url);
-                $logo->image->update([
+            $directive=Directive::findOrFail($id);
+            if($directive->image){
+                Storage::delete($directive->image->url);
+                $directive->image->update([
                     'url'=>$url
                 ]);
 
             }else{
-                $logo->image()->create([
+                $directive->image()->create([
                     'url'=>$url
                 ]);
             }
         }
 
-        return redirect()->route('logos.edit', $id)->with('info','El logo se actualizo correctamente');
+        return redirect()->route('directives.edit', $id)->with('info','El Directivo se actualizo correctamente');
     }
 
     public function destroy($id)
     {
-        $logo = Logo::findOrFail($id);
+        $directive = Directive::findOrFail($id);
 
-        if ($logo->image->url) {
-            Storage::disk()->delete($logo->image->url);
-            $logo->Delete();
+        if ($directive->image->url) {
+            Storage::disk()->delete($directive->image->url);
+            $directive->Delete();
         } else {
-            $logo->Delete();
+            $directive->Delete();
         }
-        return redirect()->route('logos.index')->with('warning', 'Logo eliminado correctamente');
+        return redirect()->route('directives.index')->with('warning', 'Directivo eliminado correctamente');
     }
 }

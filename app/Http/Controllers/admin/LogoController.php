@@ -34,7 +34,9 @@ class LogoController extends Controller
     public function create()
     {
         $logo = Logo::all();
+        //dd($logo);
         $typeLogos = TypeLogo::pluck('name', 'id');
+        //dd($typeLogos);
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "logo", 'name' => "Logo"], ['name' => "Registrando logo"],
         ];

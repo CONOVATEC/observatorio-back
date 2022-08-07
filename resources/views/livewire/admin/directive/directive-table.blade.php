@@ -52,20 +52,20 @@
                                             <span class="fa-solid fa{{ $camp === 'name' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col" class="">Enlace
-                                        <a wire:click="sortable('social_media')">
-                                            <span class="fa-solid fa{{ $camp === 'social_media' ? $icon : '-sort' }}"></span>
+                                    <th scope="col" class="">Status
+                                        <a wire:click="sortable('status')">
+                                            <span class="fa-solid fa{{ $camp === 'status' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
                                     <th scope="col" class="">Tipo Directivo
-                                        <a wire:click="sortable('type_logo_id')">
-                                            <span class="fa-solid fa{{ $camp === 'type_logo_id' ? $icon : '-sort' }}"></span>
+                                        <a wire:click="sortable('position_id')">
+                                            <span class="fa-solid fa{{ $camp === 'position_id' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
 
-                                    <th scope="col">Logo
-                                        <a wire:click="sortable('image_logo')">
-                                            <span class="fa-solid fa{{ $camp === 'image_logo' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Photo
+                                        <a wire:click="sortable('photo')">
+                                            <span class="fa-solid fa{{ $camp === 'photo' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
 
@@ -83,24 +83,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($logos as $logo)
+                                @forelse($directives as $directive)
                                 <tr>
                                     {{-- <td>{{ $category->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $logo->name }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $logo->social_media}}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $logo->type_logo->name }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $directive->name }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->status}}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->position_id }}</span></td>
                                     <td>
-                                        @isset($logo->image)
-                                    <img src="{{ Storage::url($logo->image->url) }}" class="img-thumbnail" style="width:100px"></td>
+                                        @isset($directive->image)
+                                        {{-- {{$directive->image->url}} --}}
+                                    <img src="Storage/{{ ($directive->image->url) }}" class="img-thumbnail" style="width:100px"></td>
                                     @else
                                     <img src="" class="img-thumbnail" style="width:100px"></td>
                                     @endif
-                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $logo->created_at->format('d-m-Y') }}</span></td>
-                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $logo->updated_at->format('d-m-Y') }}</span></td>
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $directive->created_at->format('d-m-Y') }}</span></td>
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $directive->updated_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
-                                        @include('admin.pages.logo.partials.buttons')
+                                        @include('admin.pages.directive.partials.buttons')
                                     </td>
                                 </tr>
                                 @empty
@@ -118,7 +119,7 @@
     </div>
     <div class="card-footer">
         {{-- Incluimos la paginación personalizada  --}}
-        @include('admin.pages.logo.partials.pagination')
+        @include('admin.pages.directive.partials.pagination')
     </div>
 
 </div>

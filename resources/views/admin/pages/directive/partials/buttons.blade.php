@@ -1,8 +1,8 @@
 <div class="d-flex align-items-center col-actions">
-    <a class="dropdown-item" href="{{ route('logos.edit',$logo) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+    <a class="dropdown-item" href="{{ route('directives.edit',$directive) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
         <i class="fa-solid fa-pen-to-square font-medium-2 text-body"></i>
     </a>
-    <form method="post" action="{{route('logos.destroy',$logo->id)}}">
+    <form method="post" action="{{route('directives.destroy',$directive->id)}}">
         @method('DELETE')
         @csrf
         <button href="#" class="dropdown-item deleteConfirm" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar ">

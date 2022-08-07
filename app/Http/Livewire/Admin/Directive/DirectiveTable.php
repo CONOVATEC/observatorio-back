@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Logo;
+namespace App\Http\Livewire\Admin\Directive;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\admin\Logo;
+use App\Models\admin\Directive;
 
-class LogoTable extends Component
+class DirectiveTable extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -43,20 +43,20 @@ class LogoTable extends Component
     }
     public function render()
     {
-        $logos = Logo::where('name', 'like', "%{$this->search}%")
-            ->orWhere('social_media', 'like', "%{$this->search}%");
+        $directives = Directive::where('name', 'like', "%{$this->search}%")
+            ->orWhere('photo', 'like', "%{$this->search}%");
 
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {
             //Ejecuta la sentensettings agrega al usuario + el orderby
-            $logos = $logos->orderBy($this->camp, $this->order);
+            $directives = $directives->orderBy($this->camp, $this->order);
         } else {
             $this->camp = null;
             $this->order = null;
         }
-        $logos = $logos->paginate($this->perPage);
+        $directives = $directives->paginate($this->perPage);
         // $categories = Category::paginate(5);
-        return view('livewire.admin.logo.logo-table', compact('logos'));
+        return view('livewire.admin.directive.directive-table', compact('directives'));
     }
     public function sortable($camp)
     {

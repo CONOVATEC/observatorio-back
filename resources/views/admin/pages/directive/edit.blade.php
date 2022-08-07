@@ -14,7 +14,7 @@
                 <div class="heading-elements mt-1">
                     <ul class="list-inline">
                         <li class="">
-                            <a href="{{ route('directive.index') }}" type="button" class="form-control btn btn-danger btn-sm "><i class="fa-solid fa-hand-point-left"></i> Volver</a>
+                            <a href="{{ route('directives.index') }}" type="button" class="form-control btn btn-danger btn-sm "><i class="fa-solid fa-hand-point-left"></i> Volver</a>
                         </li>
                     </ul>
                 </div>
@@ -34,8 +34,8 @@
                 <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
             </div>
             <div class="card-body">
-                {!! Form::model($logo,[ 'route' => ['logos.update',$logo->id], 'method' => 'put', 'files' => true,'class' => 'form needs-validation','novalidate'=>'' ]) !!}
-                @include('admin.pages.logo.partials.form')
+                {!! Form::model($directive,[ 'route' => ['directives.update',$directive->id], 'method' => 'put', 'files' => true,'class' => 'form needs-validation','novalidate'=>'' ]) !!}
+                @include('admin.pages.directive.partials.form')
                 {!! Form::close() !!}
             </div>
         </div>
