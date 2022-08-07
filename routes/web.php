@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 //Rutas sergio
     Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index', 'store', 'edit', 'update']);
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
-    Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
+    Route::resource('tipo-logo', TypeLogoController::class)->names('tipoLogo');
     Route::resource('logos', LogoController::class)->names('logos');
 
 });
