@@ -132,8 +132,10 @@ class LogoController extends Controller
 
         if ($logo->image->url) {
             Storage::disk()->delete($logo->image->url);
+            $logo->image->delete();
             $logo->Delete();
         } else {
+            $logo->image->delete();
             $logo->Delete();
         }
         return redirect()->route('logos.index')->with('warning', 'Logo eliminado correctamente');
