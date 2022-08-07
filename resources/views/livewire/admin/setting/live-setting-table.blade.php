@@ -18,9 +18,11 @@
                         {{-- <option value="todos">Todos</option>  --}}
                     </select>
                 </li>
+
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
+
 
             </ul>
         </div>
@@ -74,10 +76,13 @@
                                     <td><img src="/storage/{{($setting->logo)}}" class="img-thumbnail" style="width:100px"></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $setting->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $setting->updated_at->format('d-m-Y') }}</span></td>
+
+                                    @if(auth()->user()->can('configuraciones.edit'))
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.setting.partials.buttons')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">

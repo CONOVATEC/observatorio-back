@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class About_cmpj extends Model
 {
     use HasFactory;
+    protected $table="about_cmpj";
 
-    protected $fillable = ['ordinance','about_us','vision','functions','board_of_directors','social'];
+protected $fillable = ['title_cmpj','description_cmpj','title_assembly','description_assembly','title_directive','description_directive','link_video','link_drive'];
 }

@@ -18,7 +18,7 @@ class PostRequest extends FormRequest
         }else{
             return false;
         }
-       
+
     }
 
     /**
@@ -28,29 +28,30 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-       
+
         $post = $this->route()->parameters();
-        
+
         $rules= [
             'title'=>'required|min:3|max:255',
             'slug'=>'required|unique:posts',
             'status'=>'required|in:1,2',
             'file'=>'image'
-            
+
         ];
         if($post){
             $rules['slug']='required|unique:posts,slug,'.(implode($post));
         }
         if($this->status==2){
             $rules=array_merge($rules,[
-                'extract'=>'required|min:3|max:255',
-                'content'=>'required|min:3|max:255',
+                'extract'=>'required|min:3',
+                'content'=>'required|min:3',
                 'tendencia_active'=>'required',
                 'category_id'=>'required',
                 'tags'=>'required',
-                'file'=>'required'
+                'file'=>'image'
                
                 
+
             ]
         );
         }

@@ -50,7 +50,9 @@
                                             <span class="fa-solid fa{{ $camp === 'deleted_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('etiquetas.eliminar.definitivo') or auth()->user()->can('etiquetas.restaurar') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,10 +63,12 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $tagEliminated->name }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-danger me-1">{{ $tagEliminated->deleted_at->format('d-m-Y') }}</span></td>
+                                    @if(auth()->user()->can('etiquetas.eliminar.definitivo') or auth()->user()->can('etiquetas.restaurar') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.tag.partials.buttons-restore')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">

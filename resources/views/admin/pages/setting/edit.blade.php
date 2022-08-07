@@ -1,6 +1,7 @@
 @extends('layouts/contentLayoutMaster')
 @section('title', 'Configuraciones')
 @section('content')
+@include('admin.pages.post.partials.alert')
 <!-- Card Actions Section -->
 
 <!-- Info table about actions -->

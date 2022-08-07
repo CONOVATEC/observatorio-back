@@ -24,16 +24,19 @@ class About_cmpjRequest extends FormRequest
     public function rules()
     {
        // Verificamos que en la ruta trae un parámetro
-      
+
        $rules = [
-           'ordinance' => 'required|min:3|max:255|string',
-           'about_us' => 'required|min:3|max:255|string',
-           'vision'=>'required|min:3|max:255|string',
-           'functions'=>'required|min:3|max:255|string',
-           'board_of_directors'=>'required|min:3|max:255|string',
-           'social'=>'required|int',
+           'title_cmpj' => 'required|min:3|max:255|string',
+           'description_cmpj' => 'min:3|max:800|string',
+           'title_assembly'=>'required|min:3|max:255|string',
+           'description_assembly'=>'min:3|max:500|string',
+           'title_directive'=>'required|min:3|max:255|string',
+           'description_directive'=>'min:3|max:500|string',
+           'link_video'=>'min:3|max:255|string',
+           'link_drive'=>'min:3|max:255|string',
+
        ];
-       
+
        return  $rules;
     }
 }

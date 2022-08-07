@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title',45)->nullable(false);
+            $table->string('title',255)->nullable(false);
             $table->string('slug');
-            $table->string('extract',200)->nullable();
-            $table->text('content',1000)->nullable();
+            $table->mediumText('extract')->nullable();
+            $table->longText('content')->nullable();
             $table->enum('status',[1,2])->default(1);
+            $table->enum('type_new',[1,2])->default(1);
+            $table->enum('publicado',[1,2])->default(1);
             $table->tinyInteger('tendencia_active')->nullable();
             /*
                 ** -- Laves foreanas -- **
