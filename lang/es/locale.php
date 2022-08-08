@@ -18,6 +18,12 @@ return [
     "Young Observatory" => "Observatorio Joven",
     "CMPJ" => "Sobre CMPJ",
     "Policies" => "Políticas",
+    "logo" => "Logos",
+    "view logo" => "Ver logo",
+    "create logo" => "Crear logo",
+    "logo type" => "Tipo de logo",
+    "view logo type" => "Ver tipo de logo",
+    "create logo type" => "Crear tipo de logo",
 
     /*****************
      * Para noticias *
@@ -214,5 +220,5 @@ return [
     "Promotional" => "Promotional",
     'Accordion' => 'Accordion',
     "Offcanvas" => "Offcanvas",
-    "message" => "Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop. Chocolate cake oat cake tiramisu marzipan sugar plum. Donut sweet pie oat cake dragée fruitcake cotton candy lemon drops."
+    "message" => "Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop. Chocolate cake oat cake tiramisu marzipan sugar plum. Donut sweet pie oat cake dragée fruitcake cotton candy lemon drops.",
 ];

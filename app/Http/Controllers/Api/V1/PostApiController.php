@@ -10,9 +10,11 @@ use Illuminate\Http\Request;
 class PostApiController extends Controller
 {
     public function index()
-    {
+    {   
+        //$post=PostResource::collection(Post::where('status',2)->get());
         
-        return PostResource::collection(Post::paginate(5));
+        
+       return PostResource::collection(Post::paginate(5));
         
     }
 }

@@ -3,7 +3,7 @@
         <h4 class="card-title">Listado </h4>
         <div class="heading-elements py-0">
             <ul class="list-inline">
-                
+
                 <li>
                     <a href="{{ route('sobreCmpj.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
 
@@ -26,52 +26,65 @@
                                             <span class="fa-solid fa{{ $camp === 'id' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col" class="">Ordenaza
-                                        <a wire:click="sortable('ordinance')">
-                                            <span class="fa-solid fa{{ $camp === 'ordinance' ? $icon : '-sort' }}"></span>
+                                    <th scope="col" class="">Titulo CMPJ
+                                        <a wire:click="sortable('title_cmpj')">
+                                            <span class="fa-solid fa{{ $camp === 'title_cmpj' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Nosotros
-                                        <a wire:click="sortable('about_us')">
-                                            <span class="fa-solid fa{{ $camp === 'about_us' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Desc.CMPJ
+                                        <a wire:click="sortable('description_cmpj')">
+                                            <span class="fa-solid fa{{ $camp === 'description_cmpj' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Visión
-                                        <a wire:click="sortable('vision')">
-                                            <span class="fa-solid fa{{ $camp === 'vision' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Titulo Asamblea
+                                        <a wire:click="sortable('title_assembly')">
+                                            <span class="fa-solid fa{{ $camp === 'title_assembly' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Funciones
-                                        <a wire:click="sortable('functions')">
-                                            <span class="fa-solid fa{{ $camp === 'functions' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Desc. Asamblea
+                                        <a wire:click="sortable('description_assembly')">
+                                            <span class="fa-solid fa{{ $camp === 'description_assembly' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Jefatura de Directores
-                                        <a wire:click="sortable('board_of_directors')">
-                                            <span class="fa-solid fa{{ $camp === 'board_of_directors' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Titulo Directiva
+                                        <a wire:click="sortable('title_directive')">
+                                            <span class="fa-solid fa{{ $camp === 'title_directive' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Social
-                                        <a wire:click="sortable('social')">
-                                            <span class="fa-solid fa{{ $camp === 'social' ? $icon : '-sort' }}"></span>
+                                    <th scope="col">Desc. Directiva
+                                        <a wire:click="sortable('description_directive')">
+                                            <span class="fa-solid fa{{ $camp === 'description_directive' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    
+                                    <th scope="col">Link Video
+                                        <a wire:click="sortable('link_video')">
+                                            <span class="fa-solid fa{{ $camp === 'link_video' ? $icon : '-sort' }}"></span>
+                                        </a>
+                                    </th>
+                                    <th scope="col">Link Drive
+                                        <a wire:click="sortable('link_drive')">
+                                            <span class="fa-solid fa{{ $camp === 'link_drive' ? $icon : '-sort' }}"></span>
+                                        </a>
+                                    </th>
+
                                     <th scope="col" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($aboutCmpj as $values)
                                 <tr>
-                                     <td>{{ $values->id }}</td> 
+                                     <td>{{ $values->id }}</td>
                                     {{--<td>{{ $loop->iteration }}</td>--}}
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->ordinance }}</span></td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->about_us }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->vision }}</span></td>
-                                    
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->functions }}</span></td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->board_of_directors }}</span></td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->social }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 550px;">{{ $values->title_cmpj }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 550px;">{{ $values->description_cmpj }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 550px;">{{ $values->title_assembly }}</span></td>
+
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->description_assembly }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 550px;">{{ $values->title_directive }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->description_directive }}</span></td>
+
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 550px;">{{ $values->link_video }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 550px;">{{ $values->link_drive }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.aboutCmpj.partials.buttons')

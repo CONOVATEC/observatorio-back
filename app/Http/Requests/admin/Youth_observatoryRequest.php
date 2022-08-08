@@ -26,10 +26,10 @@ class Youth_observatoryRequest extends FormRequest
         // Verificamos que en la ruta trae un parámetro
        
         $rules = [
-            'mission' => 'required|min:3|max:255|string',
-            'vision' => 'required|min:3|max:255|string',
-            'about_us'=>'required|min:3|max:255|string',
-            'organization_chart'=>'required|min:3|max:255|string',
+            'mission' => 'required|min:3|string',
+            'vision' => 'required|min:3|string',
+            'about_us'=>'required|min:3|string',
+            'organization_chart'=>'required|min:3|string',
         ];
         
             

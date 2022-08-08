@@ -95,5 +95,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'directives.create', 'description' => 'Crear directivos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'directives.edit', 'description' => 'Editar directivos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'directives.destroy', 'description' => 'Eliminar directivos'])->syncRoles([$rol1, $rol2]);
+        //* Roles para tipoLogo
+        Permission::create(['name' => 'tipoLogo.index', 'description' => 'Ver tipo de logos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'tipoLogo.create', 'description' => 'Crear tipo de logos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'tipoLogo.edit', 'description' => 'Editar tipo de logos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'tipoLogo.destroy', 'description' => 'Eliminar tipo de logos'])->syncRoles([$rol1, $rol2]);
+        //* Roles para Logos
+        Permission::create(['name' => 'logos.index', 'description' => 'Ver logos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'logos.create', 'description' => 'Crear logos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'logos.edit', 'description' => 'Editar logos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'logos.destroy', 'description' => 'Eliminar logos'])->syncRoles([$rol1, $rol2]);
     }
 }

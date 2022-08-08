@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 
 class TypeLogoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:tipoLogo.index')->only('index');
+        $this->middleware('can:tipoLogo.create')->only('create');
+        $this->middleware('can:tipoLogo.edit')->only('edit');
+        $this->middleware('can:tipoLogo.destroy')->only('destroy');
+    }
     public function index()
     {
         $breadcrumbs = [
@@ -56,7 +60,7 @@ class TypeLogoController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(403);
     }
 
     /**

@@ -1,25 +1,20 @@
 <?php
 
-use App\Models\admin\Setting;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\admin\NewController;
-use App\Http\Controllers\admin\TagController;
-use App\Http\Controllers\StaterkitController;
+use App\Http\Controllers\admin\About_cmpjController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\LogoController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\DirectiveController;
 use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SettingController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\About_cmpjController;
-use App\Http\Controllers\admin\ConfigCompanyController;
-use App\Http\Controllers\admin\Youth_observatoryController;
+use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\TypeLogoController;
-use App\Http\Controllers\admin\LogoController;
-
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\Youth_observatoryController;
+use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +51,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //* para restaurar categoría
     Route::get('categorias/eliminar-definitivo/{id}', [CategoryController::class, 'deleteDefinitive'])->middleware('can:categorias.eliminar.definitivo')->name('categorias.eliminar.definitivo');
     Route::get('categorias/restaurar/{id}', [CategoryController::class, 'restore'])->middleware('can:categorias.restaurar')->name('categorias.restaurar');
-    // Route::resource('categorias', CategoryController::class)->names('categorias');
+    Route::resource('categorias', CategoryController::class)->names('categorias');
 
     //* para restaurar etiquetas
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
@@ -64,9 +59,10 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::get('etiquetas/restaurar/{id}', [TagController::class, 'restore'])->name('etiquetas.restaurar');
 
     //*Rutas para Configuraciones
-    Route::resource('configuraciones', SettingController::class)->names('configuraciones');
+    //Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
 
     //*Route TIPO DE LOGO;
+
     Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
 
     //*Route LOGO;
@@ -75,16 +71,24 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //*Route DIRECTIVES;
     Route::resource('directive', DirectiveController::class)->names('directives');
 
+    //Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
+
+    //*Route LOGO;
+    // Route::resource('logo',LogoController::class)->names('logos');
+
+
     // Inicio rutas para roles y permisos
     Route::get('roles/permisos/{id}', [RoleController::class, 'managePermissions'])->name('roles.permisos.administrar');
     Route::put('roles/permisos/{role}', [RoleController::class, 'updatePermissions'])->name('roles.permisos.actualizar');
     Route::resource('roles', RoleController::class)->names('roles');
     // Fin rutas para roles y permisos
 
+//Rutas sergio
+    Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index', 'store', 'edit', 'update']);
+    Route::resource('etiquetas', TagController::class)->names('etiquetas');
+    Route::resource('tipo-logo', TypeLogoController::class)->names('tipoLogo');
+    Route::resource('logos', LogoController::class)->names('logos');
 
-});
-Route::group(['middleware' => ['permission:categorias.index|categorias.create|categorias.edit|categorias.destroy']], function () {
-    Route::resource('categorias', CategoryController::class)->names('categorias');
 });
 
 //* locale Route

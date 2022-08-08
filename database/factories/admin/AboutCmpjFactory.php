@@ -17,12 +17,14 @@ class AboutCmpjFactory extends Factory
     public function definition()
     {
         return [
-            'ordinance' => $this->faker->company,
-            'about_us' => $this->faker->unique->word,
-            'vision' => $this->faker->unique->word,
-            'functions' => $this->faker->unique->word,
-            'board_of_directors'=> $this->faker->company,
-            'social'=> $this->faker->unique()->numberBetween(1,40),
+            'title_cmpj' => $this->faker->company,
+            'description_cmpj' => $this->faker->unique->sentence(),
+            'title_assembly' => $this->faker->company,
+            'description_assembly' => $this->faker->unique->sentence(),
+            'title_directive' => $this->faker->company,
+            'description_directive' => $this->faker->unique->sentence(),
+            'link_video'=> $this->faker->url(),
+            'link_drive'=>$this->faker->url()
         ];
     }
 }

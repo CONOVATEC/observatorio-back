@@ -12,11 +12,17 @@ use Illuminate\Support\Facades\Storage;
 
 class LogoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:logos.index')->only('index');
+        $this->middleware('can:logos.create')->only('create');
+        $this->middleware('can:logos.edit')->only('edit');
+        $this->middleware('can:logos.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $breadcrumbs = [
@@ -68,6 +74,10 @@ class LogoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        abort(403);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -124,8 +134,10 @@ class LogoController extends Controller
 
         if ($logo->image->url) {
             Storage::disk()->delete($logo->image->url);
+            $logo->image->delete();
             $logo->Delete();
         } else {
+            $logo->image->delete();
             $logo->Delete();
         }
         return redirect()->route('logos.index')->with('warning', 'Logo eliminado correctamente');
