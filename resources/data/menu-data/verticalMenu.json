@@ -222,6 +222,25 @@
                     "slug": "configuraciones.index"
                 }
             ]
+        },
+        {
+            "name": "directive",
+            "icon": "check-circle",
+            "slug": "directives",
+            "submenu": [
+                {
+                    "url": "directive",
+                    "name": "view directive",
+                    "icon": "eye",
+                    "slug": "directives.index"
+                },
+                {
+                    "url": "directive/create",
+                    "name": "create directive",
+                    "icon": "file-plus",
+                    "slug": "directives.create"
+                }
+            ]
         }
     ]
 }

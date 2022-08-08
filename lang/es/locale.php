@@ -24,6 +24,10 @@ return [
     "logo type" => "Tipo de logo",
     "view logo type" => "Ver tipo de logo",
     "create logo type" => "Crear tipo de logo",
+    // Para directiva
+    "directive" => "Directiva",
+    "view directive" => "Ver directa",
+    "create directive" => "Crear directiva",
 
     /*****************
      * Para noticias *
