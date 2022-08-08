@@ -90,6 +90,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'politicas.create', 'description' => 'Crear políticas'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'politicas.edit', 'description' => 'Editar políticas'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'politicas.destroy', 'description' => 'Eliminar políticas'])->syncRoles([$rol1, $rol2]);
+        //* Roles para Directivos
+        Permission::create(['name' => 'directives.index', 'description' => 'Ver directivos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'directives.create', 'description' => 'Crear directivos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'directives.edit', 'description' => 'Editar directivos'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'directives.destroy', 'description' => 'Eliminar directivos'])->syncRoles([$rol1, $rol2]);
         //* Roles para tipoLogo
         Permission::create(['name' => 'tipoLogo.index', 'description' => 'Ver tipo de logos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'tipoLogo.create', 'description' => 'Crear tipo de logos'])->syncRoles([$rol1, $rol2]);

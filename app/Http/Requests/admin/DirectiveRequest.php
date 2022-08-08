@@ -13,7 +13,7 @@ class DirectiveRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,6 @@ class DirectiveRequest extends FormRequest
        $rules = [
            'name' => 'required|min:2|max:100|string|unique:directives',
            'photo' => 'mimes:jpg,jpeg,bmp,png',
-           'status'  => ['required', 'in:1,2', 'max:1', 'min:1'],
            'position_id'=>'required',
 
 
@@ -37,7 +36,6 @@ class DirectiveRequest extends FormRequest
            $rules=[
                'name' => 'required|min:2|max:100|string|unique:directives,name,' .(implode($directive)),
                'photo' => 'mimes:jpg,jpeg,bmp,png',
-               'status'  => ['required', 'in:1,2', 'max:1', 'min:1'],
                'position_id'=>'required',
 
            ];

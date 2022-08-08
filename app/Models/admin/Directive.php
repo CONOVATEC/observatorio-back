@@ -9,7 +9,7 @@ class Directive extends Model
 {
     use HasFactory;
 
-
+    protected $guarded=['id','create_at','update_at'];
 
     /************************************************************************
      * Relación de uno a muchos inversa belongsTo pertenece a position *
@@ -18,5 +18,9 @@ class Directive extends Model
     public function position()
     {
         return $this->belongsTo(Position::class);
+    }
+
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
     }
 }
