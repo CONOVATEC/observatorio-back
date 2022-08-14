@@ -54,7 +54,12 @@ class PostController extends Controller
             'status'=>$request['status'],
             'tendencia_active'=>$request['tendencia_active'],
             'category_id'=>$request['category_id'],
+            'importantOne'=>$request['importantOne'],
+            'importantTwo'=>$request['importantTwo'],
+            'importantThree'=>$request['importantThree'],
+            'importantFour'=>$request['importantFour'],
             'user_id'=>$request['user_id']
+
        ]);
        //html_entity_decode
         if($request->file('file')){
@@ -136,6 +141,10 @@ class PostController extends Controller
             'status'=>$request['status'],
             'tendencia_active'=>$request['tendencia_active'],
             'category_id'=>$request['category_id'],
+            'importantOne'=>$request['importantOne'],
+            'importantTwo'=>$request['importantTwo'],
+            'importantThree'=>$request['importantThree'],
+            'importantFour'=>$request['importantFour'],
           
         ];
         Post::find($id)->update($data);
