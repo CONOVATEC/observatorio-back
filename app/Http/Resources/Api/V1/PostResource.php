@@ -24,7 +24,9 @@ class PostResource extends JsonResource
             'status'=>$this->estado($this->status),
             'tendencia'=>$this->tendencia($this->tendencia_active),
             'category'=>$this->category->name,
-            
+            'importantTwo'=>$this->importantTwo,
+            'importantThree'=>$this->importantThree,
+            'importantFour'=>$this->importantFour,
             'tags'=> TagResource::collection($this->tags),
             'likes'=>LikeResource::collection($this->likes),
             'user'=>[

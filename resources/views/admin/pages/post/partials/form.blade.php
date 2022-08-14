@@ -115,7 +115,7 @@
             <div class="mb-2">
                 {{ Form::label('tendencia_active', 'Tendencia*', ['class' => 'form-label fw-bold']) }} <br>
                 <label >
-                    {{Form::radio('tendencia_active',1,true)}}
+                    {{Form::radio('tendencia_active',1)}}
                     Con Tendencia
                 </label>
                 <label >
@@ -141,6 +141,49 @@
                 @enderror
             </div>
         </div>
+
+       <div class="row" id="opticonNews" style="display: none">
+        <div class="col-12">
+            <div class="mb-2">
+                {{ Form::label('importantOne', 'Texto relevante*', ['class' => 'form-label fw-bold']) }}
+                {{ Form::text('importantOne',null,['class'=>'form-control', 'placeholder' => 'Importante' ]) }}
+                @error('importantOne')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-2">
+                {{ Form::label('importantTwo', 'Texto relevante*', ['class' => 'form-label fw-bold']) }}
+                {{ Form::text('importantTwo',null,['class'=>'form-control', 'placeholder' => 'Importante' ]) }}
+                @error('importantTwo')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="mb-2">
+                {{ Form::label('importantThree', 'Texto relevante*', ['class' => 'form-label fw-bold']) }}
+                {{ Form::text('importantThree',null,['class'=>'form-control', 'placeholder' => 'Importante' ]) }}
+                @error('importantThree')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="mb-2">
+                {{ Form::label('importantFour', 'Texto relevante*', ['class' => 'form-label fw-bold']) }}
+                {{ Form::text('importantFour',null,['class'=>'form-control', 'placeholder' => 'Importante' ]) }}
+                @error('importantFour')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+       </div>
+
+
        
 
       
@@ -215,6 +258,48 @@
     });
     </script>
     
+
+
+
+
+    <script>
+    const radioButtons = document.querySelectorAll('input[name="tendencia_active"]');
+    const select = document.querySelectorAll('input[name="tendencia_active"]');
+   //const select = document.querySelectorAll('input[name="tendencia_active"]:checked');
+  
+    const opticonNews=document.getElementById('opticonNews');
+        for(const radioButton of radioButtons){
+            radioButton.addEventListener('change', showSelected);
+        }        
+        
+        
+        // if(document.getElementById('tendencia_active').checked && document.getElementById("tendencia_active").value==1) {
+        //     opticonNews.style.display = 'block';// show
+        // }
+        function showSelected(e) {
+            //console.log(e);
+            if (this.checked) {
+                if(this.value==1){
+                    console.log('mostrar');
+                    opticonNews.style.display = 'block';// show
+
+
+                }else if(this.value==2){
+                    console.log('ocultar');
+                    opticonNews.style.display = 'none'; // hide
+                }
+               // console.log(this.value);
+                //document.querySelector('#output').innerText = `You selected ${this.value}`;
+            }
+        }
+        
+      
+       // if(elementoActivo.value==1) {
+        //     alert(elementoActivo.value);
+        // } else if(elementoActivo.value==2){
+        //     alert('No hay ninún elemento activo');
+        // }
+    </script>
   <!-- Page js files -->
   <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 @endsection
