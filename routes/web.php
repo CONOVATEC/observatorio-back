@@ -12,7 +12,10 @@ use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\Youth_observatoryController;
+use App\Http\Controllers\admin\YouthPolicyController;
+use App\Http\Controllers\Api\V1\YoutObservatoryController;
 use App\Http\Controllers\LanguageController;
+use App\Models\admin\YouthPolicy;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -88,6 +91,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
     Route::resource('tipo-logo', TypeLogoController::class)->names('tipoLogo');
     Route::resource('logos', LogoController::class)->names('logos');
+    Route::resource('politica-juventud', YouthPolicyController::class)->names('politicaJuvenil');
 
 });
 

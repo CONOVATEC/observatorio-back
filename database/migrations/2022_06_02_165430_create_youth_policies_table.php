@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('youth_policies', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->unique();
-            $table->string('slug');
-            $table->string('descripcion',200)->nullable();
+            $table->string('name',150)->unique();
+            $table->text('description')->nullable();
+            $table->string('link_video')->nullable();
+            $table->string('link_drive')->nullable();
+
             $table->timestamps();
         });
     }

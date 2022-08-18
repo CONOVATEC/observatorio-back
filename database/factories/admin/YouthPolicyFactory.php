@@ -18,11 +18,11 @@ class YouthPolicyFactory extends Factory
     public function definition()
     {
         $name=$this->faker->unique->sentence(2);
-        $slug=Str::slug($name);
         return [
             'name'        => $name,
-            'slug'         =>$slug,
-            'descripcion' => $this->faker->sentence(),
+            'description' => $this->faker->sentence(),
+            'link_video' =>$this->faker->url(),
+            'link_drive' => $this->faker->url()
         ];
     }
 }
