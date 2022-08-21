@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\DirectiveController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\SlideController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\UserController;
@@ -92,6 +93,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('tipo-logo', TypeLogoController::class)->names('tipoLogo');
     Route::resource('logos', LogoController::class)->names('logos');
     Route::resource('politica-juventud', YouthPolicyController::class)->names('politicaJuvenil');
+    Route::resource('slide', SlideController::class)->names('slide');
 
 });
 

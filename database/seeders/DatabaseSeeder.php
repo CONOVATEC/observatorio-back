@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\YouthStrategy::factory(10)->create();
         \App\Models\admin\Position::factory(5)->create();
         \App\Models\admin\Directive::factory(5)->create();
+        \App\Models\admin\Slide::factory(4)->create();
         $this->call(LogoSeeder::class);
     }
 }
