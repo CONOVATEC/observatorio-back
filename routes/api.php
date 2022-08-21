@@ -8,9 +8,8 @@ use App\Http\Resources\Api\V1\PostResource;
 use App\Http\Controllers\Api\V1\YoutObservatoryController;
 
 use App\Http\Controllers\Api\V1\AboutCmpjController;
-
-
-
+use App\Http\Controllers\Api\V1\LogoApiController;
+use App\Http\Resources\Api\V1\LogoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +34,7 @@ Route::apiResource('post',PostApiController::class)->only(['index']);
 Route::apiResource('youtObservatory', YoutObservatoryController::class)->only(['index']);
 
 Route::apiResource('cmpj',AboutCmpjController::class)->only(['index']);
+
+Route::apiResource('logo',LogoApiController::class)->only(['index']);
 
 
