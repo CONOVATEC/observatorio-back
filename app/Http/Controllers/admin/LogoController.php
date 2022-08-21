@@ -132,12 +132,12 @@ class LogoController extends Controller
     {
         $logo = Logo::findOrFail($id);
 
-        if ($logo->image->url) {
+        if (!is_null($logo->image)) {
             Storage::disk()->delete($logo->image->url);
             $logo->image->delete();
             $logo->Delete();
         } else {
-            $logo->image->delete();
+           // $logo->image->delete();
             $logo->Delete();
         }
         return redirect()->route('logos.index')->with('warning', 'Logo eliminado correctamente');

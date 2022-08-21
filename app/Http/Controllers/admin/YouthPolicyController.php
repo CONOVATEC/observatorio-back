@@ -139,12 +139,12 @@ class YouthPolicyController extends Controller
     {
         $youthPolicy = YouthPolicy::findOrFail($id);
 
-        if ($youthPolicy->image->url) {
+        if (!is_null($youthPolicy->image)) {
             Storage::disk()->delete($youthPolicy->image->url);
             $youthPolicy->image->delete();
             $youthPolicy->Delete();
         } else {
-            $youthPolicy->image->delete();
+            //$youthPolicy->image->delete();
             $youthPolicy->Delete();
         }
         return redirect()->route('politicaJuvenil.index')->with('warning', 'Politica Juventud eliminado correctamente');

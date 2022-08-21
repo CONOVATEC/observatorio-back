@@ -65,9 +65,7 @@
                                     </th>
 
                                     <th scope="col">Logo
-                                        <a wire:click="sortable('image_logo')">
-                                            <span class="fa-solid fa{{ $camp === 'image_logo' ? $icon : '-sort' }}"></span>
-                                        </a>
+
                                     </th>
 
                                     <th scope="col">Creado
