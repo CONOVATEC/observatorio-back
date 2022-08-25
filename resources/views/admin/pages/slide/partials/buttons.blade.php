@@ -12,5 +12,5 @@
             <i class="fa-solid fa-trash-can font-medium-2"></i>
         </button>
     </form>
-   {{-- @endcan --}}
+   @endcan
 </div>
