@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
 
-            <div class="card bg-success text-white">
+            <div class="card">
                 <!---->
                 <!---->
                 <div class="card-body">
@@ -16,14 +16,14 @@
                     <!---->
 
                     <div class="mb-2">
-                        <h4 class="card-title text-white">Año </h4>
+                        <h4 class="card-title">Año </h4>
                         {{ Form::number('year', null, ['class' => 'form-control input', 'id' => 'year', 'name' => 'year', 'maxlength' => '255', 'placeholder' => 'Año']) }}
                         @error('year')
                             <span class="text-danger form-label fw-bold">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-2">
-                        <h4 class="card-title text-white">Titulo </h4>
+                        <h4 class="card-title">Titulo </h4>
                         {{ Form::text('title', null, ['class' => 'form-control input', 'id' => 'title', 'name' => 'title', 'maxlength' => '255', 'placeholder' => 'Titulo']) }}
                         @error('title')
                             <span class="text-danger form-label fw-bold">{{ $message }}</span>
@@ -32,7 +32,7 @@
 
 
                     <div class="mb-2">
-                        <h4 class="card-title text-white">Extracto </h4>
+                        <h4 class="card-title">Extracto </h4>
                         {{ Form::textarea('extract', null, ['class' => 'form-control input', 'id' => 'extract', 'name' => 'extract', 'cols' => 10, 'rows' => 4, 'placeholder' => 'Extracto']) }}
                         @error('extract')
                             <span class="text-danger form-label fw-bold">{{ $message }}</span>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 mt-0 mx-7">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1 text-white">Subir
+                        <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir
                             Imagen</label>
                         <div class='flex items-center justify-center w-full'>
                             <label
@@ -74,7 +74,7 @@
                         @endif
 
                     </div>
-                    {{ Form::label('status', 'ESTADO', ['class' => 'form-label fw-bold text-white mx-auto']) }} <br>
+                    {{ Form::label('status', 'ESTADO', ['class' => 'form-label fw-bold text-black mx-auto']) }} <br>
                     <div class="mb-2 mx-auto ">
                         <label>{!!Form::radio('status',2,true)!!}ACTIVADO </label>
                         <label>{!!Form::radio('status',1)!!}DESHABILITADO</label>

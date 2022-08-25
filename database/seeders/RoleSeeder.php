@@ -105,5 +105,18 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'logos.create', 'description' => 'Crear logos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'logos.edit', 'description' => 'Editar logos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'logos.destroy', 'description' => 'Eliminar logos'])->syncRoles([$rol1, $rol2]);
+
+         //* Roles para youth_directive
+         Permission::create(['name' => 'politicaJuvenil.index', 'description' => 'Ver Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'politicaJuvenil.create', 'description' => 'Crear Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'politicaJuvenil.edit', 'description' => 'Editar Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'politicaJuvenil.destroy', 'description' => 'Eliminar Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+
+         //* slide
+         Permission::create(['name' => 'slide.index', 'description' => 'Ver Slide'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'slide.create', 'description' => 'Crear Slide'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'slide.edit', 'description' => 'Editar Slide'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'slide.destroy', 'description' => 'Eliminar Slide'])->syncRoles([$rol1, $rol2]);
+
     }
 }

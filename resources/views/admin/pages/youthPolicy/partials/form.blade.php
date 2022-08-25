@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-12">
 
-            <div class="card bg-success text-white">
+            <div class="card">
                 <!---->
                 <!---->
                 <div class="card-body">
                     <!---->
                     <!---->
                     <div class="mb-2">
-                        <h4 class="card-title text-white">Nombre </h4>
+                        <h4 class="card-title">Nombre </h4>
                         {{ Form::text('name', null, ['class' => 'form-control input', 'id' => 'name', 'name' => 'name', 'maxlength' => '255', 'placeholder' => 'Nombre']) }}
                         @error('name')
                             <span class="text-danger form-label fw-bold">{{ $message }}</span>
@@ -24,7 +24,7 @@
 
 
                     <div class="mb-2">
-                        <h4 class="card-title text-white">Descripcion </h4>
+                        <h4 class="card-title">Descripcion </h4>
                         {{ Form::textarea('description', null, ['class' => 'form-control input', 'id' => 'description', 'name' => 'description', 'cols' => 30, 'rows' => 8, 'placeholder' => 'Descripcion']) }}
                         @error('description')
                             <span class="text-danger form-label fw-bold">{{ $message }}</span>
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 mt-0 mx-7">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1 text-white">Subir
+                        <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir
                             Imagen</label>
                         <div class='flex items-center justify-center w-full'>
                             <label
