@@ -23,14 +23,6 @@
                     </div>
 
 
-                    <div class="mb-2">
-                        <h4 class="card-title">Descripcion </h4>
-                        {{ Form::textarea('description', null, ['class' => 'form-control input', 'id' => 'description', 'name' => 'description', 'cols' => 30, 'rows' => 8, 'placeholder' => 'Descripcion']) }}
-                        @error('description')
-                            <span class="text-danger form-label fw-bold">{{ $message }}</span>
-                        @enderror
-
-                    </div>
 
                     <div class="grid grid-cols-1 mt-0 mx-7">
                         <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir
@@ -49,7 +41,7 @@
                                         class='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>
                                         Seleccione la imagen</p>
                                 </div>
-                                <input type='file' name="image_policy" id="imagen"
+                                <input type='file' name="image_strategy" id="imagen"
                                     class="hidden"accept="image/*" />
 
                             </label>
@@ -58,8 +50,8 @@
 
 
                     <div class="grid grid-cols-1 mt-1 mx-2">
-                        @isset($youthPolicy->image)
-                            <img src="{{ Storage::url($youthPolicy->image->url) }}" id="imagenSeleccionada">
+                        @isset($youthStrategy->image)
+                            <img src="{{ Storage::url($youthStrategy->image->url) }}" id="imagenSeleccionada">
                         @else
                             <img src="" id="imagenSeleccionada">
                         </div>
@@ -83,8 +75,8 @@
                     <!---->
                     <div class="mb-2">
                         <h4 class="card-title text-success">Link Video </h4>
-                        {{ Form::textarea('link_video', null, ['class' => 'form-control input', 'id' => 'link_video', 'name' => 'link_video', 'cols' => 10, 'rows' => 2, 'maxlength' => '250', 'placeholder' => 'link']) }}
-                        @error('link_video')
+                        {{ Form::textarea('link_youtube', null, ['class' => 'form-control input', 'id' => 'link_video', 'name' => 'link_youtube', 'cols' => 10, 'rows' => 2, 'maxlength' => '250', 'placeholder' => 'link']) }}
+                        @error('link_youtube')
                             <span class="text-danger form-label fw-bold">{{ $message }}</span>
                         @enderror
                     </div>
@@ -113,8 +105,8 @@
 
 
     <div class=" col-12 col-lg-6 mx-auto mb-0">
-        <a href="{{ route('politicaJuvenil.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i
-                class="fa-solid fa-delete-left"></i> </i> @isset($youthPolicy)
+        <a href="{{ route('estrategiaMetropolitana.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i
+                class="fa-solid fa-delete-left"></i> </i> @isset($youthStrategy)
                 Volver
             @else
                 Cancelar
@@ -123,7 +115,7 @@
         </a>
 
         <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i>
-            @isset($youthPolicy)
+            @isset($youthStrategy)
                 Actualizar
             @else
                 Guardar

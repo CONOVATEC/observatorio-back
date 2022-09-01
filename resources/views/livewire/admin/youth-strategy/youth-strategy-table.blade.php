@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header mt-1 mb-0 py-0">
-        <h4 class="card-title">Politica Juvenil</h4>
+        <h4 class="card-title">Estrategia Metropolitana</h4>
         <div class="heading-elements py-0">
             <ul class="list-inline">
                 <li>
@@ -23,9 +23,9 @@
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
-               @can('politicaJuvenil.create')
+               @can('estrategiaMetropolitana.create')
                 <li>
-                    <a href="{{ route('politicaJuvenil.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                    <a href="{{ route('estrategiaMetropolitana.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
 
                 </li>
               @endcan
@@ -53,14 +53,10 @@
                                             <span class="fa-solid fa{{ $camp === 'name' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col" class="">Descripcion
-                                        <a wire:click="sortable('description')">
-                                            <span class="fa-solid fa{{ $camp === 'description' ? $icon : '-sort' }}"></span>
-                                        </a>
-                                    </th>
-                                    <th scope="col" class="">link video
-                                        <a wire:click="sortable('link_video')">
-                                            <span class="fa-solid fa{{ $camp === 'link_video' ? $icon : '-sort' }}"></span>
+
+                                    <th scope="col" class="">link youtube
+                                        <a wire:click="sortable('link_youtube')">
+                                            <span class="fa-solid fa{{ $camp === 'link_youtube' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
 
@@ -84,32 +80,31 @@
                                             <span class="fa-solid fa{{ $camp === 'updated_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                   @if(auth()->user()->can('politicaJuvenil.edit') or auth()->user()->can('politicaJuvenil.destroy') )
+                                    @if(auth()->user()->can('estrategiaMetropolitana.edit') or auth()->user()->can('estrategiaMetropolitana.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
-                                    @endif
+                                 @endif
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($youthPolicies as $youthPolicy)
+                                @forelse($youthStrategies as $youthStrategy)
                                 <tr>
                                     {{-- <td>{{ $category->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $youthPolicy->name }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->description}}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->link_video }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->link_drive }}</span></td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $youthStrategy->name }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthStrategy->link_youtube }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthStrategy->link_drive }}</span></td>
                                     <td>
-                                        @isset($youthPolicy->image)
-                                    <img src="{{ Storage::url($youthPolicy->image->url) }}" class="img-thumbnail" style="width:100px"></td>
+                                        @isset($youthStrategy->image)
+                                    <img src="{{ Storage::url($youthStrategy->image->url) }}" class="img-thumbnail" style="width:100px"></td>
                                     @else
                                     <img src="" class="img-thumbnail" style="width:100px"></td>
                                     @endif
-                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthPolicy->created_at->format('d-m-Y') }}</span></td>
-                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthPolicy->updated_at->format('d-m-Y') }}</span></td>
-                                  @if(auth()->user()->can('politicaJuvenil.edit') or auth()->user()->can('politicaJuvenil.destroy') )
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthStrategy->created_at->format('d-m-Y') }}</span></td>
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthStrategy->updated_at->format('d-m-Y') }}</span></td>
+                                  @if(auth()->user()->can('estrategiaMetropolitana.edit') or auth()->user()->can('estrategiaMetropolitana.destroy') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
-                                        @include('admin.pages.youthPolicy.partials.buttons')
+                                        @include('admin.pages.youthStrategy.partials.buttons')
                                     </td>
                                    @endif
                                 </tr>
@@ -128,7 +123,7 @@
     </div>
     <div class="card-footer">
         {{-- Incluimos la paginación personalizada  --}}
-        @include('admin.pages.youthPolicy.partials.pagination')
+        @include('admin.pages.youthStrategy.partials.pagination')
     </div>
 
 </div>

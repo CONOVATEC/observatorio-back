@@ -118,5 +118,12 @@ class RoleSeeder extends Seeder
          Permission::create(['name' => 'slide.edit', 'description' => 'Editar Slide'])->syncRoles([$rol1, $rol2]);
          Permission::create(['name' => 'slide.destroy', 'description' => 'Eliminar Slide'])->syncRoles([$rol1, $rol2]);
 
+
+          //* estrategia metropolitana
+          Permission::create(['name' => 'estrategiaMetropolitana.index', 'description' => 'Ver Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'estrategiaMetropolitana.create', 'description' => 'Crear Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'estrategiaMetropolitana.edit', 'description' => 'Editar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'estrategiaMetropolitana.destroy', 'description' => 'Eliminar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+
     }
 }
