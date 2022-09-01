@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\Training::factory(10)->create();
         \App\Models\admin\YouthObservatory::factory(10)->create();
         \App\Models\admin\YouthPolicy::factory(1)->create();
-        \App\Models\admin\YouthStrategy::factory(10)->create();
+        \App\Models\admin\YouthStrategy::factory(2)->create();
         \App\Models\admin\Position::factory(5)->create();
         \App\Models\admin\Directive::factory(5)->create();
         \App\Models\admin\Slide::factory(4)->create();

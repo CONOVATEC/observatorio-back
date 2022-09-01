@@ -14,9 +14,11 @@ use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\Youth_observatoryController;
 use App\Http\Controllers\admin\YouthPolicyController;
+use App\Http\Controllers\admin\YouthStrategyController;
 use App\Http\Controllers\Api\V1\YoutObservatoryController;
 use App\Http\Controllers\LanguageController;
 use App\Models\admin\YouthPolicy;
+use App\Models\admin\YouthStrategy;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -94,7 +96,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('logos', LogoController::class)->names('logos');
     Route::resource('politica-juventud', YouthPolicyController::class)->names('politicaJuvenil');
     Route::resource('slide', SlideController::class)->names('slide');
-
+    Route::resource('estrategia-metropolitana', YouthStrategyController::class)->names('estrategiaMetropolitana');
 });
 
 //* locale Route

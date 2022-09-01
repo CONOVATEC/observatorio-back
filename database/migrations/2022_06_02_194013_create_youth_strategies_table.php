@@ -16,20 +16,8 @@ return new class extends Migration
         Schema::create('youth_strategies', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->nullable(false);
-            $table->string('slug');
-            $table->string('theme')->nullable();
-            $table->string('description')->nullable();
-            $table->string('axes')->nullable();//ejes
-            $table->string('imagen_theme')->nullable();
-            $table->string('imagen_infographic')->nullable();
-            $table->string('video_strategy')->nullable();
-
-            /*
-                ** -- Laves foreanas -- **
-            */
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
+            $table->string('link_drive')->nullable();
+            $table->string('link_youtube')->nullable();
             $table->timestamps();
         });
     }
