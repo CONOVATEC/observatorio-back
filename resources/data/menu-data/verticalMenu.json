@@ -71,19 +71,38 @@
         {
             "name": "Young Observatory",
             "icon": "zap",
-            "slug": "juvenilesObservatorio",
+            "slug": "observatorio-juvenil",
             "submenu": [
                 {
-                    "url": "juvenilesObservatorio",
+                    "url": "observatorio-juvenil",
                     "name": "view records",
                     "icon": "file-text",
-                    "slug": "juvenilesObservatorio.index"
+                    "slug": "observatorioJuvenil.index"
                 },
                 {
-                    "url": "juvenilesObservatorio/create",
+                    "url": "observatorio-juvenil/create",
                     "name": "create register",
                     "icon": "plus-square",
-                    "slug": "juvenilesObservatorio.create"
+                    "slug": "observatorioJuvenil.create"
+                }
+            ]
+        },
+        {
+            "name": "Young Strategy",
+            "icon": "zap",
+            "slug": "estrategia-metropolitana",
+            "submenu": [
+                {
+                    "url": "estrategia-metropolitana",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "estrategiaMetropolitana.index"
+                },
+                {
+                    "url": "estrategia-metropolitana/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "estrategiaMetropolitana.create"
                 }
             ]
         },
@@ -109,19 +128,19 @@
         {
             "name": "Policies",
             "icon": "book-open",
-            "slug": "politicas",
+            "slug": "politicaJuvenil",
             "submenu": [
                 {
-                    "url": "politicas",
+                    "url": "politica-juvenil",
                     "name": "view records",
                     "icon": "file-text",
-                    "slug": "politicas.index"
+                    "slug": "politicaJuvenil.index"
                 },
                 {
-                    "url": "politicas/create",
+                    "url": "politica-juvenil/create",
                     "name": "create register",
                     "icon": "plus-square",
-                    "slug": "politicas.create"
+                    "slug": "politicaJuvenil.create"
                 }
             ]
         },
@@ -207,6 +226,25 @@
                     "name": "create logo",
                     "icon": "file-plus",
                     "slug": "logos.create"
+                }
+            ]
+        },
+        {
+            "name": "slide",
+            "icon": "image",
+            "slug": "slide",
+            "submenu": [
+                {
+                    "url": "slide",
+                    "name": "view slide",
+                    "icon": "eye",
+                    "slug": "slide.index"
+                },
+                {
+                    "url": "slide/create",
+                    "name": "create slide",
+                    "icon": "file-plus",
+                    "slug": "slide.create"
                 }
             ]
         },

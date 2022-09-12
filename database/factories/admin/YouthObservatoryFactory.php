@@ -19,8 +19,8 @@ class YouthObservatoryFactory extends Factory
         return [
             'mission' => $this->faker->unique->text(40),
             'vision' =>$this->faker->unique->text(40),
-            'about_us' =>$this->faker->unique->text(40),
-            'organization_chart' => $this->faker->imageUrl(),
+            'about_us' =>$this->faker->unique->text(40)
+
         ];
     }
 }
