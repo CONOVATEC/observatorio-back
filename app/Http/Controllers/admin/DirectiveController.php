@@ -17,6 +17,16 @@ class DirectiveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:directives.index')->only('index');
+        $this->middleware('can:directives.create')->only('create');
+        $this->middleware('can:directives.edit')->only('edit');
+        $this->middleware('can:directives.destroy')->only('destroy');
+    }
     public function index()
     {
         $breadcrumbs = [
@@ -33,7 +43,7 @@ class DirectiveController extends Controller
      */
     public function create()
     {
-        
+
         $directive = Directive::all();
         //dd($directive);
         $position_id = Position::pluck('slug', 'id');
@@ -49,14 +59,14 @@ class DirectiveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DirectiveRequest $request)
     {
         //dd($request);
         $directive = Directive::create($request->all());
-        
-        if ($request->file('image_logo')) {
+
+        if ($request->file('image_directive')) {
             //$url=Storage::put('news',$request->file('file')->store('public/news'));
-            $url = $request->file('image_logo')->store('public/logos');
+            $url = $request->file('image_directive')->store('public/directives');
             $directive->image()->create([
                 'url' => $url
             ]);
@@ -91,6 +101,11 @@ class DirectiveController extends Controller
         return view('admin.pages.directive.edit', compact('breadcrumbs', 'directives', 'directive','position_id'));
     }
 
+    public function show($id)
+    {
+        abort(403);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -101,8 +116,8 @@ class DirectiveController extends Controller
     public function update(DirectiveRequest $request, $id)
     {
         Directive::find($id)->update($request->all());
-        if($request->file('image_logo')){
-            $url=Storage::put('public/logos',$request->file('image_logo'));
+        if($request->file('image_directive')){
+            $url=Storage::put('public/directives',$request->file('image_directive'));
             $directive=Directive::findOrFail($id);
             if($directive->image){
                 Storage::delete($directive->image->url);
@@ -124,8 +139,9 @@ class DirectiveController extends Controller
     {
         $directive = Directive::findOrFail($id);
 
-        if ($directive->image->url) {
+        if (!is_null($directive->image->url) ){
             Storage::disk()->delete($directive->image->url);
+            $directive->image->delete();
             $directive->Delete();
         } else {
             $directive->Delete();

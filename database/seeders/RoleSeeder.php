@@ -34,10 +34,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => '/', 'description' => 'Ver web'])->syncRoles([$rol1, $rol2, $rol3, $rol4]);
 
         //* Roles para juvenilesObservatorio
-        Permission::create(['name' => 'juvenilesObservatorio.index', 'description' => 'Ver observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
-        Permission::create(['name' => 'juvenilesObservatorio.create', 'description' => 'Crear observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
-        Permission::create(['name' => 'juvenilesObservatorio.edit', 'description' => 'Editar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
-        Permission::create(['name' => 'juvenilesObservatorio.destroy', 'description' => 'Eliminar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.index', 'description' => 'Ver observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.create', 'description' => 'Crear observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.edit', 'description' => 'Editar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.destroy', 'description' => 'Eliminar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
         //* Roles para sobreCmpj
         Permission::create(['name' => 'sobreCmpj.index', 'description' => 'Ver CMPJ'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'sobreCmpj.create', 'description' => 'Crear CMPJ'])->syncRoles([$rol1, $rol2]);
@@ -124,6 +124,8 @@ class RoleSeeder extends Seeder
           Permission::create(['name' => 'estrategiaMetropolitana.create', 'description' => 'Crear Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
           Permission::create(['name' => 'estrategiaMetropolitana.edit', 'description' => 'Editar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
           Permission::create(['name' => 'estrategiaMetropolitana.destroy', 'description' => 'Eliminar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+
+
 
     }
 }

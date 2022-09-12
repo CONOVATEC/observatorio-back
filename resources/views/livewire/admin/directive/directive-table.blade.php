@@ -23,11 +23,12 @@
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
-
+                @can('directives.create')
                 <li>
                     <a href="{{ route('directives.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
 
                 </li>
+                @endcan
 
             </ul>
         </div>
@@ -79,7 +80,9 @@
                                             <span class="fa-solid fa{{ $camp === 'updated_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('directives.edit') or auth()->user()->can('directives.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,21 +91,32 @@
                                     {{-- <td>{{ $category->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $directive->name }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->status}}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->position_id }}</span></td>
+                                    <td class="text-center">
+
+                                        @if ($directive->status==2)
+                                        <span class="d-inline-block text-truncate badge badge-glow bg-success" style="max-width: 250px;">Activo</span>
+                                        @else
+                                            <span class="d-inline-block text-truncate badge badge-glow bg-danger" style="max-width: 250px;">Inactivo</span>
+                                        @endif
+
+                                    </td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->position->name }}</span></td>
                                     <td>
                                         @isset($directive->image)
-                                        {{-- {{$directive->image->url}} --}}
-                                    <img src="Storage/{{ ($directive->image->url) }}" class="img-thumbnail" style="width:100px"></td>
+                                    <img src="{{ Storage::url($directive->image->url) }}" class="img-thumbnail" style="width:100px"></td>
                                     @else
-                                    <img src="" class="img-thumbnail" style="width:100px"></td>
+                                    <img src="{{asset('images/banner/sin-imagen.jpg')}}" class="img-thumbnail" style="width:100px"></td>
                                     @endif
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $directive->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $directive->updated_at->format('d-m-Y') }}</span></td>
-                                    <td class="text-center">
+
                                         {{-- Incluimos los botones  --}}
+                                        @if(auth()->user()->can('directives.edit') or auth()->user()->can('directives.destroy') )
+                                        <td class="text-center">
                                         @include('admin.pages.directive.partials.buttons')
                                     </td>
+                                        @endif
+
                                 </tr>
                                 @empty
                                 <tr class="text-center ">

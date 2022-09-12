@@ -4,7 +4,7 @@ namespace App\Http\Requests\admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Youth_observatoryRequest extends FormRequest
+class YouthObservatoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,15 @@ class Youth_observatoryRequest extends FormRequest
     public function rules()
     {
         // Verificamos que en la ruta trae un parámetro
-       
+
         $rules = [
             'mission' => 'required|min:3|string',
             'vision' => 'required|min:3|string',
-            'about_us'=>'required|min:3|string',
-            'organization_chart'=>'required|min:3|string',
+            'about_us'=>'min:3|string',
         ];
-        
-            
-        
+
+
+
         return  $rules;
     }
 }

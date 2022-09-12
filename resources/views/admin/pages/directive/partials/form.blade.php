@@ -34,7 +34,7 @@
                         <span class="text-danger form-label fw-bold">{{ $message }}</span>
                     @enderror
                 </div>
-            </div> 
+            </div>
 
         </div>
 
@@ -55,7 +55,7 @@
                             <p class='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>
                                 Seleccione la imagen</p>
                         </div>
-                        <input type='file' name="image_logo" id="imagen" class="hidden"accept="image/*"/>
+                        <input type='file' name="image_directive" id="imagen" class="hidden"accept="image/*"/>
 
                     </label>
                 </div>
@@ -65,7 +65,7 @@
 
             <div class="grid grid-cols-1 mt-1 mx-2">
                 @isset($directive->image)
-                    <img src="Storage/{{ ($directive->image->url) }}" id="imagenSeleccionada" >
+                <img src="{{ Storage::url($directive->image->url) }}" id="imagenSeleccionada">
                 @else
                     <img src="" id="imagenSeleccionada">
                 </div>

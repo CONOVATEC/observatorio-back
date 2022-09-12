@@ -16,6 +16,11 @@ return [
     "User Role" => "Rol de Usuario",
     "User Role" => "Rol de Usuario",
     "Young Observatory" => "Observatorio Joven",
+    "slide" => "slide",
+    "create slide" => "crear slide",
+    "view slide" => "ver slide",
+
+    "Young Strategy" => "Estrategia Juvenil",
     "CMPJ" => "Sobre CMPJ",
     "Policies" => "Políticas",
     "logo" => "Logos",

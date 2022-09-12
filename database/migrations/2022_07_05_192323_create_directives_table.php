@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('directives', function (Blueprint $table) {
             $table->id();
             $table->string('name',45)->unique();
-            $table->string('photo')->nullable();
             $table->enum('status',[1,2])->default(1);
             $table->unsignedBigInteger('position_id');
             $table->timestamps();

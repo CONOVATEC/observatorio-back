@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\YouthObservatory;
 
 use App\Models\admin\Youth_observatory;
+use App\Models\admin\YouthObservatory;
 use Livewire\Component;
 
 class YouthObservatoryTable extends Component
@@ -17,15 +18,12 @@ class YouthObservatoryTable extends Component
     /*******************************************************
      * Para mantener persistente los filtros y la búsqueda *
      *******************************************************/
-   /* protected $queryString = [
+    protected $queryString = [
         'search' => ['except' => ''],
         'camp' => ['except' => null],
         'order' => ['except' => null],
-    ];*/
-    /*********************************************
-     * Método para resetear el url de paginación *
-     *********************************************/
-    /*public function updatingSearch()
+    ];
+    public function updatingSearch()
     {
         $this->resetPage();
     }
@@ -39,25 +37,22 @@ class YouthObservatoryTable extends Component
         $this->camp = 'created_at'; //Para que carga filtrado porla fecha de creación
         $this->order = 'desc';      //Para que carga en forma descendente
         $this->icon = $this->iconDirection($this->order);
-    }*/
-   
+    }
     public function render()
     {
-       /* $categories = Category::where('name', 'like', "%{$this->search}%")
-            ->orWhere('description', 'like', "%{$this->search}%");
+        $youthObservatories = YouthObservatory::where('mission', 'like', "%{$this->search}%");
+
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {
-            //Ejecuta la sentencia y lo agrega al usuario + el orderby
-            $categories = $categories->orderBy($this->camp, $this->order);
+            //Ejecuta la sentensettings agrega al usuario + el orderby
+            $youthObservatories = $youthObservatories->orderBy($this->camp, $this->order);
         } else {
             $this->camp = null;
             $this->order = null;
         }
-        $categories = $categories->paginate($this->perPage);
+        $youthObservatories = $youthObservatories->paginate($this->perPage);
         // $categories = Category::paginate(5);
-        return view('livewire.admin.category.live-category-table', compact('categories'));*/
-        $youthObservatory=Youth_observatory::all();
-        return view('livewire.admin.youth-observatory.youth-observatory-table',compact('youthObservatory'));
+        return view('livewire.admin.youth-observatory.youth-observatory-table', compact('youthObservatories'));
     }
     public function sortable($camp)
     {
@@ -104,6 +99,4 @@ class YouthObservatoryTable extends Component
         $this->search = '';
         $this->perPage = 5;
     }
-
-   
 }
