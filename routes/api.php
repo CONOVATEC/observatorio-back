@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\V1\YoutObservatoryController;
 
 use App\Http\Controllers\Api\V1\AboutCmpjController;
 use App\Http\Controllers\Api\V1\LogoApiController;
+use App\Http\Controllers\Api\V1\SlideController;
+use App\Http\Controllers\Api\V1\YouthPolicyController;
+use App\Http\Controllers\Api\V1\YouthStrategyController;
 use App\Http\Resources\Api\V1\LogoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +39,9 @@ Route::apiResource('youtObservatory', YoutObservatoryController::class)->only(['
 Route::apiResource('cmpj',AboutCmpjController::class)->only(['index']);
 
 Route::apiResource('logo',LogoApiController::class)->only(['index']);
+
+Route::apiResource('youthPolicy',YouthPolicyController::class)->only(['index']);
+Route::apiResource('youthStrategy',YouthStrategyController::class)->only(['index']);
+Route::apiResource('slide',SlideController::class)->only(['index']);
 
 

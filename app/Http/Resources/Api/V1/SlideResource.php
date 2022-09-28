@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class YoutObservatoryResource extends JsonResource
+class SlideResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,11 @@ class YoutObservatoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'mission'=>$this->mission,
-            'vision'=>$this->vision,
-            'about'=>$this->about_us,
-            'imagen_observatory'=>$this->imagen()
+            'year'=>$this->year,
+            'title'=>$this->title,
+            'extract'=>$this->extract,
+            'status'=>$this->estado($this->status),
+            'imagen_slide'=>$this->imagen(),
         ];
     }
 
@@ -30,5 +31,14 @@ class YoutObservatoryResource extends JsonResource
         }
         return $respuesta;
         //dd($this->image->url);
+    }
+
+    private function estado($valor){
+        if($valor==1){
+            $estado=false;
+        }else if($valor==2){
+            $estado=true;
+        }
+        return $estado;
     }
 }
