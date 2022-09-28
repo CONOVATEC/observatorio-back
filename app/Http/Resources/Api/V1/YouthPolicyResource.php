@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class YoutObservatoryResource extends JsonResource
+class YouthPolicyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,12 @@ class YoutObservatoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'mission'=>$this->mission,
-            'vision'=>$this->vision,
-            'about'=>$this->about_us,
-            'imagen_observatory'=>$this->imagen()
+            'name'=>$this->name,
+            'description'=>$this->description,
+            'link_video'=>$this->link_video,
+            'link_drive'=>$this->link_drive,
+            'imagen_policy'=>$this->imagen(),
+
         ];
     }
 
@@ -32,3 +34,6 @@ class YoutObservatoryResource extends JsonResource
         //dd($this->image->url);
     }
 }
+
+
+
