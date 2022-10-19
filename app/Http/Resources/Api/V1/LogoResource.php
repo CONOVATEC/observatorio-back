@@ -16,6 +16,7 @@ class LogoResource extends JsonResource
     {
         return [
             'name'=>$this->name,
+            'imagen_logo'=>$this->imagen(),
             'social_media'=>$this->social_media,
             'type_logo'=>[
                 'name'=>$this->type_logo->name,
@@ -23,5 +24,15 @@ class LogoResource extends JsonResource
             ]
             //TagResource::collection($this->tags)
         ];
+    }
+
+      public function imagen(){
+        if(isset($this->image->url)){
+            $respuesta=$this->image->url;
+        }else{
+            $respuesta=null;
+        }
+        return $respuesta;
+        //dd($this->image->url);
     }
 }
