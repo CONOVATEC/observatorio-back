@@ -20,7 +20,7 @@ class Category extends Model
      */
     protected $fillable = ['name', 'slug', 'description'];
     //Para registrar la actividad del Usuario
-    protected $table = "Categories";
+    protected $table = "categories";
 
     protected static $logAttributes = ['*'];
 
