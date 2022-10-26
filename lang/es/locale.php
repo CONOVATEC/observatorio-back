@@ -20,7 +20,7 @@ return [
     "create slide" => "crear slide",
     "view slide" => "ver slide",
 
-    "Young Strategy" => "Estrategia Juvenil",
+    "Young Strategy" => "Estra. Metropolitana",
     "CMPJ" => "Sobre CMPJ",
     "Policies" => "Políticas",
     "logo" => "Logos",
