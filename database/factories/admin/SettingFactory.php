@@ -22,7 +22,7 @@ class SettingFactory extends Factory
         $height = 200;
         return [
             'name_entity' => $this->faker->name(),
-            'logo' => $this->faker->url(),
+            'url_image' => $this->faker->url(),
             'link_facebook' => $this->faker->url(),
             'link_instagram' => $this->faker->url(),
             'link_linkedin' => $this->faker->url(),

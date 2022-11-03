@@ -47,6 +47,7 @@ class LiveSettingTable extends Component
             ->orWhere('link_facebook', 'like', "%{$this->search}%")
             ->orWhere('link_instagram', 'like', "%{$this->search}%")
             ->orWhere('link_linkedin', 'like', "%{$this->search}%")
+            ->orWhere('url_image', 'like', "%{$this->search}%")
             ->orWhere('link_youtube', 'like', "%{$this->search}%");
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {

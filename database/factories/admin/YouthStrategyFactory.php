@@ -20,7 +20,8 @@ class YouthStrategyFactory extends Factory
         return [
             'name' => $name,
             'link_drive' => $this->faker->url(),
-            'link_youtube' => $this->faker->url()
+            'link_youtube' => $this->faker->url(),
+            'url_image' => $this->faker->url(),
         ];
     }
 }

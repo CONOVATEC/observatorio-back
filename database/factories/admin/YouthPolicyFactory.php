@@ -21,6 +21,7 @@ class YouthPolicyFactory extends Factory
         return [
             'name'        => $name,
             'description' => $this->faker->sentence(),
+            'url_image' => $this->faker->url(),
             'link_video' =>$this->faker->url(),
             'link_drive' => $this->faker->url()
         ];

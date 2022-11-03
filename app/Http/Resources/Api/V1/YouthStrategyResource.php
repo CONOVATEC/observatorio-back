@@ -18,7 +18,8 @@ class YouthStrategyResource extends JsonResource
             'name'=>$this->name,
             'link_youtube'=>$this->link_youtube,
             'link_drive'=>$this->link_drive,
-            'imagen_strategy'=>$this->imagen(),
+            'url_image'=>$this->url_image
+            //'imagen_strategy'=>$this->imagen(),
         ];
     }
 

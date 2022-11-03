@@ -31,7 +31,15 @@
                         @enderror
 
                     </div>
+                    <div class="mb-2">
+                        <h4 class="card-title">URL imagen Politica Juvenil </h4>
+                        {{ Form::textarea('url_image', null, ['class' => 'form-control input', 'id' => 'url_image', 'name' => 'url_image', 'cols' => 30, 'rows' => 3, 'placeholder' => 'URL imagen Politica Juvenil']) }}
+                        @error('url_image')
+                            <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                        @enderror
 
+                    </div>
+<!--
                     <div class="grid grid-cols-1 mt-0 mx-7">
                         <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir
                             Imagen</label>
@@ -55,17 +63,8 @@
                             </label>
                         </div>
                     </div>
+                -->
 
-
-                    <div class="grid grid-cols-1 mt-1 mx-2">
-                        @isset($youthPolicy->image)
-                            <img src="{{ Storage::url($youthPolicy->image->url) }}" id="imagenSeleccionada">
-                        @else
-                            <img src="" id="imagenSeleccionada">
-                        </div>
-                        @endif
-
-                    </div>
 
                 </div>
             </div>

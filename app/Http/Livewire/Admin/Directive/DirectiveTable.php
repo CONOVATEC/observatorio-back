@@ -44,7 +44,7 @@ class DirectiveTable extends Component
     public function render()
     {
         $directives = Directive::where('name', 'like', "%{$this->search}%")
-            ->orWhere('photo', 'like', "%{$this->search}%");
+            ->orWhere('url_image', 'like', "%{$this->search}%");
 
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {

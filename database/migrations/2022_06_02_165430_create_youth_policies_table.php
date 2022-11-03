@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',150)->unique();
             $table->text('description')->nullable();
+            $table->text('url_image')->nullable();
             $table->string('link_video')->nullable();
             $table->string('link_drive')->nullable();
 

@@ -21,6 +21,7 @@ class DirectiveFactory extends Factory
             return [
                 'name'=> $this->faker->unique()->username(),
                 'status' => $this->faker->randomElement(['1', '2']),
+                'url_image' => $this->faker->url(),
                 'position_id' =>Position::all()->random()->id,
             ];
     }

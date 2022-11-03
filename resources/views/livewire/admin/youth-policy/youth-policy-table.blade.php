@@ -70,8 +70,10 @@
                                         </a>
                                     </th>
 
-                                    <th scope="col">imagen
-
+                                    <th scope="col" class="">Url imagen
+                                        <a wire:click="sortable('url_image')">
+                                            <span class="fa-solid fa{{ $camp === 'url_image' ? $icon : '-sort' }}"></span>
+                                        </a>
                                     </th>
 
                                     <th scope="col">Creado
@@ -98,12 +100,7 @@
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->description}}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->link_video }}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->link_drive }}</span></td>
-                                    <td>
-                                        @isset($youthPolicy->image)
-                                    <img src="{{ Storage::url($youthPolicy->image->url) }}" class="img-thumbnail" style="width:100px"></td>
-                                    @else
-                                    <img src="" class="img-thumbnail" style="width:100px"></td>
-                                    @endif
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthPolicy->url_image}}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthPolicy->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthPolicy->updated_at->format('d-m-Y') }}</span></td>
                                   @if(auth()->user()->can('politicaJuvenil.edit') or auth()->user()->can('politicaJuvenil.destroy') )

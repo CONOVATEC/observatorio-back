@@ -19,7 +19,7 @@ class SlideResource extends JsonResource
             'title'=>$this->title,
             'extract'=>$this->extract,
             'status'=>$this->estado($this->status),
-            'imagen_slide'=>$this->imagen(),
+            'url_image'=>$this->url_image,
         ];
     }
 

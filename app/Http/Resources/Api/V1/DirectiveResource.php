@@ -17,7 +17,7 @@ class DirectiveResource extends JsonResource
         return [
             'name'=>$this->name,
             'position'=>$this->position->name,
-            'imagen_directive'=>$this->imagen(),
+            'url_image'=>$this->url_image,
             'status'=>$this->status,
             'created'=>$this->created_at->format('d-m-Y'),
             ];

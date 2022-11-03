@@ -18,7 +18,8 @@ class YoutObservatoryResource extends JsonResource
             'mission'=>$this->mission,
             'vision'=>$this->vision,
             'about'=>$this->about_us,
-            'imagen_observatory'=>$this->imagen()
+            'url_image'=>$this->url_image
+            //'imagen_observatory'=>$this->imagen()
         ];
     }
 

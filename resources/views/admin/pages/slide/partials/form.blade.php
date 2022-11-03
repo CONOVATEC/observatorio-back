@@ -40,6 +40,14 @@
 
                     </div>
 
+                    <div class="mb-2">
+                        <h4 class="card-title">URL Imagen Slider </h4>
+                        {{ Form::text('url_image', null, ['class' => 'form-control input', 'id' => 'url_image', 'name' => 'url_image', 'maxlength' => '255', 'placeholder' => 'Url Imagen']) }}
+                        @error('url_image')
+                            <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <!--
                     <div class="grid grid-cols-1 mt-0 mx-7">
                         <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir
                             Imagen</label>
@@ -63,17 +71,20 @@
                             </label>
                         </div>
                     </div>
+                -->
 
-
+<!--
                     <div class="grid grid-cols-1 mt-1 mx-2">
-                        @isset($slide->image)
-                            <img src="{{ Storage::url($slide->image->url) }}" id="imagenSeleccionada">
-                        @else
+                      {{--  @isset($slide->image) --}}
+                          {{--  <img src="{{ Storage::url($slide->image->url) }}" id="imagenSeleccionada"> --}}
+                      {{--  @else--}}
                             <img src="" id="imagenSeleccionada">
                         </div>
-                        @endif
+                    -->
+                      {{--  @endif --}}
 
                     </div>
+
                     {{ Form::label('status', 'ESTADO', ['class' => 'form-label fw-bold text-black mx-auto']) }} <br>
                     <div class="mb-2 mx-auto ">
                         <label>{!!Form::radio('status',2,true)!!}ACTIVADO </label>

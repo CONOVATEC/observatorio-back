@@ -40,7 +40,9 @@ class YouthObservatoryTable extends Component
     }
     public function render()
     {
-        $youthObservatories = YouthObservatory::where('mission', 'like', "%{$this->search}%");
+        $youthObservatories = YouthObservatory::where('mission', 'like', "%{$this->search}%")
+        ->orWhere('url_organization_chart', 'like', "%{$this->search}%");
+
 
         //Verificamos si el campo no son nuloss
         if ($this->camp and $this->order) {

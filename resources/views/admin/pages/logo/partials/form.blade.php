@@ -40,6 +40,18 @@
 
         <div class="col-4">
 
+            <div class="mb-2">
+                {{-- 'required' => '' --}}
+                {{ Form::label('url_image', 'url imagen*', ['class' => 'form-label']) }}
+                {{ Form::textarea('url_image', null, ['class' => 'form-control', 'id' => 'url_image','cols'=>'20','rows'=>'4', 'placeholder' => 'Ingrese url de imagen del logo']) }}
+                @error('name')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+
+
+        </div>
+<!--
             <div class="grid grid-cols-1 mt-0 mx-7">
                 <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir Imagen</label>
                 <div class='flex items-center justify-center w-full'>
@@ -55,25 +67,26 @@
                             <p class='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>
                                 Seleccione la imagen</p>
                         </div>
-                        <input type='file' name="image_logo" id="imagen" class="hidden"accept="image/*"/>
+                        <input type='text' name="url_image" id="imagen" class=""/>
 
                     </label>
                 </div>
             </div>
 
+        -->
 
-
-            <div class="grid grid-cols-1 mt-1 mx-2">
-                @isset($logo->image)
+         <!--   <div class="grid grid-cols-1 mt-1 mx-2">
+               {{-- @isset($logo->image)}--}
                     <img src="{{ Storage::url($logo->image->url) }}" id="imagenSeleccionada" >
-                @else
-                    <img src="" id="imagenSeleccionada">
+               {{-- @else --}}
+                                   <img src="" id="imagenSeleccionada">
                 </div>
-                @endif
+              {{--  @endif --}}
             </div>
+        -->
             {{-- FIN CAMPO IMAGEN --}}
 
-        </div>
+
 
 
     </div>

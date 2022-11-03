@@ -22,22 +22,23 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('public/news');
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        \App\Models\admin\Category::factory(100)->create();
-        \App\Models\admin\Tag::factory(10)->create();
+        \App\Models\admin\Category::factory(1)->create();
+        \App\Models\admin\Tag::factory(1)->create();
          \App\Models\admin\AboutCmpj::factory(1)->create();
-        \App\Models\admin\TypeLogo::factory(10)->create();
-        \App\Models\admin\ReaderLog::factory(20)->create();
+        \App\Models\admin\TypeLogo::factory(1)->create();
+        \App\Models\admin\ReaderLog::factory(1)->create();
         \App\Models\admin\Setting::factory(1)->create();
         $this->call(PostSeeder::class);
-        \App\Models\admin\Like::factory(10)->create();
-        \App\Models\admin\TypeTraining::factory(10)->create();
-        \App\Models\admin\Training::factory(10)->create();
+        \App\Models\admin\Like::factory(1)->create();
+        \App\Models\admin\TypeTraining::factory(1)->create();
+        \App\Models\admin\Training::factory(1)->create();
         \App\Models\admin\YouthObservatory::factory(1)->create();
         \App\Models\admin\YouthPolicy::factory(1)->create();
-        \App\Models\admin\YouthStrategy::factory(2)->create();
-        \App\Models\admin\Position::factory(5)->create();
-        \App\Models\admin\Directive::factory(5)->create();
-        \App\Models\admin\Slide::factory(4)->create();
-        $this->call(LogoSeeder::class);
+        \App\Models\admin\YouthStrategy::factory(1)->create();
+        \App\Models\admin\Position::factory(1)->create();
+        \App\Models\admin\Directive::factory(1)->create();
+        \App\Models\admin\Slide::factory(1)->create();
+        \App\Models\admin\Logo::factory(2)->create();
+        //$this->call(LogoSeeder::class);
     }
 }

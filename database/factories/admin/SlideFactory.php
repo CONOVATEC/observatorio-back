@@ -22,6 +22,7 @@ class SlideFactory extends Factory
             'year' => $this->faker->year(),
             'title' => $title,
             'extract' => $this->faker->text(150),
+            'url_image' => $this->faker->url(),
             'status' => $this->faker->numberBetween(1,2)
         ];
     }

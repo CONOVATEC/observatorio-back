@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->unique()->nullable(false);
             $table->string('link_drive')->nullable();
             $table->string('link_youtube')->nullable();
+            $table->text('url_image')->nullable();
             $table->timestamps();
         });
     }

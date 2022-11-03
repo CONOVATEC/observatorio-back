@@ -19,7 +19,8 @@ class YouthPolicyResource extends JsonResource
             'description'=>$this->description,
             'link_video'=>$this->link_video,
             'link_drive'=>$this->link_drive,
-            'imagen_policy'=>$this->imagen(),
+            'url_image'=>$this->url_image
+            //'imagen_policy'=>$this->imagen(),
 
         ];
     }

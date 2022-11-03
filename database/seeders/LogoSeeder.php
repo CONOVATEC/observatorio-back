@@ -16,14 +16,14 @@ class LogoSeeder extends Seeder
      */
     public function run()
     {
-        $logos= Logo::factory(10)->create();
+        //$logos= Logo::factory(1)->create();
 
-        foreach ($logos as $logo) {
-            Image::factory(1)->create([
-                'imageable_id' => $logo->id,
-                'imageable_type' => Logo::class,
-            ]);
+        //foreach ($logos as $logo) {
+          //  Image::factory(1)->create([
+            //    'imageable_id' => $logo->id,
+             //   'imageable_type' => Logo::class,
+            //]);
 
-        }
+       // }
     }
 }

@@ -25,7 +25,7 @@
 
 
             {{-- SELECT DE TIPO DE LOGO --}}
-             <div class="col-md-6 pb-6">
+            <div class="col-md-6 pb-6">
                 <div class="mb-2">
                     {{ Form::label('position_id', 'Posicion*', ['class' => 'form-label fw-bold']) }}
                     {{ Form::select('position_id', $position_id, null, ['class' => 'select2 form-select']) }}
@@ -39,7 +39,16 @@
         </div>
 
         <div class="col-4">
-
+            <div class="mb-2">
+                {{-- 'required' => '' --}}
+                {{ Form::label('url_image', 'URL Imagen Directiva*', ['class' => 'form-label']) }}
+                {{ Form::textarea('url_image', null, ['class' => 'form-control', 'id' => 'url_image','cols'=>'20','rows'=>'4', 'placeholder' => 'Ingrese url para imagen de directiva']) }}
+                @error('url_image')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <!--
             <div class="grid grid-cols-1 mt-0 mx-7">
                 <label class="uppercase md:text-sm text-xs text-gray-500 font-semibold mb-1">Subir Imagen</label>
                 <div class='flex items-center justify-center w-full'>
@@ -64,51 +73,57 @@
 
 
             <div class="grid grid-cols-1 mt-1 mx-2">
-                @isset($directive->image)
-                <img src="{{ Storage::url($directive->image->url) }}" id="imagenSeleccionada">
-                @else
+              {{-- @isset($directive->image) --}}
+          {{-- <img src="{{ Storage::url($directive->image->url) }}" id="imagenSeleccionada"> --}}
+             {{-- @else --}}
                     <img src="" id="imagenSeleccionada">
                 </div>
-                @endif
-            </div>
-            {{-- FIN CAMPO IMAGEN --}}
 
-        </div>
+                 -->
+        {{-- @endif --}}
+
+        {{-- FIN CAMPO IMAGEN --}}
+
+
 
 
     </div>
+
+
     <div class=" col-12 col-lg-6 mx-auto mb-0 mt-4">
         <a href="{{ route('directives.index') }}" type="button" class="btn btn-danger float-start btn-sm"><i
                 class="fa-solid fa-delete-left"></i> </i> @isset($directives)
-                Volver
-            @else
-                Cancelar
-            @endisset
+    Volver
+@else
+    Cancelar
+@endisset
             </button>
         </a>
 
         <button type="submit" class="btn btn-primary float-end btn-sm"><i class="fa-solid fa-floppy-disk"></i>
             @isset($directives)
-                Actualizar
-            @else
-                Guardar
-            @endisset
+    Actualizar
+@else
+    Guardar
+@endisset
         </button>
 
     </div>
-    </div>
 
-    <!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+-->
+</div>
 
-    <script>
-        $(document).ready(function(e) {
-            $('#imagen').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#imagenSeleccionada').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            });
+<!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+    $(document).ready(function(e) {
+        $('#imagen').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#imagenSeleccionada').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
         });
-    </script>
+    });
+</script>

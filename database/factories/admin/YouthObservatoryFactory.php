@@ -17,9 +17,10 @@ class YouthObservatoryFactory extends Factory
     public function definition()
     {
         return [
-            'mission' => $this->faker->unique->text(40),
-            'vision' =>$this->faker->unique->text(40),
-            'about_us' =>$this->faker->unique->text(40)
+            'mission' => $this->faker->unique->text(100),
+            'vision' =>$this->faker->unique->text(100),
+            'about_us' =>$this->faker->unique->text(100),
+            'url_organization_chart' => $this->faker->url(),
 
         ];
     }

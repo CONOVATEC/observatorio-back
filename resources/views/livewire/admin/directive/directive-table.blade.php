@@ -64,9 +64,9 @@
                                         </a>
                                     </th>
 
-                                    <th scope="col">Photo
-                                        <a wire:click="sortable('photo')">
-                                            <span class="fa-solid fa{{ $camp === 'photo' ? $icon : '-sort' }}"></span>
+                                    <th scope="col" class="">Url imagen
+                                        <a wire:click="sortable('url_image')">
+                                            <span class="fa-solid fa{{ $camp === 'url_image' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
 
@@ -101,12 +101,7 @@
 
                                     </td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->position->name }}</span></td>
-                                    <td>
-                                        @isset($directive->image)
-                                    <img src="{{ Storage::url($directive->image->url) }}" class="img-thumbnail" style="width:100px"></td>
-                                    @else
-                                    <img src="{{asset('images/banner/sin-imagen.jpg')}}" class="img-thumbnail" style="width:100px"></td>
-                                    @endif
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $directive->url_image}}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $directive->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $directive->updated_at->format('d-m-Y') }}</span></td>
 

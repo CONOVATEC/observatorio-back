@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('name_entity',45)->unique();
-            $table->string('logo',255)->nullable();
+            //$table->string('logo',255)->nullable();
             $table->string('link_facebook',255)->nullable();
             $table->string('link_instagram',255)->nullable();
             $table->string('link_linkedin',255)->nullable();
             $table->string('link_youtube',255)->nullable();
+            $table->text('url_image')->nullable();
             /*
                 ** -- Laves foreanas -- **
             */

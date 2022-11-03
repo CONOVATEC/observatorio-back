@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('year',4);
             $table->text('title');
             $table->string('extract',250);
+            $table->text('url_image')->nullable();
             $table->enum('status',['1','2']); //1 inactivo 2 activo
             $table->timestamps();
         });

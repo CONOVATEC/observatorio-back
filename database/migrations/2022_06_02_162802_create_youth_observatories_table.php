@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('mission')->nullable(false);
             $table->text('vision')->nullable(false);
             $table->text('about_us')->nullable();
+            $table->text('url_organization_chart')->nullable();
+
             $table->timestamps();
         });
     }

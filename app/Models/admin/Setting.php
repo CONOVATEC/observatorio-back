@@ -11,7 +11,7 @@ class Setting extends Model
 
     protected $table="settings";
 
-    protected $fillable = ['name_entity','logo','link_facebook','link_instagram','link_linkedin','link_youtube','user_id'];
+    protected $fillable = ['name_entity','url_image','link_facebook','link_instagram','link_linkedin','link_youtube','user_id'];
 
  /************************************************************************
      * Relación de uno a muchos inversa belongsTo pertenece a user *
