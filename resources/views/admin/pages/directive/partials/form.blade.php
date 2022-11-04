@@ -1,6 +1,6 @@
 {{-- <form action="javascript:void(0);" class="form"> --}}
 <div class="row">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 
 
     <div class="row">
@@ -15,16 +15,6 @@
                 @enderror
             </div>
 
-            {{-- <div class="mb-2">
-                {{ Form::label('social_media', 'Link ', ['class' => 'form-label']) }}<i class="fa-solid fa-link"></i>
-                {{ Form::text('social_media', null, ['class' => 'form-control input', 'id' => 'social_media', 'name' => 'social_media', 'placeholder' => 'link']) }}
-                @error('social_media')
-                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
-                @enderror
-            </div> --}}
-
-
-            {{-- SELECT DE TIPO DE LOGO --}}
             <div class="col-md-6 pb-6">
                 <div class="mb-2">
                     {{ Form::label('position_id', 'Posicion*', ['class' => 'form-label fw-bold']) }}
@@ -34,7 +24,19 @@
                         <span class="text-danger form-label fw-bold">{{ $message }}</span>
                     @enderror
                 </div>
+
+                <div class="mb-2  ">
+                    <label>{!!Form::radio('status',2,true)!!} ACTIVO </label>
+                    <label>{!!Form::radio('status',1)!!} INACTIVO</label>
+
+                    @error('status')
+                        <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
+
+
+
 
         </div>
 
@@ -110,20 +112,6 @@
 
     </div>
 
--->
+
 </div>
 
-<!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-<script>
-    $(document).ready(function(e) {
-        $('#imagen').change(function() {
-            let reader = new FileReader();
-            reader.onload = (e) => {
-                $('#imagenSeleccionada').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(this.files[0]);
-        });
-    });
-</script>

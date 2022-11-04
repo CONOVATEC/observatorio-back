@@ -31,7 +31,7 @@ return [
     "create logo type" => "Crear tipo de logo",
     // Para directiva
     "directive" => "Directiva",
-    "view directive" => "Ver directa",
+    "view directive" => "Ver directiva",
     "create directive" => "Crear directiva",
 
     /*****************
