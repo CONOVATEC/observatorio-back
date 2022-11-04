@@ -125,7 +125,12 @@ class RoleSeeder extends Seeder
           Permission::create(['name' => 'estrategiaMetropolitana.edit', 'description' => 'Editar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
           Permission::create(['name' => 'estrategiaMetropolitana.destroy', 'description' => 'Eliminar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
 
-
-
+          //* puestos para los directivos
+          Permission::create(['name' => 'posiciones.index', 'description' => 'Ver puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.create', 'description' => 'Crear puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.edit', 'description' => 'Editar puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.destroy', 'description' => 'Eliminar puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.eliminar.definitivo', 'description' => 'Eliminar definitivo puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.restaurar', 'description' => 'Restaurar puesto de directivos eliminados'])->syncRoles([$rol1, $rol2]);
     }
 }

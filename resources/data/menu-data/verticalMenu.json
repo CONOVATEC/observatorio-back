@@ -279,6 +279,25 @@
                     "slug": "directives.create"
                 }
             ]
+        },
+        {
+            "name": "position",
+            "icon": "shield",
+            "slug": "positions",
+            "submenu": [
+                {
+                    "url": "posiciones",
+                    "name": "view position",
+                    "icon": "eye",
+                    "slug": "posiciones.index"
+                },
+                {
+                    "url": "posiciones/create",
+                    "name": "create position",
+                    "icon": "file-plus",
+                    "slug": "posiciones.create"
+                }
+            ]
         }
     ]
 }

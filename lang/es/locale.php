@@ -40,6 +40,15 @@ return [
     "Ver noticias" => "Ver noticias",
     "view records" => "Ver registros",
     "create register" => "Crear registro",
+     /*****************
+     * Para puesto de directivos *
+     *****************/
+    "position" => "Puestos",
+    "view position" => "Ver puesto directivo",
+    "view records" => "Ver registros",
+    "create position" => "Crear puesto directivo",
+
+
     /*****************
      * Para roles y permisos *
      *****************/

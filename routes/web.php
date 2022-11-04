@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\LogoController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\DirectiveController;
+use App\Http\Controllers\admin\PositionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\SlideController;
@@ -94,6 +95,11 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 //Rutas sergio
     Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index', 'store', 'edit', 'update']);
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
+
+    Route::resource('posiciones', PositionController::class)->names('posiciones');
+    Route::get('posiciones/eliminar-definitivo/{id}', [PositionController::class, 'deleteDefinitive'])->name('posiciones.eliminar.definitivo');
+    Route::get('posiciones/restaurar/{id}', [PositionController::class, 'restore'])->name('posiciones.restaurar');
+
     Route::resource('tipo-logo', TypeLogoController::class)->names('tipoLogo');
     Route::resource('logos', LogoController::class)->names('logos');
     Route::resource('politica-juvenil', YouthPolicyController::class)->names('politicaJuvenil');
