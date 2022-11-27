@@ -26,8 +26,17 @@
                 </div>
 
                 <div class="mb-2  ">
-                    <label>{!!Form::radio('status',2,true)!!} ACTIVO </label>
-                    <label>{!!Form::radio('status',1)!!} INACTIVO</label>
+                    {{ Form::label('status', 'Estado*', ['class' => 'form-label fw-bold']) }} <br>
+                    <label >
+                    <label >
+                        {{Form::radio('status',1)}}
+                      inactivo
+                    </label>
+                    <label >
+                        {{Form::radio('status',2)}}
+                        activo
+                    </label>
+                    <br>
 
                     @error('status')
                         <span class="text-danger form-label fw-bold">{{ $message }}</span>

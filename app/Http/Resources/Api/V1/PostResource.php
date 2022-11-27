@@ -22,6 +22,7 @@ class PostResource extends JsonResource
             'extract'=>$this->extract, //elimina las etiquetas de HTML
             'content'=>$this->content, //elimina las etiquetas de HTML
             'status'=>$this->estado($this->status),
+            'news_cover'=>$this->estado($this->news_cover),//portada_noticias
             'tendencia'=>$this->tendencia($this->tendencia_active),
             'category'=>$this->category->name,
             'importantTwo'=>$this->importantTwo,
@@ -66,6 +67,6 @@ class PostResource extends JsonResource
         }
         return $respuesta;
         //dd($this->image->url);
-    }    
-   
+    }
+
 }

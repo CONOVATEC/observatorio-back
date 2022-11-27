@@ -28,6 +28,7 @@ class DirectiveRequest extends FormRequest
        $rules = [
            'name' => 'required|min:2|max:100|string|unique:directives',
            'position_id'=>'required',
+           'status'=>'required|in:1,2',
 
 
        ];

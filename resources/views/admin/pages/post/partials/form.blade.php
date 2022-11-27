@@ -111,7 +111,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="mb-2">
                 {{ Form::label('tendencia_active', 'Tendencia*', ['class' => 'form-label fw-bold']) }} <br>
                 <label >
@@ -129,7 +129,25 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="mb-2">
+                {{ Form::label('news_cover', 'Portada de Noticia*', ['class' => 'form-label fw-bold']) }} <br>
+                <label >
+                    {{Form::radio('news_cover',1)}}
+                   Sin Portada de Noticia
+                </label>
+                <label >
+                    {{Form::radio('news_cover',2)}}
+                     Portada de Noticia
+                </label>
+                <br>
+
+                @error('news_cover')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="mb-2">
                 {{ Form::label('status', 'Estado de la Noticia*', ['class' => 'form-label fw-bold']) }} <br>
 
