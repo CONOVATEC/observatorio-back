@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Rutas para dashboard
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/home', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
 
     //*Rutas para Noticias  posts
     Route::resource('noticias', PostController::class)->names('noticias');
@@ -85,14 +85,13 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //*Route LOGO;
     // Route::resource('logo',LogoController::class)->names('logos');
 
-
     // Inicio rutas para roles y permisos
     Route::get('roles/permisos/{id}', [RoleController::class, 'managePermissions'])->name('roles.permisos.administrar');
     Route::put('roles/permisos/{role}', [RoleController::class, 'updatePermissions'])->name('roles.permisos.actualizar');
     Route::resource('roles', RoleController::class)->names('roles');
     // Fin rutas para roles y permisos
 
-//Rutas sergio
+    //Rutas sergio
     Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index', 'store', 'edit', 'update']);
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
 

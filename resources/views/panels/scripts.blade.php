@@ -39,14 +39,48 @@
 <script src="{{ asset('js/alpine.js') }}"></script>
 
 <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
- <script>
-             $(document).ready( function() {
-            $("#title").stringToSlug({
-                setEvents: 'keyup keydown blur',
-                getPut: '#slug',
-                space: '-'
-            });
-            });
-        </script>
+{{-- Incluimos las tostadas de confirmación  --}}
+<script>
+    $(document).ready(function () {
+        $("#title").stringToSlug({
+            setEvents: 'keyup keydown blur',
+            getPut: '#slug',
+            space: '-'
+        });
+
+        @if(Session::has('success'))
+        toastr["success"]("{{ session('success') }}", "💪 Excelente!", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+        @endif
+
+        // info message popup notification
+        @if(Session::has('info'))
+        toastr["info"]("{{ session('info') }}", "🔔 Información !", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+        @endif
+
+        // warning message popup notification
+        @if(Session::has('warning'))
+        toastr["warning"]("{{ session('warning') }}", "💡 Aviso !", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+        @endif
+
+        // error message popup notification
+        @if(Session::has('error'))
+        toastr["error"]("{{ session('error') }}", "💪 Error !", {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+        @endif
+    });
+
+</script>
+
 
 {{-- fin para SweetAlert  --}}

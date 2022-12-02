@@ -7,42 +7,43 @@
 $configData = Helper::applClasses();
 @endphp
 
-<html class="loading {{ $configData['theme'] === 'light' ? '' : $configData['layoutTheme'] }}" lang="@if (session()->has('locale')){{ session()->get('locale') }}@else{{ $configData['defaultLanguage'] }}@endif" data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}" @if ($configData['theme']==='dark' ) data-layout="dark-layout" @endif>
+<html class="loading {{ $configData['theme'] === 'light' ? '' : $configData['layoutTheme'] }}"
+    lang="@if (session()->has('locale')){{ session()->get('locale') }}@else{{ $configData['defaultLanguage'] }}@endif" data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}"
+    @if ($configData['theme']==='dark' ) data-layout="dark-layout" @endif>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="cybert22">
-    <title>ADMIN | @yield('title')</title>
-    <link rel="apple-touch-icon" href="{{ asset('images/ico/favicon-32x32.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo/favicon.ico') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-    {{-- Para ícono  --}}
-    <link href="{{ URL::to('/admin/plugins/fontawesome/css/all.min.css') }}" rel="stylesheet">
-    {{-- Inicio para Toastr  --}}
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
-    {{-- fin para Toastr  --}}
-    {{-- Inicio para sweet-alert  --}}
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
-    <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+        <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+        <meta name="author" content="cybert22">
+        <title>ADMIN | @yield('title')</title>
+        <link rel="apple-touch-icon" href="{{ asset('images/ico/favicon-32x32.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo/favicon.ico') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+        {{-- Para ícono  --}}
+        <link href="{{ URL::to('/admin/plugins/fontawesome/css/all.min.css') }}" rel="stylesheet">
+        {{-- Inicio para Toastr  --}}
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
+        <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
+        {{-- fin para Toastr  --}}
+        {{-- Inicio para sweet-alert  --}}
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/animate/animate.min.css')) }}">
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+        <link rel="stylesheet" href="{{asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css'))}}">
 
-    {{-- fin para sweet-alert--}}
-    {{-- Include core + vendor Styles --}}
-    @include('panels/styles')
-    {{-- Incluimos las tostadas de confirmación  --}}
-    @include('admin.includes.toastr')
-</head>
-<!-- END: Head-->
+        {{-- fin para sweet-alert--}}
+        {{-- Include core + vendor Styles --}}
+        @include('panels/styles')
 
-<!-- BEGIN: Body-->
-@isset($configData['mainLayoutType'])
-@extends((( $configData["mainLayoutType"] === 'horizontal') ? 'layouts.horizontalLayoutMaster' :
-'layouts.verticalLayoutMaster' ))
-@endisset
+    </head>
+    <!-- END: Head-->
+
+    <!-- BEGIN: Body-->
+    @isset($configData['mainLayoutType'])
+    @extends((( $configData["mainLayoutType"] === 'horizontal') ? 'layouts.horizontalLayoutMaster' :
+    'layouts.verticalLayoutMaster' ))
+    @endisset

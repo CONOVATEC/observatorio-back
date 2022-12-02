@@ -20,6 +20,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:usuarios.index')->only('index');
+        $this->middleware('can:usuarios.create')->only('create');
+        $this->middleware('can:usuarios.edit')->only(['edit', 'store', 'show']);
+        $this->middleware('can:usuarios.destroy')->only('destroy');
+        $this->middleware('can:usuarios.eliminar.definitivo')->only('deleteDefinitive');
+        $this->middleware('can:usuarios.restaurar')->only('restore');
+    }
     public function index()
     {
         $usersAll = User::all();

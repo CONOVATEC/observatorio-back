@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function  __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('can:categorias.dashboard')->only('dashboard');
+        $this->middleware('can:dashboard')->only('dashboard');
     }
     // home
     public function dashboard()
