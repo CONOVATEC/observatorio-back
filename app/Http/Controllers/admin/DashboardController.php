@@ -11,13 +11,18 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware('can:categorias.dashboard')->only('dashboard');
+    }
     // home
     public function dashboard()
     {
         $usersCount = User::where('status', 2)->count();
         $users = User::where('status', 2)->latest()->take(2)->get();
         $postsCount = Post::where('status', 2)->count();
-        $posts = Post::where('status', 2)->paginate(5);
+        $posts = Post::latest('status', 2)->paginate(5);
         $categoriesCount = Category::count();
         $categories = Category::latest()->paginate(5);
         $tagsCount = Tag::count();

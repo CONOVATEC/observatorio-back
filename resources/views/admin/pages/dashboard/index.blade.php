@@ -19,6 +19,7 @@
 <section id="dashboard-ecommerce">
     <div class="row match-height">
         <!-- Medal Card -->
+
         <div class="col-xl-4 col-md-6 col-12">
             <div class="card card-congratulation-medal">
                 <div class="card-body">
@@ -68,22 +69,25 @@
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
                             <div class="d-flex flex-row">
+                                {{-- <a href="{{ route('categorias.index') }}"> --}}
                                 <div class="avatar bg-light-primary me-2">
                                     <div class="avatar-content">
-                                        <i data-feather='airplay' class="avatar-icon"></i>
+                                        <i data-feather='airplay' class="avatar-icon" onclick="location.href='noticias'"></i>
                                     </div>
                                 </div>
                                 <div class="my-auto">
                                     <h4 class="fw-bolder mb-0">{{ $postsCount }}</h4>
-                                    <p class="card-text font-small-3 mb-0">Publicaciones</p>
+                                    <p class=" card-text font-small-3 mb-0">Publicaciones</p>
                                 </div>
+
+                                {{-- </a> --}}
                             </div>
                         </div>
                         <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
                             <div class="d-flex flex-row">
                                 <div class="avatar bg-light-info me-2">
                                     <div class="avatar-content">
-                                        <i data-feather='tag' class="avatar-icon"></i>
+                                        <i data-feather='tag' class="avatar-icon" onclick="location.href='etiquetas'"></i>
                                     </div>
                                 </div>
                                 <div class="my-auto">
@@ -96,7 +100,7 @@
                             <div class="d-flex flex-row">
                                 <div class="avatar bg-light-danger me-2">
                                     <div class="avatar-content">
-                                        <i data-feather='grid' class="avatar-icon"></i>
+                                        <i data-feather='grid' class="avatar-icon" onclick="location.href='categorias'"></i>
                                     </div>
                                 </div>
                                 <div class="my-auto">
@@ -109,7 +113,7 @@
                             <div class="d-flex flex-row">
                                 <div class="avatar bg-light-success me-2">
                                     <div class="avatar-content">
-                                        <i data-feather='users' class="avatar-icon"></i>
+                                        <i data-feather='users' class="avatar-icon" onclick="location.href='usuarios'"></i>
                                     </div>
                                 </div>
                                 <div class="my-auto">
