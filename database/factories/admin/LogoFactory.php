@@ -18,8 +18,9 @@ class LogoFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word,
+            'name' => $this->faker->unique()->company(),
             'social_media' => $this->faker->url(),
+            'url_image' => $this->faker->url(),
             'type_logo_id' =>  TypeLogo::all()->random()->id,
 
         ];

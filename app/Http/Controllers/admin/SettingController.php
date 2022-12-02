@@ -68,6 +68,7 @@ class SettingController extends Controller
             'link_instagram' => $request->link_instagram,
             'link_linkedin' => $request->link_linkedin,
             'link_youtube' => $request->link_youtube,
+            'url_image' => $request->url_image,
             'user_id'=>auth()->id()
         ]);
         // actualizar imagen
@@ -81,9 +82,10 @@ class SettingController extends Controller
                 $setting->update(['logo' => $request->file('logo')->storeAs('setting',$name)]);
             }
         }
-        if ($request->file('logo')) {
-            $this->optimizeImage($setting); //ejecutar directamente el método para optimizar
-        }
+
+        //if ($request->file('logo')) {
+          //  $this->optimizeImage($setting); //ejecutar directamente el método para optimizar
+        //}
 
 
 
@@ -96,13 +98,13 @@ class SettingController extends Controller
      ****************************************************/
     public function optimizeImage($setting)
     {
-        /* Ruta del imagen guardado */
+        /* Ruta del imagen guardado
         $img = Image::make(Storage::get($setting->logo));
         $img->widen(600)
             ->limitColors(255)
             ->encode();
         /* Actualizamos con la imagen optimizada */
-        Storage::disk('public')->put($setting->logo, (string) $img);
+      //  Storage::disk('public')->put($setting->logo, (string) $img);
     }
 
 }

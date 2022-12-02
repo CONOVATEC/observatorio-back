@@ -6,13 +6,22 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\LogoController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\admin\DirectiveController;
+use App\Http\Controllers\admin\PositionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\SlideController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\Youth_observatoryController;
+use App\Http\Controllers\admin\YouthObservatoryController;
+use App\Http\Controllers\admin\YouthPolicyController;
+use App\Http\Controllers\admin\YouthStrategyController;
+use App\Http\Controllers\Api\V1\YoutObservatoryController;
 use App\Http\Controllers\LanguageController;
+use App\Models\admin\YouthObservatory;
+use App\Models\admin\YouthPolicy;
+use App\Models\admin\YouthStrategy;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -69,7 +78,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('logo', LogoController::class)->names('logos');
 
     //*Route DIRECTIVES;
-    Route::resource('directive', DirectiveController::class)->names('directives');
+    Route::resource('directive', DirectiveController::class)->names('directives'); //actualizado por sergio
 
     //Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
 
@@ -86,9 +95,17 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 //Rutas sergio
     Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index', 'store', 'edit', 'update']);
     Route::resource('etiquetas', TagController::class)->names('etiquetas');
+
+    Route::resource('posiciones', PositionController::class)->names('posiciones');
+    Route::get('posiciones/eliminar-definitivo/{id}', [PositionController::class, 'deleteDefinitive'])->name('posiciones.eliminar.definitivo');
+    Route::get('posiciones/restaurar/{id}', [PositionController::class, 'restore'])->name('posiciones.restaurar');
+
     Route::resource('tipo-logo', TypeLogoController::class)->names('tipoLogo');
     Route::resource('logos', LogoController::class)->names('logos');
-
+    Route::resource('politica-juvenil', YouthPolicyController::class)->names('politicaJuvenil');
+    Route::resource('slide', SlideController::class)->names('slide');
+    Route::resource('estrategia-metropolitana', YouthStrategyController::class)->names('estrategiaMetropolitana');
+    Route::resource('observatorio-juvenil', YouthObservatoryController::class)->names('observatorioJuvenil');
 });
 
 //* locale Route

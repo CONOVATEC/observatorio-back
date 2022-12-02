@@ -27,15 +27,14 @@ class DirectiveRequest extends FormRequest
        $directive = $this->route()->parameters();
        $rules = [
            'name' => 'required|min:2|max:100|string|unique:directives',
-           'photo' => 'mimes:jpg,jpeg,bmp,png',
            'position_id'=>'required',
+           'status'=>'required|in:1,2',
 
 
        ];
        if ($directive) {
            $rules=[
                'name' => 'required|min:2|max:100|string|unique:directives,name,' .(implode($directive)),
-               'photo' => 'mimes:jpg,jpeg,bmp,png',
                'position_id'=>'required',
 
            ];

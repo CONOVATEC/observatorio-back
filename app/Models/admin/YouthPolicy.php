@@ -9,8 +9,13 @@ class YouthPolicy extends Model
 {
     use HasFactory;
 
-
     protected $table="youth_policies";
+    protected $guarded=['id','create_at','update_at'];
 
-    protected $fillable = ['name','slug','descripcion'];
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
+    }
+
+
+
 }

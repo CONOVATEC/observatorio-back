@@ -48,9 +48,9 @@
                                         </a>
                                     </th>
 
-                                    <th scope="col">Logo
-                                        <a wire:click="sortable('logo')">
-                                            <span class="fa-solid fa{{ $camp === 'logo' ? $icon : '-sort' }}"></span>
+                                    <th scope="col" class="">Url imagen
+                                        <a wire:click="sortable('url_image')">
+                                            <span class="fa-solid fa{{ $camp === 'url_image' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
 
@@ -73,7 +73,8 @@
                                     {{-- <td>{{ $category->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $setting->name_entity }}</span></td>
-                                    <td><img src="/storage/{{($setting->logo)}}" class="img-thumbnail" style="width:100px"></td>
+                                   {{-- <td><img src="/storage/{{($setting->logo)}}" class="img-thumbnail" style="width:100px"></td>--}}
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $setting->url_image}}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $setting->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $setting->updated_at->format('d-m-Y') }}</span></td>
 

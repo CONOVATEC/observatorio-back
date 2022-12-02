@@ -10,16 +10,11 @@ class YouthStrategy extends Model
     use HasFactory;
 
     protected $table="youth_strategies";
+    protected $guarded=['id','create_at','update_at'];
 
-    protected $fillable = ['name','slug','theme','description','axes','imagen_theme','imagen_strategy','user_id'];
-
-
-    /************************************************************************
-     * Relación de uno a muchos inversa belongsTo pertenece a usuarios  *
-     ************************************************************************/
-
-    public function users()
-    {
-        return $this->belongsTo(User::class);
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
     }
+
+
 }

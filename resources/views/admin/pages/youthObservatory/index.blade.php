@@ -1,18 +1,16 @@
 @extends('layouts/contentLayoutMaster')
-@section('title', 'Observatorio Nosotros')
+@section('title', 'Observatorio Juvenil')
 @section('content')
+
+@include('admin.pages.youthObservatory.partials.alert')
 <!-- Card Actions Section -->
 <section id="card-actions">
     <!-- Info table about actions -->
     <div class="row">
         <div class="col-12">
+        @if(auth()->user()->can('observatorioJuvenil.index') or auth()->user()->can('observatorioJuvenil.create') or auth()->user()->can('observatorioJuvenil.destroy'))
             @livewire('admin.youth-observatory.youth-observatory-table')
-        </div>
-    </div>
-    {{--  Para listar la lista de categorías eliminados por el Usuario que pueden ser restaurados  --}}
-    <div class="row">
-        <div class="col-12">
-            @livewire('admin.youth-observatory.restore-youth-observatory-table')
+            @endif
         </div>
     </div>
 

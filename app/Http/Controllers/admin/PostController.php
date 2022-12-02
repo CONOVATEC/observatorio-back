@@ -30,7 +30,7 @@ class PostController extends Controller
         //$tags=Tag::all();
         $tags=Tag::pluck('name','id');
         $categories=Category::pluck('name','id');//creando formato para pasar a la vista (laravelColecty)
-       
+
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
             ['link' => "home", 'name' => "inicio"], ['name' => "lista de boletines"]
@@ -38,7 +38,7 @@ class PostController extends Controller
         return view('admin.pages.post.create', compact('breadcrumbs','post','categories','tags'));
     }
 
-   
+
 
     public function store(PostRequest $request){
 
@@ -53,8 +53,14 @@ class PostController extends Controller
             'content'=>html_entity_decode($request['content']),
             'status'=>$request['status'],
             'tendencia_active'=>$request['tendencia_active'],
+            'news_cover'=>$request['news_cover'],
             'category_id'=>$request['category_id'],
+            'importantOne'=>$request['importantOne'],
+            'importantTwo'=>$request['importantTwo'],
+            'importantThree'=>$request['importantThree'],
+            'importantFour'=>$request['importantFour'],
             'user_id'=>$request['user_id']
+
        ]);
        //html_entity_decode
         if($request->file('file')){
@@ -68,14 +74,14 @@ class PostController extends Controller
             $r=$post->image()->create([
                 'url'=>'https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg'
             ]);
-            
+
         }*/
-      
-      
-        
+
+
+
         if($request->tags){
             $post->tags()->attach($request->tags);
-           
+
         }
         return redirect()->route('noticias.index')->with('success', 'Noticia registrada correctamente');
 
@@ -87,14 +93,14 @@ class PostController extends Controller
         $categories=Category::pluck('name','id');//creando formato para pasar a la vista (laravelColecty)
         $posts = Post::latest()->paginate(10);
         $post = Post::findOrFail($id);
-       
+
         // dd($category);
 
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "noticias", 'name' => "Noticias"], ['name' => "Editando Noticia"],
         ];
         return view('admin.pages.post.edit', compact('breadcrumbs', 'posts', 'post','tags','categories'));
-        
+
     }
 
     /**
@@ -118,7 +124,7 @@ class PostController extends Controller
         // }
         //Post::find($id)->update($request->all());
        // Post::find($id)->update($request->all());
-           
+
         /*if($request->file('file')){
             $url=$request->file('file')->store('public/news');
             $post=Post::findOrFail($id);
@@ -126,7 +132,7 @@ class PostController extends Controller
             $post->image()->create([
                 'url'=>$url
             ]);
-           
+
         }*/
         $data=[
             'title'=>$request['title'],
@@ -135,8 +141,13 @@ class PostController extends Controller
             'content'=>html_entity_decode($request['content']),
             'status'=>$request['status'],
             'tendencia_active'=>$request['tendencia_active'],
+            'news_cover'=>$request['news_cover'],
             'category_id'=>$request['category_id'],
-          
+            'importantOne'=>$request['importantOne'],
+            'importantTwo'=>$request['importantTwo'],
+            'importantThree'=>$request['importantThree'],
+            'importantFour'=>$request['importantFour'],
+
         ];
         Post::find($id)->update($data);
         if($request->file('file')){
@@ -156,19 +167,19 @@ class PostController extends Controller
         }
         //Post::find($id)->update($request->all());
          if($request->tags){
-           
+
             Post::find($id)->tags()->sync($request->tags);
-           
+
         }
-     
-        
-        
+
+
+
         return redirect()->route('noticias.index')->with('info', 'Noticia actualizada correctamente');
     }
 
     public function destroy($id)
-    {   
-       
+    {
+
         Post::findOrFail($id)->delete();
         return redirect()->route('noticias.index')->with('warning', 'Noticia eliminada temporalmente correctamente');
     }
@@ -181,7 +192,7 @@ class PostController extends Controller
      }
      // Método para restaurareliminar el registro definitivamente
      public function deleteDefinitive($id)
-     { 
+     {
        //$post=Post::withTrashed()->find($id);
        //$url=Storage::put('public/news',$request->file('file'));
         // if(Storage::delete('public/news',$post->file)){
@@ -189,9 +200,9 @@ class PostController extends Controller
         // }
         //is_null($post->image) && Storage::delete('public/news',$post->file);;
         $post=Post::onlyTrashed()->find($id);
-        
-       
-      
+
+
+
         if(!is_null($post->image)){
             if(Storage::delete($post->image->url)){
                     Post::onlyTrashed()->find($id)->forceDelete();
@@ -205,13 +216,13 @@ class PostController extends Controller
         //  }else{
 
         //  }
-     
-               
-         
-       
-        
-       
-        
+
+
+
+
+
+
+
          return redirect()->back()->with('warning', 'Noticia eliminado definitivamente');
      }
 }

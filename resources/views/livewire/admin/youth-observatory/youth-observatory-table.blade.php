@@ -1,13 +1,35 @@
 <div class="card">
     <div class="card-header mt-1 mb-0 py-0">
-        <h4 class="card-title">Listado </h4>
+        <h4 class="card-title">Obsevatorio Juvenil</h4>
         <div class="heading-elements py-0">
             <ul class="list-inline">
-                
                 <li>
-                    <a href="{{ route('juvenilesObservatorio.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " placeholder="Buscar..." aria-label="Buscar..." aria-describedby="buscar" wire:model="search" />
+                        {{-- <span class="input-group-text" id="buscar"><i data-feather="search"></i></span>  --}}
+                    </div>
+                </li>
+
+
+                <li class="mx-1">
+                    <select class="form-select me-1 form-select-sm " wire:model="perPage" style="padding-top: 5px;padding-bottom: 6px;">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        {{-- <option value="todos">Todos</option>  --}}
+                    </select>
+                </li>
+                <li>
+                    <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
+                </li>
+               @can('observatorioJuvenil.create')
+                <li>
+                    <a href="{{ route('observatorioJuvenil.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
 
                 </li>
+              @endcan
+
             </ul>
         </div>
     </div>
@@ -37,32 +59,49 @@
                                         </a>
                                     </th>
                                     <th scope="col">Nosotros
-                                        <a wire:click="sortable('about_ud')">
-                                            <span class="fa-solid fa{{ $camp === 'about_ud' ? $icon : '-sort' }}"></span>
+                                        <a wire:click="sortable('about_us')">
+                                            <span class="fa-solid fa{{ $camp === 'about_us' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    <th scope="col">Organización
-                                        <a wire:click="sortable('organization_chart')">
-                                            <span class="fa-solid fa{{ $camp === 'organization_chart' ? $icon : '-sort' }}"></span>
+
+                                    <th scope="col" class="">Url Organigrama
+                                        <a wire:click="sortable('url_organization_chart')">
+                                            <span class="fa-solid fa{{ $camp === '>url_organization_chart' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    
+
+                                    <th scope="col">Creado
+                                        <a wire:click="sortable('created_at')">
+                                            <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
+                                        </a>
+                                    </th>
+                                    <th scope="col">Actualizado
+                                        <a wire:click="sortable('updated_at')">
+                                            <span class="fa-solid fa{{ $camp === 'updated_at' ? $icon : '-sort' }}"></span>
+                                        </a>
+                                    </th>
+                                   @if(auth()->user()->can('observatorioJuvenil.edit') or auth()->user()->can('observatorioJuvenil.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($youthObservatory as $values)
+                                @forelse($youthObservatories as $youthObservatory)
                                 <tr>
-                                     <td>{{ $values->id }}</td> 
-                                    {{--<td>{{ $loop->iteration }}</td>--}}
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->mission }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->vision }}</span></td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->about_us }}</span></td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->organization_chart }}</span></td>
+                                    {{-- <td>{{ $category->id }}</td> --}}
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $youthObservatory->mission }}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthObservatory->vision}}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthObservatory->about_us}}</span></td>
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $youthObservatory->url_organization_chart}}</span></td>
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthObservatory->created_at->format('d-m-Y') }}</span></td>
+                                    <td><span class="badge rounded-pill badge-light-primary me-1">{{ $youthObservatory->updated_at->format('d-m-Y') }}</span></td>
+                                  @if(auth()->user()->can('observatorioJuvenil.edit') or auth()->user()->can('observatorioJuvenil.destroy') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.youthObservatory.partials.buttons')
                                     </td>
+                                   @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">
@@ -79,7 +118,28 @@
     </div>
     <div class="card-footer">
         {{-- Incluimos la paginación personalizada  --}}
-       {{-- @include('admin.pages.category.partials.pagination')-- sin uso--}}
+        @include('admin.pages.youthObservatory.partials.pagination')
     </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

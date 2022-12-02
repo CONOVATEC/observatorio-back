@@ -34,10 +34,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => '/', 'description' => 'Ver web'])->syncRoles([$rol1, $rol2, $rol3, $rol4]);
 
         //* Roles para juvenilesObservatorio
-        Permission::create(['name' => 'juvenilesObservatorio.index', 'description' => 'Ver observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
-        Permission::create(['name' => 'juvenilesObservatorio.create', 'description' => 'Crear observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
-        Permission::create(['name' => 'juvenilesObservatorio.edit', 'description' => 'Editar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
-        Permission::create(['name' => 'juvenilesObservatorio.destroy', 'description' => 'Eliminar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.index', 'description' => 'Ver observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.create', 'description' => 'Crear observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.edit', 'description' => 'Editar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'observatorioJuvenil.destroy', 'description' => 'Eliminar observatorio Juvenil'])->syncRoles([$rol1, $rol2]);
         //* Roles para sobreCmpj
         Permission::create(['name' => 'sobreCmpj.index', 'description' => 'Ver CMPJ'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'sobreCmpj.create', 'description' => 'Crear CMPJ'])->syncRoles([$rol1, $rol2]);
@@ -105,5 +105,32 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'logos.create', 'description' => 'Crear logos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'logos.edit', 'description' => 'Editar logos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'logos.destroy', 'description' => 'Eliminar logos'])->syncRoles([$rol1, $rol2]);
+
+         //* Roles para youth_directive
+         Permission::create(['name' => 'politicaJuvenil.index', 'description' => 'Ver Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'politicaJuvenil.create', 'description' => 'Crear Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'politicaJuvenil.edit', 'description' => 'Editar Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'politicaJuvenil.destroy', 'description' => 'Eliminar Politica Juvenil'])->syncRoles([$rol1, $rol2]);
+
+         //* slide
+         Permission::create(['name' => 'slide.index', 'description' => 'Ver Slide'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'slide.create', 'description' => 'Crear Slide'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'slide.edit', 'description' => 'Editar Slide'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'slide.destroy', 'description' => 'Eliminar Slide'])->syncRoles([$rol1, $rol2]);
+
+
+          //* estrategia metropolitana
+          Permission::create(['name' => 'estrategiaMetropolitana.index', 'description' => 'Ver Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'estrategiaMetropolitana.create', 'description' => 'Crear Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'estrategiaMetropolitana.edit', 'description' => 'Editar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'estrategiaMetropolitana.destroy', 'description' => 'Eliminar Estrategia Metropolitana'])->syncRoles([$rol1, $rol2]);
+
+          //* puestos para los directivos
+          Permission::create(['name' => 'posiciones.index', 'description' => 'Ver puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.create', 'description' => 'Crear puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.edit', 'description' => 'Editar puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.destroy', 'description' => 'Eliminar puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.eliminar.definitivo', 'description' => 'Eliminar definitivo puesto de directivos'])->syncRoles([$rol1, $rol2]);
+          Permission::create(['name' => 'posiciones.restaurar', 'description' => 'Restaurar puesto de directivos eliminados'])->syncRoles([$rol1, $rol2]);
     }
 }

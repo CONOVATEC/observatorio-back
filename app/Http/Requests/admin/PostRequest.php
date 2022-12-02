@@ -35,6 +35,7 @@ class PostRequest extends FormRequest
             'title'=>'required|min:3|max:255',
             'slug'=>'required|unique:posts',
             'status'=>'required|in:1,2',
+            'news_cover'=>'required|in:1,2',
             'file'=>'image'
 
         ];
@@ -49,8 +50,8 @@ class PostRequest extends FormRequest
                 'category_id'=>'required',
                 'tags'=>'required',
                 'file'=>'image'
-               
-                
+
+
 
             ]
         );

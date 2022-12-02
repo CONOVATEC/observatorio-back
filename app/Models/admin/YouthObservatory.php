@@ -11,5 +11,9 @@ class YouthObservatory extends Model
 
     protected $table="youth_observatories";
 
-    protected $fillable = ['mission','vision','about_us','organization_chart'];
+    protected $fillable = ['mission','vision','about_us','url_organization_chart'];
+
+    public function image(){
+        return $this->morphOne(Image::class,'imageable');
+    }
 }

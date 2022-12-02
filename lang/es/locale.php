@@ -16,6 +16,11 @@ return [
     "User Role" => "Rol de Usuario",
     "User Role" => "Rol de Usuario",
     "Young Observatory" => "Observatorio Joven",
+    "slide" => "slide",
+    "create slide" => "crear slide",
+    "view slide" => "ver slide",
+
+    "Young Strategy" => "Estra. Metropolitana",
     "CMPJ" => "Sobre CMPJ",
     "Policies" => "Políticas",
     "logo" => "Logos",
@@ -26,7 +31,7 @@ return [
     "create logo type" => "Crear tipo de logo",
     // Para directiva
     "directive" => "Directiva",
-    "view directive" => "Ver directa",
+    "view directive" => "Ver directiva",
     "create directive" => "Crear directiva",
 
     /*****************
@@ -35,6 +40,15 @@ return [
     "Ver noticias" => "Ver noticias",
     "view records" => "Ver registros",
     "create register" => "Crear registro",
+     /*****************
+     * Para puesto de directivos *
+     *****************/
+    "position" => "Puestos",
+    "view position" => "Ver puesto directivo",
+    "view records" => "Ver registros",
+    "create position" => "Crear puesto directivo",
+
+
     /*****************
      * Para roles y permisos *
      *****************/

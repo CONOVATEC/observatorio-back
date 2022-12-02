@@ -64,9 +64,9 @@
                                         </a>
                                     </th>
 
-                                    <th scope="col">Logo
-                                        <a wire:click="sortable('image_logo')">
-                                            <span class="fa-solid fa{{ $camp === 'image_logo' ? $icon : '-sort' }}"></span>
+                                    <th scope="col" class="">Url imagen
+                                        <a wire:click="sortable('url_image')">
+                                            <span class="fa-solid fa{{ $camp === 'url_image' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
 
@@ -93,12 +93,10 @@
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $logo->name }}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $logo->social_media}}</span></td>
                                     <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $logo->type_logo->name }}</span></td>
-                                    <td>
-                                        @isset($logo->image)
-                                    <img src="{{ Storage::url($logo->image->url) }}" class="img-thumbnail" style="width:100px"></td>
-                                    @else
-                                    <img src="" class="img-thumbnail" style="width:100px"></td>
-                                    @endif
+
+                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $logo->url_image}}</span></td>
+                                   {{-- <img src="" class="img-thumbnail" style="width:100px"></td> --}}
+
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $logo->created_at->format('d-m-Y') }}</span></td>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $logo->updated_at->format('d-m-Y') }}</span></td>
                                     @if(auth()->user()->can('logos.edit') or auth()->user()->can('logos.destroy') )

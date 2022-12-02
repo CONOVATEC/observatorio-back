@@ -32,6 +32,7 @@ class PostFactory extends Factory
                 'type_new' => $this->faker->numberBetween(1,2),
                 'publicado' =>$this->faker->numberBetween(1,2),
                 'tendencia_active'=> $this->faker->numberBetween(1,2),
+                'news_cover' => $this->faker->numberBetween(1,2),
                 'category_id'=> Category::all()->random()->id,
                 'user_id' => User::all()->random()->id,
 
