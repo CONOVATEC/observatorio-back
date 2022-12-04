@@ -16,6 +16,18 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:roles.permisos.administrar')->only('managePermissions');
+        $this->middleware('can:roles.permisos.actualizar')->only('updatePermissions');
+        $this->middleware('can:roles.index')->only('index');
+        $this->middleware('can:roles.create')->only('create');
+        $this->middleware('can:roles.edit')->only(['edit', 'store']);
+        $this->middleware('can:roles.destroy')->only('destroy');
+        $this->middleware('can:roles.eliminar.definitivo')->only('deleteDefinitive');
+        $this->middleware('can:roles.restaurar')->only('restore');
+    }
     public function index()
     {
         $roles = Role::latest()->get();
@@ -61,7 +73,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(403);
     }
 
 

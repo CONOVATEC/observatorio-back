@@ -183,11 +183,6 @@
                     "name": "Update profile",
                     "icon": "user",
                     "slug": "usuarios.actualizar.perfil"
-                },
-                {
-                    "name": "profile",
-                    "icon": "user",
-                    "slug": "usuarios.show"
                 }
             ]
         },

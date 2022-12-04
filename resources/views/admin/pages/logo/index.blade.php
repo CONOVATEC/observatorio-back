@@ -1,7 +1,7 @@
 @extends('layouts/contentLayoutMaster')
 @section('title', 'Logos')
 @section('content')
-@include('admin.pages.post.partials.alert')
+{{-- @include('admin.pages.post.partials.alert') --}}
 <!-- Card Actions Section -->
 <section id="card-actions">
 
@@ -9,12 +9,12 @@
     <div class="row">
         <div class="col-12">
             @if(auth()->user()->can('logos.index') or auth()->user()->can('logos.create') or auth()->user()->can('logos.destroy'))
-           @livewire('admin.logo.logo-table')
-           @endif
+            @livewire('admin.logo.logo-table')
+            @endif
         </div>
     </div>
     {{--  Para listar la lista de categorías eliminados por el Usuario que pueden ser restaurados  --}}
-   <!-- <div class="row">
+    <!-- <div class="row">
         <div class="col-12">
 
         </div>
@@ -24,6 +24,3 @@
 </section>
 <!--/ Card Actions Section -->
 @endsection
-
-
-

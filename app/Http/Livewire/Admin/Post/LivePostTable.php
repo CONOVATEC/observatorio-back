@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 
 class LivePostTable extends Component
 {
-  
+
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search = "";
@@ -34,7 +34,7 @@ class LivePostTable extends Component
     public function updatingPerPage()
     {
         $this->resetPage();
-        $this->gotoPage(1);//puse por el error de paginaciòn
+        $this->gotoPage(1); //puse por el error de paginaciòn
     }
     public function mount()
     {
@@ -57,8 +57,7 @@ class LivePostTable extends Component
         }
         $posts = $posts->paginate($this->perPage);
         // $categories = Category::paginate(5);
-        return view('livewire.admin.post.live-post-table',compact('posts'));
-      
+        return view('livewire.admin.post.live-post-table', compact('posts'));
     }
     public function sortable($camp)
     {

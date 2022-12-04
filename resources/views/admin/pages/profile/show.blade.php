@@ -23,7 +23,8 @@
                 <div class="card-body">
                     <div class="user-avatar-section">
                         <div class="d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded mt-3 mb-2" src="{{ Auth::user() ? $user->profile_photo_url : asset('images/portrait/small/avatar-s-11.jpg') }}" height="200" width="200" alt="{{ $user->username }}" title="{{ $user->username }}" />
+                            <img class="img-fluid rounded mt-3 mb-2" src="{{ Auth::user() ? $user->profile_photo_url : asset('images/portrait/small/avatar-s-11.jpg') }}" height="200" width="200"
+                                alt="{{ $user->username }}" title="{{ $user->username }}" />
                             <div class="user-info text-center">
                                 <h4>{{ $user->name }}</h4>
                                 @forelse($user->roles as $key => $role)
@@ -80,9 +81,11 @@
                         </ul>
                         <div class="d-flex justify-content-center pt-2">
                             @if($user->id == auth()->user()->id)
+                            @can('usuarios.actualizar.perfil')
                             <a href="{{ route('usuarios.actualizar.perfil') }}" class="btn btn-primary me-1">
                                 {{ __('Edit') }}
                             </a>
+                            @endcan
                             <a href="{{ route('logout') }}" class="btn btn-outline-danger suspend-user">{{ __('Logout') }}</a>
                             @endif
                         </div>
@@ -107,11 +110,13 @@
                         <i data-feather="bell" class="font-medium-3 me-50"></i><span class="fw-bold">{{ __('Notifications') }}</span>
                     </a>
                 </li>
+                @can('usuarios.index')
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('usuarios.index')}}">
                         <i data-feather="user" class="font-medium-3 me-50"></i><span class="fw-bold">{{ __('Users') }}</span>
                     </a>
                 </li>
+                @endcan
             </ul>
             <!--/ User Pills -->
 
@@ -126,7 +131,9 @@
                                 <th>{{ __('Post') }}</th>
                                 <th class="text-nowrap">{{ __('Status') }}</th>
                                 <th>{{ __('Registration date') }}</th>
+                                @can('noticias.edit')
                                 <th>{{ __('Actions') }}</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -147,17 +154,19 @@
                             <td class="text-center">
                                 <span>{{ $post->created_at->isoFormat('DD, MMMM  YYYY')}}</span>
                             </td>
+                            @can('noticias.edit')
                             <td class="text-center">
-                                <a class="dropdown-item" href="{{ route('usuarios.edit',$user->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar post">
+                                <a class="dropdown-item" href="{{ route('noticias.edit',$user->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar post">
                                     <i class="fa-solid fa-pen-to-square font-medium-2 text-body"></i>
                                 </a>
                             </td>
-                            @empty
-                            <td colspan="5" class="text-center">
-                                Sin publicaciones
-                            </td>
-                            @endforelse
+                            @endcan
                         </tbody>
+                        @empty
+                        <td colspan="5" class="text-center">
+                            Sin publicaciones
+                        </td>
+                        @endforelse
                     </table>
                 </div>
                 @include('admin.pages.profile.partials.pagination-posts')
@@ -165,6 +174,7 @@
             <!-- /Project table -->
 
             <!-- Activity Timeline -->
+            @if(Auth::user()->hasRole('Super Administrador') or Auth::user()->hasRole('Administrador'))
             <div class="card">
                 <h4 class="card-header">{{ __('User Activity Timeline') }}</h4>
                 <div class="card-body pt-1">
@@ -198,6 +208,7 @@
                     @include('admin.pages.profile.partials.pagination')
                 </div>
             </div>
+            @endif
             <!-- /Activity Timeline -->
         </div>
         <!--/ User Content -->

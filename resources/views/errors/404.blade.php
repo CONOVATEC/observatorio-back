@@ -13,7 +13,7 @@ $configData = Helper::applClasses();
 <!-- Error page-->
 <div class="misc-wrapper">
     <a class="brand-logo" href="#">
-        <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
+        {{-- <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
             <defs>
                 <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                     <stop stop-color="#000000" offset="0%"></stop>
@@ -35,8 +35,9 @@ $configData = Helper::applClasses();
                     </g>
                 </g>
             </g>
-        </svg>
-        <h2 class="brand-text text-primary ms-1">ONG WEB</h2>
+        </svg> --}}
+        {{-- <h2 class="brand-text text-primary ms-1">ONG WEB</h2> --}}
+        <img src="{{URL::to('/images/admin/logo.png')}}">
     </a>
     <div class="misc-inner p-2 p-sm-3">
         <div class="w-100 text-center">

@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('public/news');
-        Storage::makeDirectory('public/news');
+        Storage::deleteDirectory('news');
+        Storage::makeDirectory('news');
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         \App\Models\admin\Category::factory(1)->create();
         \App\Models\admin\Tag::factory(1)->create();
-         \App\Models\admin\AboutCmpj::factory(1)->create();
+        \App\Models\admin\AboutCmpj::factory(1)->create();
         \App\Models\admin\TypeLogo::factory(1)->create();
         \App\Models\admin\ReaderLog::factory(1)->create();
         \App\Models\admin\Setting::factory(1)->create();

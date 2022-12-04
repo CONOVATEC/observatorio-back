@@ -48,12 +48,14 @@
                                         <span class="fa-solid fa{{ $camp === 'status' ? $icon : '-sort' }}"></span>
                                     </a>
                                 </th>
-                                    <th scope="col">Eliminado
-                                        <a wire:click="sortable('deleted_at')">
-                                            <span class="fa-solid fa{{ $camp === 'deleted_at' ? $icon : '-sort' }}"></span>
-                                        </a>
-                                    </th>
-                                    <th scope="col" class="text-center">Acciones</th>
+                                <th scope="col">Eliminado
+                                    <a wire:click="sortable('deleted_at')">
+                                        <span class="fa-solid fa{{ $camp === 'deleted_at' ? $icon : '-sort' }}"></span>
+                                    </a>
+                                </th>
+                                @if(auth()->user()->can('noticias.eliminar.definitivo') or auth()->user()->can('noticias.restaurar'))
+                                <th scope="col" class="text-center">Acciones</th>
+                                @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,21 +63,23 @@
                                 @forelse($postEliminated as $values)
                                 <tr class="text-center">
                                     {{-- <td>{{ $categoryEliminated->id }}</td> --}}
-                                  
+
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->id }}</span></td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->title }}</span></td>
                                     <td class="text-center">
                                         @if ($values->status==2)
                                         <span class="d-inline-block text-truncate badge badge-glow bg-success" style="max-width: 250px;">Publicado</span>
                                         @else
-                                            <span class="d-inline-block text-truncate badge badge-glow bg-danger" style="max-width: 250px;">Por Publicar</span>
+                                        <span class="d-inline-block text-truncate badge badge-glow bg-danger" style="max-width: 250px;">Por Publicar</span>
                                         @endif
                                     </td>
                                     <td><span class="badge rounded-pill badge-light-danger me-1">{{ $values->deleted_at->format('d-m-Y')}}</span></td>
+                                    @if(auth()->user()->can('noticias.eliminar.definitivo') or auth()->user()->can('noticias.restaurar'))
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.post.partials.buttons-restore')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">

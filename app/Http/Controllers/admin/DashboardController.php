@@ -36,7 +36,7 @@ class DashboardController extends Controller
         $categoriesTop = Category::withCount('posts')->get()->sortByDesc('posts_count')->take(5);
         $tagsTop  = Tag::withCount('posts')->get()->sortByDesc('posts_count')->take(5);
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['name' => "Dashboard"],
+            ['link' => "home", 'name' => "Inicio"], ['name' => "Principal"],
         ];
         return view('admin.pages.dashboard.index', compact('breadcrumbs', 'users', 'posts', 'categories', 'tags', 'postsCount', 'usersCount', 'tagsCount', 'categoriesCount', 'tagsTop', 'categoriesTop'));
     }

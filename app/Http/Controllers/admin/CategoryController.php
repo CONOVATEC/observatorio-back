@@ -87,14 +87,11 @@ class CategoryController extends Controller
     {
         $categories = Category::latest()->paginate(5);
         $category = Category::findOrFail($id);
-        // dd($category);
-
         $breadcrumbs = [
             ['link' => "home", 'name' => "Inicio"], ['link' => "categorias", 'name' => "Categorías"], ['name' => "Editando categoría"],
         ];
         return view('admin.pages.category.edit', compact('breadcrumbs', 'categories', 'category'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -110,10 +107,8 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
             'description' => $request->description
         ]);
-
         return redirect()->route('categorias.edit', $id)->with('info', 'Categoría actualizado correctamente');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -122,7 +117,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        // dd($id);
         Category::findOrFail($id)->delete();
         return redirect()->route('categorias.index')->with('warning', 'Categoría eliminado correctamente');
     }
@@ -136,6 +130,6 @@ class CategoryController extends Controller
     public function deleteDefinitive($id)
     {
         $categy = Category::onlyTrashed()->find($id)->forceDelete();
-        return redirect()->back()->with('warning', 'Categoría eliminado definitivamente');
+        return redirect()->back()->with('error', 'Categoría eliminado definitivamente');
     }
 }

@@ -242,7 +242,9 @@
                                     <th>Título</th>
                                     <th>Autor</th>
                                     <th>Creado</th>
+                                    @can('noticias.edit')
                                     <th>Detalle</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -258,11 +260,13 @@
                                         <span class="text-truncate d-block" style="max-width: 100px;"><span class="text-truncate d-block" style="max-width: 100px;">{{ $post->user->name }}</span
                                     </td>
                                     <td>{{ $post->created_at->format('d-m-Y ') }}</td>
+                                    @can('noticias.edit')
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <a href="{{ route('noticias.edit',$post->id) }}" class="btn btn-primary btn-sm">Ver</a>
                                         </div>
                                     </td>
+                                    @endcan
                                 </tr>
                                 @empty
                                 <tr>
@@ -323,8 +327,7 @@
                         @empty
                         Sin usuarios
                         @endforelse
-                        <h6 class="align-self-center cursor-pointer ms-50 mb-0">+{{ $usersCount - count($users) }}
-                        </h6>
+                        <h6 class="align-self-center cursor-pointer ms-50 mb-0">+{{ $usersCount - count($users) }}</h6>
                     </div>
                 </div>
             </div>
