@@ -30,7 +30,10 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
         // Para fechas con Carbon en español
-        Carbon::setLocale('es');
+        Carbon::setLocale(config('app.locale'));
+        setlocale(LC_ALL, 'es_PE', 'es', 'ES', 'es_PE.utf8');
+
+        // Carbon::setLocale('es');
         //Para paginación con bootstrap5
         Paginator::useBootstrap();
         //         Paginator::useBootstrapFive();

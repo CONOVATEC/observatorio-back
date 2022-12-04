@@ -6,7 +6,6 @@
                 <li>
                     <div class="input-group ">
                         <input type="text" class="form-control " placeholder="Buscar..." aria-label="Buscar..." aria-describedby="buscar" wire:model="search" />
-                        {{-- <span class="input-group-text" id="buscar"><i data-feather="search"></i></span>  --}}
                     </div>
                 </li>
                 <li class="mx-1">
@@ -21,9 +20,11 @@
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
+                @can('usuarios.create')
                 <li>
                     <a href="{{ route('usuarios.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
                 </li>
+                @endcan
             </ul>
         </div>
     </div>
@@ -62,7 +63,9 @@
                                             <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('usuarios.edit') or auth()->user()->can('usuarios.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,15 +84,17 @@
                                     <td> <span class="d-inline-block " style="max-width: 150px;">
                                             @forelse($user->roles as $key => $role)
                                             <span class="badge badge-light-primary"><i class="fa-solid fa-user-shield"></i> {{ $role->name }}</span>
-                                            @empty
-                                            <span class="badge badge-light-danger"><i class="fas fa-ban"></i> Sin rol</span>
-                                            @endforelse
+                                        @empty
+                                        <span class="badge badge-light-danger"><i class="fas fa-ban"></i> Sin rol</span>
+                                        @endforelse
                                         </span>
                                     <td> <span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $user->email }}</span>
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $user->created_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
+                                        @if(auth()->user()->can('usuarios.edit') or auth()->user()->can('usuarios.destroy') or auth()->user()->can('usuarios.show'))
                                         @include('admin.pages.user.partials.buttons')
+                                        @endif
                                     </td>
                                 </tr>
                                 @empty

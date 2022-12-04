@@ -68,7 +68,9 @@
                                     <td><span class="badge rounded-pill badge-light-danger me-1">{{ $user->deleted_at->format('d-m-Y') }}</span></td>
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
+                                        @if(auth()->user()->can('usuarios.restaurar') or auth()->user()->can('usuarios.eliminar.definitivo') )
                                         @include('admin.pages.user.partials.buttons-restore')
+                                        @endif
                                     </td>
                                 </tr>
                                 @empty

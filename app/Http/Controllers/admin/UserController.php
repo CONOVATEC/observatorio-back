@@ -20,6 +20,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:usuarios.show')->only('show');
+        $this->middleware('can:usuarios.index')->only('index');
+        $this->middleware('can:usuarios.create')->only('create');
+        $this->middleware('can:usuarios.edit')->only(['edit', 'store']);
+        $this->middleware('can:usuarios.destroy')->only('destroy');
+        $this->middleware('can:usuarios.eliminar.definitivo')->only('deleteDefinitive');
+        $this->middleware('can:usuarios.restaurar')->only('restore');
+    }
     public function index()
     {
         $usersAll = User::all();
@@ -27,7 +39,6 @@ class UserController extends Controller
         $usersInactive = User::where(['status' => '1']);
         $usersEliminated = User::onlyTrashed()->get();
         $breadcrumbs = [
-            // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
             ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de usuarios"],
         ];
         // activity()->log('');
@@ -79,7 +90,6 @@ class UserController extends Controller
             // StudentSaved::dispatch($user);
             $this->optimizeImage($user); //Método anterior - ejecutar directamente el método para optimizar
         }
-
         if ($request->roles) {
             // el metodo attach agrega registros a la tabla
             // $user->roles()->attach($request->roles);
@@ -93,7 +103,6 @@ class UserController extends Controller
                 $user->roles()->sync($request->roles);
             }
         }
-
         return redirect()->route('usuarios.index')->with('success', 'Usuario registrado correctamente');
     }
 

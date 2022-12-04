@@ -21,9 +21,11 @@
                 <li>
                     <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
+                @can('roles.create')
                 <li>
                     <a href="{{ route('roles.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
                 </li>
+                @endcan
             </ul>
         </div>
     </div>
@@ -47,15 +49,19 @@
                                             <span class="fa-solid fa{{ $camp === 'name' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @can('roles.permisos.administrar')
                                     <th scope="col" class="">
                                         Permisos
                                     </th>
+                                    @endcan
                                     <th scope="col">Creado
                                         <a wire:click="sortable('created_at')">
                                             <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
+                                    @if(auth()->user()->can('roles.edit') or auth()->user()->can('roles.destroy') )
                                     <th scope="col" class="text-center">Acciones</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,19 +70,23 @@
                                     {{-- <td>{{ $role->id }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
                                     <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $role->name }}</span></td>
+                                    @can('roles.permisos.administrar')
                                     <td>
                                         <a class="btn btn-primary btn-sm" href="{{route('roles.permisos.administrar', $role->id)}}">
                                             <span class="btn-label">
                                                 <i class="fas fa-edit"></i>
                                             </span>
                                             Administrar
-                                        </a> </td>
-
+                                        </a>
+                                    </td>
+                                    @endcan
                                     <td><span class="badge rounded-pill badge-light-primary me-1">{{ $role->created_at->format('d-m-Y') }}</span></td>
+                                    @if(auth()->user()->can('roles.edit') or auth()->user()->can('roles.destroy') )
                                     <td class="text-center">
                                         {{-- Incluimos los botones  --}}
                                         @include('admin.pages.role.partials.buttons')
                                     </td>
+                                    @endif
                                 </tr>
                                 @empty
                                 <tr class="text-center ">

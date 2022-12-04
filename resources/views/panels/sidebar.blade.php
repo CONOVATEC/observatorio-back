@@ -5,8 +5,9 @@ $configData = Helper::applClasses();
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    <span class="brand-logo">
+                <a class="" href="{{ url('/home') }}">
+                    <img src="{{URL::to('/images/admin/logo.png')}}" class="img-responsive mx-0 px-0" style="width:195px;">
+                    {{-- <span class="brand-logo">
                         <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                             <defs>
                                 <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -30,8 +31,9 @@ $configData = Helper::applClasses();
                                 </g>
                             </g>
                         </svg>
-                    </span>
-                    <h2 class="brand-text">ONG WEB</h2>
+                    </span> --}}
+                    {{-- <img src="{{URL::to('/images/admin/logo.png')}}" class="img-responsive" style="width:190px; margin-top:0px !important; padding-top: 0px !important"> --}}
+                    {{-- <h2 class="brand-text">OBSERVATORIO JOVEN</h2> --}}
                 </a>
             </li>
             <li class="nav-item nav-toggle">

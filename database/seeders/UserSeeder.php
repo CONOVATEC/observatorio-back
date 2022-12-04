@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'username' => 'cybert22',
                 'email' => 'cybert@coder.com',
-                'password' => bcrypt('Contraseña123*'),
+                'password' => bcrypt('admin123'),
                 'email_verified_at' => now()
             ]
         )->assignRole('Colaborador');

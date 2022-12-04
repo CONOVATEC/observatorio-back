@@ -14,7 +14,7 @@
         <div class="card mb-0">
             <div class="card-body">
                 <a href="#" class="brand-logo">
-                    <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
+                    {{-- <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                         <defs>
                             <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                                 <stop stop-color="#000000" offset="0%"></stop>
@@ -28,8 +28,12 @@
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g id="Artboard" transform="translate(-400.000000, -178.000000)">
                                 <g id="Group" transform="translate(400.000000, 178.000000)">
-                                    <path class="text-primary" id="Path" d="M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z" style="fill: currentColor"></path>
-                                    <path id="Path1" d="M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z" fill="url(#linearGradient-1)" opacity="0.2"></path>
+                                    <path class="text-primary" id="Path"
+                                        d="M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
+                                        style="fill: currentColor"></path>
+                                    <path id="Path1"
+                                        d="M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z"
+                                        fill="url(#linearGradient-1)" opacity="0.2"></path>
                                     <polygon id="Path-2" fill="#000000" opacity="0.049999997" points="69.3922914 32.4202615 32.8435758 70.5039241 54.0490008 16.1851325">
                                     </polygon>
                                     <polygon id="Path-21" fill="#000000" opacity="0.099999994" points="69.3922914 32.4202615 32.8435758 70.5039241 58.3683556 20.7402338">
@@ -38,10 +42,13 @@
                                 </g>
                             </g>
                         </g>
-                    </svg>
-                    <h2 class="brand-text text-primary ms-1">ONG WEB</h2>
+                    </svg> --}}
+                    {{-- <h2 class="brand-text text-primary ms-1">OBSERVATORIO JOVEN</h2> --}}
+                    <img src="{{URL::to('/images/admin/logo.png')}}">
                 </a>
-                <h4 class="card-title mb-1 text-center">{{ __('Welcome') }}! 👋</h4>
+                <marquee direction="right">
+                    <h4 class="card-title mb-1 text-center">{{ __('Welcome') }}! 👋</h4>
+                </marquee>
                 <p class="card-text mb-2 text-center">{{ __('Enter your data to access the web system') }}.</p>
                 @if (session('status'))
                 <div class="alert alert-success mb-1 rounded-0" role="alert">
@@ -55,7 +62,8 @@
                     @csrf
                     <div class="mb-1">
                         <label for="auth" class="form-label">{{ __('Email') }} / {{ __('Username') }} / {{ __('Cell No.') }}</label>
-                        <input type="text" class="form-control @error('auth') is-invalid @enderror" id="auth" name="auth" placeholder="Ingrese uno de ellos" aria-describedby="auth" tabindex="1" autofocus value="{{ old('auth') }}" />
+                        <input type="text" class="form-control @error('auth') is-invalid @enderror" id="auth" name="auth" placeholder="Ingrese uno de ellos" aria-describedby="auth" tabindex="1"
+                            autofocus value="{{ old('auth') }}" />
                         @error('auth')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -73,7 +81,8 @@
                             @endif
                         </div>
                         <div class="input-group input-group-merge form-password-toggle">
-                            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+                            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2"
+                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                         </div>
                     </div>
@@ -85,20 +94,20 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100" tabindex="4">{{ __('Sign in') }}</button>
                 </form>
-
-                <p class="text-center mt-2">
+                {{-- <p class="text-center mt-2">
                     <span>¿{{ __('New on our platform') }}?</span>
-                    @if (Route::has('register'))
-                    <a href="{{ route('register') }}">
-                        <span>{{ __('Create an account') }}</span>
-                    </a>
-                    @endif
-                </p>
-
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}">
+                    <span>{{ __('Create an account') }}</span>
+                </a>
+                @endif
+                </p> --}}
+                {{--
                 <div class="divider my-2">
-                    <div class="divider-text">{{ __('or') }}</div>
-                </div>
-
+                    <div class="divider-text">{{ __('or') }}
+            </div>
+        </div> --}}
+        {{--
                 <div class="auth-footer-btn d-flex justify-content-center">
                     <a href="#" class="btn btn-facebook">
                         <i data-feather="facebook"></i>
@@ -112,10 +121,10 @@
                     <a href="#" class="btn btn-github">
                         <i data-feather="github"></i>
                     </a>
-                </div>
-            </div>
-        </div>
-        <!-- /Login basic -->
+                </div> --}}
     </div>
+</div>
+<!-- /Login basic -->
+</div>
 </div>
 @endsection

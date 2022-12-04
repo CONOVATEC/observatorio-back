@@ -21,8 +21,10 @@
                         <span>Total {{ count($roleAll) }} Usuarios</span>
                         <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                             @forelse($roleAll as $image)
-                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="{{ $image->username }}" class="avatar avatar-sm pull-up"><a href="{{  route('usuarios.show',$image->id) }}">
-                                    <img class="rounded-circle" src="{{ $image->profile_photo_path ? asset('storage/'.$image->profile_photo_path) : asset('images/portrait/small/avatar-s-11.jpg') }}" alt="{{ $image->name }}" title="{{ $image->name }}" /></a>
+                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="{{ $image->username }}" class="avatar avatar-sm pull-up"><a
+                                    href="{{  route('usuarios.show',$image->id) }}">
+                                    <img class="rounded-circle" src="{{ $image->profile_photo_path ? asset('storage/'.$image->profile_photo_path) : asset('images/portrait/small/avatar-s-11.jpg') }}"
+                                        alt="{{ $image->name }}" title="{{ $image->name }}" /></a>
                             </li>
                             @empty
                             @endforelse
@@ -31,15 +33,17 @@
                     <div class="d-flex justify-content-between align-items-end mt-1 pt-25">
                         <div class="role-heading">
                             <h4 class="fw-bolder">{{ $role->name }}</h4>
+                            @can('roles.edit')
                             <a href="{{ route('roles.edit',$role) }}" class="role-edit-modal">
                                 <small class="fw-bolder">Editar Rol</small>
                             </a>
+                            @endcan
                         </div>
+                        @can('roles.permisos.administrar')
                         <a href="{{ route('roles.permisos.administrar', $role->id) }}" class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Asignar permisos">
                             <i data-feather='shield' class="font-medium-5"></i>Permisos
-
                         </a>
-
+                        @endif
                     </div>
                 </div>
             </div>
@@ -53,6 +57,7 @@
                             <img src="{{asset('images/illustration/faq-illustrations.svg')}}" class="img-fluid mt-2" alt="Image" width="85" />
                         </div>
                     </div>
+                    @can('roles.create')
                     <div class="col-sm-7">
                         <div class="card-body text-sm-end text-center ps-sm-0">
                             <a href="{{ route('roles.create') }}" class="stretched-link text-nowrap add-new-role">
@@ -61,6 +66,7 @@
                             <p class="mb-0">Agregar rol, si no existe</p>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -75,9 +81,11 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="card-body text-sm-end text-center ps-sm-0">
+                            @can('roles.create')
                             <a href="{{ route('roles.create') }}" class="stretched-link text-nowrap add-new-role">
                                 <span class="btn btn-primary mb-1">Crear nuevo rol</span>
                             </a>
+                            @endcan
                             <p class="mb-0">Agregar rol, si no existe</p>
                         </div>
                     </div>

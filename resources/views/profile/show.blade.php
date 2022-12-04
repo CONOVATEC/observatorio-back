@@ -1,7 +1,7 @@
 @extends('layouts.contentLayoutMaster')
 
 @php
-$breadcrumbs = [['link' => 'dashboard', 'name' => 'Inicio'], ['link' => 'javascript:void(0)', 'name' => 'Usuario'], ['name' => 'Perfil']];
+$breadcrumbs = [['link' => 'home', 'name' => 'Inicio'], ['link' => 'usuarios', 'name' => 'Usuarios'], ['name' => 'Perfil']];
 @endphp
 
 @section('title', 'Perfil')
@@ -16,10 +16,10 @@ $breadcrumbs = [['link' => 'dashboard', 'name' => 'Inicio'], ['link' => 'javascr
 @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
 @livewire('profile.update-password-form')
 @endif
-
-@if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
+{{-- Comentamos authentication de 2 pasos --}}
+{{-- @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
 @livewire('profile.two-factor-authentication-form')
-@endif
+@endif --}}
 
 @livewire('profile.logout-other-browser-sessions-form')
 
