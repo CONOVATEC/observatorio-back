@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('sobreCmpj', About_cmpjController::class)->names('sobreCmpj');
 
     //*Rutas para dashboard
-    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    // Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/home', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
 
     //*Rutas para Noticias  posts
