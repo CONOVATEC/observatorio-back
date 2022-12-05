@@ -1,0 +1,298 @@
+{
+    "menu": [
+        {
+            "url": "home",
+            "name": "Home",
+            "icon": "home",
+            "slug": "dashboard"
+        },
+        {
+            "name": "news",
+            "icon": "airplay",
+            "slug": "noticias",
+            "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
+            "submenu": [
+                {
+                    "url": "noticias",
+                    "name": "Ver noticias",
+                    "icon": "file-text",
+                    "slug": "noticias.index"
+                },
+                {
+                    "url": "noticias/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "noticias.create"
+                }
+            ]
+        },
+        {
+            "name": "tags",
+            "icon": "tag",
+            "slug": "etiquetas",
+            "submenu": [
+                {
+                    "url": "etiquetas",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "etiquetas.index"
+                },
+                {
+                    "url": "etiquetas/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "etiquetas.create"
+                }
+            ]
+        },
+        {
+            "name": "categories",
+            "icon": "grid",
+            "slug": "categorias",
+            "submenu": [
+                {
+                    "url": "categorias",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "categorias.index",
+                    "meta": {
+                        "rule": "categorias.index"
+                    },
+                    "rule": "categorias.index"
+                },
+                {
+                    "url": "categorias/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "categorias.create"
+                }
+            ]
+        },
+        {
+            "name": "Young Observatory",
+            "icon": "zap",
+            "slug": "observatorio-juvenil",
+            "submenu": [
+                {
+                    "url": "observatorio-juvenil",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "observatorioJuvenil.index"
+                },
+                {
+                    "url": "observatorio-juvenil/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "observatorioJuvenil.create"
+                }
+            ]
+        },
+        {
+            "name": "Young Strategy",
+            "icon": "zap",
+            "slug": "estrategia-metropolitana",
+            "submenu": [
+                {
+                    "url": "estrategia-metropolitana",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "estrategiaMetropolitana.index"
+                },
+                {
+                    "url": "estrategia-metropolitana/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "estrategiaMetropolitana.create"
+                }
+            ]
+        },
+        {
+            "name": "CMPJ",
+            "icon": "pocket",
+            "slug": "sobreCmpj",
+            "submenu": [
+                {
+                    "url": "sobreCmpj",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "sobreCmpj.index"
+                },
+                {
+                    "url": "sobreCmpj/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "sobreCmpj.create"
+                }
+            ]
+        },
+        {
+            "name": "Policies",
+            "icon": "book-open",
+            "slug": "politicaJuvenil",
+            "submenu": [
+                {
+                    "url": "politica-juvenil",
+                    "name": "view records",
+                    "icon": "file-text",
+                    "slug": "politicaJuvenil.index"
+                },
+                {
+                    "url": "politica-juvenil/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "politicaJuvenil.create"
+                }
+            ]
+        },
+        {
+            "name": "roles and permissions",
+            "icon": "shield",
+            "slug": "roles",
+            "submenu": [
+                {
+                    "url": "roles",
+                    "name": "manage role",
+                    "icon": "eye",
+                    "slug": "roles.index"
+                },
+                {
+                    "url": "usuarios",
+                    "name": "User Role",
+                    "icon": "user",
+                    "slug": "usuarios.index"
+                }
+            ]
+        },
+        {
+            "name": "users",
+            "icon": "users",
+            "slug": "usuarios",
+            "submenu": [
+                {
+                    "url": "usuarios/create",
+                    "name": "users create",
+                    "icon": "user-plus",
+                    "slug": "usuarios.create",
+                    "meta": {
+                        "authRequired": true,
+                        "rule": "usuarios.create"
+                    }
+                },
+                {
+                    "url": "usuarios/actualizar-perfil",
+                    "name": "Update profile",
+                    "icon": "user",
+                    "slug": "usuarios.actualizar.perfil"
+                }
+            ]
+        },
+        {
+            "name": "logo type",
+            "icon": "instagram",
+            "slug": "tipoLogo",
+            "submenu": [
+                {
+                    "url": "tipo-logo",
+                    "name": "view logo type",
+                    "icon": "eye",
+                    "slug": "tipoLogo.index"
+                },
+                {
+                    "url": "tipo-logo/create",
+                    "name": "create logo type",
+                    "icon": "file-plus",
+                    "slug": "tipoLogo.create"
+                }
+            ]
+        },
+        {
+            "name": "logo",
+            "icon": "image",
+            "slug": "logos",
+            "submenu": [
+                {
+                    "url": "logos",
+                    "name": "view logo",
+                    "icon": "eye",
+                    "slug": "logos.index"
+                },
+                {
+                    "url": "logos/create",
+                    "name": "create logo",
+                    "icon": "file-plus",
+                    "slug": "logos.create"
+                }
+            ]
+        },
+        {
+            "name": "slide",
+            "icon": "image",
+            "slug": "slide",
+            "submenu": [
+                {
+                    "url": "slide",
+                    "name": "view slide",
+                    "icon": "eye",
+                    "slug": "slide.index"
+                },
+                {
+                    "url": "slide/create",
+                    "name": "create slide",
+                    "icon": "file-plus",
+                    "slug": "slide.create"
+                }
+            ]
+        },
+        {
+            "name": "company",
+            "icon": "server",
+            "slug": "configuraciones",
+            "submenu": [
+                {
+                    "url": "configuraciones",
+                    "name": "setting company",
+                    "icon": "settings",
+                    "slug": "configuraciones.index"
+                }
+            ]
+        },
+        {
+            "name": "directive",
+            "icon": "check-circle",
+            "slug": "directives",
+            "submenu": [
+                {
+                    "url": "directive",
+                    "name": "view directive",
+                    "icon": "eye",
+                    "slug": "directives.index"
+                },
+                {
+                    "url": "directive/create",
+                    "name": "create directive",
+                    "icon": "file-plus",
+                    "slug": "directives.create"
+                }
+            ]
+        },
+        {
+            "name": "position",
+            "icon": "shield",
+            "slug": "positions",
+            "submenu": [
+                {
+                    "url": "posiciones",
+                    "name": "view position",
+                    "icon": "eye",
+                    "slug": "posiciones.index"
+                },
+                {
+                    "url": "posiciones/create",
+                    "name": "create position",
+                    "icon": "file-plus",
+                    "slug": "posiciones.create"
+                }
+            ]
+        }
+    ]
+}
