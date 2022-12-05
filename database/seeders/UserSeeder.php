@@ -39,6 +39,6 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now()
             ]
         )->assignRole('Colaborador');
-        User::factory(20)->create();
+        // User::factory(20)->create();
     }
 }
