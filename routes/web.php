@@ -1,29 +1,30 @@
 <?php
 
-use App\Http\Controllers\admin\About_cmpjController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\LogoController;
-use App\Http\Controllers\admin\PostController;
-use App\Http\Controllers\admin\DirectiveController;
-use App\Http\Controllers\admin\PositionController;
-use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\SettingController;
-use App\Http\Controllers\admin\SlideController;
-use App\Http\Controllers\admin\TagController;
-use App\Http\Controllers\admin\TypeLogoController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\Youth_observatoryController;
-use App\Http\Controllers\admin\YouthObservatoryController;
-use App\Http\Controllers\admin\YouthPolicyController;
-use App\Http\Controllers\admin\YouthStrategyController;
-use App\Http\Controllers\Api\V1\YoutObservatoryController;
-use App\Http\Controllers\LanguageController;
-use App\Models\admin\YouthObservatory;
 use App\Models\admin\YouthPolicy;
 use App\Models\admin\YouthStrategy;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use App\Models\admin\YouthObservatory;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\admin\TagController;
+use App\Http\Controllers\admin\LogoController;
+use App\Http\Controllers\admin\PostController;
+use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\SlideController;
+use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\PositionController;
+use App\Http\Controllers\admin\TypeLogoController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\DirectiveController;
+use App\Http\Controllers\admin\About_cmpjController;
+use App\Http\Controllers\admin\YouthPolicyController;
+use App\Http\Controllers\admin\YouthStrategyController;
+use App\Http\Controllers\admin\YouthObservatoryController;
+use App\Http\Controllers\Api\V1\YoutObservatoryController;
+use App\Http\Controllers\admin\Youth_observatoryController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,13 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+if ($enableViews) {
+    Route::get('/', [AuthenticatedSessionController::class, 'create'])
+        ->middleware(['guest:' . config('fortify.guard')])
+        ->name('login');
+}
+
+// Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Route aboutsObservatory
@@ -43,7 +51,6 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('sobreCmpj', About_cmpjController::class)->names('sobreCmpj');
 
     //*Rutas para dashboard
-    // Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/home', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
 
     //*Rutas para Noticias  posts
