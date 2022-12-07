@@ -37,13 +37,12 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 |
  */
 
-if ($enableViews) {
-    Route::get('/', [AuthenticatedSessionController::class, 'create'])
-        ->middleware(['guest:' . config('fortify.guard')])
-        ->name('login');
-}
 
-// Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Route aboutsObservatory
