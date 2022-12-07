@@ -38,10 +38,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
  */
 
 
-
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::get('/', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
