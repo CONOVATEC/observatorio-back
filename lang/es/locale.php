@@ -4,6 +4,8 @@ return [
     // Inicio agregado por mí
     "user-profile" => "Perfil de Usuario",
     "news" => "Noticias",
+    "thematics" => "Tematicas",
+    "view thematic" => "Ver tematica",
     "tags" => "Etiquetas",
     "categories" => "Categorías",
     "company" => "Organización",

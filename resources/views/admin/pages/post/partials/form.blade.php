@@ -160,7 +160,11 @@
             </div>
         </div>
 
+
+
+        {{--
        <div class="row" id="opticonNews" style="display: none">
+
         <div class="col-12">
             <div class="mb-2">
                 {{ Form::label('importantOne', 'Texto relevante*', ['class' => 'form-label fw-bold']) }}
@@ -199,8 +203,9 @@
                 @enderror
             </div>
         </div>
-       </div>
 
+       </div>
+        --}}
 
 
 
@@ -279,7 +284,7 @@
 
 
 
-
+<!--
     <script>
     const radioButtons = document.querySelectorAll('input[name="tendencia_active"]');
     const select = document.querySelectorAll('input[name="tendencia_active"]');
@@ -328,6 +333,8 @@
         //     alert('No hay ninún elemento activo');
         // }
     </script>
+
+-->
   <!-- Page js files -->
   <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 @endsection

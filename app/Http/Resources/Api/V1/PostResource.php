@@ -25,9 +25,9 @@ class PostResource extends JsonResource
             'news_cover'=>$this->estado($this->news_cover),//portada_noticias
             'tendencia'=>$this->tendencia($this->tendencia_active),
             'category'=>$this->category->name,
-            'importantTwo'=>$this->importantTwo,
-            'importantThree'=>$this->importantThree,
-            'importantFour'=>$this->importantFour,
+           // 'importantTwo'=>$this->importantTwo,
+           // 'importantThree'=>$this->importantThree,
+           // 'importantFour'=>$this->importantFour,
             'tags'=> TagResource::collection($this->tags),
             'likes'=>LikeResource::collection($this->likes),
             'user'=>[

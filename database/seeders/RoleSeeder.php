@@ -132,5 +132,13 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'posiciones.destroy', 'description' => 'Eliminar puesto de directivos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'posiciones.eliminar.definitivo', 'description' => 'Eliminar definitivo puesto de directivos'])->syncRoles([$rol1, $rol2]);
         Permission::create(['name' => 'posiciones.restaurar', 'description' => 'Restaurar puesto de directivos eliminados'])->syncRoles([$rol1, $rol2]);
+
+
+         //* tematica
+         Permission::create(['name' => 'tematica.index', 'description' => 'Ver tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.create', 'description' => 'Crear tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.edit', 'description' => 'Editar tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.destroy', 'description' => 'Eliminar tematica'])->syncRoles([$rol1, $rol2]);
+
     }
 }

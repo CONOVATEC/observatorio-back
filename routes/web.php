@@ -19,6 +19,7 @@ use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\DirectiveController;
 use App\Http\Controllers\admin\About_cmpjController;
+use App\Http\Controllers\admin\ThematicController;
 use App\Http\Controllers\admin\YouthPolicyController;
 use App\Http\Controllers\admin\YouthStrategyController;
 use App\Http\Controllers\admin\YouthObservatoryController;
@@ -73,6 +74,8 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     //*Rutas para Configuraciones
     //Route::resource('configuraciones', SettingController::class)->names('configuraciones')->only(['index','store','edit','update']);
 
+    //*Route TEMATICA;
+    Route::resource('tematica', ThematicController::class)->names('tematica');
     //*Route TIPO DE LOGO;
 
     Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
