@@ -66,10 +66,10 @@ class PostController extends Controller
             'tendencia_active' => $request['tendencia_active'],
             'news_cover' => $request['news_cover'],
             'category_id' => $request['category_id'],
-            'importantOne' => $request['importantOne'],
-            'importantTwo' => $request['importantTwo'],
-            'importantThree' => $request['importantThree'],
-            'importantFour' => $request['importantFour'],
+           // 'importantOne' => $request['importantOne'],
+           // 'importantTwo' => $request['importantTwo'],
+           // 'importantThree' => $request['importantThree'],
+           // 'importantFour' => $request['importantFour'],
             'user_id' => $request['user_id']
 
         ]);
@@ -149,10 +149,10 @@ class PostController extends Controller
             'tendencia_active' => $request['tendencia_active'],
             'news_cover' => $request['news_cover'],
             'category_id' => $request['category_id'],
-            'importantOne' => $request['importantOne'],
-            'importantTwo' => $request['importantTwo'],
-            'importantThree' => $request['importantThree'],
-            'importantFour' => $request['importantFour'],
+          //  'importantOne' => $request['importantOne'],
+          //  'importantTwo' => $request['importantTwo'],
+          //  'importantThree' => $request['importantThree'],
+          //  'importantFour' => $request['importantFour'],
 
         ];
         Post::find($id)->update($data);

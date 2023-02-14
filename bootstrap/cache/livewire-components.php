@@ -14,6 +14,7 @@
   'admin.slide.slide-table' => 'App\\Http\\Livewire\\Admin\\Slide\\SlideTable',
   'admin.tag.live-tag-table' => 'App\\Http\\Livewire\\Admin\\Tag\\LiveTagTable',
   'admin.tag.restore-tag-table' => 'App\\Http\\Livewire\\Admin\\Tag\\RestoreTagTable',
+  'admin.thematic.thematic-table' => 'App\\Http\\Livewire\\Admin\\Thematic\\ThematicTable',
   'admin.type-logo.type-logo-table' => 'App\\Http\\Livewire\\Admin\\TypeLogo\\TypeLogoTable',
   'admin.user.live-user-table' => 'App\\Http\\Livewire\\Admin\\User\\LiveUserTable',
   'admin.user.live-user-table2' => 'App\\Http\\Livewire\\Admin\\User\\LiveUserTable2',
