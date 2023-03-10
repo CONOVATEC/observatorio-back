@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\SlideController;
 use App\Http\Controllers\Api\V1\ThematicController;
 use App\Http\Controllers\Api\V1\YouthPolicyController;
 use App\Http\Controllers\Api\V1\YouthStrategyController;
+use App\Http\Controllers\Api\V1\GradeController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,5 +49,6 @@ Route::apiResource('slide',SlideController::class)->only(['index']);
 Route::apiResource('directive',DirectiveController::class)->only(['index']);
 Route::apiResource('setting',SettingController::class)->only(['index']);
 Route::apiResource('thematic',ThematicController::class)->only(['index']);
+Route::apiResource('grade',GradeController::class)->only(['index']);
 
 
