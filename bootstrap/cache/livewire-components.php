@@ -4,6 +4,7 @@
   'admin.category.live-category-table' => 'App\\Http\\Livewire\\Admin\\Category\\LiveCategoryTable',
   'admin.category.restore-category-table' => 'App\\Http\\Livewire\\Admin\\Category\\RestoreCategoryTable',
   'admin.directive.directive-table' => 'App\\Http\\Livewire\\Admin\\Directive\\DirectiveTable',
+  'admin.grade.grade-table' => 'App\\Http\\Livewire\\Admin\\Grade\\GradeTable',
   'admin.logo.logo-table' => 'App\\Http\\Livewire\\Admin\\Logo\\LogoTable',
   'admin.position.live-position-table' => 'App\\Http\\Livewire\\Admin\\Position\\LivePositionTable',
   'admin.position.restore-position-table' => 'App\\Http\\Livewire\\Admin\\Position\\RestorePositionTable',

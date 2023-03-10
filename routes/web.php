@@ -26,6 +26,7 @@ use App\Http\Controllers\admin\YouthObservatoryController;
 use App\Http\Controllers\Api\V1\YoutObservatoryController;
 use App\Http\Controllers\admin\Youth_observatoryController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\admin\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +112,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('slide', SlideController::class)->names('slide');
     Route::resource('estrategia-metropolitana', YouthStrategyController::class)->names('estrategiaMetropolitana');
     Route::resource('observatorio-juvenil', YouthObservatoryController::class)->names('observatorioJuvenil');
+    Route::resource('notas-rapidas', GradeController::class)->names('notasRapidas');
 });
 
 //* locale Route
