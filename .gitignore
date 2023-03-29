@@ -8,5 +8,5 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
-composer.lock
+package-lock.json
 yarn.lock
