@@ -15,14 +15,14 @@ class SlideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function  __construct()
+    public function __construct()
     {
-    $this->middleware('auth');
-    $this->middleware('auth')->except('show');
-    $this->middleware('can:slide.index')->only('index');
-    $this->middleware('can:slide.create')->only('create');
-     $this->middleware('can:slide.edit')->only('edit');
-    $this->middleware('can:slide.destroy')->only('destroy');
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:slide.index')->only('index');
+        $this->middleware('can:slide.create')->only('create');
+        $this->middleware('can:slide.edit')->only('edit');
+        $this->middleware('can:slide.destroy')->only('destroy');
 
     }
 
@@ -31,7 +31,8 @@ class SlideController extends Controller
 
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
-            ['link' => "home", 'name' => "Inicio"], ['name' => "slider politica juventud"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['name' => "slider politica juventud"],
         ];
         return view('admin.pages.slide.index', compact('breadcrumbs'));
     }
@@ -46,7 +47,9 @@ class SlideController extends Controller
         $slides = Slide::all();
 
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "slider politica juventud", 'name' => "Politica Juventud"], ['name' => "Registrando Politica Juventud"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['link' => "slider politica juventud", 'name' => "Politica Juventud"],
+            ['name' => "Registrando Politica Juventud"],
         ];
         return view('admin.pages.slide.create', compact('breadcrumbs', 'slides'));
     }
@@ -95,7 +98,9 @@ class SlideController extends Controller
         // dd($category);
 
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "Slide Politica Juventud", 'name' => "Slide Politica Juventud"], ['name' => "Editando Slide Politica Juventud"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['link' => "Slide Politica Juventud", 'name' => "Slide Politica Juventud"],
+            ['name' => "Editando Slide Politica Juventud"],
         ];
         return view('admin.pages.slide.edit', compact('breadcrumbs', 'slides', 'slide'));
     }
@@ -110,23 +115,23 @@ class SlideController extends Controller
     public function update(SlideRequest $request, $id)
     {
         Slide::find($id)->update($request->all());
-        if($request->file('image_slide')){
-            $url=Storage::put('public/slides',$request->file('image_slide'));
-            $slide=Slide::findOrFail($id);
-            if($slide->image){
+        if ($request->file('image_slide')) {
+            $url = Storage::put('public/slides', $request->file('image_slide'));
+            $slide = Slide::findOrFail($id);
+            if ($slide->image) {
                 Storage::delete($slide->image->url);
                 $slide->image->update([
-                    'url'=>$url
+                    'url' => $url
                 ]);
 
-            }else{
+            } else {
                 $slide->image()->create([
-                    'url'=>$url
+                    'url' => $url
                 ]);
             }
         }
 
-        return redirect()->route('slide.edit', $id)->with('info','Slide Politica Juventud se actualizo correctamente');
+        return redirect()->route('slide.edit', $id)->with('info', 'Slide Politica Juventud se actualizo correctamente');
     }
 
     /**
@@ -144,7 +149,7 @@ class SlideController extends Controller
             $slide->image->delete();
             $slide->Delete();
         } else {
-           // $slide->image->delete();
+            // $slide->image->delete();
             $slide->Delete();
         }
         return redirect()->route('slide.index')->with('warning', 'Slide Politica Juventud eliminado correctamente');

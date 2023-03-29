@@ -33,20 +33,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('post',PostApiController::class)->only(['index']);
+Route::apiResource('post', PostApiController::class)->only(['index']);
 
 
 Route::apiResource('youtObservatory', YoutObservatoryController::class)->only(['index']);
 
-Route::apiResource('cmpj',AboutCmpjController::class)->only(['index']);
+Route::apiResource('cmpj', AboutCmpjController::class)->only(['index']);
 
-Route::apiResource('logo',LogoApiController::class)->only(['index']);
+Route::apiResource('logo', LogoApiController::class)->only(['index']);
 
-Route::apiResource('youthPolicy',YouthPolicyController::class)->only(['index']);
-Route::apiResource('youthStrategy',YouthStrategyController::class)->only(['index']);
-Route::apiResource('slide',SlideController::class)->only(['index']);
-Route::apiResource('directive',DirectiveController::class)->only(['index']);
-Route::apiResource('setting',SettingController::class)->only(['index']);
-Route::apiResource('thematic',ThematicController::class)->only(['index']);
-
-
+Route::apiResource('youthPolicy', YouthPolicyController::class)->only(['index']);
+Route::apiResource('youthStrategy', YouthStrategyController::class)->only(['index']);
+// Route::apiResource('slide',SlideController::class)->only(['index']);
+Route::apiResource('directive', DirectiveController::class)->only(['index']);
+Route::apiResource('setting', SettingController::class)->only(['index']);
+Route::apiResource('thematic', ThematicController::class)->only(['index']);
