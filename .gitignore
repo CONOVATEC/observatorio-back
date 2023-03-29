@@ -9,5 +9,3 @@ yarn-error.log
 supervisord.log
 supervisord.pid
 package-lock.json
-# yarn.lock
-# composer.lock
