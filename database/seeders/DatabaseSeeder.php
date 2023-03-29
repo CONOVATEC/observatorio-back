@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\Directive::factory(1)->create();
         \App\Models\admin\Slide::factory(1)->create();
         \App\Models\admin\Logo::factory(2)->create();
-        \App\Models\admin\Thematic::factory(3)->create();
+        // \App\Models\admin\Thematic::factory(3)->create();
         $this->call(LogoSeeder::class);
     }
 }

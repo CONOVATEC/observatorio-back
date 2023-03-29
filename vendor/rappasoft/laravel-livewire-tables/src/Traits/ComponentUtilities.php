@@ -37,6 +37,7 @@ trait ComponentUtilities
     protected array $additionalSelects = [];
     protected bool $hideConfigurableAreasWhenReorderingStatus = true;
     protected array $configurableAreas = [
+        'before-tools' => null,
         'toolbar-left-start' => null,
         'toolbar-left-end' => null,
         'toolbar-right-start' => null,
@@ -94,7 +95,7 @@ trait ComponentUtilities
             $filterName = Str::after($name, $this->getTableName().'.filters.');
             $filter = $this->getFilterByKey($filterName);
 
-            if ($filter->isEmpty($value)) {
+            if ($filter && $filter->isEmpty($value)) {
                 $this->resetFilter($filterName);
             }
         }
