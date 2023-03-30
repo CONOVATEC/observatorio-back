@@ -22,9 +22,9 @@ use App\Http\Controllers\admin\About_cmpjController;
 use App\Http\Controllers\admin\ThematicController;
 use App\Http\Controllers\admin\YouthPolicyController;
 use App\Http\Controllers\admin\YouthStrategyController;
+//use App\Http\Controllers\Api\V1\YoutObservatoryController;
+//use App\Http\Controllers\admin\Youth_observatoryController;
 use App\Http\Controllers\admin\YouthObservatoryController;
-use App\Http\Controllers\Api\V1\YoutObservatoryController;
-use App\Http\Controllers\admin\Youth_observatoryController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\admin\GradeController;
 
@@ -45,7 +45,8 @@ Route::get('/', [DashboardController::class, 'dashboard'])->middleware('can:dash
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Route aboutsObservatory
-    Route::resource('juvenilesObservatorio', Youth_observatoryController::class)->names('juvenilesObservatorio');
+    
+    //Route::resource('juvenilesObservatorio', Youth_observatoryController::class)->names('juvenilesObservatorio');
     Route::resource('sobreCmpj', About_cmpjController::class)->names('sobreCmpj');
 
     //*Rutas para dashboard

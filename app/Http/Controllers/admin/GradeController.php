@@ -8,16 +8,16 @@ use App\Models\admin\Grade;
 use App\Http\Requests\admin\GradeRequest;
 class GradeController extends Controller
 {
-    // public function  __construct()
-    // {
-    //     $this->middleware('auth');
-    //     $this->middleware('auth')->except('show');
-    //     $this->middleware('can:notasRapidas.index')->only('index');
-    //     $this->middleware('can:notasRapidas.create')->only('create');
-    //     $this->middleware('can:notasRapidas.edit')->only('edit');
-    //     $this->middleware('can:notasRapidas.destroy')->only('destroy');
-    // }
-    //
+    public function  __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
+        $this->middleware('can:notasRapidas.index')->only('index');
+        $this->middleware('can:notasRapidas.create')->only('create');
+        $this->middleware('can:notasRapidas.edit')->only('edit');
+        $this->middleware('can:notasRapidas.destroy')->only('destroy');
+    }
+    
     public function index(){
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
@@ -61,7 +61,7 @@ class GradeController extends Controller
     public function update(GradeRequest $request, $id)
     {
         Grade::find($id)->update($request->all());
-        return redirect()->route('notasRapidas.edit', $id)->with('info','La Nota se actualizo correctamente');
+        return redirect()->route('notasRapidas.index')->with('warning', 'La tématica se modifico correctamente');
     }
 
     public function destroy($id)
