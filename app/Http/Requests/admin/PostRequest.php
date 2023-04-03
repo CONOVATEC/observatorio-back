@@ -36,8 +36,8 @@ class PostRequest extends FormRequest
             'slug'=>'required|unique:posts',
             'status'=>'required|in:1,2',
             'news_cover'=>'required|in:1,2',
-            'file'=>'image'
-
+            //'file'=>'image'
+            
         ];
         if($post){
             $rules['slug']='required|unique:posts,slug,'.(implode($post));
@@ -49,8 +49,8 @@ class PostRequest extends FormRequest
                 'tendencia_active'=>'required',
                 'category_id'=>'required',
                 'tags'=>'required',
-                'file'=>'image'
-
+                //'file'=>'image'
+                
 
 
             ]
