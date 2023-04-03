@@ -65,23 +65,31 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 @isset ($post->image)
 
                     <img src="{{Storage::url($post->image->url)}}"  class="imagen pb-2 rounded" id="picture"  alt="img no encontrada">
                 @else
                      <img src="https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg" class="imagen pb-2 rounded"  id="picture"  alt="">
                 @endif
-            </div>
+            </div> -->
 
             <div class="col-md-6">
                 <div class="form-group">
-                    {{form::label('file','Cargar una Img')}}
-                    {{Form::file('file',['class'=>'form-control','accept'=>'image/*'])}}
+
+               
+                {{ Form::label('url_image', 'url imagen*', ['class' => 'form-label']) }}
+                {{ Form::textarea('url_image', null, ['class' => 'form-control', 'id' => 'url_image','cols'=>'40','rows'=>'2', 'placeholder' => 'Ingrese url de la imagen']) }}
+                
+                    <!-- {{form::label('file','Cargar una Img')}}
+                    {{Form::file('file',['class'=>'form-control','accept'=>'image/*'])}} -->
                 </div>
-                @error('file')
-                <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @error('url_image')
+                    <span class="text-danger form-label fw-bold">{{ $message }}</span>
                 @enderror
+                <!-- @error('file')
+                <span class="text-danger form-label fw-bold">{{ $message }}</span>
+                @enderror -->
             <br>
                 <p>Solo esta permitido formato de images como: <span class="text-danger">PNG,JPG,JPEG</span> </p>
             </div>
@@ -253,7 +261,7 @@
     <script src="https://cdn.ckeditor.com/4.19.0/full-all/ckeditor.js"></script>
 
     <script>
-        document.getElementById("file").addEventListener('change',cambiarImagen);
+        document.getElementById("url_image").addEventListener('change',cambiarImagen);
 
         function cambiarImagen(event){
 
