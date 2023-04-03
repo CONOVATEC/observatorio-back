@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('post',PostApiController::class)->only(['index']);
+Route::apiResource('post', PostApiController::class)->only(['index']);
 
 
 Route::apiResource('youtObservatory', YoutObservatoryController::class)->only(['index']);
@@ -50,5 +50,3 @@ Route::apiResource('directive',DirectiveController::class)->only(['index']);
 Route::apiResource('setting',SettingController::class)->only(['index']);
 Route::apiResource('thematic',ThematicController::class)->only(['index']);
 Route::apiResource('grade',GradeController::class)->only(['index']);
-
-

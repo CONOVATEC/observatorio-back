@@ -37,10 +37,10 @@ use App\Http\Controllers\admin\GradeController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
- */
+*/
 
 
-Route::get('/', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
+// Route::get('/', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
@@ -80,10 +80,10 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('tematica', ThematicController::class)->names('tematica');
     //*Route TIPO DE LOGO;
 
-    Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
+    // Route::resource('tipoLogo', TypeLogoController::class)->names('tipoLogo');
 
     //*Route LOGO;
-    Route::resource('logo', LogoController::class)->names('logos');
+    // Route::resource('logo', LogoController::class)->names('logos');
 
     //*Route DIRECTIVES;
     Route::resource('directive', DirectiveController::class)->names('directives'); //actualizado por sergio
