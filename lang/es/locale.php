@@ -51,6 +51,7 @@ return [
     "create position" => "Crear puesto directivo",
 
 
+
     /*****************
      * Para roles y permisos *
      *****************/
