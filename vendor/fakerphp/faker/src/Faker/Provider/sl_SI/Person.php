@@ -25,7 +25,11 @@ class Person extends \Faker\Provider\Person
      * @see http://www.stat.si/doc/vsebina/05/imena/TOPIMENA_SI.xlsx
      */
     protected static $firstNameMale = [
+<<<<<<< HEAD
         'Adam', 'Albert', 'Albin', 'Aleks', 'Aleksandar', 'Aleksander', 'Aleksej', 'Alen',
+=======
+        'Adam', 'Adolf', 'Albert', 'Albin', 'Aleks', 'Aleksandar', 'Aleksander', 'Aleksej', 'Alen',
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         'Alex', 'Aleš', 'Aljaž', 'Aljoša', 'Alojz', 'Alojzij', 'Andraž', 'Andrej', 'Anej', 'Anton',
         'Anže', 'Avgust', 'Ažbe', 'Benjamin', 'Bernard', 'Bine', 'Blaž', 'Bogdan', 'Bogomir',
         'Bojan', 'Bor', 'Boris', 'Borut', 'Boštjan', 'Božidar', 'Branko', 'Brin', 'Bruno', 'Ciril',

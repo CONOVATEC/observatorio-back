@@ -34,7 +34,10 @@ class ReportSolution
             /** @phpstan-ignore-next-line  */
             'action_description' => $isRunnable ? $this->solution->getSolutionActionDescription() : null,
             'is_runnable' => $isRunnable,
+<<<<<<< HEAD
             'ai_generated' => $this->solution->aiGenerated ?? false,
+=======
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         ];
     }
 }

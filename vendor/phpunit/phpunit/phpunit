@@ -52,9 +52,15 @@ if ([] !== $unavailableExtensions) {
         STDERR,
         sprintf(
             'PHPUnit requires the "%s" extensions, but the "%s" %s not available.' . PHP_EOL,
+<<<<<<< HEAD
             implode('", "', $requiredExtensions),
             implode('", "', $unavailableExtensions),
             count($unavailableExtensions) === 1 ? 'extension is' : 'extensions are'
+=======
+            count($unavailableExtensions) === 1 ? 'extension is' : 'extensions are',
+            implode('", "', $requiredExtensions),
+            implode('", "', $unavailableExtensions)
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         )
     );
 

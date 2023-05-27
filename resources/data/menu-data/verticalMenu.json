@@ -34,16 +34,16 @@
             "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
             "submenu": [
                 {
-                    "url": "tematica",
+                    "url": "notas-rapidas",
                     "name": "view thematic",
                     "icon": "file-text",
-                    "slug": "tematica.index"
+                    "slug": "notasRapidas.index"
                 },
                 {
-                    "url": "tematica/create",
+                    "url": "notas-rapidas/create",
                     "name": "create register",
                     "icon": "plus-square",
-                    "slug": "tematica.create"
+                    "slug": "notasRapidas.create"
                 }
             ]
         },
@@ -227,9 +227,9 @@
             ]
         },
         {
-            "name": "logo",
+            "name": "grade",
             "icon": "image",
-            "slug": "logos",
+            "slug": "grade",
             "submenu": [
                 {
                     "url": "logos",
@@ -264,6 +264,7 @@
                 }
             ]
         },
+        
         {
             "name": "company",
             "icon": "server",

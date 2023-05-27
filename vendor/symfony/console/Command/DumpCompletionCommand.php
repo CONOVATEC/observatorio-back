@@ -43,10 +43,26 @@ final class DumpCompletionCommand extends Command
         $commandName = basename($fullCommand);
         $fullCommand = @realpath($fullCommand) ?: $fullCommand;
 
+<<<<<<< HEAD
         $this
             ->setHelp(<<<EOH
 The <info>%command.name%</> command dumps the shell completion script required
 to use shell autocompletion (currently only bash completion is supported).
+=======
+        $shell = $this->guessShell();
+        [$rcFile, $completionFile] = match ($shell) {
+            'fish' => ['~/.config/fish/config.fish', "/etc/fish/completions/$commandName.fish"],
+            'zsh' => ['~/.zshrc', '$fpath[1]/'.$commandName],
+            default => ['~/.bashrc', "/etc/bash_completion.d/$commandName"],
+        };
+
+        $supportedShells = implode(', ', $this->getSupportedShells());
+
+        $this
+            ->setHelp(<<<EOH
+The <info>%command.name%</> command dumps the shell completion script required
+to use shell autocompletion (currently, {$supportedShells} completion are supported).
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 
 <comment>Static installation
 -------------------</>

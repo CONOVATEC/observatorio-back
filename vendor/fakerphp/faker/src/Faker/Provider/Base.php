@@ -179,17 +179,26 @@ class Base
     /**
      * Returns randomly ordered subsequence of $count elements from a provided array
      *
+<<<<<<< HEAD
      * @param array|class-string|\Traversable $array           Array to take elements from. Defaults to a-c
      * @param int                             $count           Number of elements to take.
      * @param bool                            $allowDuplicates Allow elements to be picked several times. Defaults to false
      *
      * @throws \InvalidArgumentException
      * @throws \LengthException          When requesting more elements than provided
+=======
+     * @param array $array           Array to take elements from. Defaults to a-c
+     * @param int   $count           Number of elements to take.
+     * @param bool  $allowDuplicates Allow elements to be picked several times. Defaults to false
+     *
+     * @throws \LengthException When requesting more elements than provided
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
      *
      * @return array New array with $count elements from $array
      */
     public static function randomElements($array = ['a', 'b', 'c'], $count = 1, $allowDuplicates = false)
     {
+<<<<<<< HEAD
         $elements = $array;
 
         if (is_string($array) && function_exists('enum_exists') && enum_exists($array)) {
@@ -245,11 +254,50 @@ class Base
         }
 
         return $randomElements;
+=======
+        $traversables = [];
+
+        if ($array instanceof \Traversable) {
+            foreach ($array as $element) {
+                $traversables[] = $element;
+            }
+        }
+
+        $arr = count($traversables) ? $traversables : $array;
+
+        $allKeys = array_keys($arr);
+        $numKeys = count($allKeys);
+
+        if (!$allowDuplicates && $numKeys < $count) {
+            throw new \LengthException(sprintf('Cannot get %d elements, only %d in array', $count, $numKeys));
+        }
+
+        $highKey = $numKeys - 1;
+        $keys = $elements = [];
+        $numElements = 0;
+
+        while ($numElements < $count) {
+            $num = mt_rand(0, $highKey);
+
+            if (!$allowDuplicates) {
+                if (isset($keys[$num])) {
+                    continue;
+                }
+                $keys[$num] = true;
+            }
+
+            $elements[] = $arr[$allKeys[$num]];
+            ++$numElements;
+        }
+
+        return $elements;
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
     }
 
     /**
      * Returns a random element from a passed array
      *
+<<<<<<< HEAD
      * @param array|class-string|\Traversable $array
      *
      * @throws \InvalidArgumentException
@@ -282,6 +330,18 @@ class Base
         $randomElements = static::randomElements($elements, 1);
 
         return $randomElements[0];
+=======
+     * @param array $array
+     */
+    public static function randomElement($array = ['a', 'b', 'c'])
+    {
+        if (!$array || ($array instanceof \Traversable && !count($array))) {
+            return null;
+        }
+        $elements = static::randomElements($array, 1);
+
+        return $elements[0];
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
     }
 
     /**

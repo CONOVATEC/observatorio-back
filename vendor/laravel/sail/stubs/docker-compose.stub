@@ -18,7 +18,10 @@ services:
             LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+<<<<<<< HEAD
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
+=======
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         volumes:
             - '.:/var/www/html'
         networks:

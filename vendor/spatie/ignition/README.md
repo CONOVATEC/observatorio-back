@@ -106,7 +106,12 @@ To avoid rendering Ignition, you can call `shouldDisplayException` and pass it a
 
 In addition to displaying an exception, Ignition can display a solution as well.
 
+<<<<<<< HEAD
 Out of the box, Ignition will display solutions for common errors such as bad methods calls, or using undefined properties.
+=======
+Out of the box, Ignition will display solutions for common errors such as bad methods calls, or using undefined
+properties.
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 
 #### Adding a solution directly to an exception
 
@@ -197,6 +202,7 @@ To register a solution provider to Ignition you must call the `addSolutionProvid
     ->register();
 ```
 
+<<<<<<< HEAD
 ### AI powered solutions
 
 Ignition can send your exception to Open AI that will attempt to automatically suggest a solution. In many cases, the suggested solutions is quite useful, but keep in mind that the solution may not be 100% correct for your context.
@@ -253,6 +259,8 @@ To send the application type call `applicationType` on the solution provider.
 $aiSolutionProvider->applicationType('WordPress 6.2')
 ```
 
+=======
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 ### Sending exceptions to Flare
 
 Ignition comes with the ability to send exceptions to [Flare](https://flareapp.io), an exception monitoring service. Flare
@@ -414,7 +422,10 @@ Here are the steps you'll need to perform if you want to work on the UI of Ignit
     - run `composer update`
     - run `cp .env.example .env`
     - run `php artisan key:generate`
+<<<<<<< HEAD
 - run `yarn dev` in both the `ignition` and `ignition-ui` project
+=======
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 - http://ignition-test.test/ should now work (= show the new UI). If you use valet, you might want to run `valet park` inside the `~/code/flare` directory.
     - http://ignition-test.test/ has a bit of everything
     - http://ignition-test.test/sql-error has a solution and SQL exception

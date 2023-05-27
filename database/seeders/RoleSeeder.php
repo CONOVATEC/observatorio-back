@@ -135,10 +135,10 @@ class RoleSeeder extends Seeder
 
 
          //* tematica
-         Permission::create(['name' => 'tematica.index', 'description' => 'Ver tematica'])->syncRoles([$rol1, $rol2]);
-         Permission::create(['name' => 'tematica.create', 'description' => 'Crear tematica'])->syncRoles([$rol1, $rol2]);
-         Permission::create(['name' => 'tematica.edit', 'description' => 'Editar tematica'])->syncRoles([$rol1, $rol2]);
-         Permission::create(['name' => 'tematica.destroy', 'description' => 'Eliminar tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.index', 'description' => 'Ver tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.create', 'description' => 'Crear tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.edit', 'description' => 'Editar tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.destroy', 'description' => 'Eliminar tematica'])->syncRoles([$rol1, $rol2]);
 
     }
 }

@@ -24,7 +24,10 @@ class SolutionTransformer implements Arrayable
             'links' => $this->solution->getDocumentationLinks(),
             'description' => $this->solution->getSolutionDescription(),
             'is_runnable' => false,
+<<<<<<< HEAD
             'ai_generated' => $this->solution->aiGenerated ?? false,
+=======
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         ];
     }
 }

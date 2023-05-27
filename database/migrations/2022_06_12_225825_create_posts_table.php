@@ -27,6 +27,7 @@ return new class extends Migration
            // $table->string('importantThree')->nullable();
            // $table->string('importantFour')->nullable();
             $table->tinyInteger('tendencia_active')->nullable();
+            $table->text('url_image')->nullable();
             $table->enum('news_cover',[1,2])->default(1);
             /*
                 ** -- Laves foreanas -- **

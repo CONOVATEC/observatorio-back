@@ -334,6 +334,7 @@ class DateTime extends Base
      *
      * @example 'Europe/Paris'
      */
+<<<<<<< HEAD
     public static function timezone(string $countryCode = null)
     {
         if ($countryCode) {
@@ -343,6 +344,11 @@ class DateTime extends Base
         }
 
         return static::randomElement($timezones);
+=======
+    public static function timezone()
+    {
+        return static::randomElement(\DateTimeZone::listIdentifiers());
+>>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
     }
 
     /**

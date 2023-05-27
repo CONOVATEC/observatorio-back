@@ -23,10 +23,11 @@ use App\Http\Controllers\admin\DirectiveController;
 use App\Http\Controllers\admin\About_cmpjController;
 use App\Http\Controllers\admin\YouthPolicyController;
 use App\Http\Controllers\admin\YouthStrategyController;
+//use App\Http\Controllers\Api\V1\YoutObservatoryController;
+//use App\Http\Controllers\admin\Youth_observatoryController;
 use App\Http\Controllers\admin\YouthObservatoryController;
-use App\Http\Controllers\Api\V1\YoutObservatoryController;
-use App\Http\Controllers\admin\Youth_observatoryController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\admin\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,8 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Route aboutsObservatory
-    Route::resource('juvenilesObservatorio', Youth_observatoryController::class)->names('juvenilesObservatorio');
+    
+    //Route::resource('juvenilesObservatorio', Youth_observatoryController::class)->names('juvenilesObservatorio');
     Route::resource('sobreCmpj', About_cmpjController::class)->names('sobreCmpj');
 
     //*Rutas para dashboard
@@ -114,6 +116,7 @@ Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
     Route::resource('slide', SlideController::class)->names('slide');
     Route::resource('estrategia-metropolitana', YouthStrategyController::class)->names('estrategiaMetropolitana');
     Route::resource('observatorio-juvenil', YouthObservatoryController::class)->names('observatorioJuvenil');
+    Route::resource('notas-rapidas', GradeController::class)->names('notasRapidas');
 });
 
 //* locale Route
