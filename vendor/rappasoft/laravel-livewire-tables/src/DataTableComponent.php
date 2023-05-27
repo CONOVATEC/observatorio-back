@@ -50,7 +50,7 @@ abstract class DataTableComponent extends Component
     /**
      * returns a unique id for the table, used as an alias to identify one table from another session and query string to prevent conflicts
      */
-    protected function dataTableFingerprint(): string
+    protected function generateDataTableFingerprint(): string
     {
         $className = str_split(static::class);
         $crc32 = sprintf('%u', crc32(serialize($className)));
@@ -68,9 +68,7 @@ abstract class DataTableComponent extends Component
             'filters' => $this->{$this->tableName}['filters'] ?? [],
             'columns' => $this->{$this->tableName}['columns'] ?? [],
         ];
-        
-        // Set the filter defaults based on the filter type
-        $this->setFilterDefaults();
+
     }
 
     /**
@@ -78,9 +76,21 @@ abstract class DataTableComponent extends Component
      */
     public function booted(): void
     {
+        // Call the configure() method
         $this->configure();
-        $this->setTheme();
+
+        // Set the filter defaults based on the filter type
+        // Moved to Traits/Helpers/FilterHelpers - mountFilterHelpers
+        //$this->setFilterDefaults();
+
+        // Sets the Theme - tailwind/bootstrap
+        // Moved to Traits/ComponentUtilities - mountComponentUtilities
+        //$this->setTheme();
+
+        //Sets up the Builder Instance
         $this->setBuilder($this->builder());
+
+        // Sets Columns
         $this->setColumns();
 
         // Make sure a primary key is set
@@ -96,8 +106,6 @@ abstract class DataTableComponent extends Component
 
     /**
      * The array defining the columns of the table.
-     *
-     * @return array
      */
     abstract public function columns(): array;
 
@@ -107,7 +115,7 @@ abstract class DataTableComponent extends Component
     public function builder(): Builder
     {
         if ($this->hasModel()) {
-            return $this->getModel()::query();
+            return $this->getModel()::query()->with($this->getRelationships());
         }
 
         throw new DataTableConfigurationException('You must either specify a model or implement the builder method.');
@@ -115,14 +123,12 @@ abstract class DataTableComponent extends Component
 
     /**
      * The view to add any modals for the table, could also be used for any non-visible html
-     *
-     * @return string
      */
     public function customView(): string
     {
         return 'livewire-tables::stubs.custom';
     }
-    
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */

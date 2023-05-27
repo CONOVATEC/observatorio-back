@@ -8,9 +8,6 @@ trait FilterHelpers
 {
     /**
      * Get the filter name.
-     *
-     * @param  string  $name
-     * @return string
      */
     public function getName(): string
     {
@@ -19,8 +16,6 @@ trait FilterHelpers
 
     /**
      * Get the filter key.
-     *
-     * @return string
      */
     public function getKey(): string
     {
@@ -30,7 +25,7 @@ trait FilterHelpers
     /**
      * Get the filter configs.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getConfigs(): array
     {
@@ -40,7 +35,6 @@ trait FilterHelpers
     /**
      * Get a single filter config.
      *
-     * @param  string  $key
      * @return mixed
      */
     public function getConfig(string $key)
@@ -51,7 +45,7 @@ trait FilterHelpers
     /**
      * Get the filter keys.
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getKeys(): array
     {
@@ -60,19 +54,12 @@ trait FilterHelpers
 
     /**
      * Get the filter options.
-     *
-     * @return array
      */
     public function getDefaultValue()
     {
         return null;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function filter(callable $callback): Filter
     {
         $this->filterCallback = $callback;
@@ -80,50 +67,28 @@ trait FilterHelpers
         return $this;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function hasFilterCallback(): bool
     {
         return $this->filterCallback !== null;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function getFilterCallback(): callable
     {
         return $this->filterCallback;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function getCustomFilterPillTitle(): ?string
     {
         return $this->filterPillTitle;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function getFilterPillTitle(): string
     {
         return $this->getCustomFilterPillTitle() ?? $this->getName();
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @param  mixed  $value
      */
     public function getFilterPillValue($value): ?string
     {
@@ -131,98 +96,148 @@ trait FilterHelpers
     }
 
     /**
-     * Get the filter options.
-     *
-     * @return array
+     * @return array<mixed>
      */
     public function getCustomFilterPillValues(): array
     {
         return $this->filterPillValues;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function getCustomFilterPillValue(string $value): ?string
     {
         return $this->getCustomFilterPillValues()[$value] ?? null;
     }
 
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
     public function hasConfigs(): bool
     {
         return count($this->getConfigs()) > 0;
     }
-    
-    /**
-     * Get the filter options.
-     *
-     * @return array
-     */
+
     public function hasConfig(string $key): bool
     {
         return array_key_exists($key, $this->getConfigs()) && $this->getConfig($key) !== null;
     }
 
-    /**
-     * @return bool
-     */
     public function isHiddenFromMenus(): bool
     {
         return $this->hiddenFromMenus === true;
     }
 
-    /**
-     * @return bool
-     */
     public function isVisibleInMenus(): bool
     {
         return $this->hiddenFromMenus === false;
     }
 
-    /**
-     * @return bool
-     */
     public function isHiddenFromPills(): bool
     {
         return $this->hiddenFromPills === true;
     }
 
-    /**
-     * @return bool
-     */
     public function isVisibleInPills(): bool
     {
         return $this->hiddenFromPills === false;
     }
 
-    /**
-     * @return bool
-     */
     public function isHiddenFromFilterCount(): bool
     {
         return $this->hiddenFromFilterCount === true;
     }
 
-    /**
-     * @return bool
-     */
     public function isVisibleInFilterCount(): bool
     {
         return $this->hiddenFromFilterCount === false;
     }
 
-    /**
-     * @return bool
-     */
     public function isResetByClearButton(): bool
     {
         return $this->resetByClearButton === true;
+    }
+
+    /**
+     * Determines whether this filter instance is in the secondary header/footer
+     */
+    public function hasCustomPosition(): bool
+    {
+        return ! is_null($this->filterPosition);
+    }
+
+    /**
+     * Returns the custom position of the footer (header or footer)
+     */
+    public function getCustomPosition(): string
+    {
+        return $this->filterPosition;
+    }
+
+     /**
+      * Returns whether the filter has a custom label blade
+      */
+     public function hasCustomFilterLabel(): bool
+     {
+         return ! is_null($this->filterCustomLabel);
+     }
+
+    /**
+     * Returns the path to the custom filter label blade
+     */
+    public function getCustomFilterLabel(): string
+    {
+        return $this->filterCustomLabel ?? '';
+    }
+
+    /**
+     * Get the filter slide down row.
+     */
+    public function getFilterSlidedownRow(): ?int
+    {
+        return $this->filterSlidedownRow;
+    }
+
+    /**
+     * Get whether the filter has a configured slide down row.
+     */
+    public function hasFilterSlidedownRow(): bool
+    {
+        return ! is_null($this->filterSlidedownRow);
+    }
+
+    /**
+     * Get the filter slide down col span.
+     */
+    public function getFilterSlidedownColspan(): ?int
+    {
+        return $this->filterSlidedownColspan;
+    }
+
+    /**
+     * Get whether the filter has a configured slide down colspan.
+     */
+    public function hasFilterSlidedownColspan(): bool
+    {
+        return ! is_null($this->filterSlidedownColspan);
+    }
+
+    /**
+     * Determine if filter has a Custom Pill Blade
+     */
+    public function hasCustomPillBlade(): bool
+    {
+        return $this->filterCustomPillBlade != null;
+    }
+
+    /**
+     * Get the path to the Custom Pill Blade
+     */
+    public function getCustomPillBlade(): ?string
+    {
+        return $this->filterCustomPillBlade;
+    }
+
+    /**
+     * Determines if the Filter has a Default Value via the Component
+     */
+    public function hasFilterDefaultValue(): bool
+    {
+        return ! is_null($this->filterDefaultValue);
     }
 }

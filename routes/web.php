@@ -5,6 +5,7 @@ use App\Models\admin\YouthStrategy;
 use Illuminate\Support\Facades\Route;
 use App\Models\admin\YouthObservatory;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\LogoController;
@@ -15,11 +16,11 @@ use App\Http\Controllers\admin\SlideController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\PositionController;
+use App\Http\Controllers\admin\ThematicController;
 use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\DirectiveController;
 use App\Http\Controllers\admin\About_cmpjController;
-use App\Http\Controllers\admin\ThematicController;
 use App\Http\Controllers\admin\YouthPolicyController;
 use App\Http\Controllers\admin\YouthStrategyController;
 use App\Http\Controllers\admin\YouthObservatoryController;
@@ -39,7 +40,9 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 */
 
 
-// Route::get('/', [DashboardController::class, 'dashboard'])->middleware('can:dashboard')->name('dashboard');
+Route::get('/', function () {
+    return Redirect::route('login');
+});
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 

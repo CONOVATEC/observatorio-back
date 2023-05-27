@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
@@ -71,26 +72,39 @@ trait FilterHelpers
 
     public function hasFilters(): bool
     {
-        return $this->getFilters()->count();
+        return $this->getFiltersCount() > 0;
     }
 
     public function hasVisibleFilters(): bool
     {
         return $this->getFilters()
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus())
-            ->count();
+            ->count() > 0;
     }
 
     public function getFilters(): Collection
     {
-        return collect($this->filters());
+        if (! isset($this->filterCollection)) {
+            $this->filterCollection = collect($this->filters());
+        }
+
+        return $this->filterCollection;
+
     }
 
     public function getFiltersCount(): int
     {
-        return $this->getFilters()->count();
+        if (! isset($this->filterCount)) {
+            $this->filterCount = $this->getFilters()->count();
+        }
+
+        return $this->filterCount;
+
     }
 
+    /**
+     * @return mixed
+     */
     public function getFilterByKey(string $key)
     {
         return $this->getFilters()->first(function ($filter) use ($key) {
@@ -98,6 +112,10 @@ trait FilterHelpers
         });
     }
 
+    /**
+     * @param  mixed  $value
+     * @return mixed
+     */
     public function setFilter(string $filterKey, $value)
     {
         return $this->{$this->getTableName()}['filters'][$filterKey] = $value;
@@ -129,6 +147,9 @@ trait FilterHelpers
         }
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getAppliedFilters(): array
     {
         $validFilterKeys = $this->getFilters()
@@ -142,7 +163,7 @@ trait FilterHelpers
 
     public function hasAppliedFiltersWithValues(): bool
     {
-        return count($this->getAppliedFiltersWithValues());
+        return count($this->getAppliedFiltersWithValues()) > 0;
     }
 
     public function hasAppliedVisibleFiltersWithValuesThatCanBeCleared(): bool
@@ -150,7 +171,7 @@ trait FilterHelpers
         return collect($this->getAppliedFiltersWithValues())
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromMenus() && ! $filter->isResetByClearButton())
-            ->count();
+            ->count() > 0;
     }
 
     public function getFilterBadgeCount(): int
@@ -166,16 +187,22 @@ trait FilterHelpers
         return collect($this->getAppliedFiltersWithValues())
             ->map(fn ($_item, $key) => $this->getFilterByKey($key))
             ->reject(fn (Filter $filter) => $filter->isHiddenFromPills())
-            ->count();
+            ->count() > 0;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getAppliedFiltersWithValues(): array
     {
-        return array_filter($this->getAppliedFilters(), function ($item) {
-            return is_array($item) ? count($item) : $item !== null;
-        });
+        return array_filter($this->getAppliedFilters(), function ($item, $key) {
+            return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
+    /**
+     * @return mixed
+     */
     public function getAppliedFilterWithValue(string $filterKey)
     {
         return $this->getAppliedFiltersWithValues()[$filterKey] ?? null;
@@ -186,6 +213,9 @@ trait FilterHelpers
         return count($this->getAppliedFiltersWithValues());
     }
 
+    /**
+     * @param  mixed  $filter
+     */
     public function resetFilter($filter): void
     {
         if (! $filter instanceof Filter) {
@@ -208,5 +238,74 @@ trait FilterHelpers
     public function isFilterLayoutSlideDown(): bool
     {
         return $this->getFilterLayout() === 'slide-down';
+    }
+
+    /**
+     * Get whether any filter has a configured slide down row.
+     */
+    public function hasFiltersWithSlidedownRows(): bool
+    {
+        return $this->getFilters()
+            ->reject(fn (Filter $filter) => ! $filter->hasFilterSlidedownRow())
+            ->count() > 0;
+    }
+
+    /**
+     * Get whether filter has a configured slide down row.
+     */
+    public function getVisibleFilters(): Collection
+    {
+        return $this->getFilters()->reject(fn (Filter $filter) => $filter->isHiddenFromMenus());
+    }
+
+    /**
+     * Get filters sorted by row
+     *
+     * @return array<mixed>
+     */
+    public function getFiltersByRow(): array
+    {
+        $orderedFilters = [];
+        $filterList = ($this->hasFiltersWithSlidedownRows()) ? $this->getVisibleFilters()->sortBy('filterSlidedownRow') : $this->getVisibleFilters();
+        if ($this->hasFiltersWithSlidedownRows()) {
+            foreach ($filterList as $filter) {
+                $orderedFilters[(string) $filter->getFilterSlidedownRow()][] = $filter;
+            }
+
+            if (empty($orderedFilters['1'])) {
+                $orderedFilters['1'] = (isset($orderedFilters['99']) ? $orderedFilters['99'] : []);
+                if (isset($orderedFilters['99'])) {
+                    unset($orderedFilters['99']);
+                }
+            }
+        } else {
+            $orderedFilters = Arr::wrap($filterList);
+            $orderedFilters['1'] = $orderedFilters['0'] ?? [];
+            if (isset($orderedFilters['0'])) {
+                unset($orderedFilters['0']);
+            }
+        }
+        ksort($orderedFilters);
+
+        return $orderedFilters;
+    }
+
+    /**
+     * Sets Filter Default Values
+     */
+    public function mountFilterHelpers()
+    {
+        $appliedFilters = $this->getAppliedFiltersWithValues();
+        foreach ($this->getFilters() as $filter) {
+            if (! isset($appliedFilters[$filter->getKey()])) {
+                if ($filter->hasFilterDefaultValue()) {
+                    $this->setFilter($filter->getKey(), $filter->getFilterDefaultValue());
+                } else {
+                    $this->resetFilter($filter);
+                }
+            } else {
+                $this->setFilter($filter->getKey(), $appliedFilters[$filter->getKey()]);
+            }
+        }
     }
 }
