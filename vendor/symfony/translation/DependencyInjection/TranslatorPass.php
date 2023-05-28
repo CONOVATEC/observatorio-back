@@ -49,26 +49,6 @@ class TranslatorPass implements CompilerPassInterface
             ->replaceArgument(3, $loaders)
         ;
 
-<<<<<<< HEAD
-=======
-        if ($container->hasDefinition('validator') && $container->hasDefinition('translation.extractor.visitor.constraint')) {
-            $constraintVisitorDefinition = $container->getDefinition('translation.extractor.visitor.constraint');
-            $constraintClassNames = [];
-
-            foreach ($container->getDefinitions() as $definition) {
-                if (!$definition->hasTag('validator.constraint_validator')) {
-                    continue;
-                }
-                // Resolve constraint validator FQCN even if defined as %foo.validator.class% parameter
-                $className = $container->getParameterBag()->resolveValue($definition->getClass());
-                // Extraction of the constraint class name from the Constraint Validator FQCN
-                $constraintClassNames[] = str_replace('Validator', '', substr(strrchr($className, '\\'), 1));
-            }
-
-            $constraintVisitorDefinition->setArgument(0, $constraintClassNames);
-        }
-
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         if (!$container->hasParameter('twig.default_path')) {
             return;
         }

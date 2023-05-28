@@ -34,9 +34,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('post', PostApiController::class)->only(['index']);
-
-
 Route::apiResource('youtObservatory', YoutObservatoryController::class)->only(['index']);
 
 Route::apiResource('cmpj',AboutCmpjController::class)->only(['index']);

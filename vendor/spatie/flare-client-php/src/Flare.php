@@ -212,11 +212,7 @@ class Flare
     }
 
     /**
-<<<<<<< HEAD
      * @param FlareMiddleware|array<FlareMiddleware>|class-string<FlareMiddleware>|callable $middleware
-=======
-     * @param FlareMiddleware|array<FlareMiddleware>|class-string<FlareMiddleware> $middleware
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
      *
      * @return $this
      */
