@@ -135,26 +135,14 @@ Route::get('/route-cache', function () {
     return 'Caché de rutas borrado';
 });
 
-//Clear config cache
-Route::get('/config-cache', function () {
-    Artisan::call('config:cache');
-    return 'Caché de configuración borrado';
-});
-
-// Clear application cache
+/******************************
+ * Limpiar caché del proyecto *
+ ******************************/
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
-    return 'Caché de la aplicación borrado';
-});
-
-// Clear view cache
-Route::get('/view-clear', function () {
+    Artisan::call('config:clear');
     Artisan::call('view:clear');
-    return 'Caché vistas borrado';
-});
-
-// Clear cache using reoptimized class
-Route::get('/optimize-clear', function () {
+    Artisan::call('route:clear');
     Artisan::call('optimize:clear');
-    return 'Caché borrado';
+    return "La caché ha sido limpiada correctamente.";
 });
