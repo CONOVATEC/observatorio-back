@@ -1,33 +1,30 @@
 <?php
 
-use App\Models\admin\YouthPolicy;
-use App\Models\admin\YouthStrategy;
-use Illuminate\Support\Facades\Route;
-use App\Models\admin\YouthObservatory;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\admin\TagController;
-use App\Http\Controllers\admin\LogoController;
-use App\Http\Controllers\admin\PostController;
-use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\SlideController;
-use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\About_cmpjController;
 use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\PositionController;
-use App\Http\Controllers\admin\ThematicController;
-use App\Http\Controllers\admin\TypeLogoController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\DirectiveController;
-use App\Http\Controllers\admin\About_cmpjController;
+use App\Http\Controllers\admin\GradeController;
+use App\Http\Controllers\admin\LogoController;
+use App\Http\Controllers\admin\PositionController;
+use App\Http\Controllers\admin\PostController;
+use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\SlideController;
+use App\Http\Controllers\admin\TagController;
+use App\Http\Controllers\admin\ThematicController;
+use App\Http\Controllers\admin\TypeLogoController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\YouthObservatoryController;
 use App\Http\Controllers\admin\YouthPolicyController;
 use App\Http\Controllers\admin\YouthStrategyController;
+use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\Artisan;
 //use App\Http\Controllers\Api\V1\YoutObservatoryController;
 //use App\Http\Controllers\admin\Youth_observatoryController;
-use App\Http\Controllers\admin\YouthObservatoryController;
-use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
-use App\Http\Controllers\admin\GradeController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,17 +35,20 @@ use App\Http\Controllers\admin\GradeController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+ */
 
 Route::get('/', function () {
-    return Redirect::route('login');
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    } else {
+        return redirect()->route('login');
+    }
 });
 
 Route::group(['middleware' => 'auth:sanctum', 'verified'], function () {
 
     //*Route aboutsObservatory
-    
+
     //Route::resource('juvenilesObservatorio', Youth_observatoryController::class)->names('juvenilesObservatorio');
     Route::resource('sobreCmpj', About_cmpjController::class)->names('sobreCmpj');
 
@@ -135,26 +135,14 @@ Route::get('/route-cache', function () {
     return 'Caché de rutas borrado';
 });
 
-//Clear config cache
-Route::get('/config-cache', function () {
-    Artisan::call('config:cache');
-    return 'Caché de configuración borrado';
-});
-
-// Clear application cache
+/******************************
+ * Limpiar caché del proyecto *
+ ******************************/
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
-    return 'Caché de la aplicación borrado';
-});
-
-// Clear view cache
-Route::get('/view-clear', function () {
+    Artisan::call('config:clear');
     Artisan::call('view:clear');
-    return 'Caché vistas borrado';
-});
-
-// Clear cache using reoptimized class
-Route::get('/optimize-clear', function () {
+    Artisan::call('route:clear');
     Artisan::call('optimize:clear');
-    return 'Caché borrado';
+    return "La caché ha sido limpiada correctamente.";
 });
