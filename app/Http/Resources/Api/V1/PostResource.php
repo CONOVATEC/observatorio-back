@@ -3,7 +3,7 @@
 namespace App\Http\Resources\Api\V1;
 
 use App\Http\Resources\Api\V1\CategoryResource;
-use App\Http\Resources\Api\v1\TagResource;
+use App\Http\Resources\Api\V1\TagResource;
 use App\Http\Resources\Api\V1\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
