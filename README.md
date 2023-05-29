@@ -1,64 +1,162 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<h1> CRUD API OBSERVATORIO JOVEN </h1>
+
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
+## 💬 Descripción del proyecto <a name="-descripción-del-proyecto-"></a>
+
+<p>Este proyecto implementa una API RESTful en Laravel que permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en una base de datos. La API también incluye autenticación de usuarios y paginación de resultados para una mejor experiencia de usuario.
+
+## 🥇 DEMO 🥇 <a name="-demo--"></a>
+
 </p>
+</div>
 
-## About Laravel
+<div align="center">
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=900px  src="./demo.png" alt="demo"></a>
+</p>
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<h2> 📝 Tabla de contenido </h2>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [💬 Descripción del proyecto ](#-descripción-del-proyecto-)
+- [🥇 DEMO 🥇 ](#-demo--)
+- [💎 Tecnologías utilizados](#-tecnologías-utilizados)
+  - [📖 Características ](#-características-)
+  - [✒️ Clonar ](#️-clonar-)
+  - [⌨️ Uso ](#️-uso-)
+- [👨‍💻 Desarrollador](#-desarrollador)
 
-## Learning Laravel
+## 💎 Tecnologías utilizados<a name="-tecnologías-utilizados"></a>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Este proyecto utiliza las siguientes tecnologías:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **Laravel** - un framework de PHP para aplicaciones web
+-   **Tailwind CSS** - un framework de CSS para diseñar interfaces de usuario
+-   **Alpine.js** - un framework de JavaScript para la capa de presentación
+-   **Livewire** - una biblioteca de componentes para Laravel que permite construir interfaces de usuario dinámicas sin tener que escribir JavaScript
 
-## Laravel Sponsors
+### 📖 Características <a name="-características-"></a>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Este proyecto incluye las siguientes características:
 
-### Premium Partners
+-   Operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en una base de datos utilizando una API RESTful en Laravel
+-   Autenticación de usuarios para proteger los endpoints de la API y restringir el acceso a ciertas partes de la aplicación solo para usuarios registrados y autenticados
+-   Paginación de resultados para manejar grandes cantidades de datos de manera más eficiente y permitir al usuario navegar por los resultados de manera más fácil y rápida.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### ✒️ Clonar <a name="-clonar-"></a>
 
-## Contributing
+Clonar para usarlo en tu servidor local
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+git@github.com:CONOVATEC/observatorio-back.git
+```
 
-## Code of Conduct
+ó
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+https://github.com/CONOVATEC/observatorio-back.git
+```
 
-## Security Vulnerabilities
+### ⌨️ Uso <a name="-uso-"></a>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-   En el terminal
 
-## License
+    ```
+    composer install
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   Crear tu base de datos
+-   Cambiar los datos de usuario
+
+    ```
+    DB_DATABASE=observatorio
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+-   En el terminal
+    ```
+    php artisan migrate
+    php artisan db:seed
+    php artisan serve
+    ```
+-   Ver funcionamiento
+    > `http://127.0.0.1:8000`
+    -   Datos de acceso
+    ```
+    Email: admin@admin.com
+    Contraseña: admin123
+    ```
+-   ## 🧑‍✈️ Implementación y Uso del API
+    -   ### ⭐ API POST
+        -   Ejemplos de uso
+            -   Ver todos los posts
+                ```
+                http://127.0.0.1:8000/api/v1/posts
+                ```
+            -   Ver todos los posts paginado
+                ```
+                http://127.0.0.1:8000/api/v1/posts?perPage=2
+                ```
+            -   Crear todos los posts con sus respectivos relaciones
+                -   Relaciones disponibles utilize **included**
+                    `user,category,tags,images`
+                -   Uso
+                    ```
+                    http://127.0.0.1:8000/api/v1/posts?included=user,category,tags
+                    ```
+            -   Ver todos los posts - Ordenar ascedente o descendente
+                -   campos disponibles utilize **sort**
+                    `id, title, slug, extract, content, status, user_id`
+                -   uso
+                    ```
+                    http://127.0.0.1:8000/api/v1/posts?sort=-title  Descendente
+                    http://127.0.0.1:8000/api/v1/posts?sort=title   Ascedente
+                    ```
+            -   Ver todos los post - filtro por cada campo
+                -   campos disponibles utilize **filter['campo']=valor** puede utilizar varios campos separado por comas
+                    `id, title, 'slug, extract, content`
+                -   uso
+                    ```
+                    http://127.0.0.1:8000/api/v1/posts?filter[title]=le&filter[content]=le
+                    ```
+            -   Buscador de los posts utilice **search=valor**
+                ```
+                http://127.0.0.1:8000/api/v1/posts?search=ot
+                ```
+            -   Utilizando combinación entre paginación, relaciones,ordenación y filtro.
+                ```
+                http://127.0.0.1:8000/api/v1/posts?perPage=2&included=user,category,tags&sort=-title&filter[content]=laboriosam
+                ```
+            -   Ver un post por ID
+                ```
+                http://127.0.0.1:8000/api/v1/posts/50
+                http://127.0.0.1:8000/api/v1/posts/50?included=tags,user,category
+                ```
+
+## 👨‍💻 Desarrollador<a name="-desarrollador"></a>
+
+<div  align="center">
+
+CONOVATEC
+
+</div>
+
+---
+
+</br>
+<div align="center">
+<p align="center"> © 2023 OBSERVATORIO JOVEN</p>
+
+</div>
