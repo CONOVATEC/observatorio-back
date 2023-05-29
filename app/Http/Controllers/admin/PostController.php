@@ -8,12 +8,12 @@ use App\Models\admin\Category;
 use App\Models\admin\Post;
 use App\Models\admin\Tag;
 use Illuminate\Contracts\Cache\Store;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function  __construct()
+    public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('can:noticias.index')->only('index');
@@ -27,7 +27,7 @@ class PostController extends Controller
     {
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
-            ['link' => "home", 'name' => "inicio"], ['name' => "lista de boletines"]
+            ['link' => "home", 'name' => "inicio"], ['name' => "lista de boletines"],
         ];
         return view('/admin/pages/post/index', [
             'breadcrumbs' => $breadcrumbs,
@@ -43,13 +43,10 @@ class PostController extends Controller
 
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
-            ['link' => "home", 'name' => "inicio"], ['name' => "lista de boletines"]
+            ['link' => "home", 'name' => "inicio"], ['name' => "lista de boletines"],
         ];
         return view('admin.pages.post.create', compact('breadcrumbs', 'post', 'categories', 'tags'));
     }
-
-
-
     public function store(PostRequest $request)
     {
 
@@ -66,12 +63,12 @@ class PostController extends Controller
             'tendencia_active' => $request['tendencia_active'],
             'news_cover' => $request['news_cover'],
             'category_id' => $request['category_id'],
-            'url_image'=>$request['url_image'],
-           // 'importantOne' => $request['importantOne'],
-           // 'importantTwo' => $request['importantTwo'],
-           // 'importantThree' => $request['importantThree'],
-           // 'importantFour' => $request['importantFour'],
-            'user_id' => $request['user_id']
+            'url_image' => $request['url_image'],
+            // 'importantOne' => $request['importantOne'],
+            // 'importantTwo' => $request['importantTwo'],
+            // 'importantThree' => $request['importantThree'],
+            // 'importantFour' => $request['importantFour'],
+            'user_id' => $request['user_id'],
 
         ]);
         //html_entity_decode
@@ -79,13 +76,13 @@ class PostController extends Controller
             //$url=Storage::put('news',$request->file('file')->store('public/news'));
             $url = $request->file('file')->store('news');
             $post->image()->create([
-                'url' => $url
+                'url' => $url,
             ]);
-        }/*else{
-           // $url=Storage::disk('news');
-            $r=$post->image()->create([
-                'url'=>'https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg'
-            ]);
+        } /*else{
+        // $url=Storage::disk('news');
+        $r=$post->image()->create([
+        'url'=>'https://cdn.pixabay.com/photo/2019/10/21/12/01/newspapers-4565916_960_720.jpg'
+        ]);
 
         }*/
 
@@ -133,12 +130,12 @@ class PostController extends Controller
         // Post::find($id)->update($request->all());
 
         /*if($request->file('file')){
-            $url=$request->file('file')->store('public/news');
-            $post=Post::findOrFail($id);
-            Storage::delete($post->image->url);
-            $post->image()->create([
-                'url'=>$url
-            ]);
+        $url=$request->file('file')->store('public/news');
+        $post=Post::findOrFail($id);
+        Storage::delete($post->image->url);
+        $post->image()->create([
+        'url'=>$url
+        ]);
 
         }*/
         $data = [
@@ -150,10 +147,10 @@ class PostController extends Controller
             'tendencia_active' => $request['tendencia_active'],
             'news_cover' => $request['news_cover'],
             'category_id' => $request['category_id'],
-          //  'importantOne' => $request['importantOne'],
-          //  'importantTwo' => $request['importantTwo'],
-          //  'importantThree' => $request['importantThree'],
-          //  'importantFour' => $request['importantFour'],
+            //  'importantOne' => $request['importantOne'],
+            //  'importantTwo' => $request['importantTwo'],
+            //  'importantThree' => $request['importantThree'],
+            //  'importantFour' => $request['importantFour'],
 
         ];
         Post::find($id)->update($data);
@@ -163,11 +160,11 @@ class PostController extends Controller
             if ($post->image) {
                 Storage::delete($post->image->url);
                 $post->image->update([
-                    'url' => $url
+                    'url' => $url,
                 ]);
             } else {
                 $post->image()->create([
-                    'url' => $url
+                    'url' => $url,
                 ]);
             }
         }

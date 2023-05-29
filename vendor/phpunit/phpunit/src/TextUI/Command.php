@@ -568,7 +568,6 @@ class Command
                 $this->exitWithErrorMessage($t->getMessage());
             }
 
-<<<<<<< HEAD
             $message = sprintf(
                 'Error in bootstrap script: %s:%s%s%s%s',
                 get_class($t),
@@ -583,26 +582,15 @@ class Command
                     '%s%sPrevious error: %s:%s%s%s%s',
                     PHP_EOL,
                     PHP_EOL,
-=======
-            $this->exitWithErrorMessage(
-                sprintf(
-                    'Error in bootstrap script: %s:%s%s%s%s',
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
                     get_class($t),
                     PHP_EOL,
                     $t->getMessage(),
                     PHP_EOL,
-<<<<<<< HEAD
                     $t->getTraceAsString(),
                 );
             }
 
             $this->exitWithErrorMessage($message);
-=======
-                    $t->getTraceAsString()
-                )
-            );
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         }
     }
 

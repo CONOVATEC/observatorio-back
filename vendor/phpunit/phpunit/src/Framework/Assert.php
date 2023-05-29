@@ -1304,11 +1304,7 @@ abstract class Assert
      */
     public static function assertObjectHasAttribute(string $attributeName, $object, string $message = ''): void
     {
-<<<<<<< HEAD
         self::createWarning('assertObjectHasAttribute() is deprecated and will be removed in PHPUnit 10. Refactor your test to use assertObjectHasProperty() (PHPUnit 10.1.0+) instead.');
-=======
-        self::createWarning('assertObjectHasAttribute() is deprecated and will be removed in PHPUnit 10.');
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 
         if (!self::isValidObjectAttributeName($attributeName)) {
             throw InvalidArgumentException::create(1, 'valid attribute name');
@@ -1338,11 +1334,7 @@ abstract class Assert
      */
     public static function assertObjectNotHasAttribute(string $attributeName, $object, string $message = ''): void
     {
-<<<<<<< HEAD
         self::createWarning('assertObjectNotHasAttribute() is deprecated and will be removed in PHPUnit 10. Refactor your test to use assertObjectNotHasProperty() (PHPUnit 10.1.0+) instead.');
-=======
-        self::createWarning('assertObjectNotHasAttribute() is deprecated and will be removed in PHPUnit 10.');
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 
         if (!self::isValidObjectAttributeName($attributeName)) {
             throw InvalidArgumentException::create(1, 'valid attribute name');

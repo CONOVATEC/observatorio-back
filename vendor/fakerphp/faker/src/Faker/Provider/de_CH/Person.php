@@ -8,11 +8,7 @@ class Person extends \Faker\Provider\de_DE\Person
      * @see http://www.bfs.admin.ch/bfs/portal/de/index/themen/01/02/blank/dos/prenoms/02.html
      */
     protected static $firstNameMale = [
-<<<<<<< HEAD
         'Adrian', 'Alain', 'Albert', 'Alessandro', 'Alex', 'Alexander', 'Alfred', 'Ali', 'Alois', 'Andrea', 'Andreas', 'Andrin', 'André', 'Angelo', 'Anton', 'Antonio', 'Armin', 'Arnold', 'Arthur',
-=======
-        'Adolf', 'Adrian', 'Alain', 'Albert', 'Alessandro', 'Alex', 'Alexander', 'Alfred', 'Ali', 'Alois', 'Andrea', 'Andreas', 'Andrin', 'André', 'Angelo', 'Anton', 'Antonio', 'Armin', 'Arnold', 'Arthur',
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
         'Beat', 'Benjamin', 'Bernhard', 'Bruno',
         'Carlo', 'Carlos', 'Christian', 'Christoph', 'Claudio', 'Cyrill', 'Cédric',
         'Damian', 'Daniel', 'Dario', 'David', 'Denis', 'Diego', 'Dieter', 'Dominic', 'Dominik',

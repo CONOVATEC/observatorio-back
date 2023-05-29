@@ -804,10 +804,7 @@ final class TestResult implements Countable
         }
 
         if ($this->beStrictAboutTestsThatDoNotTestAnything &&
-<<<<<<< HEAD
             !$test->doesNotPerformAssertions() &&
-=======
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
             $test->getNumAssertions() === 0) {
             $risky = true;
         }

@@ -5844,14 +5844,11 @@ return array(
     'Spatie\\Ignition\\ErrorPage\\ErrorPageViewModel' => $vendorDir . '/spatie/ignition/src/ErrorPage/ErrorPageViewModel.php',
     'Spatie\\Ignition\\ErrorPage\\Renderer' => $vendorDir . '/spatie/ignition/src/ErrorPage/Renderer.php',
     'Spatie\\Ignition\\Ignition' => $vendorDir . '/spatie/ignition/src/Ignition.php',
-<<<<<<< HEAD
     'Spatie\\Ignition\\Solutions\\OpenAi\\DummyCache' => $vendorDir . '/spatie/ignition/src/Solutions/OpenAi/DummyCache.php',
     'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiPromptViewModel' => $vendorDir . '/spatie/ignition/src/Solutions/OpenAi/OpenAiPromptViewModel.php',
     'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiSolution' => $vendorDir . '/spatie/ignition/src/Solutions/OpenAi/OpenAiSolution.php',
     'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiSolutionProvider' => $vendorDir . '/spatie/ignition/src/Solutions/OpenAi/OpenAiSolutionProvider.php',
     'Spatie\\Ignition\\Solutions\\OpenAi\\OpenAiSolutionResponse' => $vendorDir . '/spatie/ignition/src/Solutions/OpenAi/OpenAiSolutionResponse.php',
-=======
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
     'Spatie\\Ignition\\Solutions\\SolutionProviders\\BadMethodCallSolutionProvider' => $vendorDir . '/spatie/ignition/src/Solutions/SolutionProviders/BadMethodCallSolutionProvider.php',
     'Spatie\\Ignition\\Solutions\\SolutionProviders\\MergeConflictSolutionProvider' => $vendorDir . '/spatie/ignition/src/Solutions/SolutionProviders/MergeConflictSolutionProvider.php',
     'Spatie\\Ignition\\Solutions\\SolutionProviders\\SolutionProviderRepository' => $vendorDir . '/spatie/ignition/src/Solutions/SolutionProviders/SolutionProviderRepository.php',

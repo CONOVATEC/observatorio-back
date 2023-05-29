@@ -81,7 +81,6 @@ to run `rector/rector`.
 
 *Note:* do not forget to replace `src/` with the path to your source directory.
 
-<<<<<<< HEAD
 Alternatively, import the configuration in your `rector.php` file:
 
 ```php
@@ -94,13 +93,6 @@ use Rector\Config;
 return static function (Config\RectorConfig $rectorConfig): void {
     $rectorConfig->import('vendor/fakerphp/faker/rector-migrate.php');
 };
-=======
-Another way is to use it in your `rector.php` file:
-
-```php
-$rectorConfig->import('vendor/fakerphp/faker/rector-migrate.php');
-$faker($rectorConfig);
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
 ```
 
 ## License

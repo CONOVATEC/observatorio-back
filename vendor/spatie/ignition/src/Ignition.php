@@ -308,7 +308,6 @@ class Ignition
             $this->solutionProviderRepository->getSolutionsForThrowable($throwable),
             $this->solutionTransformerClass,
             $this->customHtmlHead,
-<<<<<<< HEAD
             $this->customHtmlBody,
         );
 
@@ -318,12 +317,6 @@ class Ignition
     public static function viewPath(string $viewName): string
     {
         return __DIR__ . "/../resources/views/{$viewName}.php";
-=======
-            $this->customHtmlBody
-        );
-
-        (new Renderer())->render(['viewModel' => $viewModel]);
->>>>>>> e53e303c6cc827072ac019a4cb7508cf19c59ccf
     }
 
     /**
