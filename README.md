@@ -110,14 +110,14 @@ https://github.com/CONOVATEC/observatorio-back.git
                 http://127.0.0.1:8000/api/v1/posts?perPage=2
                 ```
             -   Crear todos los posts con sus respectivos relaciones
-                -   Relaciones disponibles utilize **included**
+                -   Relaciones disponibles utilize **included=relación**
                     `user,category,tags,images`
                 -   Uso
                     ```
                     http://127.0.0.1:8000/api/v1/posts?included=user,category,tags
                     ```
             -   Ver todos los posts - Ordenar ascedente o descendente
-                -   campos disponibles utilize **sort**
+                -   campos disponibles utilize **sort=campo a ordenar**
                     `id, title, slug, extract, content, status, user_id`
                 -   uso
                     ```
@@ -125,13 +125,13 @@ https://github.com/CONOVATEC/observatorio-back.git
                     http://127.0.0.1:8000/api/v1/posts?sort=title   Ascedente
                     ```
             -   Ver todos los post - filtro por cada campo
-                -   campos disponibles utilize **filter['campo']=valor** puede utilizar varios campos separado por comas
+                -   campos disponibles utilize **filter['campo a filtrar']=valor** puede utilizar varios campos separado por comas
                     `id, title, 'slug, extract, content`
                 -   uso
                     ```
                     http://127.0.0.1:8000/api/v1/posts?filter[title]=le&filter[content]=le
                     ```
-            -   Buscador de los posts utilice **search=valor**
+            -   Buscador de los posts utilice **search=valor a buscar**
                 ```
                 http://127.0.0.1:8000/api/v1/posts?search=ot
                 ```
