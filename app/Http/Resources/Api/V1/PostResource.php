@@ -22,10 +22,11 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => Str::title($this->title),
             // 'images' => $this->imagen(),
-            'images' => ImageResource::collection($this->images),
+            'imagen' => $this->getFirstImageUrl(),
             'slug' => $this->slug,
-            'extract' => $this->extract, //elimina las etiquetas de HTML
-            'content' => $this->content, //elimina las etiquetas de HTML
+            'extract' => $this->extract,
+            'content' => $this->content,
+            'url_image' => ($this->url_image == '' || is_null($this->url_image)) ? null : $this->url_image,
             'status' => $this->status == 1 ? 'BORRADOR' : 'PUBLICADO',
             'news_cover' => $this->news_cover == 1 ? 'cover' : 'not_cover', //portada_noticias
             'tendencia' => $this->tendencia_active == 1 ? 'trend' : 'not_trend',
@@ -33,7 +34,7 @@ class PostResource extends JsonResource
             'tags' => TagResource::collection($this->whenLoaded('tags')),
             // 'likes'=>LikeResource::collection($this->likes),
             'user' => UserResource::make($this->whenLoaded('user')),
-            'created' => $this->created_at->format('d-m-Y'),
+            'created_at' => $this->created_at->format('d-m-Y'),
         ];
     }
     /***********************
@@ -59,15 +60,19 @@ class PostResource extends JsonResource
         return $estado;
     }
 
-    public function imagen()
+    public function getFirstImageUrl()
     {
-        if (isset($this->image->url)) {
-            $respuesta = $this->image->url;
-        } else {
-            $respuesta = null;
+        if ($this->images->isEmpty()) {
+            return null;
         }
-        return $respuesta;
-        //dd($this->image->url);
+
+        $firstImage = $this->images->first();
+
+        if (is_null($firstImage) || empty($firstImage->url)) {
+            return null;
+        }
+
+        return $firstImage->url;
     }
 
 }

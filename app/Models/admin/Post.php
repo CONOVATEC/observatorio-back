@@ -15,15 +15,21 @@ class Post extends Model
     const PUBLICADO = 2;
 
     //* Para consultar las  relaciones
-    protected $allowIncluded = ['user', 'category', 'tags', 'image'];
+    protected $allowIncluded = ['user', 'category', 'tags', 'images'];
     //* Para filtrar
-    protected $allowFilter = ['id', 'title', 'slug', 'extract', 'body'];
+    protected $allowFilter = ['id', 'title', 'slug', 'extract', 'content'];
     //* Para ordernar
-    protected $allowSort = ['id', 'title', 'slug', 'extract', 'body'];
+    protected $allowSort = ['id', 'title', 'slug', 'extract', 'content', 'status', 'user_id'];
+    //* Para búsqueda
+    protected $allowSearch = ['title', 'slug', 'extract', 'content', 'status'];
 
     protected $fillable = ['title', 'slug', 'extract', 'content', 'tendencia_active', 'status', 'category_id', 'user_id'];
-    //protected $fillable = ['title','slug','extract','content','tendencia_active','category_id','user_id'];
     // protected $guarded=['id','create_at','update_at'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', Post::PUBLICADO);
+    }
 
     /**********************************************************
      * Relación de uno a muchos hasMany => tiene muchos likes *

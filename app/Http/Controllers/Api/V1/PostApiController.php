@@ -21,8 +21,13 @@ class PostApiController extends Controller
      */
     public function index()
     {
-        $posts = Post::included()->filter()->sort()->getOrPaginate();
+        $query = Post::included()->filter()->sort();
+        if (request('search')) {
+            $query->search(request('search'));
+        }
+        $posts = $query->active()->getOrPaginate();
         return PostResource::collection($posts);
+
     }
 
     /**
@@ -42,9 +47,11 @@ class PostApiController extends Controller
      * @param  \App\Models\admin\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $posts = Post::included()->findOrFail($id);
+        return PostResource::make($posts);
+
     }
 
     /**

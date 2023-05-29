@@ -11,36 +11,39 @@ trait ApiTrait
     //Para ver categoría y sus relaciones
     public function scopeIncluded(Builder $query)
     {
-        // comprueba si allowIncluded y included no están vacíos
         if (!empty([$this->allowIncluded, request('included')])) {
-            // convertimos cadena en un array, utilizando el separador coma.
             $relations = explode(',', request('included')); // [posts, relation2]
-            //crea una colección a partir del array allowIncluded
             $allowIncluded = collect($this->allowIncluded);
-            //se recorre el array de relaciones incluidas y se elimina cualquier relación que no esté permitida en allowIncluded
             foreach ($relations as $key => $relationship) {
                 if (!$allowIncluded->contains($relationship)) {
                     unset($relations[$key]);
                 }
             }
-            //se utiliza el método with() de Laravel para incluir todas las relaciones permitidas en la consulta
             $query->with($relations);
         }
     }
     // Para filtrar por campos
     public function scopeFilter(Builder $query)
     {
-        if (empty($this->allowFilter) || empty(request('filter'))) {
+        if (empty($this->allowFilter)) {
             return;
         }
         $filters = request('filter');
+        if (empty($filters)) {
+            return;
+        }
         $allowFilter = collect($this->allowFilter);
         foreach ($filters as $filter => $value) {
             if ($allowFilter->contains($filter)) {
-                $query->where($filter, 'LIKE', '%' . $value . '%');
+                if ($filter === 'search') {
+                    $query->search($value);
+                } else {
+                    $query->where($filter, 'LIKE', '%' . $value . '%');
+                }
             }
         }
     }
+
     public function scopeSort(Builder $query)
     {
         if (empty($this->allowSort) || empty(request('sort'))) {
@@ -58,6 +61,18 @@ trait ApiTrait
                 $query->orderBy($sortField, $direction);
             }
         }
+    }
+    public function scopeSearch(Builder $query, $searchTerm)
+    {
+        if (empty($this->allowSearch) || empty($searchTerm)) {
+            return;
+        }
+        $searchableFields = collect($this->allowSearch);
+        $query->where(function ($query) use ($searchableFields, $searchTerm) {
+            foreach ($searchableFields as $field) {
+                $query->orWhere($field, 'LIKE', '%' . $searchTerm . '%');
+            }
+        });
     }
     public function scopeGetOrPaginate(Builder $query)
     {
