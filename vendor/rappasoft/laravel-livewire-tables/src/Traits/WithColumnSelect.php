@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
 
@@ -11,8 +12,14 @@ trait WithColumnSelect
         ColumnSelectHelpers;
 
     public array $selectedColumns = [];
+
     protected bool $columnSelectStatus = true;
+
     protected bool $rememberColumnSelectionStatus = true;
+
+    protected bool $columnSelectHiddenOnMobile = false;
+
+    protected bool $columnSelectHiddenOnTablet = false;
 
     public function setupColumnSelect(): void
     {
@@ -46,18 +53,19 @@ trait WithColumnSelect
     public function getDefaultVisibleColumns(): array
     {
         return collect($this->getColumns())
-        ->filter(function ($column) {
-            return $column->isVisible() && $column->isSelectable() && $column->isSelected();
-        })
-        ->map(fn ($column) => $column->getSlug())
-        ->values()
-        ->toArray();
+            ->filter(function ($column) {
+                return $column->isVisible() && $column->isSelectable() && $column->isSelected();
+            })
+            ->map(fn ($column) => $column->getSlug())
+            ->values()
+            ->toArray();
     }
 
     public function selectAllColumns()
     {
         $this->{$this->tableName}['columns'] = [];
         $this->forgetColumnSelectSession();
+        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
     public function deselectAllColumns()
@@ -65,6 +73,7 @@ trait WithColumnSelect
         $this->{$this->tableName}['columns'] = [];
         $this->selectedColumns = [];
         session([$this->getColumnSelectSessionKey() => []]);
+        event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
     }
 
     public function updatedSelectedColumns(): void
@@ -75,6 +84,7 @@ trait WithColumnSelect
         } else {
             $this->{$this->tableName}['columns'] = $this->selectedColumns;
             session([$this->getColumnSelectSessionKey() => $this->{$this->tableName}['columns']]);
+            event(new ColumnsSelected($this->getColumnSelectSessionKey(), $this->selectedColumns));
         }
     }
 

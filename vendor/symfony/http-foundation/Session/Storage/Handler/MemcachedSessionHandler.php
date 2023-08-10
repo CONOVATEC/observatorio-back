@@ -21,12 +21,12 @@ namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
  */
 class MemcachedSessionHandler extends AbstractSessionHandler
 {
-    private \Memcached $memcached;
+    private $memcached;
 
     /**
      * Time to live in seconds.
      */
-    private int|\Closure|null $ttl;
+    private ?int $ttl;
 
     /**
      * Key prefix for shared environments.
@@ -59,6 +59,9 @@ class MemcachedSessionHandler extends AbstractSessionHandler
         return $this->memcached->quit();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function doRead(string $sessionId): string
     {
         return $this->memcached->get($this->prefix.$sessionId) ?: '';
@@ -66,19 +69,35 @@ class MemcachedSessionHandler extends AbstractSessionHandler
 
     public function updateTimestamp(string $sessionId, string $data): bool
     {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-        $this->memcached->touch($this->prefix.$sessionId, time() + (int) $ttl);
+        $this->memcached->touch($this->prefix.$sessionId, $this->getCompatibleTtl());
 
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function doWrite(string $sessionId, string $data): bool
     {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-
-        return $this->memcached->set($this->prefix.$sessionId, $data, time() + (int) $ttl);
+        return $this->memcached->set($this->prefix.$sessionId, $data, $this->getCompatibleTtl());
     }
 
+    private function getCompatibleTtl(): int
+    {
+        $ttl = (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime'));
+
+        // If the relative TTL that is used exceeds 30 days, memcached will treat the value as Unix time.
+        // We have to convert it to an absolute Unix time at this point, to make sure the TTL is correct.
+        if ($ttl > 60 * 60 * 24 * 30) {
+            $ttl += time();
+        }
+
+        return $ttl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function doDestroy(string $sessionId): bool
     {
         $result = $this->memcached->delete($this->prefix.$sessionId);

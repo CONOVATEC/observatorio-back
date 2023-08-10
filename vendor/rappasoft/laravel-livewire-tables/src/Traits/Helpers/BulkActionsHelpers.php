@@ -4,97 +4,64 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 trait BulkActionsHelpers
 {
-    /**
-     * @return bool
-     */
     public function getBulkActionsStatus(): bool
     {
         return $this->bulkActionsStatus;
     }
 
-    /**
-     * @return bool
-     */
     public function bulkActionsAreEnabled(): bool
     {
         return $this->getBulkActionsStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function bulkActionsAreDisabled(): bool
     {
         return $this->getBulkActionsStatus() === false;
     }
 
-    /**
-     * @return bool
-     */
     public function getSelectAllStatus(): bool
     {
         return $this->selectAll;
     }
 
-    /**
-     * @return bool
-     */
     public function selectAllIsEnabled(): bool
     {
         return $this->getSelectAllStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function selectAllIsDisabled(): bool
     {
         return $this->getSelectAllStatus() === false;
     }
 
-    /**
-     * @return bool
-     */
     public function getHideBulkActionsWhenEmptyStatus(): bool
     {
         return $this->hideBulkActionsWhenEmpty;
     }
 
-    /**
-     * @return bool
-     */
     public function hideBulkActionsWhenEmptyIsEnabled(): bool
     {
         return $this->getHideBulkActionsWhenEmptyStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hideBulkActionsWhenEmptyIsDisabled(): bool
     {
         return $this->getHideBulkActionsWhenEmptyStatus() === false;
     }
 
-    /**
-     * @return bool
-     */
     public function hasBulkActions(): bool
     {
-        return count($this->bulkActions());
+        return count($this->bulkActions()) > 0;
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getBulkActions(): array
     {
         return $this->bulkActions();
     }
 
-    /**
-     * @return bool
-     */
     public function showBulkActionsDropdown(): bool
     {
         $show = false;
@@ -117,9 +84,8 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @param  array  $selected
-     *
-     * @return array
+     * @param  array<mixed>  $selected
+     * @return array<mixed>
      */
     public function setSelected(array $selected): array
     {
@@ -127,24 +93,18 @@ trait BulkActionsHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getSelected(): array
     {
         return $this->selected;
     }
 
-    /**
-     * @return bool
-     */
     public function hasSelected(): bool
     {
-        return $this->getSelectedCount();
+        return $this->getSelectedCount() > 0;
     }
 
-    /**
-     * @return int
-     */
     public function getSelectedCount(): int
     {
         return count($this->getSelected());
@@ -185,6 +145,11 @@ trait BulkActionsHelpers
     public function setAllSelected(): void
     {
         $this->setSelectAllEnabled();
-        $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string)$item)->toArray());
+        $this->setSelected((clone $this->baseQuery())->pluck($this->getPrimaryKey())->map(fn ($item) => (string) $item)->toArray());
+    }
+
+    public function showBulkActionsDropdownAlpine(): bool
+    {
+        return $this->bulkActionsAreEnabled() && $this->hasBulkActions();
     }
 }

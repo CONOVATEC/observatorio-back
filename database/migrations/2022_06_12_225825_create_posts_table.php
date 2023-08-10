@@ -22,11 +22,12 @@ return new class extends Migration
             $table->enum('status',[1,2])->default(1);
             $table->enum('type_new',[1,2])->default(1);
             $table->enum('publicado',[1,2])->default(1);
-            $table->string('importantOne')->nullable();
-            $table->string('importantTwo')->nullable();
-            $table->string('importantThree')->nullable();
-            $table->string('importantFour')->nullable();
+           // $table->string('importantOne')->nullable();
+           // $table->string('importantTwo')->nullable();
+           // $table->string('importantThree')->nullable();
+           // $table->string('importantFour')->nullable();
             $table->tinyInteger('tendencia_active')->nullable();
+            $table->text('url_image')->nullable();
             $table->enum('news_cover',[1,2])->default(1);
             /*
                 ** -- Laves foreanas -- **

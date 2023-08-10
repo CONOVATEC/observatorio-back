@@ -4,15 +4,154 @@ All notable changes to `laravel-livewire-tables` will be documented in this file
 
 ## [Unreleased]
 
+## [2.14.0] - 2023-05-18
+
+### Changed
+- Fixes
+    - Bulk Actions (AlpineJS)
+    - Moving Table Head Checkbox to AlpineJS
+    - Using AlpineJS for calculating if all items have been selected
+    - Correcting missing x-cloak
+    - Added indeterminateCheckbox for TH for bulk actions
+    - Cleaned up ALpineJS functionality for Bulk Actions
+    - Repair of tests that were looking for wire:model that no longer existed
+
+- Enhancements
+    - Several new public variables for accessing pagination data cleanly, to avoid calling functions repeatedly across various blades.
+        - paginationTotalItemCount (Total number of items in the results across all page)
+        - paginationCurrentItems (Primary keys of items in the current page)
+        - paginationCurrentCount (Number of results on the current page)
+
+- Blades
+    - Several blades have had the classic Tables approach ($theme == 'tailwind', $theme == 'bootstrap) replaced with conditional classes using the @class([]) approach.  This is to reduce the complexity of the blade files.
+
+## [2.13.1] - 2023-05-18
+
+### Changed
+
+- Fixes for AlpineJS
+
+## [2.13.0] - 2023-05-17
+
+### Changed
+- General
+  - Migrate to AlpineJS for Bulk Actions  - https://github.com/rappasoft/laravel-livewire-tables/pull/1196
+  - Add capability for passing a custom model path to the MakeCommand  - https://github.com/rappasoft/laravel-livewire-tables/pull/1168
+  - Add setFilterDefaultValue() on a per-component basis  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  - Add getFilterDefaultValue() to each Filter Component (to maintain support for PHP7.4 - variable return types)  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  - Moved Setting of Filter Defaults to Traits/Helpers/FilterHelpers - mountFilterHelpers  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  - Moved Setting of Theme to Traits/ComponentUtilities - mountComponentUtilities for efficiency  - https://github.com/rappasoft/laravel-livewire-tables/pull/1191
+  
+- Filters
+  - *Fix* - Hide the filter label in the header/footer when using as a secondary header/footer
+  - *Fix* - Changed the booting order to prevent repeated calling of filters() - https://github.com/rappasoft/laravel-livewire-tables/pull/1166 
+  - *Fix* - fixed multiSelectDropdownFilter in menus - https://github.com/rappasoft/laravel-livewire-tables/pull/1160 
+  - *Fix* - TypeHint to allow continued support of PHP 7.4 - https://github.com/rappasoft/laravel-livewire-tables/pull/1185
+
+- Documentation
+  - *Fix* - Minor wording tweak to documentation - https://github.com/rappasoft/laravel-livewire-tables/pull/1139 
+  - *Fix* - Fix to example in applying-filters - https://github.com/rappasoft/laravel-livewire-tables/pull/1171
+  - Improved template for New Issue/Bug - https://github.com/rappasoft/laravel-livewire-tables/pull/1194 
+
+- Tests
+  - Restore PHP 7.4 tests for L8 only (includes minor tweaks)
+  - Remove duplicate tests in ComponentHelpersTest
+  - Tweak to ReorderingVisualsTest
+  - Add TextFilter as a test in FilterHelpersTest
+
+- Localization
+  - Added Danish Localization - https://github.com/rappasoft/laravel-livewire-tables/pull/1206
+
+## [2.12.0] - 2023-04-08
+
+### Added
+
+- AlpineJS Variable for Toolbar Dropdowns to force the dropdown to remain open - childElementOpen - https://github.com/rappasoft/laravel-livewire-tables/pull/1076
+- Added Custom Column Slug method setCustomSlug('') allowing Columns to use non-roman characters in the Column Title - https://github.com/rappasoft/laravel-livewire-tables/pull/1088
+- Eager loading so anyone can load any type of relationship - https://github.com/rappasoft/laravel-livewire-tables/pull/943
+- Improved visibility of active page in pagination - https://github.com/rappasoft/laravel-livewire-tables/pull/1096
+- Pagination methods
+  - Retrieve currently displayed IDs - getPerPageDisplayedItemIds() 
+  - Retrieve number of records currently displayed - getPerPageDisplayedItemCount()
+  - Public variables for the above https://github.com/rappasoft/laravel-livewire-tables/pull/1136
+
+- Filter Changes - https://github.com/rappasoft/laravel-livewire-tables/pull/1129
+  - Custom Filter Pill Blades per Filter component (setFilterPillBlade()) - https://github.com/rappasoft/laravel-livewire-tables/pull/1107
+  - Custom Filter Label Blades per Filter component (setCustomFilterLabel()) - https://github.com/rappasoft/laravel-livewire-tables/pull/1110
+  - Filter positioning options when using slide-down - https://github.com/rappasoft/laravel-livewire-tables/pull/1108
+    - Set the row per Filter component (setFilterSlidedownRow())
+    - Set the colspan per Filter component (setFilterSlidedownColspan())
+
+### Changed
+
+- Filters
+  - *Fix* - enabled re-use of Filters in Secondary Header/Footer, fixing issue where the filter remains visible after deselecting the Column- https://github.com/rappasoft/laravel-livewire-tables/pull/1108
+  - *Fix* - restrict AppliedFilters to only return non-empty - preventing default values from setting the filter https://github.com/rappasoft/laravel-livewire-tables/pull/1080
+  - *Minor* - added ID to Filter Wrapper allowing for easier targeting in blades/AlpineJS - https://github.com/rappasoft/laravel-livewire-tables/pull/1087
+
+- Workflow Changes
+  - PHPStan - Introducing PHP-Stan at Level 3 to ensure code-quality persists - https://github.com/rappasoft/laravel-livewire-tables/pull/1133
+  - Run-Tests - Use of ParaTest, Composer Caching, Fixing the Stability Matrix clash - https://github.com/rappasoft/laravel-livewire-tables/pull/1105
+  - php-cs-fixer - (For Badge) - https://github.com/rappasoft/laravel-livewire-tables/pull/1125 / https://github.com/rappasoft/laravel-livewire-tables/pull/1126
+
+- Testing
+  - Significant quantity of tests, improving test coverage from 81% to 91% - https://github.com/rappasoft/laravel-livewire-tables/pull/1137
+  - General DocType/TypeHint Fixes https://github.com/rappasoft/laravel-livewire-tables/pull/1133
+
+## [2.11.0] - 2023-02-16
+
+### Added
+
+- Support for Laravel 10 - https://github.com/rappasoft/laravel-livewire-tables/pull/1049
+- Trigger events when changing selected columns - https://github.com/rappasoft/laravel-livewire-tables/pull/1046
+- Added before-tools configurable area - https://github.com/rappasoft/laravel-livewire-tables/pull/1037
+- Added support to hide column select on tablet or mobile - https://github.com/rappasoft/laravel-livewire-tables/pull/1031
+
+### Changed
+
+- Corrected issue in filter docs - https://github.com/rappasoft/laravel-livewire-tables/pull/1048
+- Fixed filter pill values for option groups - https://github.com/rappasoft/laravel-livewire-tables/pull/1044
+
+## [2.10.0] - 2023-01-16
+
+### Added
+
+- Added support for MorphOne relationships - https://github.com/rappasoft/laravel-livewire-tables/pull/844
+- Added MultiSelectDropdownFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/1011
+- FilterSlideDown - Ability to set Default to Open or Closed - https://github.com/rappasoft/laravel-livewire-tables/pull/1017
+
+### Changed
+
+- Updated EN translations - https://github.com/rappasoft/laravel-livewire-tables/pull/999
+- Updated ES translations - https://github.com/rappasoft/laravel-livewire-tables/pull/1000
+- Bulk Actions Simple Pagination fix & typo in toolbar.blade.php - https://github.com/rappasoft/laravel-livewire-tables/pull/1015
+
+## [2.9.0] - 2022-12-21
+
+### Added
+
+- Added support for optgroups in SelectFilter - https://github.com/rappasoft/laravel-livewire-tables/pull/962
+- Added information about applying filters on boot - https://github.com/rappasoft/laravel-livewire-tables/pull/949
+- Added ComponentColumn - https://github.com/rappasoft/laravel-livewire-tables/pull/827
+- Added ability to set the pagination mode of `standard` or `simple`
+
+### Changed
+
+- Fixed formatting for relational column - https://github.com/rappasoft/laravel-livewire-tables/pull/757
+- Fixed errors when filter does not exist - https://github.com/rappasoft/laravel-livewire-tables/pull/979
+- Update basic example to represent V2 requirements - https://github.com/rappasoft/laravel-livewire-tables/pull/944
+- Fixed responsive on bootstrap 4 & 5 - https://github.com/rappasoft/laravel-livewire-tables/pull/903
+- Fix for select and checkbox inputs styling with Bootstrap 5 theme - https://github.com/rappasoft/laravel-livewire-tables/pull/864
+
 ## [2.8.0] - 2022-07-24
 
 ### Added
 
 - Added functionality to bookmark or deep link column selection
 - Added functionality to identify different datatable components as unique in column selection
-- Added funcitonality to configure query string alias
-- Added funcitonality to configure session key for column selection (dataTableFingerprint)
-- Added functionality to select/desect all columns in column selection dropdown
+- Added functionality to configure query string alias
+- Added functionality to configure session key for column selection (dataTableFingerprint)
+- Added functionality to select/deselect all columns in column selection dropdown
 - Added French translation - https://github.com/rappasoft/laravel-livewire-tables/pull/816
 - Added Malay translation - https://github.com/rappasoft/laravel-livewire-tables/pull/821
 - Added Dutch translation - https://github.com/rappasoft/laravel-livewire-tables/pull/834
@@ -688,7 +827,14 @@ Ground Up Rebuild
 
 - Initial release
 
-[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...development
+[Unreleased]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...development
+[2.14.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.14.0...v2.13.1
+[2.13.1]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.13.0...v2.13.1
+[2.13.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.12.0...v2.13.0
+[2.12.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.11.0...v2.12.0
+[2.11.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.10.0...v2.11.0
+[2.10.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.9.0...v2.10.0
+[2.9.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.8.0...v2.9.0
 [2.8.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/rappasoft/laravel-livewire-tables/compare/v2.5.0...v2.6.0

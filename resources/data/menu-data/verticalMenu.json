@@ -26,6 +26,27 @@
                 }
             ]
         },
+
+        {
+            "name": "thematics",
+            "icon": "airplay",
+            "slug": "tematica",
+            "badgeClass": "badge rounded-pill badge-light-danger ms-auto me-1",
+            "submenu": [
+                {
+                    "url": "notas-rapidas",
+                    "name": "view thematic",
+                    "icon": "file-text",
+                    "slug": "notasRapidas.index"
+                },
+                {
+                    "url": "notas-rapidas/create",
+                    "name": "create register",
+                    "icon": "plus-square",
+                    "slug": "notasRapidas.create"
+                }
+            ]
+        },
         {
             "name": "tags",
             "icon": "tag",
@@ -206,9 +227,9 @@
             ]
         },
         {
-            "name": "logo",
+            "name": "grade",
             "icon": "image",
-            "slug": "logos",
+            "slug": "grade",
             "submenu": [
                 {
                     "url": "logos",
@@ -243,6 +264,7 @@
                 }
             ]
         },
+        
         {
             "name": "company",
             "icon": "server",

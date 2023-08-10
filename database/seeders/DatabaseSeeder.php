@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\TypeLogo::factory(1)->create();
         \App\Models\admin\ReaderLog::factory(1)->create();
         \App\Models\admin\Setting::factory(1)->create();
-        // $this->call(PostSeeder::class);
+        $this->call(PostSeeder::class);
         // \App\Models\admin\Like::factory(1)->create();
         \App\Models\admin\TypeTraining::factory(1)->create();
         \App\Models\admin\Training::factory(1)->create();
@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\admin\Directive::factory(1)->create();
         \App\Models\admin\Slide::factory(1)->create();
         \App\Models\admin\Logo::factory(2)->create();
+
+       // \App\Models\admin\Thematic::factory(3)->create();
         $this->call(LogoSeeder::class);
     }
 }

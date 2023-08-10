@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources\Api\V1;
 
+use App\Http\Resources\Api\V1\CategoryResource;
+use App\Http\Resources\Api\V1\TagResource;
+use App\Http\Resources\Api\V1\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
+
 class PostResource extends JsonResource
 {
     /**
@@ -14,59 +18,62 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        return[
-            'id'=>$this->id,
-            'title'=>Str::title($this->title),
-            'imagen'=>$this->imagen(),
-            'slug'=>$this->slug,
-            'extract'=>$this->extract, //elimina las etiquetas de HTML
-            'content'=>$this->content, //elimina las etiquetas de HTML
-            'status'=>$this->estado($this->status),
-            'news_cover'=>$this->estado($this->news_cover),//portada_noticias
-            'tendencia'=>$this->tendencia($this->tendencia_active),
-            'category'=>$this->category->name,
-            'importantTwo'=>$this->importantTwo,
-            'importantThree'=>$this->importantThree,
-            'importantFour'=>$this->importantFour,
-            'tags'=> TagResource::collection($this->tags),
-            'likes'=>LikeResource::collection($this->likes),
-            'user'=>[
-                'name'=>$this->user->name,
-                'email'=>$this->user->email,
-                'avatar'=>$this->user->profile_photo_url,
-            ],
-            'created'=>$this->created_at->format('d-m-Y'),
+
+        return [
+            'id' => $this->id,
+            'title' => Str::title($this->title),
+            // 'images' => $this->imagen(),
+            'imagen' => $this->getFirstImageUrl(),
+            'slug' => $this->slug,
+            'extract' => $this->extract,
+            'content' => $this->content,
+            'url_image' => ($this->url_image == '' || is_null($this->url_image)) ? null : $this->url_image,
+            'status' => $this->status == 1 ? 'BORRADOR' : 'PUBLICADO',
+            'news_cover' => $this->news_cover == 1 ? 'cover' : 'not_cover', //portada_noticias
+            'tendencia' => $this->tendencia_active == 1 ? 'trend' : 'not_trend',
+            'category' => CategoryResource::make($this->whenLoaded('category')),
+            'tags' => TagResource::collection($this->whenLoaded('tags')),
+            // 'likes'=>LikeResource::collection($this->likes),
+            'user' => UserResource::make($this->whenLoaded('user')),
+            'created_at' => $this->created_at->format('d-m-Y'),
         ];
     }
-     /***********************
-    *  Activo/Inactivo     *
-    ************************/
-    private function estado($valor){
-        if($valor==1){
-            $estado=false;
-        }else if($valor==2){
-            $estado=true;
+    /***********************
+     *  Activo/Inactivo     *
+     ************************/
+    private function estado($valor)
+    {
+        if ($valor == 1) {
+            $estado = false;
+        } else if ($valor == 2) {
+            $estado = true;
         }
         return $estado;
     }
 
-    private function tendencia($valor){
-        if($valor==1){
-            $estado=true;
-        }else if($valor==2){
-            $estado=false;
+    private function tendencia($valor)
+    {
+        if ($valor == 1) {
+            $estado = true;
+        } else if ($valor == 2) {
+            $estado = false;
         }
         return $estado;
     }
 
-    public function imagen(){
-        if(isset($this->image->url)){
-            $respuesta=$this->image->url;
-        }else{
-            $respuesta=null;
+    public function getFirstImageUrl()
+    {
+        if ($this->images->isEmpty()) {
+            return null;
         }
-        return $respuesta;
-        //dd($this->image->url);
+
+        $firstImage = $this->images->first();
+
+        if (is_null($firstImage) || empty($firstImage->url)) {
+            return null;
+        }
+
+        return $firstImage->url;
     }
 
 }

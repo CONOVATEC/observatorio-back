@@ -2,17 +2,34 @@
 
 namespace App\Models\admin;
 
+use App\Models\User;
+use App\Traits\ApiTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Post extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, ApiTrait, SoftDeletes;
+    const BORRADOR = 1;
+    const PUBLICADO = 2;
 
-    //protected $fillable = ['title','slug','extract','content','tendencia_active','category_id','user_id'];
-    protected $guarded=['id','create_at','update_at'];
+    //* Para consultar las  relaciones
+    protected $allowIncluded = ['user', 'category', 'tags', 'images'];
+    //* Para filtrar
+    protected $allowFilter = ['id', 'title', 'slug', 'extract', 'content'];
+    //* Para ordernar
+    protected $allowSort = ['id', 'title', 'slug', 'extract', 'content', 'status', 'user_id'];
+    //* Para búsqueda
+    protected $allowSearch = ['title', 'slug', 'extract', 'content', 'status'];
+
+    protected $fillable = ['title', 'slug', 'extract', 'content', 'tendencia_active', 'status', 'category_id', 'user_id'];
+    // protected $guarded=['id','create_at','update_at'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', Post::PUBLICADO);
+    }
 
     /**********************************************************
      * Relación de uno a muchos hasMany => tiene muchos likes *
@@ -23,8 +40,7 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
-
-     /************************************************************************
+    /************************************************************************
      * Relación de uno a muchos inversa belongsTo pertenece a category *
      ************************************************************************/
 
@@ -33,7 +49,7 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-     /************************************************************************
+    /************************************************************************
      * Relación de uno a muchos inversa belongsTo pertenece a user *
      ************************************************************************/
 
@@ -51,9 +67,9 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function image(){
-        return $this->morphOne(Image::class,'imageable');
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
-
 
 }

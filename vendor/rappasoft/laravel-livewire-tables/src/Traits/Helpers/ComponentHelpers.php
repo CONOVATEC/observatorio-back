@@ -10,7 +10,7 @@ trait ComponentHelpers
 {
     public function getDataTableFingerprint(): string
     {
-        return $this->dataTableFingerprint ?? $this->dataTableFingerprint();
+        return $this->dataTableFingerprint ?? $this->generateDataTableFingerprint();
     }
 
     public function getQueryStringAlias(): string
@@ -18,25 +18,16 @@ trait ComponentHelpers
         return $this->queryStringAlias ?? $this->getTableName();
     }
 
-    /**
-     * @param Builder
-     */
     public function setBuilder(Builder $builder): void
     {
         $this->builder = $builder;
     }
 
-    /**
-     * @return Builder
-     */
     public function getBuilder(): Builder
     {
         return $this->builder;
     }
 
-    /**
-     * @return bool
-     */
     public function hasPrimaryKey(): bool
     {
         return $this->primaryKey !== null;
@@ -51,8 +42,13 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool
+     * @return array<mixed>
      */
+    public function getRelationships(): array
+    {
+        return $this->relationships;
+    }
+
     public function hasModel(): bool
     {
         return $this->model !== null;
@@ -66,9 +62,6 @@ trait ComponentHelpers
         return $this->model;
     }
 
-    /**
-     * @return string
-     */
     public function setTheme(): void
     {
         $theme = $this->getTheme();
@@ -78,24 +71,21 @@ trait ComponentHelpers
         }
     }
 
-    /**
-     * @return string
-     */
     public function getTheme(): string
     {
         return $this->theme ?? config('livewire-tables.theme', 'tailwind');
     }
 
     /**
-     * @return string[]
+     * @return array<mixed>
      */
     public function getComponentWrapperAttributes(): array
     {
-        return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-' . $this->id];
+        return count($this->componentWrapperAttributes) ? $this->componentWrapperAttributes : ['id' => 'datatable-'.$this->id];
     }
 
     /**
-     * @return string[]
+     * @return  array<mixed>
      */
     public function getTableWrapperAttributes(): array
     {
@@ -103,7 +93,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTableAttributes(): array
     {
@@ -111,7 +101,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTheadAttributes(): array
     {
@@ -119,7 +109,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getTbodyAttributes(): array
     {
@@ -127,9 +117,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  Column  $column
-     *
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getThAttributes(Column $column): array
     {
@@ -137,9 +125,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  Column  $column
-     *
-     * @return bool[]
+     * @return  array<mixed>
      */
     public function getThSortButtonAttributes(Column $column): array
     {
@@ -147,10 +133,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  Model  $row
-     * @param  int  $index
-     *
-     * @return bool[]
+     * @return array<mixed>
      */
     public function getTrAttributes(Model $row, int $index): array
     {
@@ -158,11 +141,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  Column  $column
-     * @param  Model  $row
-     * @param  int  $index
-     *
-     * @return bool[]
+     * @return array<mixed>
      */
     public function getTdAttributes(Column $column, Model $row, int $colIndex, int $rowIndex): array
     {
@@ -171,178 +150,109 @@ trait ComponentHelpers
 
     /**
      * Get the translated empty message of the table
-     *
-     * @return string
      */
     public function getEmptyMessage(): string
     {
         return __($this->emptyMessage);
     }
 
-    /**
-     * @return bool
-     */
     public function getOfflineIndicatorStatus(): bool
     {
         return $this->offlineIndicatorStatus;
     }
 
-    /**
-     * @return bool
-     */
     public function offlineIndicatorIsEnabled(): bool
     {
         return $this->getOfflineIndicatorStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function offlineIndicatorIsDisabled(): bool
     {
         return $this->getOfflineIndicatorStatus() === false;
     }
 
-    /**
-     * @return bool
-     */
     public function getQueryStringStatus(): bool
     {
         return $this->queryStringStatus;
     }
 
-    /**
-     * @return bool
-     */
     public function queryStringIsEnabled(): bool
     {
         return $this->getQueryStringStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function queryStringIsDisabled(): bool
     {
         return $this->getQueryStringStatus() === false;
     }
 
-    /**
-     * @param  string  $name
-     *
-     * @return string
-     */
     public function setTableName(string $name): string
     {
         return $this->tableName = $name;
     }
 
-    /**
-     * @return string
-     */
     public function getTableName(): string
     {
         return $this->tableName;
     }
 
-    /**
-     * @param  string  $name
-     *
-     * @return bool
-     */
     public function isTableNamed(string $name): bool
     {
         return $this->tableName === $name;
     }
 
-    /**
-     * @return bool
-     */
     public function getEagerLoadAllRelationsStatus(): bool
     {
         return $this->eagerLoadAllRelationsStatus;
     }
 
-    /**
-     * @return bool
-     */
     public function eagerLoadAllRelationsIsEnabled(): bool
     {
         return $this->getEagerLoadAllRelationsStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function eagerLoadAllRelationsIsDisabled(): bool
     {
         return $this->getEagerLoadAllRelationsStatus() === false;
     }
 
-    /**
-     * @param  string  $name
-     *
-     * @return string
-     */
     public function getCollapsingColumnsStatus(): bool
     {
         return $this->collapsingColumnsStatus;
     }
-    
-    /**
-     * @return bool
-     */
+
     public function hasCollapsingColumns(): bool
     {
         return $this->getCollapsingColumnsStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function collapsingColumnsAreEnabled(): bool
     {
         return $this->getCollapsingColumnsStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function collapsingColumnsAreDisabled(): bool
     {
         return $this->getCollapsingColumnsStatus() === false;
     }
 
-    /**
-    * @return bool
-    */
     public function hasTableRowUrl(): bool
     {
         return $this->trUrlCallback !== null;
     }
 
-    /**
-     * @param  $row
-     *
-     * @return ?string
-     */
     public function getTableRowUrl($row): ?string
     {
         return $this->trUrlCallback ? call_user_func($this->trUrlCallback, $row) : null;
     }
 
-    /**
-     * @param  $row
-     *
-     * @return ?string
-     */
     public function getTableRowUrlTarget($row): ?string
     {
         return $this->trUrlTargetCallback ? call_user_func($this->trUrlTargetCallback, $row) : null;
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getAdditionalSelects(): array
     {
@@ -350,18 +260,13 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getConfigurableAreas(): array
     {
         return $this->configurableAreas;
     }
 
-    /**
-     * @param  string  $area
-     *
-     * @return bool
-     */
     public function hasConfigurableAreaFor(string $area): bool
     {
         if ($this->hideConfigurableAreasWhenReorderingIsEnabled() && $this->reorderIsEnabled() && $this->currentlyReorderingIsEnabled()) {
@@ -372,9 +277,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string|array  $area
-     *
-     * @return string|null
+     * @param  string|array<mixed>  $area
      */
     public function getConfigurableAreaFor($area): ?string
     {
@@ -388,9 +291,8 @@ trait ComponentHelpers
     }
 
     /**
-     * @param  string|array  $area
-     *
-     * @return array
+     * @param  string|array<mixed>  $area
+     * @return array<mixed>
      */
     public function getParametersForConfigurableArea($area): array
     {
@@ -403,25 +305,16 @@ trait ComponentHelpers
         return [];
     }
 
-    /**
-     * @return bool
-     */
     public function getHideConfigurableAreasWhenReorderingStatus(): bool
     {
         return $this->hideConfigurableAreasWhenReorderingStatus;
     }
 
-    /**
-     * @return bool
-     */
     public function hideConfigurableAreasWhenReorderingIsEnabled(): bool
     {
         return $this->getHideConfigurableAreasWhenReorderingStatus() === true;
     }
 
-    /**
-     * @return bool
-     */
     public function hideConfigurableAreasWhenReorderingIsDisabled(): bool
     {
         return $this->getHideConfigurableAreasWhenReorderingStatus() === false;

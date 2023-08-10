@@ -8,5 +8,16 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
-composer.lock
-yarn.lock
+package-lock.json
+# yarn.lock
+# composer.lock
+
+/vendor
+/bootstrap/cache
+/storage/logs
+/storage/app/public
+/.vscode
+/.docker
+/public/hot
+/public/storage
+/storage/*.key

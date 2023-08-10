@@ -5,6 +5,8 @@
 [![Tests](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml/badge.svg)](https://github.com/rappasoft/laravel-livewire-tables/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/rappasoft/laravel-livewire-tables.svg?style=flat-square)](https://packagist.org/packages/rappasoft/laravel-livewire-tables)
 
+### Enjoying this package? [Buy me a beer 🍺](https://www.buymeacoffee.com/rappasoft)
+
 A dynamic Laravel Livewire component for data tables.
 
 ![Dark Mode](https://imgur.com/QoEdC7n.png)
@@ -41,23 +43,24 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class UsersTable extends DataTableComponent
 {
-
     protected $model = User::class;
+
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id');
+    }
 
     public function columns(): array
     {
         return [
+            Column::make('ID', 'id')
+                ->sortable(),
             Column::make('Name')
-                ->sortable()
-                ->searchable(),
-            Column::make('E-mail', 'email')
-                ->sortable()
-                ->searchable(),
-            Column::make('Verified', 'email_verified_at')
                 ->sortable(),
         ];
     }
 }
+
 ```
 
 ### [See advanced example](https://rappasoft.com/docs/laravel-livewire-tables/v2/examples/advanced-example)
@@ -83,6 +86,7 @@ Please e-mail anthony@rappasoft.com to report any security vulnerabilities inste
 ## Credits
 
 - [Anthony Rappa](https://github.com/rappasoft)
+- [lrljoe](https://github.com/lrljoe)
 - [All Contributors](../../contributors)
 
 ## License

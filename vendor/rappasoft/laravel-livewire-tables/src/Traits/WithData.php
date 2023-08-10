@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithData
@@ -13,8 +14,16 @@ trait WithData
     public function getRows()
     {
         $this->baseQuery();
-        
-        return $this->executeQuery();
+
+        $executedQuery = $this->executeQuery();
+
+        // Get All Currently Paginated Items Primary Keys
+        $this->paginationCurrentItems = $executedQuery->pluck($this->getPrimaryKey())->toArray() ?? [];
+
+        // Get Count of Items in Current Page
+        $this->paginationCurrentCount = $executedQuery->count() ?? 0;
+
+        return $executedQuery;
     }
 
     protected function baseQuery(): Builder
@@ -38,9 +47,22 @@ trait WithData
 
     protected function executeQuery()
     {
-        return $this->paginationIsEnabled() ?
-            $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName()) :
-            $this->getBuilder()->get();
+        if ($this->paginationIsEnabled()) {
+            if ($this->isPaginationMethod('standard')) {
+                $paginatedResults = $this->getBuilder()->paginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+
+                // Get the total number of items available
+                $this->paginationTotalItemCount = $paginatedResults->total() ?? 0;
+
+                return $paginatedResults;
+            }
+
+            if ($this->isPaginationMethod('simple')) {
+                return $this->getBuilder()->simplePaginate($this->getPerPage() === -1 ? $this->getBuilder()->count() : $this->getPerPage(), ['*'], $this->getComputedPageName());
+            }
+        }
+
+        return $this->getBuilder()->get();
     }
 
     protected function joinRelations(): Builder
@@ -69,6 +91,7 @@ trait WithData
             $model = $lastQuery->getRelation($relationPart);
 
             switch (true) {
+                case $model instanceof MorphOne:
                 case $model instanceof HasOne:
                     $table = $model->getRelated()->getTable();
                     $foreign = $model->getQualifiedForeignKeyName();
@@ -117,7 +140,7 @@ trait WithData
         }
 
         foreach ($this->getSelectableColumns() as $column) {
-            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn() . ' as ' .$column->getColumnSelectName()));
+            $this->setBuilder($this->getBuilder()->addSelect($column->getColumn().' as '.$column->getColumnSelectName()));
         }
 
         return $this->getBuilder();
@@ -131,7 +154,7 @@ trait WithData
         foreach ($column->getRelations() as $relationPart) {
             $model = $lastQuery->getRelation($relationPart);
 
-            if ($model instanceof HasOne || $model instanceof BelongsTo) {
+            if ($model instanceof HasOne || $model instanceof BelongsTo || $model instanceof MorphOne) {
                 $table = $model->getRelated()->getTable();
             }
 

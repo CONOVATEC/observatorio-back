@@ -6,11 +6,6 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait FilterConfiguration
 {
-    /**
-     * @param  bool  $status
-     *
-     * @return $this
-     */
     public function setFiltersStatus(bool $status): self
     {
         $this->filtersStatus = $status;
@@ -18,9 +13,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFiltersEnabled(): self
     {
         $this->setFiltersStatus(true);
@@ -28,9 +20,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFiltersDisabled(): self
     {
         $this->setFiltersStatus(false);
@@ -38,11 +27,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool $status
-     *
-     * @return $this
-     */
     public function setFiltersVisibilityStatus(bool $status): self
     {
         $this->filtersVisibilityStatus = $status;
@@ -50,9 +34,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFiltersVisibilityEnabled(): self
     {
         $this->setFiltersVisibilityStatus(true);
@@ -60,9 +41,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFiltersVisibilityDisabled(): self
     {
         $this->setFiltersVisibilityStatus(false);
@@ -70,11 +48,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool $status
-     *
-     * @return $this
-     */
     public function setFilterPillsStatus(bool $status): self
     {
         $this->filterPillsStatus = $status;
@@ -82,9 +55,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFilterPillsEnabled(): self
     {
         $this->setFilterPillsStatus(true);
@@ -92,9 +62,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFilterPillsDisabled(): self
     {
         $this->setFilterPillsStatus(false);
@@ -102,11 +69,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @param  bool $status
-     *
-     * @return $this
-     */
     public function setFilterLayout(string $type): self
     {
         if (! in_array($type, ['popover', 'slide-down'], true)) {
@@ -118,9 +80,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFilterLayoutPopover(): self
     {
         $this->setFilterLayout('popover');
@@ -128,12 +87,30 @@ trait FilterConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setFilterLayoutSlideDown(): self
     {
         $this->setFilterLayout('slide-down');
+
+        return $this;
+    }
+
+    public function setFilterSlideDownDefaultStatus(bool $status): self
+    {
+        $this->filterSlideDownDefaultVisible = $status;
+
+        return $this;
+    }
+
+    public function setFilterSlideDownDefaultStatusDisabled(): self
+    {
+        $this->setFilterSlideDownDefaultStatus(false);
+
+        return $this;
+    }
+
+    public function setFilterSlideDownDefaultStatusEnabled(): self
+    {
+        $this->setFilterSlideDownDefaultStatus(true);
 
         return $this;
     }

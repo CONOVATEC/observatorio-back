@@ -6,62 +6,38 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ColumnSelectHelpers
 {
-    /**
-     * @var bool
-     */
     public function getColumnSelectStatus(): bool
     {
         return $this->columnSelectStatus;
     }
 
-    /**
-     * @param bool $status
-     * @return $this
-     */
     public function columnSelectIsEnabled(): bool
     {
         return $this->getColumnSelectStatus() === true;
     }
 
-    /**
-     * @param bool $status
-     * @return $this
-     */
     public function columnSelectIsDisabled(): bool
     {
         return $this->getColumnSelectStatus() === false;
     }
 
-    /**
-     * @param bool $status
-     * @return $this
-     */
     public function getRememberColumnSelectionStatus(): bool
     {
         return $this->rememberColumnSelectionStatus;
     }
 
-    /**
-     * @param bool $status
-     * @return $this
-     */
     public function rememberColumnSelectionIsEnabled(): bool
     {
         return $this->getRememberColumnSelectionStatus() === true;
     }
 
-    /**
-     * @param bool $status
-     * @return $this
-     */
     public function rememberColumnSelectionIsDisabled(): bool
     {
         return $this->getRememberColumnSelectionStatus() === false;
     }
 
     /**
-     * @param bool $status
-     * @return $this
+     * @param  mixed  $column
      */
     public function columnSelectIsEnabledForColumn($column): bool
     {
@@ -69,8 +45,7 @@ trait ColumnSelectHelpers
     }
 
     /**
-     * @param array $columns
-     * @return $this
+     * @return void
      */
     protected function forgetColumnSelectSession()
     {
@@ -83,5 +58,29 @@ trait ColumnSelectHelpers
     protected function getColumnSelectSessionKey()
     {
         return $this->getDataTableFingerprint().'-columnSelectEnabled';
+    }
+
+    public function setColumnSelectHiddenOnMobile(): self
+    {
+        $this->columnSelectHiddenOnMobile = true;
+
+        return $this;
+    }
+
+    public function getColumnSelectIsHiddenOnTablet(): bool
+    {
+        return $this->columnSelectHiddenOnTablet;
+    }
+
+    public function setColumnSelectHiddenOnTablet(): self
+    {
+        $this->columnSelectHiddenOnTablet = true;
+
+        return $this;
+    }
+
+    public function getColumnSelectIsHiddenOnMobile(): bool
+    {
+        return $this->columnSelectHiddenOnMobile;
     }
 }
