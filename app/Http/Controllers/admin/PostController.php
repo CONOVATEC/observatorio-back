@@ -145,6 +145,7 @@ class PostController extends Controller
             'content' => html_entity_decode($request['content']),
             'status' => $request['status'],
             'tendencia_active' => $request['tendencia_active'],
+            'url_image' => $request['url_image'],
             'news_cover' => $request['news_cover'],
             'category_id' => $request['category_id'],
             //  'importantOne' => $request['importantOne'],
