@@ -26,6 +26,7 @@ class PostApiController extends Controller
             $query->search(request('search'));
         }
         $posts = $query->active()->getOrPaginate();
+
         return PostResource::collection($posts);
 
     }
