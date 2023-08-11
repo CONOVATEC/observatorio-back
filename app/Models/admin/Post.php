@@ -23,7 +23,7 @@ class Post extends Model
     //* Para búsqueda
     protected $allowSearch = ['title', 'slug', 'extract', 'content', 'status'];
 
-    protected $fillable = ['title', 'slug', 'extract', 'content', 'tendencia_active', 'status', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'slug', 'extract', 'content', 'tendencia_active', 'status', 'url_image', 'category_id', 'user_id'];
     // protected $guarded=['id','create_at','update_at'];
 
     public function scopeActive($query)

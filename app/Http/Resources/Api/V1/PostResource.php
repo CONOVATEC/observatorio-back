@@ -27,17 +27,17 @@ class PostResource extends JsonResource
             'slug' => $this->slug,
             'extract' => $this->extract,
             'content' => $this->content,
-            'url_image' => ($this->url_image == '' || is_null($this->url_image)) ? null : $this->url_image,
+            'url_image' => $this->url_image,
             'status' => $this->status == 1 ? 'BORRADOR' : 'PUBLICADO',
             'news_cover' => $this->news_cover == 1 ? 'cover' : 'not_cover', //portada_noticias
             'tendencia' => $this->tendencia_active == 1 ? 'trend' : 'not_trend',
-            'category' => CategoryResource::make($this->whenLoaded('category')),
-            'tags' => TagResource::collection($this->whenLoaded('tags')),
-            // 'likes'=>LikeResource::collection($this->likes),
-            'user' => UserResource::make($this->whenLoaded('user')),
+            'category' => $this->category->id,
+//            'tags' => TagResource::collection($this->whenLoaded('tags')),
+            'user' => $this->user->name,
             'created_at' => $this->created_at->format('d-m-Y'),
         ];
     }
+    
     /***********************
      *  Activo/Inactivo     *
      ************************/
