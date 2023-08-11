@@ -37,7 +37,7 @@ class PostResource extends JsonResource
             'created_at' => $this->created_at->format('d-m-Y'),
         ];
     }
-    
+
     /***********************
      *  Activo/Inactivo     *
      ************************/
