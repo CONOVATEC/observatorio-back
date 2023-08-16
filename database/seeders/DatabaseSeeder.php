@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('news');
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(CategorySeeder::class);
         \App\Models\admin\Category::factory(1)->create();
         \App\Models\admin\Tag::factory(1)->create();
         \App\Models\admin\AboutCmpj::factory(1)->create();
