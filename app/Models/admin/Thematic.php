@@ -9,5 +9,8 @@ class Thematic extends Model
 {
     use HasFactory;
 
-    protected $guarded=['id','create_at','update_at'];
+    // protected $fillable = ['name', 'description', 'url_icono'];
+    protected $fillable = ['name', 'description', 'url_icono'];
+    //Para registrar la actividad del Usuario
+    protected $table = "thematics";
 }

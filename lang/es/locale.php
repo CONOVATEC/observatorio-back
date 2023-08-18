@@ -3,6 +3,10 @@
 return [
     // Inicio agregado por mí
     "user-profile" => "Perfil de Usuario",
+    "grade" => "Nota rápida",
+    "create grade" => "Crear nota rápida",
+    "view grade" => "ver notas rápida",
+
     "news" => "Noticias",
     "thematics" => "Tematicas",
     "view thematic" => "Ver tematica",

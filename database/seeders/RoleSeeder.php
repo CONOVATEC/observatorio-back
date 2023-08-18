@@ -135,10 +135,15 @@ class RoleSeeder extends Seeder
 
 
          //* tematica
-         Permission::create(['name' => 'notasRapidas.index', 'description' => 'Ver tematica'])->syncRoles([$rol1, $rol2]);
-         Permission::create(['name' => 'notasRapidas.create', 'description' => 'Crear tematica'])->syncRoles([$rol1, $rol2]);
-         Permission::create(['name' => 'notasRapidas.edit', 'description' => 'Editar tematica'])->syncRoles([$rol1, $rol2]);
-         Permission::create(['name' => 'notasRapidas.destroy', 'description' => 'Eliminar tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.index', 'description' => 'Ver tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.create', 'description' => 'Crear tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.edit', 'description' => 'Editar tematica'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'tematica.destroy', 'description' => 'Eliminar tematica'])->syncRoles([$rol1, $rol2]);
+         //* notas rápidas
+         Permission::create(['name' => 'notasRapidas.index', 'description' => 'Ver notas Rapidas'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.create', 'description' => 'Crear notas Rapidas'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.edit', 'description' => 'Editar notas Rapidas'])->syncRoles([$rol1, $rol2]);
+         Permission::create(['name' => 'notasRapidas.destroy', 'description' => 'Eliminar notas Rapidas'])->syncRoles([$rol1, $rol2]);
 
     }
 }

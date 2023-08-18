@@ -227,21 +227,21 @@
             ]
         },
         {
-            "name": "logo",
-            "icon": "image",
-            "slug": "logos",
+            "name": "grade",
+            "icon": "file",
+            "slug": "notasRapidas",
             "submenu": [
                 {
-                    "url": "logos",
-                    "name": "view logo",
+                    "url": "notas-rapidas",
+                    "name": "view grade",
                     "icon": "eye",
-                    "slug": "logos.index"
+                    "slug": "notasRapidas.index"
                 },
                 {
-                    "url": "logos/create",
-                    "name": "create logo",
+                    "url": "notas-rapidas/create",
+                    "name": "create grade",
                     "icon": "file-plus",
-                    "slug": "logos.create"
+                    "slug": "notasRapidas.create"
                 }
             ]
         },
@@ -264,6 +264,7 @@
                 }
             ]
         },
+
         {
             "name": "company",
             "icon": "server",
