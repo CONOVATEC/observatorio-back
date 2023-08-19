@@ -15,6 +15,10 @@ class ThematicApiController extends Controller
     public function index()
     {
         $query = Thematic::included()->filter()->sort();
+        if (request('search')) {
+            $query->search(request('search'));
+        }
+
         $thematics = $query->getOrPaginate();
 //        dd(PostResource::collection($thematics));
         return ThematicResource::collection($thematics);
