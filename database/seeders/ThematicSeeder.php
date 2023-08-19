@@ -14,7 +14,7 @@ class ThematicSeeder extends Seeder
      */
     public function run()
     {
-        Thematic::factory(10)->create(); // Crea 10 registros ficticios
+        Thematic::factory(100)->create(); // Crea 10 registros ficticios
 
     }
 }
