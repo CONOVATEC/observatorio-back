@@ -18,7 +18,6 @@ class TokenApiMiddleware
     {
         // Obtener el token del encabezado "Authorization"
         $token = $request->bearerToken();
-
         // Verificar si el token está ausente
         if (!$token) {
             return response()->json([

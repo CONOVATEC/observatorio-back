@@ -11,8 +11,57 @@ use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @OA\Info(
+ *     description="Esta es una API de ejemplo para la gestión de posts(Publicaciones).",
+ *     version="1.0.0",
+ *     title="API de administración de posts(Publicaciones)."
+ * )
+ */
+
 class PostController extends Controller
 {
+    // Para documentación API
+    /**
+     * @OA\Get(
+     *     path="/api/v1/posts",
+     *     summary="Listado de los Posts(Publicaciones)",
+     *     operationId="posts",
+     *     description="Devuelve un listado de los Posts(Publicaciones) que están registrados en nuestro servidor",
+     *     security={{"bearer_token":{}}},
+     *     @OA\Parameter(
+     *         name="perPage",
+     *         in="query",
+     *         description="Número de elementos por página en la paginación.",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="included",
+     *         in="query",
+     *         description="Relaciones que se deben incluir en la respuesta (user, category, tags). Separadas por comas.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Listado de los Posts(Publicaciones) obtenido exitosamente.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autorizado. Se requiere un token válido en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Token no provisto. Se requiere un token en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error interno del servidor. Algo salió mal.",
+     *     ),
+     * )
+     */
+
     public function __construct()
     {
         $this->middleware('auth');
