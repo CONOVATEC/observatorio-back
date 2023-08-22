@@ -29,6 +29,24 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -title).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[title]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por los campos de la tabla.Por ejempl en por el  título,etc.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {

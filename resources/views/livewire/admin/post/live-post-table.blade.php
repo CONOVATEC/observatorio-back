@@ -5,11 +5,13 @@
             <ul class="list-inline">
                 <li>
                     <div class="input-group ">
-                        <input type="text" class="form-control " placeholder="Buscar..." aria-label="Buscar..." aria-describedby="buscar" wire:model="search" />
+                        <input type="text" class="form-control " placeholder="Buscar..." aria-label="Buscar..."
+                            aria-describedby="buscar" wire:model="search" />
                     </div>
                 </li>
                 <li class="mx-1">
-                    <select class="form-select me-1 form-select-sm " wire:model="perPage" style="padding-top: 5px;padding-bottom: 6px;">
+                    <select class="form-select me-1 form-select-sm " wire:model="perPage"
+                        style="padding-top: 5px;padding-bottom: 6px;">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -17,12 +19,14 @@
                     </select>
                 </li>
                 <li>
-                    <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
+                    <button type="button" class="form-control btn btn-danger btn-sm " wire:click="clear"><i
+                            class="fa-solid fa-arrows-rotate"></i> Limpiar</button>
                 </li>
                 @can('noticias.create')
-                <li>
-                    <a href="{{ route('noticias.create') }}" type="button" class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
-                </li>
+                    <li>
+                        <a href="{{ route('noticias.create') }}" type="button"
+                            class="form-control btn btn-primary btn-sm"><i class="fa-solid fa-circle-plus"></i> Nuevo</a>
+                    </li>
                 @endcan
             </ul>
         </div>
@@ -47,13 +51,14 @@
                                         </a>
                                     </th>
                                     <th scope="col">Estado
-                                        <a wire:click="sortable('statug')">
-                                            <span class="fa-solid fa{{ $camp === 'statug' ? $icon : '-sort' }}"></span>
+                                        <a wire:click="sortable('status')">
+                                            <span class="fa-solid fa{{ $camp === 'status' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
                                     <th scope="col">Categoria
                                         <a wire:click="sortable('category_id')">
-                                            <span class="fa-solid fa{{ $camp === 'category_id' ? $icon : '-sort' }}"></span>
+                                            <span
+                                                class="fa-solid fa{{ $camp === 'category_id' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
                                     <th scope="col">Usuario
@@ -63,43 +68,54 @@
                                     </th>
                                     <th scope="col">Creado
                                         <a wire:click="sortable('created_at')">
-                                            <span class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
+                                            <span
+                                                class="fa-solid fa{{ $camp === 'created_at' ? $icon : '-sort' }}"></span>
                                         </a>
                                     </th>
-                                    @if(auth()->user()->can('noticias.create') or auth()->user()->can('noticias.edit'))
-                                    <th scope="col" class="text-center">Acciones</th>
+                                    @if (auth()->user()->can('noticias.create') or
+                                            auth()->user()->can('noticias.edit'))
+                                        <th scope="col" class="text-center">Acciones</th>
                                     @endif
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($posts as $values)
-                                <tr class="text-center">
-                                    {{-- <td>{{ $category->id }}</td> --}}
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->id }}</span></td>
-                                    <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ $values->title }}</span></td>
-                                    <td class="text-center">
+                                    <tr class="text-center">
+                                        {{-- <td>{{ $category->id }}</td> --}}
+                                        <td><span class="d-inline-block text-truncate"
+                                                style="max-width: 150px;">{{ $values->id }}</span></td>
+                                        <td><span class="d-inline-block text-truncate"
+                                                style="max-width: 150px;">{{ $values->title }}</span></td>
+                                        <td class="text-center">
 
-                                        @if ($values->status==2)
-                                        <span class="d-inline-block text-truncate badge badge-glow bg-success" style="max-width: 250px;">Publicado</span>
-                                        @else
-                                        <span class="d-inline-block text-truncate badge badge-glow bg-danger" style="max-width: 250px;">Por Publicar</span>
+                                            @if ($values->status == 2)
+                                                <span class="d-inline-block text-truncate badge badge-glow bg-success"
+                                                    style="max-width: 250px;">Publicado</span>
+                                            @else
+                                                <span class="d-inline-block text-truncate badge badge-glow bg-danger"
+                                                    style="max-width: 250px;">Por Publicar</span>
+                                            @endif
+
+                                        </td>
+                                        <td class=""><span class="d-inline-block text-truncate"
+                                                style="max-width: 250px;">{{ $values->category->name }}</span></td>
+                                        <td class=""><span class="d-inline-block text-truncate"
+                                                style="max-width: 250px;">{{ $values->user->name }}</span></td>
+                                        <td class=""><span class="badge rounded-pill badge-light-danger me-1"
+                                                style="max-width: 250px;">{{ $values->created_at->format('d-m-Y') }}</span>
+                                        </td>
+                                        @if (auth()->user()->can('noticias.create') or
+                                                auth()->user()->can('noticias.edit'))
+                                            <td class="text-center">
+                                                {{-- Incluimos los botones  --}}
+                                                @include('admin.pages.post.partials.buttons')
+                                            </td>
                                         @endif
-
-                                    </td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->category->name }}</span></td>
-                                    <td class=""><span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $values->user->name }}</span></td>
-                                    <td class=""><span class="badge rounded-pill badge-light-danger me-1" style="max-width: 250px;">{{ $values->created_at->format('d-m-Y') }}</span></td>
-                                    @if(auth()->user()->can('noticias.create') or auth()->user()->can('noticias.edit'))
-                                    <td class="text-center">
-                                        {{-- Incluimos los botones  --}}
-                                        @include('admin.pages.post.partials.buttons')
-                                    </td>
-                                    @endif
-                                </tr>
+                                    </tr>
                                 @empty
-                                <tr class="text-center ">
-                                    <td colspan="5" class="text-danger">No existe registro</td>
-                                </tr>
+                                    <tr class="text-center ">
+                                        <td colspan="5" class="text-danger">No existe registro</td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

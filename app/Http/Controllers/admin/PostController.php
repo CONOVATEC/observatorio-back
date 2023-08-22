@@ -43,6 +43,20 @@ class PostController extends Controller
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
+     *       @OA\Parameter(
+     *         name="sort",
+     *         in="query",
+     *         description="Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -title).",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *       @OA\Parameter(
+     *         name="filter[title]",
+     *         in="query",
+     *         description="Filtrar los resultados por los campos de la tabla.Por ejempl en por el  título,etc.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Listado de los Posts(Publicaciones) obtenido exitosamente.",

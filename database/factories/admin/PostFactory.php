@@ -26,6 +26,7 @@ class PostFactory extends Factory
             'title' => $title,
             'slug' => $slug,
             'extract' => $this->faker->unique->word,
+            'url_image' => $this->faker->imageUrl(),
             'content' => $this->faker->paragraph(),
             'status' => $this->faker->numberBetween(1, 2),
             'type_new' => $this->faker->numberBetween(1, 2),
