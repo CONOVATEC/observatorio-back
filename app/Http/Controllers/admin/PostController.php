@@ -12,10 +12,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * @OA\Info(
- *     description="Esta es una API de ejemplo para la gestión de posts(Publicaciones).",
- *     version="1.0.0",
- *     title="API de administración de posts(Publicaciones)."
+ * @OA\Tag(
+ *     name="Posts",
+ *     description="Endpoints relacionados con los Posts(Publicaciones)."
  * )
  */
 
@@ -26,6 +25,7 @@ class PostController extends Controller
      * @OA\Get(
      *     path="/api/v1/posts",
      *     summary="Listado de los Posts(Publicaciones)",
+     *     tags={"Posts"},
      *     operationId="posts",
      *     description="Devuelve un listado de los Posts(Publicaciones) que están registrados en nuestro servidor",
      *     security={{"bearer_token":{}}},
@@ -50,10 +50,45 @@ class PostController extends Controller
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
-     *       @OA\Parameter(
+     *     @OA\Parameter(
+     *         name="filter[id]",
+     *         in="query",
+     *         description="Filtrar los resultados por el ID del post.",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
      *         name="filter[title]",
      *         in="query",
-     *         description="Filtrar los resultados por los campos de la tabla.Por ejempl en por el  título,etc.",
+     *         description="Filtrar los resultados por el título del post.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="filter[slug]",
+     *         in="query",
+     *         description="Filtrar los resultados por el slug del post.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="filter[extract]",
+     *         in="query",
+     *         description="Filtrar los resultados por el extracto del post.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="filter[content]",
+     *         in="query",
+     *         description="Filtrar los resultados por el contenido del post.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *       @OA\Parameter(
+     *         name="search",
+     *         in="query",
+     *         description="Buscar por un término en el título, slug, extracto o contenido del post.",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
@@ -74,6 +109,41 @@ class PostController extends Controller
      *         description="Error interno del servidor. Algo salió mal.",
      *     ),
      * )
+     * @OA\Get(
+     *     path="/api/v1/posts/{id}",
+     *     summary="Obtener un Post por su ID",
+     *      tags={"Posts"},
+     *     operationId="get_post_by_id",
+     *     description="Devuelve un Post(Publicación) específico por su ID.",
+     *     security={{"bearer_token":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID del Post a obtener.",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Post(Publicación) obtenido exitosamente.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autorizado. Se requiere un token válido en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Token no provisto. Se requiere un token en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Post(Publicación) no encontrado.",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error interno del servidor. Algo salió mal.",
+     *     ),
+     * ),
      */
 
     public function __construct()

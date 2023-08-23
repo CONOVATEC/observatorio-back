@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Traits\ApiTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,9 +11,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Category extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
-    use LogsActivity;
+    use HasFactory, SoftDeletes, ApiTrait, LogsActivity;
     /**
      * The attributes that are mass assignable.
      *
@@ -28,7 +27,17 @@ class Category extends Model
     protected static $recordEvents = ['created', 'updated', 'deleted'];
     protected static $logOnlyDirty = true;
     protected static $logName = 'Category';
-
+    /************
+     * Para API *
+     ************/
+    //* Para consultar las  relaciones
+    protected $allowIncluded = ['posts'];
+    //* Para filtrar
+    protected $allowFilter = ['name', 'description', 'created_at'];
+    //* Para ordernar
+    protected $allowSort = ['name', 'description', 'created_at'];
+    //* Para búsqueda
+    protected $allowSearch = ['name', 'description'];
     public function getDescriptionForEvent(string $eventName): string
     {
         switch ($eventName) {

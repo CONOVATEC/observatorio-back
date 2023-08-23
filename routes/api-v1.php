@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\v1\CategoryApiController;
 use App\Http\Controllers\Api\V1\PostApiController;
-#use App\Http\Controllers\Api\v1\ThematicApiController;
+use App\Http\Controllers\Api\v1\ThematicApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,13 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'token.api.custom'], function () {
-    #Route::apiResource('tematicas', ThematicApiController::class)->names('thematics');
+    Route::apiResource('tematicas', ThematicApiController::class)->names('thematics');
     Route::apiResource('posts', PostApiController::class)->names('posts');
-    Route::get('categories', function () {
-        $categories = \App\Models\admin\Category::query()->get();
-
-        return response()->json([
-            'data' => $categories,
-        ]);
-    })->name('categories');
+    Route::apiResource('categories', CategoryApiController::class)->names('categories');
 });
