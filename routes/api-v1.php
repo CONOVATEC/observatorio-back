@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'token.api.custom'], function () {
     Route::apiResource('tematicas', ThematicApiController::class)->names('thematics');
     Route::apiResource('posts', PostApiController::class)->names('posts');
+    Route::apiResource('categories', CategoryResource::class)->names('categories');
 });
