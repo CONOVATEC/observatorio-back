@@ -32,6 +32,7 @@ class PostResource extends JsonResource
             'news_cover' => $this->news_cover == 1 ? 'cover' : 'not_cover', //portada_noticias
             'tendencia' => $this->tendencia_active == 1 ? 'trend' : 'not_trend',
             'category' => CategoryResource::make($this->whenLoaded('category')),
+            'categoryId' => $this->category_id,
             'tags' => TagResource::collection($this->whenLoaded('tags')),
             // 'likes'=>LikeResource::collection($this->likes),
             'user' => UserResource::make($this->whenLoaded('user')),
@@ -76,5 +77,4 @@ class PostResource extends JsonResource
 
         return $firstImage->url;
     }
-
 }
