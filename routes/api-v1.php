@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\v1\CategoryApiController;
+use App\Http\Controllers\Api\V1\CategoryApiController;
 use App\Http\Controllers\Api\V1\PostApiController;
-use App\Http\Controllers\Api\v1\ThematicApiController;
+use App\Http\Controllers\Api\V1\ThematicApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
