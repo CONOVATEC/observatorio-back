@@ -19,14 +19,14 @@ class Post extends Model
     //* Para filtrar
     protected $allowFilter = ['id', 'title', 'slug', 'extract', 'content'];
     //* Para ordernar
-    protected $allowSort = ['id', 'title', 'slug', 'extract', 'content', 'status', 'user_id','created_at'];
+    protected $allowSort = ['id', 'title', 'slug', 'extract', 'content', 'status', 'user_id', 'created_at'];
     //* Para búsqueda
     protected $allowSearch = ['title', 'slug', 'extract', 'content', 'status'];
 
     protected $fillable = ['title', 'slug', 'extract', 'content', 'tendencia_active', 'status', 'url_image', 'category_id', 'user_id'];
     // protected $guarded=['id','created_at','update_at'];
 
-    public function scopeActigitve($query)
+    public function scopeActive($query)
     {
         return $query->where('status', Post::PUBLICADO);
     }

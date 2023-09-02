@@ -15,7 +15,7 @@ class Thematic extends Model
     //* Para filtrar
     protected $allowFilter = ['name', 'description', 'url_icono'];
     //* Para ordernar
-    protected $allowSort = ['id', 'name', 'description', 'url_icono'];
+    protected $allowSort = ['id', 'name', 'description', 'url_icono', 'created_at'];
     //* Para búsqueda
     protected $allowSearch = ['name', 'description'];
 }
