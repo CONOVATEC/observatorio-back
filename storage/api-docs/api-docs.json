@@ -1,0 +1,436 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "DOCUMENTACIÓN DE APIs DEL OBSERVATORIO JOVEN",
+        "description": "API de los diferentes módulos",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/categories": {
+            "get": {
+                "tags": [
+                    "Categorías"
+                ],
+                "summary": "Listado de las Categorías",
+                "description": "Devuelve un listado de las Categorías que están registradas en nuestro servidor",
+                "operationId": "categories",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Número de elementos por página en la paginación.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el nombre de la categoría.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[description]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por la descripción de la categoría.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Buscar por un término en el nombre o la descripción de la categoría.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "included",
+                        "in": "query",
+                        "description": "Relaciones que se deben incluir en la respuesta (posts). Separadas por comas.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de las Categorías obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categorías"
+                ],
+                "summary": "Obtener una Categoría por su ID",
+                "description": "Devuelve una Categoría específica por su ID.",
+                "operationId": "get_category_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la Categoría a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categoría obtenida exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "Categoría no encontrada."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Listado de los Posts(Publicaciones)",
+                "description": "Devuelve un listado de los Posts(Publicaciones) que están registrados en nuestro servidor",
+                "operationId": "posts",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Número de elementos por página en la paginación.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "included",
+                        "in": "query",
+                        "description": "Relaciones que se deben incluir en la respuesta (user, category, tags). Separadas por comas.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -title).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[id]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el ID del post.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "filter[title]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el título del post.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[slug]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el slug del post.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[extract]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el extracto del post.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[content]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el contenido del post.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Buscar por un término en el título, slug, extracto o contenido del post.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los Posts(Publicaciones) obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/posts/{id}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Obtener un Post por su ID",
+                "description": "Devuelve un Post(Publicación) específico por su ID.",
+                "operationId": "get_post_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del Post a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post(Publicación) obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "Post(Publicación) no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/tematicas": {
+            "get": {
+                "tags": [
+                    "Temáticas"
+                ],
+                "summary": "Listado de los tematicas",
+                "description": "Devuelve un listado de los tematicas que están registrados en nuestro servidor",
+                "operationId": "tematicas",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Número de elementos por página en la paginación.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el título de la temática.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[descripcion]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por la descripción de la temática.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Buscar por un término en el nombre o descripcición de la tematica.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los tematicas obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/tematicas/{id}": {
+            "get": {
+                "tags": [
+                    "Temáticas"
+                ],
+                "summary": "Obtener un tematica por su ID",
+                "description": "Devuelve un Temáticas específico por su ID.",
+                "operationId": "get_tematica_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la tematica a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Temáticas obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "Temáticas no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Categorías",
+            "description": "Endpoints relacionados con las Categorías."
+        },
+        {
+            "name": "Posts",
+            "description": "Endpoints relacionados con los Posts(Publicaciones)."
+        },
+        {
+            "name": "Temáticas",
+            "description": "Endpoints relacionados con los temáticas."
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

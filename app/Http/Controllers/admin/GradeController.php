@@ -17,7 +17,7 @@ class GradeController extends Controller
         $this->middleware('can:notasRapidas.edit')->only('edit');
         $this->middleware('can:notasRapidas.destroy')->only('destroy');
     }
-    
+
     public function index(){
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
@@ -32,7 +32,7 @@ class GradeController extends Controller
         //$typeLogos = TypeLogo::pluck('name', 'id');
         //dd($typeLogos);
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "logo", 'name' => "Logo"], ['name' => "Registrando logo"],
+            ['link' => "home", 'name' => "Inicio"], ['link' => "logo", 'name' => "Nota rápida"], ['name' => "Registrando nota"],
         ];
         return view('admin.pages.grades.create', compact('breadcrumbs', 'grade'));
     }
@@ -47,7 +47,7 @@ class GradeController extends Controller
     }
     public function edit($id)
     {
-       
+
         $grades = Grade::latest()->paginate(10);
         $grade = Grade::findOrFail($id);
 

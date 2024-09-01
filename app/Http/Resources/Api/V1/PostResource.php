@@ -18,11 +18,12 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'title' => Str::title($this->title),
             // 'images' => $this->imagen(),
-            'imagen' => $this->getFirstImageUrl(),
+            // 'imagen' => $this->getFirstImageUrl(),
             'slug' => $this->slug,
             'extract' => $this->extract,
             'content' => $this->content,
@@ -31,12 +32,14 @@ class PostResource extends JsonResource
             'news_cover' => $this->news_cover == 1 ? 'cover' : 'not_cover', //portada_noticias
             'tendencia' => $this->tendencia_active == 1 ? 'trend' : 'not_trend',
             'category' => CategoryResource::make($this->whenLoaded('category')),
+            'categoryId' => $this->category_id,
             'tags' => TagResource::collection($this->whenLoaded('tags')),
             // 'likes'=>LikeResource::collection($this->likes),
             'user' => UserResource::make($this->whenLoaded('user')),
             'created_at' => $this->created_at->format('d-m-Y'),
         ];
     }
+
     /***********************
      *  Activo/Inactivo     *
      ************************/
@@ -74,5 +77,4 @@ class PostResource extends JsonResource
 
         return $firstImage->url;
     }
-
 }

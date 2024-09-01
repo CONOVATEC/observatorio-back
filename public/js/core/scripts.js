@@ -5,6 +5,7 @@ var __webpack_exports__ = {};
   \****************************************/
 (function (window, undefined) {
   'use strict';
+
   /*
   NOTE:
   ------

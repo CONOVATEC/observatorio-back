@@ -22,10 +22,12 @@ class PostApiController extends Controller
     public function index()
     {
         $query = Post::included()->filter()->sort();
+
         if (request('search')) {
             $query->search(request('search'));
         }
         $posts = $query->active()->getOrPaginate();
+//        dd(PostResource::collection($posts));
         return PostResource::collection($posts);
 
     }

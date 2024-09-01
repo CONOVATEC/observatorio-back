@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CategoryApiController;
 use App\Http\Controllers\Api\V1\PostApiController;
+use App\Http\Controllers\Api\V1\ThematicApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('posts', PostApiController::class)->names(['api.v1.posts']);
-
+Route::group(['middleware' => 'token.api.custom'], function () {
+    Route::apiResource('tematicas', ThematicApiController::class)->names('thematics');
+    Route::apiResource('posts', PostApiController::class)->names('posts');
+    Route::apiResource('categories', CategoryApiController::class)->names('categories');
+});
