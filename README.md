@@ -109,7 +109,7 @@ https://github.com/CONOVATEC/observatorio-back.git
                 ```
                 http://127.0.0.1:8000/api/v1/posts?perPage=2
                 ```
-            -   Crear todos los posts con sus respectivos relaciones
+            -   Ver todos los posts con sus respectivos relaciones
                 -   Relaciones disponibles utilize **included=relación**
                     `user,category,tags,images`
                 -   Uso
