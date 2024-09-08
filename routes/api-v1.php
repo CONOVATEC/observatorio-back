@@ -25,4 +25,5 @@ Route::group(['middleware' => 'token.api.custom'], function () {
     Route::apiResource('tematicas', ThematicApiController::class)->names('thematics');
     Route::apiResource('posts', PostApiController::class)->names('posts');
     Route::apiResource('categories', CategoryApiController::class)->names('categories');
+    Route::apiResource('sobre-observatorio', CategoryApiController::class)->names('categories');
 });

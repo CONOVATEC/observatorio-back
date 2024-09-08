@@ -18,7 +18,7 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
         "laravelcollective/html": "^6.3",
-        "league/mime-type-detection": "^1.13",
+        "league/mime-type-detection": "^1.15",
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.61",
