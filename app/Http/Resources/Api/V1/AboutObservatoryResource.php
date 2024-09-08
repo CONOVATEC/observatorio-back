@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class YoutObservatoryResource extends JsonResource
+class AboutObservatoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,19 +18,8 @@ class YoutObservatoryResource extends JsonResource
             'mission' => $this->mission,
             'vision' => $this->vision,
             'about_us' => $this->about_us,
-            'url_organization_chart' => $this->url_organization_chart
-            //'imagen_observatory'=>$this->imagen()
-        ];
-    }
+            'created_at' => $this->created_at,
 
-    public function imagen()
-    {
-        if (isset($this->image->url)) {
-            $respuesta = $this->image->url;
-        } else {
-            $respuesta = null;
-        }
-        return $respuesta;
-        //dd($this->image->url);
+        ];
     }
 }

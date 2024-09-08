@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\V1\CategoryApiController;
-use App\Http\Controllers\Api\V1\PostApiController;
-use App\Http\Controllers\Api\V1\ThematicApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\PostApiController;
+use App\Http\Controllers\Api\V1\AboutApiController;
+use App\Http\Controllers\Api\V1\CategoryApiController;
+use App\Http\Controllers\Api\V1\ThematicApiController;
+use App\Http\Controllers\Api\V1\AboutObservatoryApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +27,9 @@ Route::group(['middleware' => 'token.api.custom'], function () {
     Route::apiResource('tematicas', ThematicApiController::class)->names('thematics');
     Route::apiResource('posts', PostApiController::class)->names('posts');
     Route::apiResource('categories', CategoryApiController::class)->names('categories');
-    Route::apiResource('sobre-observatorio', CategoryApiController::class)->names('categories');
+    Route::apiResource('sobre-observatorio', AboutObservatoryApiController::class)->names('about.observatory');
+    // Route::apiResource('sobre-cmpj', CategoryApiController::class)->names('about.cmpj');
+    // Route::apiResource('directiva', CategoryApiController::class)->names('directive');
+    // Route::apiResource('logos', CategoryApiController::class)->names('logos');
+    // Route::apiResource('politica-juventud', CategoryApiController::class)->names('youth-policy');
 });

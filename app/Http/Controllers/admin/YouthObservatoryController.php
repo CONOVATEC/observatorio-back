@@ -6,11 +6,86 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\YouthObservatoryRequest;
 use App\Models\admin\YouthObservatory;
 use Illuminate\Support\Facades\Storage;
-
+/**
+ * @OA\Tag(
+ *     name="sobre-observatorio",
+ *     description="Endpoints relacionados con los sobre-observatorio."
+ * )
+ */
 class YouthObservatoryController extends Controller
 {
+    // Para documentación API
+    /**
+     * @OA\Get(
+     *     path="/api/v1/sobre-observatorio",
+     *     summary="Listado de los sobre-observatorio",
+     *     tags={"sobre-observatorio"},
+     *     operationId="sobre-observatorio",
+     *     description="Devuelve un listado de los sobre-observatorio que están registrados en nuestro servidor",
+     *     security={{"bearer_token":{}}},
+     *       @OA\Parameter(
+     *         name="sort",
+     *         in="query",
+     *         description="Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Listado de los sobre-observatorio obtenido exitosamente.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autorizado. Se requiere un token válido en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Token no provisto. Se requiere un token en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error interno del servidor. Algo salió mal.",
+     *     ),
+     * )
+     * @OA\Get(
+     *     path="/api/v1/sobre-observatorio/{id}",
+     *     summary="Obtener un sobre-observatorio por su ID",
+     *      tags={"sobre-observatorio"},
+     *     operationId="get_sobre-observatorio_by_id",
+     *     description="Devuelve un sobre-observatorio específico por su ID.",
+     *     security={{"bearer_token":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID de la sobre-observatorio a obtener.",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="sobre-observatorio obtenido exitosamente.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autorizado. Se requiere un token válido en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Token no provisto. Se requiere un token en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="sobre-observatorio no encontrado.",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error interno del servidor. Algo salió mal.",
+     *     ),
+     * ),
+     */
 
-    public function  __construct()
+
+    public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('auth')->except('show');
@@ -25,7 +100,8 @@ class YouthObservatoryController extends Controller
     {
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
-            ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de Observatorio Juvenil"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['name' => "Lista de Observatorio Juvenil"],
         ];
 
         return view('admin.pages.youthObservatory.index', compact('breadcrumbs'));
@@ -33,11 +109,13 @@ class YouthObservatoryController extends Controller
 
     public function create()
     {
-        $youthObservatories=YouthObservatory::all();
+        $youthObservatories = YouthObservatory::all();
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "observatorio juvenil", 'name' => "Observatorio Juvenil"], ['name' => "Registrando observatorio juvenil"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['link' => "observatorio juvenil", 'name' => "Observatorio Juvenil"],
+            ['name' => "Registrando observatorio juvenil"],
         ];
-        return view('admin.pages.youthObservatory.create', compact('breadcrumbs','youthObservatories'));
+        return view('admin.pages.youthObservatory.create', compact('breadcrumbs', 'youthObservatories'));
     }
 
     public function store(YouthObservatoryRequest $request)
@@ -65,7 +143,9 @@ class YouthObservatoryController extends Controller
         // dd($category);
 
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "Observatorio Juvenil", 'name' => "Observatorio Juvenil"], ['name' => "Editando Observatorio Juvenil"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['link' => "Observatorio Juvenil", 'name' => "Observatorio Juvenil"],
+            ['name' => "Editando Observatorio Juvenil"],
         ];
         return view('admin.pages.youthObservatory.edit', compact('breadcrumbs', 'youthObservatories', 'youthObservatory'));
     }
@@ -81,23 +161,23 @@ class YouthObservatoryController extends Controller
     {
 
         YouthObservatory::find($id)->update($request->all());
-        if($request->file('image_observatory')){
-            $url=Storage::put('public/observatories',$request->file('image_observatory'));
-            $youthObservatory=YouthObservatory::findOrFail($id);
-            if($youthObservatory->image){
+        if ($request->file('image_observatory')) {
+            $url = Storage::put('public/observatories', $request->file('image_observatory'));
+            $youthObservatory = YouthObservatory::findOrFail($id);
+            if ($youthObservatory->image) {
                 Storage::delete($youthObservatory->image->url);
                 $youthObservatory->image->update([
-                    'url'=>$url
+                    'url' => $url
                 ]);
 
-            }else{
+            } else {
                 $youthObservatory->image()->create([
-                    'url'=>$url
+                    'url' => $url
                 ]);
             }
         }
 
-        return redirect()->route('observatorioJuvenil.edit', $id)->with('info','El Observatorio Juvenil se actualizo correctamente');
+        return redirect()->route('observatorioJuvenil.edit', $id)->with('info', 'El Observatorio Juvenil se actualizo correctamente');
     }
 
     /**
@@ -115,7 +195,7 @@ class YouthObservatoryController extends Controller
             $youthObservatory->image->delete();
             $youthObservatory->Delete();
         } else {
-           // $slide->image->delete();
+            // $slide->image->delete();
             $youthObservatory->Delete();
         }
         return redirect()->route('observatorioJuvenil.index')->with('warning', 'el Observatorio Juvenil se elimino correctamente');
