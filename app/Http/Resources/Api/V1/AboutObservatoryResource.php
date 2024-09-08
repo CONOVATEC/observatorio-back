@@ -15,6 +15,7 @@ class AboutObservatoryResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'mission' => $this->mission,
             'vision' => $this->vision,
             'about_us' => $this->about_us,
