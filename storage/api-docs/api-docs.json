@@ -217,6 +217,125 @@
                 ]
             }
         },
+        "/api/v1/directiva": {
+            "get": {
+                "tags": [
+                    "Directiva"
+                ],
+                "summary": "Listado de los directiva",
+                "description": "Devuelve un listado de los directiva que están registrados en nuestro servidor",
+                "operationId": "directiva",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Número de elementos por página en la paginación.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "included",
+                        "in": "query",
+                        "description": "Relaciones que se deben incluir en la respuesta (position, image). Separadas por comas.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[id]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el ID del directiva.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el nombre del directiva.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los directiva obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/directiva/{id}": {
+            "get": {
+                "tags": [
+                    "Directiva"
+                ],
+                "summary": "Obtener un directiva por su ID",
+                "description": "Devuelve un directiva específico por su ID.",
+                "operationId": "get_directiva_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del directiva a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "directiva obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "directiva no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/api/v1/posts": {
             "get": {
                 "tags": [
@@ -583,6 +702,10 @@
         {
             "name": "Categorías",
             "description": "Endpoints relacionados con las Categorías."
+        },
+        {
+            "name": "Directiva",
+            "description": "Endpoints relacionados con los directiva."
         },
         {
             "name": "Posts",
