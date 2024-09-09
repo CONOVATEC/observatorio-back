@@ -15,19 +15,20 @@ class YoutObservatoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'mission'=>$this->mission,
-            'vision'=>$this->vision,
-            'about'=>$this->about_us,
-            'url_organigrama'=>$this->url_organization_chart
+            'mission' => $this->mission,
+            'vision' => $this->vision,
+            'about_us' => $this->about_us,
+            'url_organization_chart' => $this->url_organization_chart
             //'imagen_observatory'=>$this->imagen()
         ];
     }
 
-    public function imagen(){
-        if(isset($this->image->url)){
-            $respuesta=$this->image->url;
-        }else{
-            $respuesta=null;
+    public function imagen()
+    {
+        if (isset($this->image->url)) {
+            $respuesta = $this->image->url;
+        } else {
+            $respuesta = null;
         }
         return $respuesta;
         //dd($this->image->url);

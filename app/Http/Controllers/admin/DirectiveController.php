@@ -9,16 +9,114 @@ use App\Models\admin\Directive;
 use App\Models\admin\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+/**
+ * @OA\Tag(
+ *     name="Directiva",
+ *     description="Endpoints relacionados con los directiva."
+ * )
+ */
 class DirectiveController extends Controller
 {
+    // Para documentación API
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/v1/directiva",
+     *     summary="Listado de los directiva",
+     *     tags={"Directiva"},
+     *     operationId="directiva",
+     *     description="Devuelve un listado de los directiva que están registrados en nuestro servidor",
+     *     security={{"bearer_token":{}}},
+     *     @OA\Parameter(
+     *         name="perPage",
+     *         in="query",
+     *         description="Número de elementos por página en la paginación.",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="included",
+     *         in="query",
+     *         description="Relaciones que se deben incluir en la respuesta (position, image). Separadas por comas.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *       @OA\Parameter(
+     *         name="sort",
+     *         in="query",
+     *         description="Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="filter[id]",
+     *         in="query",
+     *         description="Filtrar los resultados por el ID del directiva.",
+     *         required=false,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="filter[name]",
+     *         in="query",
+     *         description="Filtrar los resultados por el nombre del directiva.",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Listado de los directiva obtenido exitosamente.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autorizado. Se requiere un token válido en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Token no provisto. Se requiere un token en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error interno del servidor. Algo salió mal.",
+     *     ),
+     * )
+     * @OA\Get(
+     *     path="/api/v1/directiva/{id}",
+     *     summary="Obtener un directiva por su ID",
+     *      tags={"Directiva"},
+     *     operationId="get_directiva_by_id",
+     *     description="Devuelve un directiva específico por su ID.",
+     *     security={{"bearer_token":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID del directiva a obtener.",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="directiva obtenido exitosamente.",
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autorizado. Se requiere un token válido en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=403,
+     *         description="Token no provisto. Se requiere un token en el encabezado.",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="directiva no encontrado.",
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error interno del servidor. Algo salió mal.",
+     *     ),
+     * ),
      */
 
-    public function  __construct()
+
+    public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('auth')->except('show');
@@ -31,7 +129,8 @@ class DirectiveController extends Controller
     {
         $breadcrumbs = [
             // ['link' => "home", 'name' => "inicio"], ['name' => "noticias"]
-            ['link' => "home", 'name' => "Inicio"], ['name' => "Lista de Directivos"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['name' => "Lista de Directivos"],
         ];
         return view('admin.pages.directive.index', compact('breadcrumbs'));
     }
@@ -48,9 +147,11 @@ class DirectiveController extends Controller
         //dd($directive);
         $position_id = Position::pluck('slug', 'id');
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "directives", 'name' => "Directivo"], ['name' => "Registrando Directivo"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['link' => "directives", 'name' => "Directivo"],
+            ['name' => "Registrando Directivo"],
         ];
-        return view('admin.pages.directive.create', compact('breadcrumbs', 'directive','position_id'));
+        return view('admin.pages.directive.create', compact('breadcrumbs', 'directive', 'position_id'));
     }
 
     /**
@@ -96,9 +197,11 @@ class DirectiveController extends Controller
         // dd($category);
 
         $breadcrumbs = [
-            ['link' => "home", 'name' => "Inicio"], ['link' => "Directivos", 'name' => "Directivos"], ['name' => "Editando Directivo"],
+            ['link' => "home", 'name' => "Inicio"],
+            ['link' => "Directivos", 'name' => "Directivos"],
+            ['name' => "Editando Directivo"],
         ];
-        return view('admin.pages.directive.edit', compact('breadcrumbs', 'directives', 'directive','position_id'));
+        return view('admin.pages.directive.edit', compact('breadcrumbs', 'directives', 'directive', 'position_id'));
     }
 
     public function show($id)
@@ -116,30 +219,30 @@ class DirectiveController extends Controller
     public function update(DirectiveRequest $request, $id)
     {
         Directive::find($id)->update($request->all());
-        if($request->file('image_directive')){
-            $url=Storage::put('public/directives',$request->file('image_directive'));
-            $directive=Directive::findOrFail($id);
-            if($directive->image){
+        if ($request->file('image_directive')) {
+            $url = Storage::put('public/directives', $request->file('image_directive'));
+            $directive = Directive::findOrFail($id);
+            if ($directive->image) {
                 Storage::delete($directive->image->url);
                 $directive->image->update([
-                    'url'=>$url
+                    'url' => $url
                 ]);
 
-            }else{
+            } else {
                 $directive->image()->create([
-                    'url'=>$url
+                    'url' => $url
                 ]);
             }
         }
 
-        return redirect()->route('directives.edit', $id)->with('info','El Directivo se actualizo correctamente');
+        return redirect()->route('directives.edit', $id)->with('info', 'El Directivo se actualizo correctamente');
     }
 
     public function destroy($id)
     {
         $directive = Directive::findOrFail($id);
 
-        if (!is_null($directive->image->url) ){
+        if (!is_null($directive->image->url)) {
             Storage::disk()->delete($directive->image->url);
             $directive->image->delete();
             $directive->Delete();

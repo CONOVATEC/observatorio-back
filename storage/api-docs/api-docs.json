@@ -6,6 +6,89 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/sobre-cmpj": {
+            "get": {
+                "tags": [
+                    "sobre-cmpj"
+                ],
+                "summary": "Listado de los sobre-cmpj",
+                "description": "Devuelve un listado de los sobre-cmpj que están registrados en nuestro servidor",
+                "operationId": "sobre-cmpj",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los sobre-cmpj obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/sobre-cmpj/{id}": {
+            "get": {
+                "tags": [
+                    "sobre-cmpj"
+                ],
+                "summary": "Obtener un sobre-cmpj por su ID",
+                "description": "Devuelve un sobre-cmpj específico por su ID.",
+                "operationId": "get_sobre-cmpj_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sobre-cmpj a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "sobre-cmpj obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "sobre-cmpj no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/api/v1/categories": {
             "get": {
                 "tags": [
@@ -122,6 +205,226 @@
                     },
                     "404": {
                         "description": "Categoría no encontrada."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/directiva": {
+            "get": {
+                "tags": [
+                    "Directiva"
+                ],
+                "summary": "Listado de los directiva",
+                "description": "Devuelve un listado de los directiva que están registrados en nuestro servidor",
+                "operationId": "directiva",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Número de elementos por página en la paginación.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "included",
+                        "in": "query",
+                        "description": "Relaciones que se deben incluir en la respuesta (position, image). Separadas por comas.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[id]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el ID del directiva.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "description": "Filtrar los resultados por el nombre del directiva.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los directiva obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/directiva/{id}": {
+            "get": {
+                "tags": [
+                    "Directiva"
+                ],
+                "summary": "Obtener un directiva por su ID",
+                "description": "Devuelve un directiva específico por su ID.",
+                "operationId": "get_directiva_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del directiva a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "directiva obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "directiva no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/logos": {
+            "get": {
+                "tags": [
+                    "Logos"
+                ],
+                "summary": "Listado de los logos",
+                "description": "Devuelve un listado de los logos que están registrados en nuestro servidor",
+                "operationId": "logos",
+                "parameters": [
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "Número de elementos por página en la paginación.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Buscar por un término en el nombre o descripcición del logo.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los logos obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/logos/{id}": {
+            "get": {
+                "tags": [
+                    "Logos"
+                ],
+                "summary": "Obtener un logo por su ID",
+                "description": "Devuelve un logos específico por su ID.",
+                "operationId": "get_logo_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del logo a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "logos obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "logos no encontrado."
                     },
                     "500": {
                         "description": "Error interno del servidor. Algo salió mal."
@@ -407,12 +710,190 @@
                     }
                 ]
             }
+        },
+        "/api/v1/sobre-observatorio": {
+            "get": {
+                "tags": [
+                    "sobre-observatorio"
+                ],
+                "summary": "Listado de los sobre-observatorio",
+                "description": "Devuelve un listado de los sobre-observatorio que están registrados en nuestro servidor",
+                "operationId": "sobre-observatorio",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los sobre-observatorio obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/sobre-observatorio/{id}": {
+            "get": {
+                "tags": [
+                    "sobre-observatorio"
+                ],
+                "summary": "Obtener un sobre-observatorio por su ID",
+                "description": "Devuelve un sobre-observatorio específico por su ID.",
+                "operationId": "get_sobre-observatorio_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sobre-observatorio a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "sobre-observatorio obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "sobre-observatorio no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/politica-juventud": {
+            "get": {
+                "tags": [
+                    "Política"
+                ],
+                "summary": "Listado de los politica-juventud",
+                "description": "Devuelve un listado de los politica-juventud que están registrados en nuestro servidor",
+                "operationId": "politica-juventud",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los politica-juventud obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/politica-juventud/{id}": {
+            "get": {
+                "tags": [
+                    "Política"
+                ],
+                "summary": "Obtener un politica-juventud por su ID",
+                "description": "Devuelve un politica-juventud específico por su ID.",
+                "operationId": "get_politica-juventud_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la politica-juventud a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "politica-juventud obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "politica-juventud no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
         {
+            "name": "sobre-cmpj",
+            "description": "Endpoints relacionados con los sobre-cmpj."
+        },
+        {
             "name": "Categorías",
             "description": "Endpoints relacionados con las Categorías."
+        },
+        {
+            "name": "Directiva",
+            "description": "Endpoints relacionados con los directiva."
+        },
+        {
+            "name": "Logos",
+            "description": "Endpoints relacionados con los logos."
         },
         {
             "name": "Posts",
@@ -421,6 +902,14 @@
         {
             "name": "Temáticas",
             "description": "Endpoints relacionados con los temáticas."
+        },
+        {
+            "name": "sobre-observatorio",
+            "description": "Endpoints relacionados con los sobre-observatorio."
+        },
+        {
+            "name": "Política",
+            "description": "Endpoints relacionados con los politica-juventud."
         }
     ],
     "components": {
