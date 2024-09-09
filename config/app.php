@@ -170,7 +170,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         // Para exportar excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
         // Para Spatie
         Spatie\Permission\PermissionServiceProvider::class,
         //Para Intervention optimizar imagen

@@ -426,8 +426,8 @@ class ComposerStaticInit3d19fdcea07ecf07057b99d713df903a
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -605,8 +605,8 @@ class ComposerStaticInit3d19fdcea07ecf07057b99d713df903a
         ),
         'Fruitcake\\Cors\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
-            1 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            1 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
         'Faker\\' => 
         array (
@@ -725,16 +725,21 @@ class ComposerStaticInit3d19fdcea07ecf07057b99d713df903a
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Helpers\\Helpers' => __DIR__ . '/../..' . '/app/Helpers/Helpers.php',
+        'App\\Http\\Controllers\\Api\\V1\\AboutCmpjApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/AboutCmpjApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\AboutCmpjController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/AboutCmpjController.php',
+        'App\\Http\\Controllers\\Api\\V1\\AboutObservatoryApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/AboutObservatoryApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\CategoryApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/CategoryApiController.php',
+        'App\\Http\\Controllers\\Api\\V1\\DirectiveApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/DirectiveApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\DirectiveController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/DirectiveController.php',
         'App\\Http\\Controllers\\Api\\V1\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/GradeController.php',
         'App\\Http\\Controllers\\Api\\V1\\LogoApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/LogoApiController.php',
+        'App\\Http\\Controllers\\Api\\V1\\LogosApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/LogosApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\PostApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/PostApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/SettingController.php',
         'App\\Http\\Controllers\\Api\\V1\\SlideController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/SlideController.php',
         'App\\Http\\Controllers\\Api\\V1\\ThematicApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/ThematicApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\YoutObservatoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/YoutObservatoryController.php',
+        'App\\Http\\Controllers\\Api\\V1\\YouthPolicyApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/YouthPolicyApiController.php',
         'App\\Http\\Controllers\\Api\\V1\\YouthPolicyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/YouthPolicyController.php',
         'App\\Http\\Controllers\\Api\\V1\\YouthStrategyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/YouthStrategyController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -811,6 +816,7 @@ class ComposerStaticInit3d19fdcea07ecf07057b99d713df903a
         'App\\Http\\Requests\\admin\\YouthStrategyRequest' => __DIR__ . '/../..' . '/app/Http/Requests/admin/YouthStrategyRequest.php',
         'App\\Http\\Requests\\admin\\Youth_policyRequest' => __DIR__ . '/../..' . '/app/Http/Requests/admin/Youth_policyRequest.php',
         'App\\Http\\Resources\\Api\\V1\\AboutCmpjResource' => __DIR__ . '/../..' . '/app/Http/Resources/Api/V1/AboutCmpjResource.php',
+        'App\\Http\\Resources\\Api\\V1\\AboutObservatoryResource' => __DIR__ . '/../..' . '/app/Http/Resources/Api/V1/AboutObservatoryResource.php',
         'App\\Http\\Resources\\Api\\V1\\CategoryResource' => __DIR__ . '/../..' . '/app/Http/Resources/Api/V1/CategoryResource.php',
         'App\\Http\\Resources\\Api\\V1\\DirectiveResource' => __DIR__ . '/../..' . '/app/Http/Resources/Api/V1/DirectiveResource.php',
         'App\\Http\\Resources\\Api\\V1\\GradeResource' => __DIR__ . '/../..' . '/app/Http/Resources/Api/V1/GradeResource.php',
