@@ -793,6 +793,89 @@
                     }
                 ]
             }
+        },
+        "/api/v1/politica-juventud": {
+            "get": {
+                "tags": [
+                    "Política"
+                ],
+                "summary": "Listado de los politica-juventud",
+                "description": "Devuelve un listado de los politica-juventud que están registrados en nuestro servidor",
+                "operationId": "politica-juventud",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Campo por el cual ordenar los resultados. Agregar un signo '-' al principio para orden descendente (ej. -name).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de los politica-juventud obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/politica-juventud/{id}": {
+            "get": {
+                "tags": [
+                    "Política"
+                ],
+                "summary": "Obtener un politica-juventud por su ID",
+                "description": "Devuelve un politica-juventud específico por su ID.",
+                "operationId": "get_politica-juventud_by_id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la politica-juventud a obtener.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "politica-juventud obtenido exitosamente."
+                    },
+                    "401": {
+                        "description": "No autorizado. Se requiere un token válido en el encabezado."
+                    },
+                    "403": {
+                        "description": "Token no provisto. Se requiere un token en el encabezado."
+                    },
+                    "404": {
+                        "description": "politica-juventud no encontrado."
+                    },
+                    "500": {
+                        "description": "Error interno del servidor. Algo salió mal."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
         }
     },
     "tags": [
@@ -823,6 +906,10 @@
         {
             "name": "sobre-observatorio",
             "description": "Endpoints relacionados con los sobre-observatorio."
+        },
+        {
+            "name": "Política",
+            "description": "Endpoints relacionados con los politica-juventud."
         }
     ],
     "components": {

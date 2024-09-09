@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\CategoryApiController;
 use App\Http\Controllers\Api\V1\ThematicApiController;
 use App\Http\Controllers\Api\V1\AboutCmpjApiController;
 use App\Http\Controllers\Api\V1\DirectiveApiController;
+use App\Http\Controllers\Api\V1\YouthPolicyApiController;
 use App\Http\Controllers\Api\V1\AboutObservatoryApiController;
 
 /*
@@ -35,5 +36,5 @@ Route::group(['middleware' => 'token.api.custom'], function () {
     Route::apiResource('sobre-cmpj', AboutCmpjApiController::class)->names('about.cmpj');
     Route::apiResource('directiva', DirectiveApiController::class)->names('directive');
     Route::apiResource('logos', LogosApiController::class)->names('logos');
-    // Route::apiResource('politica-juventud', CategoryApiController::class)->names('youth-policy');
+    Route::apiResource('politica-juventud', YouthPolicyApiController::class)->names('youth-policy');
 });
