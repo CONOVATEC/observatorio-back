@@ -37,4 +37,5 @@ Route::group(['middleware' => 'token.api.custom'], function () {
     Route::apiResource('directiva', DirectiveApiController::class)->names('directive');
     Route::apiResource('logos', LogosApiController::class)->names('logos');
     Route::apiResource('politica-juventud', YouthPolicyApiController::class)->names('youth-policy');
+    // test ok
 });
