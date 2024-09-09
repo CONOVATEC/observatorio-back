@@ -149,7 +149,7 @@ https://github.com/CONOVATEC/observatorio-back.git
 
 <div  align="center">
 
-CONOVATEC
+CONOVATEC 2024
 
 </div>
 
